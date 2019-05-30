@@ -84,7 +84,7 @@
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2018-07-01",
-            "name": "[parameters('safe_name')]",
+            "name": "[parameters('safename')]",
             "location": "[parameters('regionId')]",
             "tags": {
                 "Architecture": "LowCodeUnit"
