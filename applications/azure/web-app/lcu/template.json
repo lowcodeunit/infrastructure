@@ -8,6 +8,6 @@
         "npm i @angular/cli@7.3.9",
         "npm i @lcu/cli@latest -g",
         "lcu init --workspace={{repoName}} --scope=@{{repoOrg}",
-        "lcu proj {{projName}} --template=LCU"
+        "lcu proj lcu --template=LCU"
     ]
 }
