@@ -1,0 +1,11 @@
+{
+    "$schema": "https://schema.lowcodeunit.com/schemas/latest/InfrastructureApplicationSeedOption.json#",
+    "Name": "Weather Forecast",
+    "Description": "Start from a weather forecast seed.",
+    "ImageSource": "https://fathym.com/wp-content/uploads/2018/03/Fathym-Logo_Registered_xxsm.png",
+    "SeedFork": {
+        "Repository": "",
+        "Organization": ""
+    },
+    "Commands": []
+}

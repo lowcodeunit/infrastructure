@@ -1,0 +1,13 @@
+{
+    "$schema": "https://schema.lowcodeunit.com/schemas/latest/InfrastructureApplicationSeedOption.json#",
+    "Name": "Low Code Unit",
+    "Description": "Start creating a new Low Code Unit.",
+    "ImageSource": "https://fathym.com/wp-content/uploads/2018/03/Fathym-Logo_Registered_xxsm.png",
+    "SeedFork": null,
+    "Commands": [
+        "npm i @angular/cli@7.3.9",
+        "npm i @lcu/cli@latest -g",
+        "lcu init --workspace={{repoName}} --scope=@{{repoOrg}",
+        "lcu proj {{projName}} --template=LCU"
+    ]
+}

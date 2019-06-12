@@ -1,0 +1,13 @@
+{
+    "$schema": "https://schema.lowcodeunit.com/schemas/latest/InfrastructureApplicationSeedOption.json#",
+    "Name": "Angular Seed",
+    "Description": "Start with a simple angular seed.",
+    "ImageSource": "https://angular.io/assets/images/logos/angular/angular.svg",
+    "SeedFork": null,
+    "Commands": [
+        "npm i @angular/cli@7.3.9",
+        "npm i @lcu/cli@latest -g",
+        "lcu init --workspace={{repoName}} --scope=@{{repoOrg}",
+        "lcu proj {{projName}} --template=Default"
+    ]
+}
