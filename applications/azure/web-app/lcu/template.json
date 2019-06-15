@@ -4,6 +4,7 @@
     "Description": "Start creating a new Low Code Unit.",
     "ImageSource": "https://fathym.com/wp-content/uploads/2018/03/Fathym-Logo_Registered_xxsm.png",
     "SeedFork": null,
+    "ReleasePackageSuffix": "-demo",
     "Commands": [
         "npm i @angular/cli@7.3.9",
         "npm i @lcu/cli@latest -g",
