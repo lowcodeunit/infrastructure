@@ -6,8 +6,8 @@
     "SeedFork": null,
     "ReleasePackageSuffix": "-demo",
     "Commands": [
-        "npm i @angular/cli@7.3.9 -g",
-        "npm i @lcu/cli@latest -g",
+        "npm i @angular/cli@7.3.9 @lcu/cli@latest -g",
+        "npm i @lowcodeunit-devkit/ng-lcu --save",
         "lcu init --workspace={{repoName}} --scope=@{{repoOrg}}",
         "lcu proj lcu --template=LCU"
     ]
