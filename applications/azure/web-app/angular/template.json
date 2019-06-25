@@ -7,7 +7,7 @@
     "Commands": [
         "npm i @angular/cli@7.3.9 @lcu/cli@latest -g",
         "npm i @lowcodeunit-devkit/ng-lcu --save",
-        "lcu init --workspace={{repoName}} --scope=@{{repoOrg}}",
-        "lcu proj {{projName}} --template=App --initWith=LCU-Core-App"
+        "lcu init --workspace=$(RepoName) --scope=@$(RepoOrg)",
+        "lcu proj $(RepoName) --template=App --initWith=LCU-Core-App"
     ]
 }
