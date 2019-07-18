@@ -1,8 +1,8 @@
 {
     "$schema": "https://schema.lowcodeunit.com/schemas/latest/InfrastructureApplicationSeedOption.json#",
     "Name": "Low Code Unit",
-    "Description": "Start creating a new Low Code Unit.",
-    "ImageSource": "https://fathym.com/wp-content/uploads/2018/03/Fathym-Logo_Registered_xxsm.png",
+    "Description": "Create a new Low Code Unit.",
+    "ImageSource": "assets/img/thinky.png",
     "SeedFork": null,
     "ReleasePackageSuffix": "-demo",
     "Commands": [
