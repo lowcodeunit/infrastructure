@@ -2,7 +2,7 @@
     "$schema": "https://schema.lowcodeunit.com/schemas/latest/InfrastructureApplicationSeedOption.json#",
     "Name": "Weather Forecast",
     "Description": "Start from a weather forecast seed.",
-    "ImageSource": "assets/img/thinky.png",
+    "ImageSource": "https://avatars1.githubusercontent.com/u/48816917?s=200&v=4",
     "SeedFork": {
         "Repository": "fathym-forecast",
         "Organization": "habistack"
