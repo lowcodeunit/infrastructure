@@ -1,7 +1,7 @@
 {
     "$schema": "https://schema.lowcodeunit.com/schemas/latest/InfrastructureApplicationSeedOption.json#",
     "Name": "Angular Seed",
-    "Description": "Start with a simple angular seed.",
+    "Description": "Start with a simple, angular seed.",
     "ImageSource": "https://angular.io/assets/images/logos/angular/angular.svg",
     "SeedFork": null,
     "Commands": [
