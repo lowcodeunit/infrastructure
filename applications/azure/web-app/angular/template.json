@@ -5,7 +5,7 @@
     "ImageSource": "https://angular.io/assets/images/logos/angular/angular.svg",
     "SeedFork": null,
     "Commands": [
-        "npm i @angular/cli @lcu/cli@latest -g",
+        "npm i @angular/cli@7.3.9 @lcu/cli@latest -g",
         "npm i @lowcodeunit-devkit/ng-lcu --save-dev",
         "lcu init --workspace=$(RepoName) --scope=@$(RepoOrg)",
         "lcu proj $(RepoName) --template=App --initWith=LCU-Core-App"
