@@ -1,0 +1,219 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string"
+        },
+        "safename": {
+            "type": "string"
+        },
+        "subscriptionId": {
+            "type": "string"
+        },
+        "regionId": {
+            "defaultValue": "westus2",
+            "type": "string"
+        },
+        "locationName": {
+            "defaultValue": "West US 2",
+            "type": "string"
+        },
+        "cosmosExperience": {
+            "defaultValue": "Core (SQL)",
+            "type": "string"
+        },
+        "requestSource": {
+            "defaultValue": "IbizaAIExtension",
+            "type": "string"
+        },
+        "insightAppType": {
+            "defaultValue": "other",
+            "type": "string"
+        },
+        "storageSkuName": {
+            "defaultValue": "Standard_RAGRS",
+            "type": "string"
+        },
+        "storageSkuTier": {
+            "defaultValue": "Standard",
+            "type": "string"
+        },
+        "hostingEnvironment": {
+            "defaultValue": "",
+            "type": "string"
+        },
+        "hostingPlanName": {
+            "defaultValue": "asdf-prd",
+            "type": "string"
+        },
+        "serverFarmResourceGroup": {
+            "defaultValue": "asdf-prd",
+            "type": "string"
+        },
+        "alwaysOn": {
+            "defaultValue": true,
+            "type": "bool"
+        },
+        "hostingPlanSku": {
+            "defaultValue": "Standard",
+            "type": "string"
+        },
+        "hostingPlanSkuCode": {
+            "defaultValue": "S1",
+            "type": "string"
+        },
+        "workerSize": {
+            "defaultValue": "0",
+            "type": "string"
+        },
+        "workerSizeId": {
+            "defaultValue": "0",
+            "type": "string"
+        },
+        "numberOfWorkers": {
+            "defaultValue": "1",
+            "type": "string"
+        },
+        "currentStack": {
+            "defaultValue": "dotnetcore",
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Insights/components",
+            "apiVersion": "2015-05-01",
+            "name": "[parameters('name')]",
+            "location": "[parameters('regionId')]",
+            "properties": {
+                "Application_Type": "[parameters('insightAppType')]",
+                "Flow_Type": "Redfield",
+                "Request_Source": "[parameters('requestSource')]"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2018-07-01",
+            "name": "[parameters('safename')]",
+            "location": "[parameters('regionId')]",
+            "tags": {
+                "Architecture": "LowCodeUnit"
+            },
+            "sku": {
+                "name": "[parameters('storageSkuName')]",
+                "tier": "[parameters('storageSkuTier')]"
+            },
+            "kind": "StorageV2",
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "Hot"
+            }
+        },
+        {
+            "apiVersion": "2018-02-01",
+            "name": "[parameters('name')]",
+            "type": "Microsoft.Web/sites",
+            "location": "[parameters('locationName')]",
+            "tags": {
+                "Architecture": "LowCodeUnit"
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+            ],
+            "properties": {
+                "name": "[parameters('name')]",
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+                            "value": "a185eb5d-3fdc-4d0b-89d1-a351e36df65e"
+                        },
+                        {
+                            "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
+                            "value": "~2"
+                        },
+                        {
+                            "name": "XDT_MicrosoftApplicationInsights_Mode",
+                            "value": "default"
+                        },
+                        {
+                            "name": "DiagnosticServices_EXTENSION_VERSION",
+                            "value": "disabled"
+                        },
+                        {
+                            "name": "APPINSIGHTS_PROFILERFEATURE_VERSION",
+                            "value": "disabled"
+                        },
+                        {
+                            "name": "APPINSIGHTS_SNAPSHOTFEATURE_VERSION",
+                            "value": "disabled"
+                        },
+                        {
+                            "name": "InstrumentationEngine_EXTENSION_VERSION",
+                            "value": "disabled"
+                        },
+                        {
+                            "name": "SnapshotDebugger_EXTENSION_VERSION",
+                            "value": "disabled"
+                        },
+                        {
+                            "name": "XDT_MicrosoftApplicationInsights_BaseExtensions",
+                            "value": "disabled"
+                        }
+                    ],
+                    "metadata": [
+                        {
+                            "name": "CURRENT_STACK",
+                            "value": "[parameters('currentStack')]"
+                        }
+                    ],
+                    "alwaysOn": "[parameters('alwaysOn')]"
+                },
+                "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                "hostingEnvironment": "[parameters('hostingEnvironment')]",
+                "clientAffinityEnabled": true
+            }
+        },
+        {
+            "apiVersion": "2018-02-01",
+            "name": "[parameters('hostingPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[parameters('locationName')]",
+            "kind": "",
+            "tags": {
+                "Architecture": "LowCodeUnit"
+            },
+            "dependsOn": [],
+            "properties": {
+                "name": "[parameters('hostingPlanName')]",
+                "workerSize": "[parameters('workerSize')]",
+                "workerSizeId": "[parameters('workerSizeId')]",
+                "numberOfWorkers": "[parameters('numberOfWorkers')]",
+                "hostingEnvironment": "[parameters('hostingEnvironment')]"
+            },
+            "sku": {
+                "Tier": "[parameters('hostingPlanSku')]",
+                "Name": "[parameters('hostingPlanSkuCode')]"
+            }
+        }
+    ]
+}
