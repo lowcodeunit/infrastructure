@@ -46,6 +46,26 @@
             }
         },
         {
+            "type": "Microsoft.SignalRService/SignalR",
+            "name": "[parameters('name')]",
+            "apiVersion": "2018-10-01",
+            "location": "[parameters('regionId')]",
+            "properties": {
+                "hostNamePrefix": "[parameters('name')]",
+                "features": [
+                    {
+                        "flag": "ServiceMode",
+                        "value": "Default"
+                    }
+                ]
+            },
+            "sku": {
+                "name": "Standard_S1",
+                "tier": "Standard",
+                "capacity": 1
+            }
+        },
+        {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2018-07-01",
             "name": "[parameters('safename')]",
@@ -54,7 +74,7 @@
                 "Architecture": "LowCodeUnit"
             },
             "sku": {
-                "name": "storageSkuName",
+                "name": "Standard_RAGRS",
                 "tier": "Standard"
             },
             "kind": "StorageV2",
@@ -141,7 +161,7 @@
                     "alwaysOn": true
                 },
                 "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('name'), '/providers/Microsoft.Web/serverfarms/', parameters('name'))]",
-                "hostingEnvironment": "[parameters('hostingEnvironment')]",
+                "hostingEnvironment": "",
                 "clientAffinityEnabled": true
             }
         },
@@ -160,31 +180,11 @@
                 "workerSize": "0",
                 "workerSizeId": "0",
                 "numberOfWorkers": "1",
-                "hostingEnvironment": "[parameters('hostingEnvironment')]"
+                "hostingEnvironment": ""
             },
             "sku": {
                 "Tier": "Standard",
                 "Name": "S1"
-            }
-        },
-        {
-            "type": "Microsoft.SignalRService/SignalR",
-            "name": "[parameters('name')]",
-            "apiVersion": "2018-10-01",
-            "location": "[parameters('regionId')]",
-            "properties": {
-                "hostNamePrefix": "[parameters('name')]",
-                "features": [
-                    {
-                        "flag": "ServiceMode",
-                        "value": "Default"
-                    }
-                ]
-            },
-            "sku": {
-                "name": "Standard_S1",
-                "tier": "Standard",
-                "capacity": 1
             }
         }
     ]

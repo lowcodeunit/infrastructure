@@ -54,7 +54,7 @@
                 "Architecture": "LowCodeUnit"
             },
             "sku": {
-                "name": "storageSkuName",
+                "name": "Standard_RAGRS",
                 "tier": "Standard"
             },
             "kind": "StorageV2",
@@ -141,7 +141,7 @@
                     "alwaysOn": true
                 },
                 "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('name'), '/providers/Microsoft.Web/serverfarms/', parameters('name'))]",
-                "hostingEnvironment": "[parameters('hostingEnvironment')]",
+                "hostingEnvironment": "",
                 "clientAffinityEnabled": true
             }
         },
@@ -160,7 +160,7 @@
                 "workerSize": "0",
                 "workerSizeId": "0",
                 "numberOfWorkers": "1",
-                "hostingEnvironment": "[parameters('hostingEnvironment')]"
+                "hostingEnvironment": ""
             },
             "sku": {
                 "Tier": "Standard",
