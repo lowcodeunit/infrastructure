@@ -30,54 +30,6 @@
         "insightAppType": {
             "defaultValue": "other",
             "type": "string"
-        },
-        "storageSkuName": {
-            "defaultValue": "Standard_RAGRS",
-            "type": "string"
-        },
-        "storageSkuTier": {
-            "defaultValue": "Standard",
-            "type": "string"
-        },
-        "hostingEnvironment": {
-            "defaultValue": "",
-            "type": "string"
-        },
-        "hostingPlanName": {
-            "defaultValue": "asdf-prd",
-            "type": "string"
-        },
-        "serverFarmResourceGroup": {
-            "defaultValue": "asdf-prd",
-            "type": "string"
-        },
-        "alwaysOn": {
-            "defaultValue": true,
-            "type": "bool"
-        },
-        "hostingPlanSku": {
-            "defaultValue": "Standard",
-            "type": "string"
-        },
-        "hostingPlanSkuCode": {
-            "defaultValue": "S1",
-            "type": "string"
-        },
-        "workerSize": {
-            "defaultValue": "0",
-            "type": "string"
-        },
-        "workerSizeId": {
-            "defaultValue": "0",
-            "type": "string"
-        },
-        "numberOfWorkers": {
-            "defaultValue": "1",
-            "type": "string"
-        },
-        "currentStack": {
-            "defaultValue": "dotnetcore",
-            "type": "string"
         }
     },
     "variables": {},
@@ -102,8 +54,8 @@
                 "Architecture": "LowCodeUnit"
             },
             "sku": {
-                "name": "[parameters('storageSkuName')]",
-                "tier": "[parameters('storageSkuTier')]"
+                "name": "storageSkuName",
+                "tier": "Standard"
             },
             "kind": "StorageV2",
             "properties": {
@@ -137,7 +89,7 @@
                 "Architecture": "LowCodeUnit"
             },
             "dependsOn": [
-                "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+                "[concat('Microsoft.Web/serverfarms/', parameters('name'))]"
             ],
             "properties": {
                 "name": "[parameters('name')]",
@@ -183,19 +135,19 @@
                     "metadata": [
                         {
                             "name": "CURRENT_STACK",
-                            "value": "[parameters('currentStack')]"
+                            "value": "dotnetcore"
                         }
                     ],
-                    "alwaysOn": "[parameters('alwaysOn')]"
+                    "alwaysOn": true
                 },
-                "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('name'), '/providers/Microsoft.Web/serverfarms/', parameters('name'))]",
                 "hostingEnvironment": "[parameters('hostingEnvironment')]",
                 "clientAffinityEnabled": true
             }
         },
         {
             "apiVersion": "2018-02-01",
-            "name": "[parameters('hostingPlanName')]",
+            "name": "[parameters('name')]",
             "type": "Microsoft.Web/serverfarms",
             "location": "[parameters('locationName')]",
             "kind": "",
@@ -204,15 +156,15 @@
             },
             "dependsOn": [],
             "properties": {
-                "name": "[parameters('hostingPlanName')]",
-                "workerSize": "[parameters('workerSize')]",
-                "workerSizeId": "[parameters('workerSizeId')]",
-                "numberOfWorkers": "[parameters('numberOfWorkers')]",
+                "name": "[parameters('name')]",
+                "workerSize": "0",
+                "workerSizeId": "0",
+                "numberOfWorkers": "1",
                 "hostingEnvironment": "[parameters('hostingEnvironment')]"
             },
             "sku": {
-                "Tier": "[parameters('hostingPlanSku')]",
-                "Name": "[parameters('hostingPlanSkuCode')]"
+                "Tier": "Standard",
+                "Name": "S1"
             }
         },
         {
