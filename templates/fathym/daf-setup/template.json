@@ -18,18 +18,6 @@
         "locationName": {
             "defaultValue": "West US 2",
             "type": "string"
-        },
-        "cosmosExperience": {
-            "defaultValue": "Core (SQL)",
-            "type": "string"
-        },
-        "requestSource": {
-            "defaultValue": "IbizaAIExtension",
-            "type": "string"
-        },
-        "insightAppType": {
-            "defaultValue": "other",
-            "type": "string"
         }
     },
     "variables": {},
@@ -40,9 +28,9 @@
             "name": "[parameters('name')]",
             "location": "[parameters('regionId')]",
             "properties": {
-                "Application_Type": "[parameters('insightAppType')]",
+                "Application_Type": "other",
                 "Flow_Type": "Redfield",
-                "Request_Source": "[parameters('requestSource')]"
+                "Request_Source": "IbizaAIExtension"
             }
         },
         {
