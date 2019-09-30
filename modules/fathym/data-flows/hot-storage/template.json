@@ -1,32 +1,12 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "name": {
-      "type": "string"
-    },
-    "safename": {
-      "type": "string"
-    },
-    "subscriptionId": {
-      "type": "string"
-    },
-    "regionId": {
-      "defaultValue": "westus2",
-      "type": "string"
-    },
-    "locationName": {
-      "defaultValue": "West US 2",
-      "type": "string"
-    }
-  },
-  "variables": {},
   "resources": [
     {
         "type": "Microsoft.ServiceBus/namespaces",
         "apiVersion": "2018-01-01-preview",
-        "name": "[parameters('name')]",
-        "location": "[parameters('locationName')]",
+        "name": "[{{name}}]",
+        "location": "[{{locationName}}]",
         "tags": {
           "Architecture": "LowCodeUnit"
         },
@@ -41,10 +21,10 @@
     {
         "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
         "apiVersion": "2018-01-01-preview",
-        "name": "[concat(parameters('name'), '/RootManageSharedAccessKey')]",
-        "location": "[parameters('locationName')]",
+        "name": "[concat({{name}}, '/RootManageSharedAccessKey')]",
+        "location": "[{{locationName}}]",
         "dependsOn": [
-            "[resourceId('Microsoft.ServiceBus/namespaces', parameters('name'))]"
+            "[resourceId('Microsoft.ServiceBus/namespaces', {{name}})]"
         ],
         "properties": {
             "rights": [
@@ -57,10 +37,10 @@
     {
         "type": "Microsoft.ServiceBus/namespaces/networkRuleSets",
         "apiVersion": "2018-01-01-preview",
-        "name": "[concat(parameters('name'), '/default')]",
-        "location": "[parameters('locationName')]",
+        "name": "[concat({{name}}, '/default')]",
+        "location": "[{{locationName}}]",
         "dependsOn": [
-            "[resourceId('Microsoft.ServiceBus/namespaces', parameters('name'))]"
+            "[resourceId('Microsoft.ServiceBus/namespaces', {{name}})]"
         ],
         "properties": {
             "defaultAction": "Deny",
@@ -71,10 +51,10 @@
     {
         "type": "Microsoft.ServiceBus/namespaces/topics",
         "apiVersion": "2018-01-01-preview",
-        "name": "[concat(parameters('name'), '/sbt')]",
-        "location": "[parameters('locationName')]",
+        "name": "[concat({{name}}, '/sbt')]",
+        "location": "[{{locationName}}]",
         "dependsOn": [
-            "[resourceId('Microsoft.ServiceBus/namespaces', parameters('name'))]"
+            "[resourceId('Microsoft.ServiceBus/namespaces', {{name}})]"
         ],
         "properties": {
             "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",

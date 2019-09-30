@@ -36,6 +36,23 @@
         {
             "type": "modules",
             "path": "fathym\\core\\daf"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\data-stream",
+            "name": "concat(parameters('name'), '-ds')"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\data-map"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\hot-storage"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\warm-storage"
         }
     ]
 }

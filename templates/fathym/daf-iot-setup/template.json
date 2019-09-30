@@ -35,7 +35,35 @@
         },
         {
             "type": "modules",
-            "path": "fathym\\core\\daf"
+            "path": "fathym\\core\\daf",
+            "deployables": [
+                "LCU Runtime",
+                "LCU SSL"
+            ]
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\device-stream"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\data-map"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\hot-storage"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\warm-storage"
+        },
+        {
+            "type": "lowcodeunits",
+            "path": "fathym\\data-apps"
+        },
+        {
+            "type": "lowcodeunits",
+            "path": "fathym\\data-flows"
         }
     ]
 }

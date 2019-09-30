@@ -1,5 +1,4 @@
 {
-    "$schema": "https://schema.lowcodeunit.com/schemas/latest/deploymentTemplateDefinition.json#",
     "parameters": {
         "name": {
             "type": "string"
@@ -26,16 +25,13 @@
         },
         {
             "type": "modules",
-            "path": "fathym\\core\\state"
+            "path": "fathym\\data-flows\\warm-storage",
+            "name": "parameter('name')"
         },
         {
             "type": "modules",
-            "path": "fathym\\data-flows\\cold-storage",
-            "name": "parameter('safename')"
-        },
-        {
-            "type": "modules",
-            "path": "fathym\\core\\daf"
+            "path": "fathym\\data-flows\\data-stream",
+            "name": "concat(parameter('name'), 'hub')"
         }
     ]
 }

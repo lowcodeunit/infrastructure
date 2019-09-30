@@ -1,0 +1,91 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "variables": {},
+  "resources": [
+    {
+      "apiVersion": "2018-02-01",
+      "name": "[{{name}}]",
+      "type": "Microsoft.Web/sites",
+      "location": "[{{locationName}}]",
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "dependsOn": ["[concat('Microsoft.Web/serverfarms/', {{name}})]"],
+      "properties": {
+        "name": "[{{name}}]",
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(resourceId('Microsoft.Insights/components', {{name}}), '2014-04-01').InstrumentationKey]"
+            },
+            {
+              "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
+              "value": "~2"
+            },
+            {
+              "name": "XDT_MicrosoftApplicationInsights_Mode",
+              "value": "default"
+            },
+            {
+              "name": "DiagnosticServices_EXTENSION_VERSION",
+              "value": "disabled"
+            },
+            {
+              "name": "APPINSIGHTS_PROFILERFEATURE_VERSION",
+              "value": "disabled"
+            },
+            {
+              "name": "APPINSIGHTS_SNAPSHOTFEATURE_VERSION",
+              "value": "disabled"
+            },
+            {
+              "name": "InstrumentationEngine_EXTENSION_VERSION",
+              "value": "disabled"
+            },
+            {
+              "name": "SnapshotDebugger_EXTENSION_VERSION",
+              "value": "disabled"
+            },
+            {
+              "name": "XDT_MicrosoftApplicationInsights_BaseExtensions",
+              "value": "disabled"
+            }
+          ],
+          "metadata": [
+            {
+              "name": "CURRENT_STACK",
+              "value": "dotnetcore"
+            }
+          ],
+          "alwaysOn": true
+        },
+        "serverFarmId": "[concat('/subscriptions/', {{subscriptionId}},'/resourcegroups/', {{name}}, '/providers/Microsoft.Web/serverfarms/', {{name}})]",
+        "hostingEnvironment": "",
+        "clientAffinityEnabled": true
+      }
+    },
+    {
+      "apiVersion": "2018-02-01",
+      "name": "[{{name}}]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[{{locationName}}]",
+      "kind": "",
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "dependsOn": [],
+      "properties": {
+        "name": "[{{name}}]",
+        "workerSize": "0",
+        "workerSizeId": "0",
+        "numberOfWorkers": "1",
+        "hostingEnvironment": ""
+      },
+      "sku": {
+        "tier": "Standard",
+        "name": "S1"
+      }
+    }
+  ]
+}

@@ -1,32 +1,12 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "name": {
-      "type": "string"
-    },
-    "safename": {
-      "type": "string"
-    },
-    "subscriptionId": {
-      "type": "string"
-    },
-    "regionId": {
-      "defaultValue": "westus2",
-      "type": "string"
-    },
-    "locationName": {
-      "defaultValue": "West US 2",
-      "type": "string"
-    }
-  },
-  "variables": {},
   "resources": [
     {
         "type": "Microsoft.Devices/IotHubs",
         "apiVersion": "2018-04-01",
-        "name": "[parameters('name')]",
-        "location": "[parameters('regionId')]",
+        "name": "[{{name}}]",
+        "location": "[{{regionId}}]",
         "tags": {
           "Architecture": "LowCodeUnit"
         },
@@ -86,7 +66,7 @@
                         "30",
                         "31"
                     ],
-                    "path": "[parameters('name')]"
+                    "path": "[{{name}}]"
                 },
                 "operationsMonitoringEvents": {
                     "retentionTimeInDays": 7,
@@ -125,7 +105,7 @@
                         "30",
                         "31"
                     ],
-                    "path": "[concat(parameters('name'), '-operationmonitoring')]"
+                    "path": "[concat({{name}}, '-operationmonitoring')]"
                 }
             },
             "routing": {

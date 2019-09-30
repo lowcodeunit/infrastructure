@@ -1,40 +1,20 @@
 {
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "name": {
-          "type": "string"
-        },
-        "safename": {
-          "type": "string"
-        },
-        "subscriptionId": {
-          "type": "string"
-        },
-        "regionId": {
-          "defaultValue": "westus2",
-          "type": "string"
-        },
-        "locationName": {
-          "defaultValue": "West US 2",
-          "type": "string"
-        }
-    },
-    "variables": {},
     "resources": [
         {
             "apiVersion": "2015-04-08",
             "kind": "GlobalDocumentDB",
             "type": "Microsoft.DocumentDb/databaseAccounts",
-            "name": "[parameters('name')]",
-            "location": "[parameters('regionId')]",
+            "name": "[{{name}}]",
+            "location": "[{{regionId}}]",
             "properties": {
                 "databaseAccountOfferType": "Standard",
                 "locations": [
                     {
-                        "id": "[concat(parameters('name'), '-', parameters('regionId'))]",
+                        "id": "[concat({{name}}, '-', {{regionId}})]",
                         "failoverPriority": 0,
-                        "locationName": "[parameters('locationName')]"
+                        "locationName": "[{{locationName}}]"
                     }
                 ],
                 "enableMultipleWriteLocations": false,

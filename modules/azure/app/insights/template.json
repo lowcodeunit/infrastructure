@@ -20,13 +20,13 @@
     },
     "resources": [
         {
-            "name": "[parameters('name')]",
+            "name": "[{{name}}]",
             "type": "microsoft.insights/components",
-            "location": "[parameters('regionId')]",
+            "location": "[{{regionId}}]",
             "tags": "[parameters('tagsArray')]",
             "apiVersion": "2014-08-01",
             "properties": {
-                "ApplicationId": "[parameters('name')]",
+                "ApplicationId": "[{{name}}]",
                 "Application_Type": "[parameters('type')]",
                 "Flow_Type": "Redfield",
                 "Request_Source": "[parameters('requestSource')]"

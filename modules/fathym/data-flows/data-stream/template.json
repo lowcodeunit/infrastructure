@@ -1,32 +1,12 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "name": {
-      "type": "string"
-    },
-    "safename": {
-      "type": "string"
-    },
-    "subscriptionId": {
-      "type": "string"
-    },
-    "regionId": {
-      "defaultValue": "westus2",
-      "type": "string"
-    },
-    "locationName": {
-      "defaultValue": "West US 2",
-      "type": "string"
-    }
-  },
-  "variables": {},
   "resources": [
     {
       "type": "Microsoft.EventHub/namespaces",
       "apiVersion": "2018-01-01-preview",
-      "name": "[concat(parameters('name'), '-hub')]",
-      "location": "[parameters('locationName')]",
+      "name": "[concat({{name}}, '-hub')]",
+      "location": "[{{locationName}}]",
       "tags": {
         "Architecture": "LowCodeUnit"
       },
@@ -45,9 +25,9 @@
     {
       "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
       "apiVersion": "2017-04-01",
-      "name": "[concat(parameters('name'), '-hub', '/RootManageSharedAccessKey')]",
-      "location": "[parameters('locationName')]",
-      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', concat(parameters('name'), '-hub'))]"],
+      "name": "[concat({{name}}, '-hub', '/RootManageSharedAccessKey')]",
+      "location": "[{{locationName}}]",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-hub'))]"],
       "properties": {
         "rights": ["Listen", "Manage", "Send"]
       }
@@ -55,9 +35,9 @@
     {
       "type": "Microsoft.EventHub/namespaces/eventhubs",
       "apiVersion": "2017-04-01",
-      "name": "[concat(parameters('name'), '-hub', '/', parameters('name'), '-hub', 'dvc')]",
-      "location": "[parameters('locationName')]",
-      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', concat(parameters('name'), '-hub'))]"],
+      "name": "[concat({{name}}, '-hub', '/', {{name}}, '-hub', 'dvc')]",
+      "location": "[{{locationName}}]",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-hub'))]"],
       "properties": {
         "messageRetentionInDays": 7,
         "partitionCount": 32,
@@ -67,9 +47,9 @@
     {
       "type": "Microsoft.EventHub/namespaces/NetworkRuleSets",
       "apiVersion": "2018-01-01-preview",
-      "name": "[concat(parameters('name'), '-hub', '/default')]",
-      "location": "[parameters('locationName')]",
-      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', concat(parameters('name'), '-hub'))]"],
+      "name": "[concat({{name}}, '-hub', '/default')]",
+      "location": "[{{locationName}}]",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-hub'))]"],
       "properties": {
         "defaultAction": "Deny",
         "virtualNetworkRules": [],
@@ -79,22 +59,22 @@
     {
         "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
         "apiVersion": "2017-04-01",
-        "name": "[concat(parameters('name'), '-hub', '/', parameters('name'), '-hub', 'dvc/$Default')]",
+        "name": "[concat({{name}}, '-hub', '/', {{name}}, '-hub', 'dvc/$Default')]",
         "location": "West US",
         "dependsOn": [
-            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', concat(parameters('name'), '-hub'), concat(parameters('name'), '-hub', 'dvc'))]",
-            "[resourceId('Microsoft.EventHub/namespaces', concat(parameters('name'), '-hub'))]"
+            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', concat({{name}}, '-hub'), concat({{name}}, '-hub', 'dvc'))]",
+            "[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-hub'))]"
         ],
         "properties": {}
     },
     {
         "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
         "apiVersion": "2017-04-01",
-        "name": "[concat(parameters('name'), '-hub', '/', parameters('name'), '-hub', 'dvc/lcu')]",
+        "name": "[concat({{name}}, '-hub', '/', {{name}}, '-hub', 'dvc/lcu')]",
         "location": "West US",
         "dependsOn": [
-            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', concat(parameters('name'), '-hub'), concat(parameters('name'), '-hub', 'dvc'))]",
-            "[resourceId('Microsoft.EventHub/namespaces', concat(parameters('name'), '-hub'))]"
+            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', concat({{name}}, '-hub'), concat({{name}}, '-hub', 'dvc'))]",
+            "[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-hub'))]"
         ],
         "properties": {}
     }
