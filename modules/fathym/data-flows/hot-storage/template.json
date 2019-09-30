@@ -1,0 +1,93 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "type": "string"
+    },
+    "safename": {
+      "type": "string"
+    },
+    "subscriptionId": {
+      "type": "string"
+    },
+    "regionId": {
+      "defaultValue": "westus2",
+      "type": "string"
+    },
+    "locationName": {
+      "defaultValue": "West US 2",
+      "type": "string"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+        "type": "Microsoft.ServiceBus/namespaces",
+        "apiVersion": "2018-01-01-preview",
+        "name": "[parameters('name')]",
+        "location": "[parameters('locationName')]",
+        "tags": {
+          "Architecture": "LowCodeUnit"
+        },
+        "sku": {
+            "name": "Standard",
+            "tier": "Standard"
+        },
+        "properties": {
+            "zoneRedundant": false
+        }
+    },
+    {
+        "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
+        "apiVersion": "2018-01-01-preview",
+        "name": "[concat(parameters('name'), '/RootManageSharedAccessKey')]",
+        "location": "[parameters('locationName')]",
+        "dependsOn": [
+            "[resourceId('Microsoft.ServiceBus/namespaces', parameters('name'))]"
+        ],
+        "properties": {
+            "rights": [
+                "Listen",
+                "Manage",
+                "Send"
+            ]
+        }
+    },
+    {
+        "type": "Microsoft.ServiceBus/namespaces/networkRuleSets",
+        "apiVersion": "2018-01-01-preview",
+        "name": "[concat(parameters('name'), '/default')]",
+        "location": "[parameters('locationName')]",
+        "dependsOn": [
+            "[resourceId('Microsoft.ServiceBus/namespaces', parameters('name'))]"
+        ],
+        "properties": {
+            "defaultAction": "Deny",
+            "virtualNetworkRules": [],
+            "ipRules": []
+        }
+    },
+    {
+        "type": "Microsoft.ServiceBus/namespaces/topics",
+        "apiVersion": "2018-01-01-preview",
+        "name": "[concat(parameters('name'), '/sbt')]",
+        "location": "[parameters('locationName')]",
+        "dependsOn": [
+            "[resourceId('Microsoft.ServiceBus/namespaces', parameters('name'))]"
+        ],
+        "properties": {
+            "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+            "maxSizeInMegabytes": 16384,
+            "requiresDuplicateDetection": false,
+            "duplicateDetectionHistoryTimeWindow": "PT10M",
+            "enableBatchedOperations": true,
+            "status": "Active",
+            "supportOrdering": false,
+            "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+            "enablePartitioning": true,
+            "enableExpress": false
+        }
+    }
+  ]
+}

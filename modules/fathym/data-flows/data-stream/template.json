@@ -1,0 +1,102 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "type": "string"
+    },
+    "safename": {
+      "type": "string"
+    },
+    "subscriptionId": {
+      "type": "string"
+    },
+    "regionId": {
+      "defaultValue": "westus2",
+      "type": "string"
+    },
+    "locationName": {
+      "defaultValue": "West US 2",
+      "type": "string"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.EventHub/namespaces",
+      "apiVersion": "2018-01-01-preview",
+      "name": "[parameters('name')]",
+      "location": "[parameters('locationName')]",
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "sku": {
+        "name": "Standard",
+        "tier": "Standard",
+        "capacity": 1
+      },
+      "properties": {
+        "zoneRedundant": false,
+        "isAutoInflateEnabled": true,
+        "maximumThroughputUnits": 1,
+        "kafkaEnabled": false
+      }
+    },
+    {
+      "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('name'), '/RootManageSharedAccessKey')]",
+      "location": "[parameters('locationName')]",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', parameters('name'))]"],
+      "properties": {
+        "rights": ["Listen", "Manage", "Send"]
+      }
+    },
+    {
+      "type": "Microsoft.EventHub/namespaces/eventhubs",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('name'), '/', parameters('name'), 'dvc')]",
+      "location": "[parameters('locationName')]",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', parameters('name'))]"],
+      "properties": {
+        "messageRetentionInDays": 7,
+        "partitionCount": 32,
+        "status": "Active"
+      }
+    },
+    {
+      "type": "Microsoft.EventHub/namespaces/NetworkRuleSets",
+      "apiVersion": "2018-01-01-preview",
+      "name": "[concat(parameters('name'), '/default')]",
+      "location": "[parameters('locationName')]",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', parameters('name'))]"],
+      "properties": {
+        "defaultAction": "Deny",
+        "virtualNetworkRules": [],
+        "ipRules": []
+      }
+    },
+    {
+        "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+        "apiVersion": "2017-04-01",
+        "name": "[concat(parameters('name'), '/', parameters('name'), 'dvc/$Default')]",
+        "location": "West US",
+        "dependsOn": [
+            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('name'), concat(parameters('name'), 'dvc'))]",
+            "[resourceId('Microsoft.EventHub/namespaces', parameters('name'))]"
+        ],
+        "properties": {}
+    },
+    {
+        "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+        "apiVersion": "2017-04-01",
+        "name": "[concat(parameters('name'), '/', parameters('name'), 'dvc/lcu')]",
+        "location": "West US",
+        "dependsOn": [
+            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('name'), concat(parameters('name'), 'dvc'))]",
+            "[resourceId('Microsoft.EventHub/namespaces', parameters('name'))]"
+        ],
+        "properties": {}
+    }
+  ]
+}
