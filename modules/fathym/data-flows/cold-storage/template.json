@@ -5,7 +5,7 @@
     {
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2018-07-01",
-      "name": "[{{safeName}}]",
+      "name": "[{{name}}]",
       "location": "[{{regionId}}]",
       "tags": {
         "Architecture": "LowCodeUnit"
