@@ -5,7 +5,7 @@
     {
       "type": "Microsoft.EventHub/namespaces",
       "apiVersion": "2018-01-01-preview",
-      "name": "[concat({{name}}, '-hub')]",
+      "name": "[{{name}}]",
       "location": "[{{locationName}}]",
       "tags": {
         "Architecture": "LowCodeUnit"
@@ -25,8 +25,8 @@
     {
       "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
       "apiVersion": "2017-04-01",
-      "name": "[concat({{name}}, '-hub', '/RootManageSharedAccessKey')]",
-      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-hub'))]"],
+      "name": "[concat({{name}}, '/RootManageSharedAccessKey')]",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', {{name}})]"],
       "properties": {
         "rights": ["Listen", "Manage", "Send"]
       }
@@ -34,9 +34,9 @@
     {
       "type": "Microsoft.EventHub/namespaces/eventhubs",
       "apiVersion": "2017-04-01",
-      "name": "[concat({{name}}, '-hub', '/', {{name}}, '-hub', 'dvc')]",
+      "name": "[concat({{name}}, '/', {{name}}, 'dvc')]",
       "location": "[{{locationName}}]",
-      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-hub'))]"],
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', {{name}})]"],
       "properties": {
         "messageRetentionInDays": 7,
         "partitionCount": 32,
@@ -46,22 +46,22 @@
     {
         "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
         "apiVersion": "2017-04-01",
-        "name": "[concat({{name}}, '-hub', '/', {{name}}, '-hub', 'dvc/$Default')]",
+        "name": "[concat({{name}}, '/', {{name}}, 'dvc/$Default')]",
         "location": "West US",
         "dependsOn": [
-            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', concat({{name}}, '-hub'), concat({{name}}, '-hub', 'dvc'))]",
-            "[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-hub'))]"
+            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'dvc'))]",
+            "[resourceId('Microsoft.EventHub/namespaces', {{name}})]"
         ],
         "properties": {}
     },
     {
         "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
         "apiVersion": "2017-04-01",
-        "name": "[concat({{name}}, '-hub', '/', {{name}}, '-hub', 'dvc/lcu')]",
+        "name": "[concat({{name}}, '/', {{name}}, 'dvc/lcu')]",
         "location": "West US",
         "dependsOn": [
-            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', concat({{name}}, '-hub'), concat({{name}}, '-hub', 'dvc'))]",
-            "[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-hub'))]"
+            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'dvc'))]",
+            "[resourceId('Microsoft.EventHub/namespaces', {{name}})]"
         ],
         "properties": {}
     }
