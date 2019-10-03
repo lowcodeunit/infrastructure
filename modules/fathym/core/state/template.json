@@ -2,5 +2,25 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "variables": {},
     "resources": [
+        {
+            "type": "Microsoft.SignalRService/SignalR",
+            "name": "[{{name}}]",
+            "apiVersion": "2018-10-01",
+            "location": "[{{regionId}}]",
+            "properties": {
+                "hostNamePrefix": "[{{name}}]",
+                "features": [
+                    {
+                        "flag": "ServiceMode",
+                        "value": "Default"
+                    }
+                ]
+            },
+            "sku": {
+                "name": "Standard_S1",
+                "tier": "Standard",
+                "capacity": 1
+            }
+        }
     ]
 }
