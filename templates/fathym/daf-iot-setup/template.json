@@ -43,6 +43,11 @@
         },
         {
             "type": "modules",
+            "path": "fathym\\data-flows\\data-stream",
+            "name": "concat(parameters('name'), '-ds')"
+        },
+        {
+            "type": "modules",
             "path": "fathym\\data-flows\\device-stream"
         },
         {
