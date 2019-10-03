@@ -2,16 +2,5 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "variables": {},
     "resources": [
-        {
-            "type": "Microsoft.Insights/components",
-            "apiVersion": "2015-05-01",
-            "name": "[{{name}}]",
-            "location": "[{{regionId}}]",
-            "properties": {
-                "Application_Type": "other",
-                "Flow_Type": "Redfield",
-                "Request_Source": "IbizaAIExtension"
-            }
-        }
     ]
 }
