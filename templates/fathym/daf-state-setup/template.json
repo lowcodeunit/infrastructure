@@ -35,7 +35,11 @@
         },
         {
             "type": "modules",
-            "path": "fathym\\core\\daf"
+            "path": "fathym\\core\\daf",
+            "deployables": [
+                "LCU Runtime",
+                "LCU SSL"
+            ]
         }
     ]
 }
