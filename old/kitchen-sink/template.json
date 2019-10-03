@@ -26,12 +26,12 @@
         {
             "type": "modules",
             "path": "fathym\\data-flows\\warm-storage",
-            "name": "parameter('name')"
+            "name": "parameters('name')"
         },
         {
             "type": "modules",
             "path": "fathym\\data-flows\\data-stream",
-            "name": "concat(parameter('name'), 'hub')"
+            "name": "concat(parameters('name'), 'hub')"
         }
     ]
 }
