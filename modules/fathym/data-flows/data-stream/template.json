@@ -23,15 +23,6 @@
       }
     },
     {
-      "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
-      "apiVersion": "2017-04-01",
-      "name": "[concat({{name}}, '/RootManageSharedAccessKey')]",
-      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', {{name}})]"],
-      "properties": {
-        "rights": ["Listen", "Manage", "Send"]
-      }
-    },
-    {
       "type": "Microsoft.EventHub/namespaces/eventhubs",
       "apiVersion": "2017-04-01",
       "name": "[concat({{name}}, '/', {{name}}, 'dvc')]",

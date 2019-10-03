@@ -17,56 +17,6 @@
         "properties": {
             "zoneRedundant": false
         }
-    },
-    {
-        "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
-        "apiVersion": "2018-01-01-preview",
-        "name": "[concat({{name}}, '/RootManageSharedAccessKey')]",
-        "location": "[{{locationName}}]",
-        "dependsOn": [
-            "[resourceId('Microsoft.ServiceBus/namespaces', {{name}})]"
-        ],
-        "properties": {
-            "rights": [
-                "Listen",
-                "Manage",
-                "Send"
-            ]
-        }
-    },
-    {
-        "type": "Microsoft.ServiceBus/namespaces/networkRuleSets",
-        "apiVersion": "2018-01-01-preview",
-        "name": "[concat({{name}}, '/default')]",
-        "location": "[{{locationName}}]",
-        "dependsOn": [
-            "[resourceId('Microsoft.ServiceBus/namespaces', {{name}})]"
-        ],
-        "properties": {
-            "defaultAction": "Deny",
-            "virtualNetworkRules": [],
-            "ipRules": []
-        }
-    },
-    {
-        "type": "Microsoft.ServiceBus/namespaces/topics",
-        "apiVersion": "2018-01-01-preview",
-        "name": "[concat({{name}}, '/sbt')]",
-        "dependsOn": [
-            "[resourceId('Microsoft.ServiceBus/namespaces', {{name}})]"
-        ],
-        "properties": {
-            "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
-            "maxSizeInMegabytes": 16384,
-            "requiresDuplicateDetection": false,
-            "duplicateDetectionHistoryTimeWindow": "PT10M",
-            "enableBatchedOperations": true,
-            "status": "Active",
-            "supportOrdering": false,
-            "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
-            "enablePartitioning": true,
-            "enableExpress": false
-        }
     }
   ]
 }
