@@ -52,7 +52,6 @@
         "type": "Microsoft.ServiceBus/namespaces/topics",
         "apiVersion": "2018-01-01-preview",
         "name": "[concat({{name}}, '/sbt')]",
-        "location": "[{{locationName}}]",
         "dependsOn": [
             "[resourceId('Microsoft.ServiceBus/namespaces', {{name}})]"
         ],
