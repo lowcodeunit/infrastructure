@@ -23,6 +23,16 @@
       }
     },
     {
+      "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
+      "apiVersion": "2017-04-01",
+      "name": "[concat({{name}}, '-hub', '/RootManageSharedAccessKey')]",
+      "location": "[{{locationName}}]",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-hub'))]"],
+      "properties": {
+        "rights": ["Listen", "Manage", "Send"]
+      }
+    },
+    {
       "type": "Microsoft.EventHub/namespaces/eventhubs",
       "apiVersion": "2017-04-01",
       "name": "[concat({{name}}, '-hub', '/', {{name}}, '-hub', 'dvc')]",
@@ -32,6 +42,18 @@
         "messageRetentionInDays": 7,
         "partitionCount": 32,
         "status": "Active"
+      }
+    },
+    {
+      "type": "Microsoft.EventHub/namespaces/NetworkRuleSets",
+      "apiVersion": "2018-01-01-preview",
+      "name": "[concat({{name}}, '-hub', '/default')]",
+      "location": "[{{locationName}}]",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-hub'))]"],
+      "properties": {
+        "defaultAction": "Deny",
+        "virtualNetworkRules": [],
+        "ipRules": []
       }
     },
     {
