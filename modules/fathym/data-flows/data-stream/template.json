@@ -25,7 +25,7 @@
     {
       "type": "Microsoft.EventHub/namespaces/eventhubs",
       "apiVersion": "2017-04-01",
-      "name": "[concat({{name}}, '/', {{name}}, 'dvc')]",
+      "name": "[concat({{name}}, '/', {{name}}, '-lcu')]",
       "location": "[{{locationName}}]",
       "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', {{name}})]"],
       "properties": {
@@ -37,10 +37,10 @@
     {
         "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
         "apiVersion": "2017-04-01",
-        "name": "[concat({{name}}, '/', {{name}}, 'dvc/$Default')]",
+        "name": "[concat({{name}}, '/', {{name}}, '-lcu/$Default')]",
         "location": "West US",
         "dependsOn": [
-            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'dvc'))]",
+            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, '-lcu'))]",
             "[resourceId('Microsoft.EventHub/namespaces', {{name}})]"
         ],
         "properties": {}
@@ -48,10 +48,10 @@
     {
         "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
         "apiVersion": "2017-04-01",
-        "name": "[concat({{name}}, '/', {{name}}, 'dvc/lcu')]",
+        "name": "[concat({{name}}, '/', {{name}}, '-lcu/lcu')]",
         "location": "West US",
         "dependsOn": [
-            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'dvc'))]",
+            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'lcu'))]",
             "[resourceId('Microsoft.EventHub/namespaces', {{name}})]"
         ],
         "properties": {}
