@@ -22,6 +22,27 @@
     "resources": [
         {
             "type": "modules",
+            "path": "fathym\\core\\insights"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\core\\state"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\cold-storage",
+            "name": "parameters('safename')"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\core\\daf",
+            "deployables": [
+                "LCU Runtime",
+                "LCU SSL"
+            ]
+        },
+        {
+            "type": "modules",
             "path": "fathym\\data-flows\\data-stream",
             "name": "concat(parameters('name'), '-ds')"
         },
@@ -40,6 +61,14 @@
         {
             "type": "modules",
             "path": "fathym\\data-flows\\warm-storage"
+        },
+        {
+            "type": "lowcodeunits",
+            "path": "fathym\\data-apps"
+        },
+        {
+            "type": "lowcodeunits",
+            "path": "fathym\\data-flows"
         }
     ]
 }
