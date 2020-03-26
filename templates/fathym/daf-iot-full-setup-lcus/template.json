@@ -61,6 +61,14 @@
         {
             "type": "modules",
             "path": "fathym\\data-flows\\warm-storage"
+        },
+        {
+            "type": "lowcodeunits",
+            "path": "fathym\\data-apps"
+        },
+        {
+            "type": "lowcodeunits",
+            "path": "fathym\\data-flows"
         }
     ]
 }
