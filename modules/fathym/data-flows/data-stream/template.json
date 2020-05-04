@@ -37,37 +37,6 @@
     {
         "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
         "apiVersion": "2017-04-01",
-        "name": "[concat({{name}}, '/', {{name}}, 'lcu/ReadAccessPolicy')]",
-        "location": "[{{locationName}}]",
-        "dependsOn": [
-            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'lcu'))]",
-            "[resourceId('Microsoft.EventHub/namespaces', {{name}})]"
-        ],
-        "properties": {
-            "rights": [
-                "Listen"
-            ]
-        }
-    },
-    {
-        "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
-        "apiVersion": "2017-04-01",
-        "name": "[concat({{name}}, '/', {{name}}, 'lcu/WriteAccessPolicy')]",
-        "location": "[{{locationName}}]",
-        "dependsOn": [
-            "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'lcu'))]",
-            "[resourceId('Microsoft.EventHub/namespaces', {{name}})]"
-        ],
-        "properties": {
-            "rights": [
-                "Listen",
-                "Send"
-            ]
-        }
-    },
-    {
-        "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
-        "apiVersion": "2017-04-01",
         "name": "[concat({{name}}, '/', {{name}}, 'lcu/ManageAccessPolicy')]",
         "location": "[{{locationName}}]",
         "dependsOn": [
