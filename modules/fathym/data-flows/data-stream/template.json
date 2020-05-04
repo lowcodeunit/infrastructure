@@ -61,7 +61,7 @@
         "properties": {
             "rights": [
                 "Listen",
-				"Send"
+                "Send"
             ]
         }
     },
@@ -77,8 +77,8 @@
         "properties": {
             "rights": [
                 "Listen",
-				"Send",
-				"Manage"
+                "Send",
+                "Manage"
             ]
         }
     },
