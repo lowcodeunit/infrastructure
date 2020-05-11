@@ -55,7 +55,7 @@
         "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
         "apiVersion": "2017-04-01",
         "name": "[concat({{name}}, '/', {{name}}, 'lcu/$Default')]",
-        "location": "West US",
+        "location": "[{{locationName}}]",
         "dependsOn": [
             "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'lcu'))]",
             "[resourceId('Microsoft.EventHub/namespaces', {{name}})]"
@@ -66,7 +66,7 @@
         "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
         "apiVersion": "2017-04-01",
         "name": "[concat({{name}}, '/', {{name}}, 'lcu/lcu')]",
-        "location": "West US",
+        "location": "[{{locationName}}]",
         "dependsOn": [
             "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'lcu'))]",
             "[resourceId('Microsoft.EventHub/namespaces', {{name}})]"
