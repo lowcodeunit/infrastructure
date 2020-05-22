@@ -1,7 +1,0 @@
-{
-    "$schema": "https://schema.lowcodeunit.com/schemas/latest/azureDevOpsDefinition.json#",
-    "infrastructure": "fathym\\daf-state-setup",
-    "feed": true,
-    "tasks": true,
-    "force-builde-release": true
-}

@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schema.lowcodeunit.com/schemas/latest/azureDevOpsDefinition.json#",
+    "Project": {
+        "Name": "LCU - {{Enterprise.PrimaryAPIKey}}",
+        "Description": "Dev Ops automation and integrations for {{Enterprise.Name}} Low Code Units",
+        "Capabilities": {
+            "versioncontrol": {
+                "sourceControlType": "Git"
+            },
+            "processTemplate": {
+                "templateTypeId": "6b724908-ef14-45cf-84f8-768b5384da45"
+            }
+        },
+        "Visibility": "Private"
+    },
+    "Template": "{{Template}}",
+    "Feed": true,
+    "Tasks": true,
+    "Builds": {
+        
+    },
+    "Releases": {
+        
+    }
+}
