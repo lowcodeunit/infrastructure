@@ -1,5 +1,12 @@
 {
     "$schema": "https://schema.lowcodeunit.com/schemas/latest/azureDevOpsDefinition.json#",
+    "Builds": {
+        "infrastructure": {
+
+        }
+    },
+    "Feed": true,
+    "InfrastructureRepo": "Infrastructure",
     "Project": {
         "Name": "LCU - {{Enterprise.PrimaryAPIKey}}",
         "Description": "Dev Ops automation and integrations for {{Enterprise.Name}} Low Code Units",
@@ -12,12 +19,6 @@
             }
         },
         "Visibility": "Private"
-    },
-    "Feed": true,
-    "Builds": {
-        "infrastructure": {
-
-        }
     },
     "Repositories": {
         "Infrastructure": {
