@@ -13,13 +13,21 @@
         },
         "Visibility": "Private"
     },
-    "Template": "{{Template}}",
     "Feed": true,
-    "Tasks": true,
     "Builds": {
-        
+        "infrastructure": {
+
+        }
+    },
+    "Repositories": {
+        "Infrastructure": {
+            "Source": "https://github.com/lowcodeunit/infrastructure.git",
+            "InitType": "Import"
+        }
     },
     "Releases": {
         
-    }
+    },
+    "Tasks": true,
+    "Template": "{{Template}}"
 }
