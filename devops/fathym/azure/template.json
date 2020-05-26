@@ -5,7 +5,35 @@
 
         }
     },
-    "Feed": true,
+    "Feed": {
+        "Name": "LCU",
+        "Upstreams": [
+            {
+                "location": "https://registry.npmjs.org/",
+                "name": "npmjs",
+                "protocol": "npm",
+                "upstreamSourceType": 1
+            },
+            {
+                "location": "https://api.nuget.org/v3/index.json",
+                "name": "NuGet Gallery",
+                "protocol": "nuget",
+                "upstreamSourceType": 1
+            },
+            {
+                "location": "https://pypi.org/",
+                "name": "PyPI",
+                "protocol": "pypi",
+                "upstreamSourceType": 1
+            },
+            {
+                "location": "https://repo.maven.apache.org/maven2/",
+                "name": "Maven Central",
+                "protocol": "Maven",
+                "upstreamSourceType": 1
+            }
+        ]
+    },
     "InfrastructureRepository": "Infrastructure",
     "Project": {
         "Name": "LCU - {{Enterprise.PrimaryAPIKey}}",
