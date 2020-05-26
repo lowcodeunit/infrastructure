@@ -6,7 +6,7 @@
         }
     },
     "Feed": true,
-    "InfrastructureRepo": "Infrastructure",
+    "InfrastructureRepository": "Infrastructure",
     "Project": {
         "Name": "LCU - {{Enterprise.PrimaryAPIKey}}",
         "Description": "Dev Ops automation and integrations for {{Enterprise.Name}} Low Code Units",
