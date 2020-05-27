@@ -86,7 +86,7 @@
             "Enabled": true,
             "Inputs": {
               "command": "restore",
-              "solution": "**\\\\*.csproj",
+              "solution": "**\\*.csproj",
               "selectOrConfig": "config",
               "feedRestore": "",
               "includeNuGetOrg": "true",
@@ -131,7 +131,7 @@
             "DisplayName": "Build solution",
             "Enabled": true,
             "Inputs": {
-              "solution": "**\\\\*.csproj",
+              "solution": "**\\*.csproj",
               "vsVersion": "latest",
               "msbuildArgs": "/p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=\"$(Agent.TempDirectory)\\WebAppContent\\\\\"",
               "platform": "$(BuildPlatform)",
@@ -176,7 +176,7 @@
             "Enabled": true,
             "Inputs": {
               "testSelector": "testAssemblies",
-              "testAssemblyVer2": "**\\\\*.test.dll !**\\obj\\\\**",
+              "testAssemblyVer2": "**\\*.test.dll !**\\obj\\**",
               "testPlan": "",
               "testSuite": "",
               "testConfiguration": "",
@@ -226,7 +226,7 @@
             "Enabled": true,
             "Inputs": {
               "SymbolsPath": "",
-              "SearchPattern": "**\\bin\\\\**\\\\*.pdb",
+              "SearchPattern": "**\\bin\\**\\*.pdb",
               "SymbolsFolder": "",
               "SkipIndexing": "false",
               "TreatNotIndexedAsWarning": "false",
