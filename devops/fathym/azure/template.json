@@ -53,232 +53,230 @@
     }
   },
   "Releases": {},
-  "TasksGroups": {
-    "Groups": [
-      {
-        "Author": "LowCodeUnit",
-        "Category": "Build",
-        "Name": "Low Code Unit - Azure Function - Restore, Build, Test, Publish",
-        "Description": "Nuget Restore, .Net Core build, Test, Publish artifact for deployment",
-        "IconUrl": "https://cdn.vsassets.io/v/M149_20190409.2/_content/icon-meta-task.png",
-        "FriendlyName": "Low Code Unit - Azure Function - Restore, Build, Test, Publish",
-        "InstanceNameFormat": "Low Code Unit - Azure Function - Restore, Build, Test, Publish | $(BuildConfiguration)",
-        "RunsOn": ["Agent", "DeploymentGroup"],
-        "Inputs": [
-            {
-                "Name": "BuildConfiguration",
-                "Label": "BuildConfiguration",
-                "DefaultValue": "release",
-                "Required": true,
-                "InputType": "string",
-                "HelpMarkDown": "Specify the configuration you want to build such as debug or release."
-            },
-            {
-                "Name": "BuildPlatform",
-                "Label": "BuildPlatform",
-                "DefaultValue": "any cpu",
-                "Required": true,
-                "InputType": "string",
-                "HelpMarkDown": "Specify the platform you want to build such as Win32, x86, x64 or any cpu."
-            }
-        ],
-        "Tasks": [
-            {
-				"Condition": "succeeded()",
-				"DisplayName": "Use NuGet 4.9.2",
-				"Enabled": true,
-				"Inputs": {
-					"versionSpec": "4.9.2",
-					"checkLatest": "false"
-				},
-				"Task": {
-					"Id": "2c65196a-54fd-4a02-9be8-d9d1837b7c5d",
-					"VersionSpec": "0.*",
-					"DefinitionType": "task"
-				}
-            },
-            {
-				"Condition": "succeeded()",
-				"DisplayName": "NuGet restore",
-				"Enabled": true,
-				"Inputs": {
-					"command": "restore",
-					"solution": "**\\*.csproj",
-					"selectOrConfig": "config",
-					"feedRestore": "",
-					"includeNuGetOrg": "true",
-					"nugetConfigPath": "nuget.config",
-					"externalEndpoints": "",
-					"noCache": "false",
-					"disableParallelProcessing": "false",
-					"packagesDirectory": "",
-					"verbosityRestore": "Detailed",
-					"searchPatternPush": "$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg",
-					"nuGetFeedType": "internal",
-					"feedPublish": "",
-					"publishPackageMetadata": "true",
-					"allowPackageConflicts": "false",
-					"externalEndpoint": "",
-					"verbosityPush": "Detailed",
-					"searchPatternPack": "**/*.csproj",
-					"configurationToPack": "$(BuildConfiguration)",
-					"outputDir": "$(Build.ArtifactStagingDirectory)",
-					"versioningScheme": "off",
-					"includeReferencedProjects": "false",
-					"versionEnvVar": "",
-					"requestedMajorVersion": "1",
-					"requestedMinorVersion": "0",
-					"requestedPatchVersion": "0",
-					"packTimezone": "utc",
-					"includeSymbols": "false",
-					"toolPackage": "false",
-					"buildProperties": "",
-					"basePath": "",
-					"verbosityPack": "Detailed",
-					"arguments": ""
-				},
-				"Task": {
-					"Id": "333b11bd-d341-40d9-afcf-b32d5ce6f23b",
-					"VersionSpec": "2.*",
-					"DefinitionType": "task"
-				}
-            },
-            {
-				"Condition": "succeeded()",
-				"DisplayName": "Build solution",
-				"Enabled": true,
-				"Inputs": {
-					"solution": "**\\*.csproj",
-					"vsVersion": "latest",
-					"msbuildArgs": "/p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=\"$(Agent.TempDirectory)\\WebAppContent\\\\\"",
-					"platform": "$(BuildPlatform)",
-					"configuration": "$(BuildConfiguration)",
-					"clean": "false",
-					"maximumCpuCount": "false",
-					"restoreNugetPackages": "false",
-					"msbuildArchitecture": "x86",
-					"logProjectEvents": "true",
-					"createLogFile": "false",
-					"logFileVerbosity": "normal"
-				},
-				"Task":  {
-					"Id": "71a9a2d3-a98a-4caa-96ab-affca411ecda",
-					"VersionSpec": "1.*",
-					"DefinitionType": "task"
-				}
-            },
-            {
-				"Condition": "succeeded()",
-				"DisplayName": "Archive Files",
-				"Enabled": true,
-				"Inputs": {
-					"rootFolderOrFile": "$(Agent.TempDirectory)\\WebAppContent",
-					"includeRootFolder": "false",
-					"archiveType": "zip",
-					"tarCompression": "gz",
-					"archiveFile": "$(Build.ArtifactStagingDirectory)/deploy.zip",
-					"replaceExistingArchive": "true",
-					"verbose": "false",
-					"quiet": "false"
-				},
-				"Task": {
-					"Id": "d8b84976-e99a-4b86-b885-4849694435b0",
-					"VersionSpec": "2.*",
-					"DefinitionType": "task"
-				}
-            },
-            {
-				"Condition": "succeeded()",
-				"DisplayName": "Test Assemblies",
-				"Enabled": true,
-				"Inputs": {
-					"testSelector": "testAssemblies",
-					"testAssemblyVer2": "**\\*.test.dll !**\\obj\\**",
-					"testPlan": "",
-					"testSuite": "",
-					"testConfiguration": "",
-					"tcmTestRun": "$(test.RunId)",
-					"searchFolder": "$(System.DefaultWorkingDirectory)",
-					"testFiltercriteria": "",
-					"runOnlyImpactedTests": "False",
-					"runAllTestsAfterXBuilds": "50",
-					"uiTests": "false",
-					"vstestLocationMethod": "version",
-					"vsTestVersion": "latest",
-					"vstestLocation": "",
-					"runSettingsFile": "",
-					"overrideTestrunParameters": "",
-					"pathtoCustomTestAdapters": "",
-					"runInParallel": "False",
-					"runTestsInIsolation": "False",
-					"codeCoverageEnabled": "False",
-					"otherConsoleOptions": "",
-					"distributionBatchType": "basedOnTestCases",
-					"batchingBasedOnAgentsOption": "autoBatchSize",
-					"customBatchSizeValue": "10",
-					"batchingBasedOnExecutionTimeOption": "autoBatchSize",
-					"customRunTimePerBatchValue": "60",
-					"dontDistribute": "False",
-					"testRunTitle": "",
-					"platform": "$(BuildPlatform)",
-					"configuration": "$(BuildConfiguration)",
-					"publishRunAttachments": "true",
-					"diagnosticsEnabled": "True",
-					"collectDumpOn": "onAbortOnly",
-					"rerunFailedTests": "False",
-					"rerunType": "basedOnTestFailurePercentage",
-					"rerunFailedThreshold": "30",
-					"rerunFailedTestCasesMaxLimit": "5",
-					"rerunMaxAttempts": "3"
-				},
-				"Task": {
-					"Id": "ef087383-ee5e-42c7-9a53-ab56c98420f9",
-					"VersionSpec": "1.*",
-					"DefinitionType": "task"
-				}
-            },
-            {
-				"Condition": "succeeded()",
-				"DisplayName": "Publish symbols path",
-				"Enabled": true,
-				"Inputs":  {
-					"SymbolsPath": "",
-					"SearchPattern": "**\\bin\\**\\*.pdb",
-					"SymbolsFolder": "",
-					"SkipIndexing": "false",
-					"TreatNotIndexedAsWarning": "false",
-					"SymbolsMaximumWaitTime": "",
-					"SymbolsProduct": "",
-					"SymbolsVersion": "",
-					"SymbolsArtifactName": "Symbols_$(BuildConfiguration)"
-				},
-				"Task": {
-					"Id": "0675668a-7bba-4ccb-901d-5ad6554ca653",
-					"VersionSpec": "1.*",
-					"DefinitionType": "task"
-				}
-            },
-            {
-				"Condition": "succeeded()",
-				"DisplayName": "Publish Artifact",
-				"Enabled": true,
-				"Inputs": {
-					"PathtoPublish": "$(build.artifactstagingdirectory)",
-					"ArtifactName": "drop",
-					"ArtifactType": "Container",
-					"TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)",
-					"Parallel": "false",
-					"ParallelCount": "8"
-				},
-				"Task": {
-					"Id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
-					"VersionSpec": "1.*",
-					"DefinitionType": "task"
-				}
-            }
-        ]
-      }
-    ]
-  },
+  "TasksGroups": [
+    {
+      "Author": "LowCodeUnit",
+      "Category": "Build",
+      "Name": "Low Code Unit - Azure Function - Restore, Build, Test, Publish",
+      "Description": "Nuget Restore, .Net Core build, Test, Publish artifact for deployment",
+      "IconUrl": "https://cdn.vsassets.io/v/M149_20190409.2/_content/icon-meta-task.png",
+      "FriendlyName": "Low Code Unit - Azure Function - Restore, Build, Test, Publish",
+      "InstanceNameFormat": "Low Code Unit - Azure Function - Restore, Build, Test, Publish | $(BuildConfiguration)",
+      "RunsOn": ["Agent", "DeploymentGroup"],
+      "Inputs": [
+        {
+          "Name": "BuildConfiguration",
+          "Label": "BuildConfiguration",
+          "DefaultValue": "release",
+          "Required": true,
+          "InputType": "string",
+          "HelpMarkDown": "Specify the configuration you want to build such as debug or release."
+        },
+        {
+          "Name": "BuildPlatform",
+          "Label": "BuildPlatform",
+          "DefaultValue": "any cpu",
+          "Required": true,
+          "InputType": "string",
+          "HelpMarkDown": "Specify the platform you want to build such as Win32, x86, x64 or any cpu."
+        }
+      ],
+      "Tasks": [
+        {
+          "Condition": "succeeded()",
+          "DisplayName": "Use NuGet 4.9.2",
+          "Enabled": true,
+          "Inputs": {
+            "versionSpec": "4.9.2",
+            "checkLatest": "false"
+          },
+          "Task": {
+            "Id": "2c65196a-54fd-4a02-9be8-d9d1837b7c5d",
+            "VersionSpec": "0.*",
+            "DefinitionType": "task"
+          }
+        },
+        {
+          "Condition": "succeeded()",
+          "DisplayName": "NuGet restore",
+          "Enabled": true,
+          "Inputs": {
+            "command": "restore",
+            "solution": "**\\*.csproj",
+            "selectOrConfig": "config",
+            "feedRestore": "",
+            "includeNuGetOrg": "true",
+            "nugetConfigPath": "nuget.config",
+            "externalEndpoints": "",
+            "noCache": "false",
+            "disableParallelProcessing": "false",
+            "packagesDirectory": "",
+            "verbosityRestore": "Detailed",
+            "searchPatternPush": "$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg",
+            "nuGetFeedType": "internal",
+            "feedPublish": "",
+            "publishPackageMetadata": "true",
+            "allowPackageConflicts": "false",
+            "externalEndpoint": "",
+            "verbosityPush": "Detailed",
+            "searchPatternPack": "**/*.csproj",
+            "configurationToPack": "$(BuildConfiguration)",
+            "outputDir": "$(Build.ArtifactStagingDirectory)",
+            "versioningScheme": "off",
+            "includeReferencedProjects": "false",
+            "versionEnvVar": "",
+            "requestedMajorVersion": "1",
+            "requestedMinorVersion": "0",
+            "requestedPatchVersion": "0",
+            "packTimezone": "utc",
+            "includeSymbols": "false",
+            "toolPackage": "false",
+            "buildProperties": "",
+            "basePath": "",
+            "verbosityPack": "Detailed",
+            "arguments": ""
+          },
+          "Task": {
+            "Id": "333b11bd-d341-40d9-afcf-b32d5ce6f23b",
+            "VersionSpec": "2.*",
+            "DefinitionType": "task"
+          }
+        },
+        {
+          "Condition": "succeeded()",
+          "DisplayName": "Build solution",
+          "Enabled": true,
+          "Inputs": {
+            "solution": "**\\*.csproj",
+            "vsVersion": "latest",
+            "msbuildArgs": "/p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=\"$(Agent.TempDirectory)\\WebAppContent\\\\\"",
+            "platform": "$(BuildPlatform)",
+            "configuration": "$(BuildConfiguration)",
+            "clean": "false",
+            "maximumCpuCount": "false",
+            "restoreNugetPackages": "false",
+            "msbuildArchitecture": "x86",
+            "logProjectEvents": "true",
+            "createLogFile": "false",
+            "logFileVerbosity": "normal"
+          },
+          "Task": {
+            "Id": "71a9a2d3-a98a-4caa-96ab-affca411ecda",
+            "VersionSpec": "1.*",
+            "DefinitionType": "task"
+          }
+        },
+        {
+          "Condition": "succeeded()",
+          "DisplayName": "Archive Files",
+          "Enabled": true,
+          "Inputs": {
+            "rootFolderOrFile": "$(Agent.TempDirectory)\\WebAppContent",
+            "includeRootFolder": "false",
+            "archiveType": "zip",
+            "tarCompression": "gz",
+            "archiveFile": "$(Build.ArtifactStagingDirectory)/deploy.zip",
+            "replaceExistingArchive": "true",
+            "verbose": "false",
+            "quiet": "false"
+          },
+          "Task": {
+            "Id": "d8b84976-e99a-4b86-b885-4849694435b0",
+            "VersionSpec": "2.*",
+            "DefinitionType": "task"
+          }
+        },
+        {
+          "Condition": "succeeded()",
+          "DisplayName": "Test Assemblies",
+          "Enabled": true,
+          "Inputs": {
+            "testSelector": "testAssemblies",
+            "testAssemblyVer2": "**\\*.test.dll !**\\obj\\**",
+            "testPlan": "",
+            "testSuite": "",
+            "testConfiguration": "",
+            "tcmTestRun": "$(test.RunId)",
+            "searchFolder": "$(System.DefaultWorkingDirectory)",
+            "testFiltercriteria": "",
+            "runOnlyImpactedTests": "False",
+            "runAllTestsAfterXBuilds": "50",
+            "uiTests": "false",
+            "vstestLocationMethod": "version",
+            "vsTestVersion": "latest",
+            "vstestLocation": "",
+            "runSettingsFile": "",
+            "overrideTestrunParameters": "",
+            "pathtoCustomTestAdapters": "",
+            "runInParallel": "False",
+            "runTestsInIsolation": "False",
+            "codeCoverageEnabled": "False",
+            "otherConsoleOptions": "",
+            "distributionBatchType": "basedOnTestCases",
+            "batchingBasedOnAgentsOption": "autoBatchSize",
+            "customBatchSizeValue": "10",
+            "batchingBasedOnExecutionTimeOption": "autoBatchSize",
+            "customRunTimePerBatchValue": "60",
+            "dontDistribute": "False",
+            "testRunTitle": "",
+            "platform": "$(BuildPlatform)",
+            "configuration": "$(BuildConfiguration)",
+            "publishRunAttachments": "true",
+            "diagnosticsEnabled": "True",
+            "collectDumpOn": "onAbortOnly",
+            "rerunFailedTests": "False",
+            "rerunType": "basedOnTestFailurePercentage",
+            "rerunFailedThreshold": "30",
+            "rerunFailedTestCasesMaxLimit": "5",
+            "rerunMaxAttempts": "3"
+          },
+          "Task": {
+            "Id": "ef087383-ee5e-42c7-9a53-ab56c98420f9",
+            "VersionSpec": "1.*",
+            "DefinitionType": "task"
+          }
+        },
+        {
+          "Condition": "succeeded()",
+          "DisplayName": "Publish symbols path",
+          "Enabled": true,
+          "Inputs": {
+            "SymbolsPath": "",
+            "SearchPattern": "**\\bin\\**\\*.pdb",
+            "SymbolsFolder": "",
+            "SkipIndexing": "false",
+            "TreatNotIndexedAsWarning": "false",
+            "SymbolsMaximumWaitTime": "",
+            "SymbolsProduct": "",
+            "SymbolsVersion": "",
+            "SymbolsArtifactName": "Symbols_$(BuildConfiguration)"
+          },
+          "Task": {
+            "Id": "0675668a-7bba-4ccb-901d-5ad6554ca653",
+            "VersionSpec": "1.*",
+            "DefinitionType": "task"
+          }
+        },
+        {
+          "Condition": "succeeded()",
+          "DisplayName": "Publish Artifact",
+          "Enabled": true,
+          "Inputs": {
+            "PathtoPublish": "$(build.artifactstagingdirectory)",
+            "ArtifactName": "drop",
+            "ArtifactType": "Container",
+            "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)",
+            "Parallel": "false",
+            "ParallelCount": "8"
+          },
+          "Task": {
+            "Id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
+            "VersionSpec": "1.*",
+            "DefinitionType": "task"
+          }
+        }
+      ]
+    }
+  ],
   "Template": "{{Template}}"
 }
