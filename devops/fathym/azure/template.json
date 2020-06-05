@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.lowcodeunit.com/schemas/latest/azureDevOpsDefinition.json#",
   "Feed": {
-    "Name": "LCU - {{Enterprise.PrimaryAPIKey}}",
+    "Name": "LCU-{{Enterprise.PrimaryAPIKey}}",
     "Upstreams": [
       {
         "location": "https://registry.npmjs.org/",
