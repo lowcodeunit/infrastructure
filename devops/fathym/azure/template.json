@@ -427,6 +427,5 @@
       "Source": "https://github.com/lowcodeunit/infrastructure.git",
       "InitType": "Import"
     }
-  },
-  "Template": "{{Template}}"
+  }
 }
