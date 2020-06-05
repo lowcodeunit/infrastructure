@@ -65,7 +65,7 @@
                     "flattenFolders": "false"
                   },
                   "RefName": "Copy_Templates",
-                  "TaskDefinition": {
+                  "Task": {
                     "DefinitionType": "task",
                     "VersionSpec": "2.*",
                     "Id": "5bfb729a-a7c8-4a78-a7c3-8d717bb7c13c"
@@ -86,7 +86,7 @@
                     "TargetPath": ""
                   },
                   "RefName": "Publish_Artifact",
-                  "TaskDefinition": {
+                  "Task": {
                     "DefinitionType": "task",
                     "VersionSpec": "1.*",
                     "Id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe"
