@@ -47,9 +47,9 @@
         },
         "Repository": {
           "DefaultBranch": "refs/heads/master",
-          "Name": "{{Repository.Name}}",
+          "Name": "{{Repositories[\"Infrastructure\"].Name}}",
           "Type": "TfsGit",
-          "Url": "{{Repository.Url}}"
+          "Url": "{{Repositories[\"Infrastructure\"].Url}}"
         }
       }
     ],
