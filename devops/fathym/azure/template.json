@@ -37,7 +37,7 @@
     "Releases": {
       "Infrastructure": {}
     },
-    "TasksGroups": [
+    "TaskGroups": [
       {
         "Author": "LowCodeUnit",
         "Category": "Build",
