@@ -86,7 +86,7 @@
             "Enabled": true,
             "Inputs": {
               "command": "restore",
-              "solution": "**\\*.csproj",
+              "solution": "**\\\\*.csproj",
               "selectOrConfig": "config",
               "feedRestore": "",
               "includeNuGetOrg": "true",
@@ -131,9 +131,9 @@
             "DisplayName": "Build solution",
             "Enabled": true,
             "Inputs": {
-              "solution": "**\\*.csproj",
+              "solution": "**\\\\*.csproj",
               "vsVersion": "latest",
-              "msbuildArgs": "/p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=\"$(Agent.TempDirectory)\\WebAppContent\\\\\"",
+              "msbuildArgs": "/p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=\"$(Agent.TempDirectory)\\\\WebAppContent\\\\\\\\\"",
               "platform": "$(BuildPlatform)",
               "configuration": "$(BuildConfiguration)",
               "clean": "false",
@@ -155,7 +155,7 @@
             "DisplayName": "Archive Files",
             "Enabled": true,
             "Inputs": {
-              "rootFolderOrFile": "$(Agent.TempDirectory)\\WebAppContent",
+              "rootFolderOrFile": "$(Agent.TempDirectory)\\\\WebAppContent",
               "includeRootFolder": "false",
               "archiveType": "zip",
               "tarCompression": "gz",
@@ -176,7 +176,7 @@
             "Enabled": true,
             "Inputs": {
               "testSelector": "testAssemblies",
-              "testAssemblyVer2": "**\\*.test.dll !**\\obj\\**",
+              "testAssemblyVer2": "**\\\\*.test.dll !**\\\\obj\\\\**",
               "testPlan": "",
               "testSuite": "",
               "testConfiguration": "",
@@ -226,7 +226,7 @@
             "Enabled": true,
             "Inputs": {
               "SymbolsPath": "",
-              "SearchPattern": "**\\bin\\**\\*.pdb",
+              "SearchPattern": "**\\\\bin\\\\**\\\\*.pdb",
               "SymbolsFolder": "",
               "SkipIndexing": "false",
               "TreatNotIndexedAsWarning": "false",
@@ -249,7 +249,7 @@
               "PathtoPublish": "$(build.artifactstagingdirectory)",
               "ArtifactName": "drop",
               "ArtifactType": "Container",
-              "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)",
+              "TargetPath": "\\\\\\\\my\\\\share\\\\$(Build.DefinitionName)\\\\$(Build.BuildNumber)",
               "Parallel": "false",
               "ParallelCount": "8"
             },
