@@ -36,7 +36,71 @@
         "BadgeEnabled": true,
         "BuildNumberFormat": "$(MajorVersion).$(MinorVersion).$(Rev:r)",
         "Name": "Infrastructure",
-        "Process": {},
+        "Process": {
+          "Phases": [
+            {
+              "Condition": "succeeded()",
+              "Name": "Prepare Build",
+              "RefName": "Prepare_Build",
+              "JobAuthorizationScope": "ProjectCollection",
+              "Target": {
+                "ExecutionOptions": {
+                  "Type": 0
+                },
+                "AllowScriptsAuthAccessOption": true
+              },
+              "Steps": [
+                {
+                  "AlwaysRun": false,
+                  "Condition": "succeeded()",
+                  "ContinueOnError": false,
+                  "DisplayName": "Copy Templates",
+                  "Enabled": true,
+                  "Inputs": {
+                    "CleanTargetFolder": "false",
+                    "Contents": "**\\\\*.json",
+                    "OverWrite": "false",
+                    "SourceFolder": "environments",
+                    "TargetFolder": "$(build.artifactstagingdirectory)",
+                    "flattenFolders": "false"
+                  },
+                  "RefName": "Copy_Templates",
+                  "TaskDefinition": {
+                    "DefinitionType": "task",
+                    "VersionSpec": "2.*",
+                    "Id": "5bfb729a-a7c8-4a78-a7c3-8d717bb7c13c"
+                  }
+                },
+                {
+                  "AlwaysRun": false,
+                  "Condition": "succeeded()",
+                  "ContinueOnError": false,
+                  "DisplayName": "Publish Artifact: drop",
+                  "Enabled": true,
+                  "Inputs": {
+                    "ArtifactName": "drop",
+                    "ArtifactType": "Container",
+                    "Parallel": "false",
+                    "ParallelCount": "8",
+                    "PathtoPublish": "$(Build.ArtifactStagingDirectory)",
+                    "TargetPath": ""
+                  },
+                  "RefName": "Publish_Artifact",
+                  "TaskDefinition": {
+                    "DefinitionType": "task",
+                    "VersionSpec": "1.*",
+                    "Id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe"
+                  }
+                }
+              ]
+            }
+          ],
+          "Target": {
+            "AgentSpecification": {
+              "Identifier": "windows-2019"
+            }
+          }
+        },
         "Project": {},
         "Queue": {
           "Name": "Azure Pipelines",
@@ -49,7 +113,26 @@
           "DefaultBranch": "refs/heads/master",
           "Name": "{{Repositories[\"Infrastructure\"].Name}}",
           "Type": "TfsGit",
-          "Url": "{{Repositories[\"Infrastructure\"].Url}}"
+          "Url": "{{Repositories[\"Infrastructure\"].Url}}",
+          "Properties": {
+            "checkoutNestedSubmodules": "false",
+            "cleanOptions": "0",
+            "fetchDepth": "0",
+            "gitLfsSupport": "false",
+            "labelSources": "6",
+            "labelSourcesFormat": "$(build.buildNumber)",
+            "reportBuildStatus": "true",
+            "skipSyncSource": "false"
+          }
+        },
+        "Triggers": [
+          {
+            "BranchFilters": ["+master", "+refs/heads/master", "+feature/*"]
+          }
+        ],
+        "Variables": {
+          "MajorVersion": { "Value": "0" },
+          "MinorVersion": { "Value": "1" }
         }
       }
     ],
@@ -142,9 +225,7 @@
       }
     },
     "Extensions": [],
-    "Releases": [
-      {}
-    ],
+    "Releases": [{}],
     "TaskGroups": [
       {
         "Author": "LowCodeUnit",
