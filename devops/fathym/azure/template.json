@@ -101,7 +101,9 @@
             }
           }
         },
-        "Project": {},
+        "Project": {
+          "Id": "{{Project.Id}}"
+        },
         "Queue": {
           "Name": "Azure Pipelines",
           "Pool": {
