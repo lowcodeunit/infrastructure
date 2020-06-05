@@ -31,9 +31,28 @@
   },
   "InfrastructureRepository": "Infrastructure",
   "Pipelines": {
-    "Builds": {
-      "Infrastructure": {}
-    },
+    "Builds": [
+      {
+        "BadgeEnabled": true,
+        "BuildNumberFormat": "$(MajorVersion).$(MinorVersion).$(Rev:r)",
+        "Name": "Infrastructure",
+        "Process": {},
+        "Project": {},
+        "Queue": {
+          "Name": "Azure Pipelines",
+          "Pool": {
+            "Name": "Azure Pipelines",
+            "IsHosted": true
+          }
+        },
+        "Repository": {
+          "DefaultBranch": "refs/heads/master",
+          "Name": "{{Repository.Name}}",
+          "Type": "TfsGit",
+          "Url": "{{Repository.Url}}"
+        }
+      }
+    ],
     "DefaultInputs": {
       "BuildConfiguration": {
         "Name": "BuildConfiguration",
@@ -52,19 +71,80 @@
         "HelpMarkDown": "Specify the platform you want to build such as Win32, x86, x64 or any cpu."
       },
       "ProjectsToPackage": {
-				"Name": "ProjectsToPackage",
-				"Label": "ProjectsToPackage",
-				"DefaultValue": "**/*.csproj",
-				"Required": true,
-				"InputType": "filePath",
-				"HelpMarkDown": "Pattern to search for csproj or nuspec files to pack. You can separate multiple patterns with a semicolon, and you can make a pattern negative by prefixing it with '-:'. Example: `**/*.csproj;-:**/*.Tests.csproj`"
-			}
+        "Name": "ProjectsToPackage",
+        "Label": "ProjectsToPackage",
+        "DefaultValue": "**/*.csproj",
+        "Required": true,
+        "InputType": "filePath",
+        "HelpMarkDown": "Pattern to search for csproj or nuspec files to pack. You can separate multiple patterns with a semicolon, and you can make a pattern negative by prefixing it with '-:'. Example: `**/*.csproj;-:**/*.Tests.csproj`"
+      }
     },
-    "DefaultTasks": {},
+    "DefaultTasks": {
+      "SetNugetVersion": {
+        "Condition": "succeeded()",
+        "DisplayName": "Use NuGet 4.9.2",
+        "Enabled": true,
+        "Inputs": {
+          "versionSpec": "4.9.2",
+          "checkLatest": "false"
+        },
+        "Task": {
+          "Id": "2c65196a-54fd-4a02-9be8-d9d1837b7c5d",
+          "VersionSpec": "0.*",
+          "DefinitionType": "task"
+        }
+      },
+      "NugetRestore": {
+        "Condition": "succeeded()",
+        "DisplayName": "NuGet restore",
+        "Enabled": true,
+        "Inputs": {
+          "command": "restore",
+          "solution": "**\\\\*.csproj",
+          "selectOrConfig": "config",
+          "feedRestore": "",
+          "includeNuGetOrg": "true",
+          "nugetConfigPath": "nuget.config",
+          "externalEndpoints": "",
+          "noCache": "false",
+          "disableParallelProcessing": "false",
+          "packagesDirectory": "",
+          "verbosityRestore": "Detailed",
+          "searchPatternPush": "$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg",
+          "nuGetFeedType": "internal",
+          "feedPublish": "",
+          "publishPackageMetadata": "true",
+          "allowPackageConflicts": "false",
+          "externalEndpoint": "",
+          "verbosityPush": "Detailed",
+          "searchPatternPack": "**/*.csproj",
+          "configurationToPack": "$(BuildConfiguration)",
+          "outputDir": "$(Build.ArtifactStagingDirectory)",
+          "versioningScheme": "off",
+          "includeReferencedProjects": "false",
+          "versionEnvVar": "",
+          "requestedMajorVersion": "1",
+          "requestedMinorVersion": "0",
+          "requestedPatchVersion": "0",
+          "packTimezone": "utc",
+          "includeSymbols": "false",
+          "toolPackage": "false",
+          "buildProperties": "",
+          "basePath": "",
+          "verbosityPack": "Detailed",
+          "arguments": ""
+        },
+        "Task": {
+          "Id": "333b11bd-d341-40d9-afcf-b32d5ce6f23b",
+          "VersionSpec": "2.*",
+          "DefinitionType": "task"
+        }
+      }
+    },
     "Extensions": [],
-    "Releases": {
-      "Infrastructure": {}
-    },
+    "Releases": [
+      {}
+    ],
     "TaskGroups": [
       {
         "Author": "LowCodeUnit",
@@ -85,64 +165,10 @@
         ],
         "Tasks": [
           {
-            "Condition": "succeeded()",
-            "DisplayName": "Use NuGet 4.9.2",
-            "Enabled": true,
-            "Inputs": {
-              "versionSpec": "4.9.2",
-              "checkLatest": "false"
-            },
-            "Task": {
-              "Id": "2c65196a-54fd-4a02-9be8-d9d1837b7c5d",
-              "VersionSpec": "0.*",
-              "DefinitionType": "task"
-            }
+            "$DefaultTask": "SetNugetVersion"
           },
           {
-            "Condition": "succeeded()",
-            "DisplayName": "NuGet restore",
-            "Enabled": true,
-            "Inputs": {
-              "command": "restore",
-              "solution": "**\\\\*.csproj",
-              "selectOrConfig": "config",
-              "feedRestore": "",
-              "includeNuGetOrg": "true",
-              "nugetConfigPath": "nuget.config",
-              "externalEndpoints": "",
-              "noCache": "false",
-              "disableParallelProcessing": "false",
-              "packagesDirectory": "",
-              "verbosityRestore": "Detailed",
-              "searchPatternPush": "$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg",
-              "nuGetFeedType": "internal",
-              "feedPublish": "",
-              "publishPackageMetadata": "true",
-              "allowPackageConflicts": "false",
-              "externalEndpoint": "",
-              "verbosityPush": "Detailed",
-              "searchPatternPack": "**/*.csproj",
-              "configurationToPack": "$(BuildConfiguration)",
-              "outputDir": "$(Build.ArtifactStagingDirectory)",
-              "versioningScheme": "off",
-              "includeReferencedProjects": "false",
-              "versionEnvVar": "",
-              "requestedMajorVersion": "1",
-              "requestedMinorVersion": "0",
-              "requestedPatchVersion": "0",
-              "packTimezone": "utc",
-              "includeSymbols": "false",
-              "toolPackage": "false",
-              "buildProperties": "",
-              "basePath": "",
-              "verbosityPack": "Detailed",
-              "arguments": ""
-            },
-            "Task": {
-              "Id": "333b11bd-d341-40d9-afcf-b32d5ce6f23b",
-              "VersionSpec": "2.*",
-              "DefinitionType": "task"
-            }
+            "$DefaultTask": "NugetRestore"
           },
           {
             "Condition": "succeeded()",
@@ -289,19 +315,14 @@
         "InstanceNameFormat": "Low Code Unit - NuGet Restore (.Net <=4.6) | $(BuildConfiguration)",
         "RunsOn": ["Agent", "DeploymentGroup"],
         "Inputs": [],
-        "Tasks": []
-      },
-      {
-        "Author": "LowCodeUnit",
-        "Category": "",
-        "Name": "",
-        "Description": "",
-        "IconUrl": "",
-        "FriendlyName": "",
-        "InstanceNameFormat": "",
-        "RunsOn": ["Agent", "DeploymentGroup"],
-        "Inputs": [],
-        "Tasks": []
+        "Tasks": [
+          {
+            "$DefaultTask": "SetNugetVersion"
+          },
+          {
+            "$DefaultTask": "NugetRestore"
+          }
+        ]
       }
     ]
   },
