@@ -34,6 +34,34 @@
     "Builds": {
       "Infrastructure": {}
     },
+    "DefaultInputs": {
+      "BuildConfiguration": {
+        "Name": "BuildConfiguration",
+        "Label": "BuildConfiguration",
+        "DefaultValue": "release",
+        "Required": true,
+        "InputType": "string",
+        "HelpMarkDown": "Specify the configuration you want to build such as debug or release."
+      },
+      "BuildPlatform": {
+        "Name": "BuildPlatform",
+        "Label": "BuildPlatform",
+        "DefaultValue": "any cpu",
+        "Required": true,
+        "InputType": "string",
+        "HelpMarkDown": "Specify the platform you want to build such as Win32, x86, x64 or any cpu."
+      },
+      "ProjectsToPackage": {
+				"Name": "ProjectsToPackage",
+				"Label": "ProjectsToPackage",
+				"DefaultValue": "**/*.csproj",
+				"Required": true,
+				"InputType": "filePath",
+				"HelpMarkDown": "Pattern to search for csproj or nuspec files to pack. You can separate multiple patterns with a semicolon, and you can make a pattern negative by prefixing it with '-:'. Example: `**/*.csproj;-:**/*.Tests.csproj`"
+			}
+    },
+    "DefaultTasks": {},
+    "Extensions": [],
     "Releases": {
       "Infrastructure": {}
     },
@@ -49,20 +77,10 @@
         "RunsOn": ["Agent", "DeploymentGroup"],
         "Inputs": [
           {
-            "Name": "BuildConfiguration",
-            "Label": "BuildConfiguration",
-            "DefaultValue": "release",
-            "Required": true,
-            "InputType": "string",
-            "HelpMarkDown": "Specify the configuration you want to build such as debug or release."
+            "$DefaultInput": "BuildConfiguration"
           },
           {
-            "Name": "BuildPlatform",
-            "Label": "BuildPlatform",
-            "DefaultValue": "any cpu",
-            "Required": true,
-            "InputType": "string",
-            "HelpMarkDown": "Specify the platform you want to build such as Win32, x86, x64 or any cpu."
+            "$DefaultInput": "BuildPlatform"
           }
         ],
         "Tasks": [
@@ -260,6 +278,30 @@
             }
           }
         ]
+      },
+      {
+        "Author": "LowCodeUnit",
+        "Category": "Package",
+        "Name": "Low Code Unit - NuGet Restore (.Net <=4.6)",
+        "Description": "Nuget Restore",
+        "IconUrl": "/_static/tfs/M140_20181015.3/_content/icon-meta-task.png",
+        "FriendlyName": "Low Code Unit - NuGet Restore (.Net <=4.6)",
+        "InstanceNameFormat": "Low Code Unit - NuGet Restore (.Net <=4.6) | $(BuildConfiguration)",
+        "RunsOn": ["Agent", "DeploymentGroup"],
+        "Inputs": [],
+        "Tasks": []
+      },
+      {
+        "Author": "LowCodeUnit",
+        "Category": "",
+        "Name": "",
+        "Description": "",
+        "IconUrl": "",
+        "FriendlyName": "",
+        "InstanceNameFormat": "",
+        "RunsOn": ["Agent", "DeploymentGroup"],
+        "Inputs": [],
+        "Tasks": []
       }
     ]
   },
