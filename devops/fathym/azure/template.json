@@ -113,9 +113,9 @@
         },
         "Repository": {
           "DefaultBranch": "refs/heads/master",
-          "Name": "{{Repositories[\"Infrastructure\"].Name}}",
+          "Name": "{{Repositories.Infrastructure.Name}}",
           "Type": "TfsGit",
-          "Url": "{{Repositories[\"Infrastructure\"].Url}}",
+          "Url": "{{Repositories.Infrastructure.Url}}",
           "Properties": {
             "checkoutNestedSubmodules": "false",
             "cleanOptions": "0",
