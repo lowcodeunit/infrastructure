@@ -341,7 +341,8 @@
         "Triggers": [
           {
             "ArtifactAlias": "{{BuildDefinitions.Infrastructure.Name}}",
-            "TriggerConditions": null
+            "TriggerConditions": null,
+            "TriggerType": 1
           }
         ]
       }
