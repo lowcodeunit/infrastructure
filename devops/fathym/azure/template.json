@@ -129,6 +129,9 @@
         },
         "Triggers": [
           {
+            "BatchChanges": false,
+            "MaxConcurrentBuildsPerBranch": 1,
+            "TriggerType": 2,
             "BranchFilters": ["+master", "+refs/heads/master", "+feature/*"]
           }
         ],
