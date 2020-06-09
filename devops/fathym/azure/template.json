@@ -283,7 +283,6 @@
               "ReleasesToKeep": 3,
               "RetainBuild": true
             },
-            "DeploymentPhases": [{}],
             "DeployPhases": [
               {},
               {
