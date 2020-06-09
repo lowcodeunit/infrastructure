@@ -232,7 +232,7 @@
         "Name": "Infrastructure",
         "Artifacts": [
           {
-            "Alias": "{{BuildDefs.Infrastructure.Name}}",
+            "Alias": "{{BuildDefinitions.Infrastructure.Name}}",
             "IsPrimary": true,
             "IsRetained": false,
             "Type": "Build",
@@ -242,7 +242,7 @@
                 "Name": "False"
               },
               "definition": {
-                "Id": "{{BuildDefs.Infrastructure.Id}}"
+                "Id": "{{BuildDefinitions.Infrastructure.Id}}"
               },
               "project": {
                 "Id": "{{Project.Id}}"
@@ -287,9 +287,9 @@
 							{
 								"DeploymentInput": {
 									"AgentSpecification": {
-										"Identifier": "{{BuildDefs.Infrastructure.Process.Target.AgentSpecification.Identifier}}"
+										"Identifier": "{{BuildDefinitions.Infrastructure.Process.Target.AgentSpecification.Identifier}}"
 									},
-									"QueueId": "{{BuildDefs.Infrastructure.Queue.Id}}"
+									"QueueId": "{{BuildDefinitions.Infrastructure.Queue.Id}}"
 								},
 								"Name": "Agent Job",
 								"Rank": 1,
@@ -305,7 +305,7 @@
                       "action": "Create Or Update Resource Group",
                       "addSpnToEnvironment": "false",
                       "copyAzureVMTags": "true",
-                      "csmFile": "$(System.DefaultWorkingDirectory)/_{{BuildDefs.Infrastructure.Name}}drop/{{Environment.EnvironmentLookup}}/template.json",
+                      "csmFile": "$(System.DefaultWorkingDirectory)/_{{BuildDefinitions.Infrastructure.Name}}drop/{{Environment.EnvironmentLookup}}/template.json",
                       "deploymentMode": "Incremental",
                       "enableDeploymentPrerequisites": "None",
                       "location": "{{Environment.AzureLocation}}",
@@ -326,7 +326,7 @@
         "ReleaseNameFormat": "Release-$(rev:r)",
         "Triggers": [
 					{
-						"ArtifactAlias": "{{BuildDefs.Infrastructure.Name}}",
+						"ArtifactAlias": "{{BuildDefinitions.Infrastructure.Name}}",
 						"TriggerConditions": null
 					}
         ]
