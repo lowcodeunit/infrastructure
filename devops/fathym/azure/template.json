@@ -319,7 +319,7 @@
                       "action": "Create Or Update Resource Group",
                       "addSpnToEnvironment": "false",
                       "copyAzureVMTags": "true",
-                      "csmFile": "$(System.DefaultWorkingDirectory)/_{{BuildDefinitions.Infrastructure.Name}}/drop/{{Environment.EnvironmentLookup}}/template.json",
+                      "csmFile": "$(System.DefaultWorkingDirectory)/{{BuildDefinitions.Infrastructure.Name}}/drop/{{Environment.EnvironmentLookup}}/template.json",
                       "deploymentMode": "Incremental",
                       "enableDeploymentPrerequisites": "None",
                       "location": "{{Environment.AzureRegion}}",
