@@ -252,48 +252,50 @@
         ],
         "Environments": [
           {
-						"Conditions": [
-							{
-								"ConditionType": "Event",
-								"Name": "ReleaseStarted",
-								"Value": ""
-							}
+            "Conditions": [
+              {
+                "ConditionType": "Event",
+                "Name": "ReleaseStarted",
+                "Value": ""
+              }
             ],
-						"Name": "Production",
-						"PostDeployApprovals": {
-							"Approvals": [
-								{
-									"IsAutomated": true,
-									"IsNotificationOn": false,
-									"Rank": 1
-								}
+            "Name": "Production",
+            "PostDeployApprovals": {
+              "Approvals": [
+                {
+                  "IsAutomated": true,
+                  "IsNotificationOn": false,
+                  "Rank": 1
+                }
               ]
-						},
-						"PreDeployApprovals": {
-							"Approvals": [
-								{
-									"IsAutomated": true,
-									"IsNotificationOn": false,
-									"Rank": 1
-								}
+            },
+            "PreDeployApprovals": {
+              "Approvals": [
+                {
+                  "IsAutomated": true,
+                  "IsNotificationOn": false,
+                  "Rank": 1
+                }
               ]
-						},
-						"RetentionPolicy": {
-							"DaysToKeep": 30,
-							"ReleasesToKeep": 3,
-							"RetainBuild": true
-						},
-						"DeployPhases": [
-							{
-								"DeploymentInput": {
-									"AgentSpecification": {
-										"Identifier": "{{BuildDefinitions.Infrastructure.Process.Target.AgentSpecification.Identifier}}"
-									},
-									"QueueId": "{{BuildDefinitions.Infrastructure.Queue.Id}}"
-								},
-								"Name": "Agent Job",
-								"Rank": 1,
-								"WorkflowTasks": [
+            },
+            "RetentionPolicy": {
+              "DaysToKeep": 30,
+              "ReleasesToKeep": 3,
+              "RetainBuild": true
+            },
+            "DeploymentPhases": [{}],
+            "DeployPhases": [
+              {},
+              {
+                "DeploymentInput": {
+                  "AgentSpecification": {
+                    "Identifier": "{{BuildDefinitions.Infrastructure.Process.Target.AgentSpecification.Identifier}}"
+                  },
+                  "QueueId": "{{BuildDefinitions.Infrastructure.Queue.Id}}"
+                },
+                "Name": "Agent Job",
+                "Rank": 1,
+                "WorkflowTasks": [
                   {
                     "AlwaysRun": false,
                     "Condition": "succeeded()",
@@ -319,16 +321,16 @@
                     "Version": "2.*"
                   }
                 ]
-							}
+              }
             ]
-					}
+          }
         ],
         "ReleaseNameFormat": "Release-$(rev:r)",
         "Triggers": [
-					{
-						"ArtifactAlias": "{{BuildDefinitions.Infrastructure.Name}}",
-						"TriggerConditions": null
-					}
+          {
+            "ArtifactAlias": "{{BuildDefinitions.Infrastructure.Name}}",
+            "TriggerConditions": null
+          }
         ]
       }
     ],
