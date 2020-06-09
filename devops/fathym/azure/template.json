@@ -293,7 +293,32 @@
 								},
 								"Name": "Agent Job",
 								"Rank": 1,
-								"WorkflowTasks": []
+								"WorkflowTasks": [
+                  {
+                    "AlwaysRun": false,
+                    "Condition": "succeeded()",
+                    "ContinueOnError": false,
+                    "DefinitionType": "task",
+                    "Enabled": true,
+                    "Inputs": {
+                      "ConnectedServiceName": "{{Environment.AzureServiceEndpointID}}",
+                      "action": "Create Or Update Resource Group",
+                      "addSpnToEnvironment": "false",
+                      "copyAzureVMTags": "true",
+                      "csmFile": "$(System.DefaultWorkingDirectory)/_{{BuildDefs.Infrastructure.Name}}drop/{{Environment.EnvironmentLookup}}/template.json",
+                      "deploymentMode": "Incremental",
+                      "enableDeploymentPrerequisites": "None",
+                      "location": "{{Environment.AzureLocation}}",
+                      "overrideParameters": "-name {{Environment.EnvironmentLookup}} -safename {{Environment.SafeEnvironmentLookup}} -subscriptionId {{Environment.AzureSubID}}",
+                      "resourceGroupName": "{{Environment.EnvironmentLookup}}",
+                      "runAgentServiceAsUser": "false",
+                      "templateLocation": "Linked artifact"
+                    },
+                    "Name": "Azure Deployment:Create Or Update Resource Group action",
+                    "TaskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                    "Version": "2.*"
+                  }
+                ]
 							}
             ]
 					}
