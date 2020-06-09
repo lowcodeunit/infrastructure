@@ -306,13 +306,27 @@
               },
               {
                 "DeploymentInput": {
+                  "ParallelExecution": { "ParallelExecutionType": 0 },
                   "AgentSpecification": {
                     "Identifier": "{{BuildDefinitions.Infrastructure.Process.Target.AgentSpecification.Identifier}}"
                   },
-                  "QueueId": "{{BuildDefinitions.Infrastructure.Queue.Id}}"
+                  "SkipArtifactsDownload": false,
+                  "ArtifactsDownloadInput": {},
+                  "QueueId": "{{BuildDefinitions.Infrastructure.Queue.Id}}",
+                  "Demands": [],
+                  "EnableAccessToken": false,
+                  "TimeoutInMinutes": 0,
+                  "JobCancelTimeoutInMinutes": 1,
+                  "Condition": "succeeded()",
+                  "OverrideInputs": {}
                 },
-                "Name": "Agent Job",
                 "Rank": 1,
+                "PhaseType": 1,
+                "Name": "Agent Job",
+                "RefName": null,
+                "WorkflowTasks": []
+              },
+              {
                 "WorkflowTasks": [
                   {
                     "AlwaysRun": false,
