@@ -33,9 +33,9 @@
   "Pipelines": {
     "Builds": [
       {
+        "Name": "Infrastructure",
         "BadgeEnabled": true,
         "BuildNumberFormat": "$(MajorVersion).$(MinorVersion).$(Rev:r)",
-        "Name": "Infrastructure",
         "Process": {
           "Phases": [
             {
@@ -227,7 +227,86 @@
       }
     },
     "Extensions": [],
-    "Releases": [{}],
+    "Releases": [
+      {
+        "Name": "Infrastructure",
+        "Artifacts": [
+          {
+            "Alias": "{{BuildDefs.Infrastructure.Name}}",
+            "IsPrimary": true,
+            "IsRetained": false,
+            "Type": "Build",
+            "DefinitionReference": {
+              "IsMultiDefinitionType": {
+                "Id": "False",
+                "Name": "False"
+              },
+              "definition": {
+                "Id": "{{BuildDefs.Infrastructure.Id}}"
+              },
+              "project": {
+                "Id": "{{Project.Id}}"
+              }
+            }
+          }
+        ],
+        "Environments": [
+          {
+						"Conditions": [
+							{
+								"ConditionType": "Event",
+								"Name": "ReleaseStarted",
+								"Value": ""
+							}
+            ],
+						"Name": "Production",
+						"PostDeployApprovals": {
+							"Approvals": [
+								{
+									"IsAutomated": true,
+									"IsNotificationOn": false,
+									"Rank": 1
+								}
+              ]
+						},
+						"PreDeployApprovals": {
+							"Approvals": [
+								{
+									"IsAutomated": true,
+									"IsNotificationOn": false,
+									"Rank": 1
+								}
+              ]
+						},
+						"RetentionPolicy": {
+							"DaysToKeep": 30,
+							"ReleasesToKeep": 3,
+							"RetainBuild": true
+						},
+						"DeployPhases": [
+							{
+								"DeploymentInput": {
+									"AgentSpecification": {
+										"Identifier": "{{BuildDefs.Infrastructure.Process.Target.AgentSpecification.Identifier}}"
+									},
+									"QueueId": "{{BuildDefs.Infrastructure.Queue.Id}}"
+								},
+								"Name": "Agent Job",
+								"Rank": 1,
+								"WorkflowTasks": []
+							}
+            ]
+					}
+        ],
+        "ReleaseNameFormat": "Release-$(rev:r)",
+        "Triggers": [
+					{
+						"ArtifactAlias": "{{BuildDefs.Infrastructure.Name}}",
+						"TriggerConditions": null
+					}
+        ]
+      }
+    ],
     "TaskGroups": [
       {
         "Author": "LowCodeUnit",
