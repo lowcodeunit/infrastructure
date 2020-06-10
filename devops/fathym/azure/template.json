@@ -546,5 +546,30 @@
       "Source": "https://github.com/lowcodeunit/infrastructure.git",
       "InitType": "Import"
     }
-  }
+  },
+  "ServiceEndpoints": [
+    {
+      "Data": {
+        "environment": "AzureCloud",
+        "scopeLevel": "Subscription",
+        "subscriptionName": "Infrastructure",
+        "subscriptionId": "{{Environment.AzureSubID}}"
+      },
+      "Name": "Azure Infrastructure",
+      "Type": "azurerm",
+      "Url": "https://management.azure.com/",
+      "Authorization": {
+        "Parameters": {
+          "authenticationType": "spnKey",
+          "serviceprincipalid": "{{Environment.AzureAppID}}",
+          "serviceprincipalkey": "{{Environment.AzureAppAuthKey}}",
+          "tenantid": "{{Environment.AzureTenantID}}"
+        },
+        "Scheme": "ServicePrincipal"
+      },
+      "IsShared": false,
+      "IsReady": true,
+      "ServiceEndpointProjectReferences": null
+    }
+  ]
 }
