@@ -315,7 +315,7 @@
                     "DefinitionType": "task",
                     "Enabled": true,
                     "Inputs": {
-                      "ConnectedServiceName": "{{Environment.AzureServiceEndpointID}}",
+                      "ConnectedServiceName": "{{Environment.AzureInfrastructureServiceEndpointID}}",
                       "action": "Create Or Update Resource Group",
                       "addSpnToEnvironment": "false",
                       "copyAzureVMTags": "true",
