@@ -547,8 +547,8 @@
       "InitType": "Import"
     }
   },
-  "ServiceEndpoints": [
-    {
+  "ServiceEndpoints": {
+    "AzureInfrastructure": {
       "Data": {
         "environment": "AzureCloud",
         "scopeLevel": "Subscription",
@@ -571,5 +571,5 @@
       "IsReady": true,
       "ServiceEndpointProjectReferences": null
     }
-  ]
+  }
 }
