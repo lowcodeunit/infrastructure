@@ -409,13 +409,17 @@
                     "DefinitionType": "task",
                     "Enabled": true,
                     "Inputs": {
-                      "DestinationFolder": "$(System.DefaultWorkingDirectory)",
-                      "FileUrl": "https://lcuprd.blob.core.windows.net/builds/lcu/runtime/latest/deploy.zip",
-                      "requireAuthentication": "false",
-                      "Password": "",
-                      "Username": ""
+                      "arguments": "",
+                      "errorActionPreference": "stop",
+                      "failOnStderr": "false",
+                      "filePath": "",
+                      "ignoreLASTEXITCODE": "false",
+                      "pwsh": "false",
+                      "script": "Invoke-WebRequest https://lcuprd.blob.core.windows.net/builds/lcu/runtime/latest/deploy.zip -OutFile $(System.DefaultWorkingDirectory)/deploy.zip",
+                      "targetType": "inline",
+                      "workingDirectory": ""
                     },
-                    "Name": "Download a File",
+                    "Name": "Download LCU Runtime Deployment File",
                     "TaskId": "ee8df0d0-dcc0-11e6-bf0f-4bcbb4b0e495",
                     "Version": "1.*"
                   },
