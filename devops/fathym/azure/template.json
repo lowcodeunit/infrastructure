@@ -345,6 +345,139 @@
             "TriggerType": 1
           }
         ]
+      },
+      {
+        "Name": "Deploy LCU Runtime",
+        "Artifacts": [],
+        "Environments": [
+          {
+            "Conditions": [
+              {
+                "ConditionType": "Event",
+                "Name": "ReleaseStarted",
+                "Value": ""
+              }
+            ],
+            "Name": "Production",
+            "PostDeployApprovals": {
+              "Approvals": [
+                {
+                  "IsAutomated": true,
+                  "IsNotificationOn": false,
+                  "Rank": 1
+                }
+              ]
+            },
+            "PreDeployApprovals": {
+              "Approvals": [
+                {
+                  "IsAutomated": true,
+                  "IsNotificationOn": false,
+                  "Rank": 1
+                }
+              ]
+            },
+            "RetentionPolicy": {
+              "DaysToKeep": 30,
+              "ReleasesToKeep": 3,
+              "RetainBuild": true
+            },
+            "DeployPhases": [
+              {
+                "DeploymentInput": {
+                  "ParallelExecution": { "ParallelExecutionType": 0 },
+                  "AgentSpecification": {
+                    "Identifier": "windows-2019"
+                  },
+                  "SkipArtifactsDownload": false,
+                  "ArtifactsDownloadInput": {},
+                  "Demands": [],
+                  "EnableAccessToken": false,
+                  "TimeoutInMinutes": 0,
+                  "JobCancelTimeoutInMinutes": 1,
+                  "Condition": "succeeded()"
+                },
+                "Rank": 1,
+                "PhaseType": 1,
+                "Name": "Agent Job",
+                "RefName": null,
+                "WorkflowTasks": [
+                  {
+                    "AlwaysRun": false,
+                    "Condition": "succeeded()",
+                    "ContinueOnError": false,
+                    "DefinitionType": "task",
+                    "Enabled": true,
+                    "Inputs": {
+                      "DestinationFolder": "$(System.DefaultWorkingDirectory)",
+                      "FileUrl": "https://lcuprd.blob.core.windows.net/builds/lcu/runtime/latest/deploy.zip",
+                      "requireAuthentication": "false",
+                      "Password": "",
+                      "Username": ""
+                    },
+                    "Name": "Download a File",
+                    "TaskId": "ee8df0d0-dcc0-11e6-bf0f-4bcbb4b0e495",
+                    "Version": "1.*"
+                  },
+                  {
+                    "AlwaysRun": false,
+                    "Condition": "succeeded()",
+                    "ContinueOnError": false,
+                    "DefinitionType": "task",
+                    "Enabled": true,
+                    "Inputs": {
+                      "AdditionalArguments": "",
+                      "AppSettings": "",
+                      "ConfigurationSettings": "",
+                      "ConnectedServiceName": "$(Parameters.ConnectedServiceName)",
+                      "ConnectionType": "AzureRM",
+                      "DeployToSlotOrASEFlag": "false",
+                      "DeploymentType": "webDeploy",
+                      "DockerImageTag": "$(Build.BuildId)",
+                      "DockerNamespace": "$(Parameters.DockerNamespace)",
+                      "DockerRepository": "$(Parameters.DockerRepository)",
+                      "ExcludeFilesFromAppDataFlag": "false",
+                      "InlineScript": "",
+                      "JSONFiles": "",
+                      "Package": "$(System.DefaultWorkingDirectory)/deploy.zip",
+                      "PublishProfilePassword": "",
+                      "PublishProfilePath": "$(System.DefaultWorkingDirectory)/**/*.pubxml",
+                      "RemoveAdditionalFilesFlag": "true",
+                      "RenameFilesFlag": "true",
+                      "ResourceGroupName": "",
+                      "RuntimeStack": "",
+                      "RuntimeStackFunction": "",
+                      "ScriptPath": "",
+                      "ScriptType": "",
+                      "SetParametersFile": "",
+                      "SlotName": "production",
+                      "StartupCommand": "$(Parameters.StartupCommand)",
+                      "TakeAppOfflineFlag": "true",
+                      "UseWebDeploy": "true",
+                      "VirtualApplication": "",
+                      "WebAppKind": "$(Parameters.WebAppKind)",
+                      "WebAppName": "$(Parameters.WebAppName)",
+                      "WebConfigParameters": "",
+                      "XmlTransformation": "false",
+                      "XmlVariableSubstitution": "false"
+                    },
+                    "Name": "Deploy LCU Runtime",
+                    "TaskId": "497d490f-eea7-4f2b-ab94-48d9c1acdcb1",
+                    "Version": "4.*"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "ReleaseNameFormat": "Release-$(rev:r)",
+        "Triggers": [
+          {
+            "ArtifactAlias": "{{BuildDefinitions.Infrastructure.Name}}",
+            "TriggerConditions": null,
+            "TriggerType": 1
+          }
+        ]
       }
     ],
     "TaskGroups": [
