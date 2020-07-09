@@ -35,12 +35,10 @@
       {
         "Name": "Deploy LCU Runtime",
         "Type": "Release",
-        "DependsOn": [
-          {
-            "Type": "Release",
-            "Name": "Infrastructure"
-          }
-        ],
+        "DependsOn": {
+          "Type": "Release",
+          "Name": "Infrastructure"
+        },
         "TimeoutMinutes": 60
       }
     ],
