@@ -387,7 +387,7 @@
                 "DeploymentInput": {
                   "ParallelExecution": { "ParallelExecutionType": 0 },
                   "AgentSpecification": {
-                    "Identifier": "windows-2019"
+                    "Identifier": "{{BuildDefinitions.Infrastructure.Process.Target.AgentSpecification.Identifier}}"
                   },
                   "SkipArtifactsDownload": false,
                   "ArtifactsDownloadInput": {},
