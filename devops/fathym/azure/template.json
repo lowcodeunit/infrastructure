@@ -31,6 +31,19 @@
   },
   "InfrastructureRepository": "Infrastructure",
   "Pipelines": {
+    "Initialize": [
+      {
+        "Name": "Deploy LCU Runtime",
+        "Type": "Release",
+        "DependsOn": [
+          {
+            "Type": "Release",
+            "Name": "Infrastructure"
+          }
+        ],
+        "TimeoutMinutes": 60
+      }
+    ],
     "Builds": [
       {
         "Name": "Infrastructure",
@@ -457,13 +470,7 @@
           }
         ],
         "ReleaseNameFormat": "Release-$(rev:r)",
-        "Triggers": [
-          {
-            "ArtifactAlias": "{{BuildDefinitions.Infrastructure.Name}}",
-            "TriggerConditions": null,
-            "TriggerType": 1
-          }
-        ]
+        "Triggers": []
       }
     ],
     "TaskGroups": [
