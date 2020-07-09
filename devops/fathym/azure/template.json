@@ -420,8 +420,8 @@
                       "workingDirectory": ""
                     },
                     "Name": "Download LCU Runtime Deployment File",
-                    "TaskId": "ee8df0d0-dcc0-11e6-bf0f-4bcbb4b0e495",
-                    "Version": "1.*"
+                    "TaskId": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+                    "Version": "2.*"
                   },
                   {
                     "AlwaysRun": false,
