@@ -402,12 +402,13 @@
                   },
                   "SkipArtifactsDownload": false,
                   "ArtifactsDownloadInput": {},
+                  "QueueId": "{{BuildDefinitions.Infrastructure.Queue.Id}}",
                   "Demands": [],
                   "EnableAccessToken": false,
-                  "QueueId": "{{BuildDefinitions.Infrastructure.Queue.Id}}",
                   "TimeoutInMinutes": 0,
                   "JobCancelTimeoutInMinutes": 1,
-                  "Condition": "succeeded()"
+                  "Condition": "succeeded()",
+                  "OverrideInputs": {}
                 },
                 "Rank": 1,
                 "PhaseType": 1,
