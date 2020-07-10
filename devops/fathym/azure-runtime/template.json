@@ -31,7 +31,17 @@
   },
   "InfrastructureRepository": "Infrastructure",
   "Pipelines": {
-    "Initialize": [],
+    "Initialize": [
+      {
+        "Name": "Deploy LCU Runtime",
+        "Type": "Release",
+        "DependsOn": {
+          "Type": "Release",
+          "Name": "Infrastructure"
+        },
+        "TimeoutMinutes": 60
+      }
+    ],
     "Builds": [
       {
         "Name": "Infrastructure",
