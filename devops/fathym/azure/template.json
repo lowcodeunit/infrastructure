@@ -404,6 +404,7 @@
                   "ArtifactsDownloadInput": {},
                   "Demands": [],
                   "EnableAccessToken": false,
+                  "QueueId": "{{BuildDefinitions.Infrastructure.Queue.Id}}",
                   "TimeoutInMinutes": 0,
                   "JobCancelTimeoutInMinutes": 1,
                   "Condition": "succeeded()"
