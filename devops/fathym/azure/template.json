@@ -31,7 +31,14 @@
   },
   "InfrastructureRepository": "Infrastructure",
   "Pipelines": {
-    "Initialize": [],
+    "Initialize": [
+      {
+        "Name": "Infrastructure",
+        "Type": "Build",
+        "DependsOn": {},
+        "TimeoutMinutes": 60
+      }
+    ],
     "Builds": [
       {
         "Name": "Infrastructure",
