@@ -1,0 +1,66 @@
+{
+    "$schema": "https://schema.lowcodeunit.com/schemas/latest/deploymentTemplateDefinition.json#",
+    "parameters": {
+        "name": {
+            "type": "string"
+        },
+        "safename": {
+            "type": "string"
+        },
+        "subscriptionId": {
+            "type": "string"
+        },
+        "regionId": {
+            "defaultValue": "westus2",
+            "type": "string"
+        },
+        "locationName": {
+            "defaultValue": "West US 2",
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "type": "modules",
+            "path": "fathym\\core\\insights"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\core\\state"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\cold-storage",
+            "name": "parameters('safename')"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\core\\daf",
+            "deployables": [
+                "LCU Runtime",
+                "LCU SSL"
+            ]
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\data-stream",
+            "name": "concat(parameters('name'), '-ds')"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\device-stream"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\data-map"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\hot-storage"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\warm-storage"
+        }
+    ]
+}
