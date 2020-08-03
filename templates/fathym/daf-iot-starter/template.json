@@ -11,7 +11,7 @@
             "type": "string"
         },
         "regionId": {
-            "defaultValue": "westus2",
+            "defaultValue": "[{{regionId}}]",
             "type": "string"
         },
         "locationName": {
@@ -57,6 +57,10 @@
         {
             "type": "modules",
             "path": "fathym\\data-flows\\hot-storage"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\machine-learning"
         },
         {
             "type": "modules",

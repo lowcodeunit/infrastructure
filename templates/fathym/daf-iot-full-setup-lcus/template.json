@@ -11,7 +11,7 @@
             "type": "string"
         },
         "regionId": {
-            "defaultValue": "westus2",
+            "defaultValue": "[{{regionId}}]",
             "type": "string"
         },
         "locationName": {

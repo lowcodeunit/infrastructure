@@ -1,0 +1,104 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "type": "Microsoft.ContainerRegistry/registries",
+            "apiVersion": "2019-12-01-preview",
+            "name": "[{{name}}]",
+            "location": "[{{regionId}}]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Basic"
+            },
+            "properties": {
+                "adminUserEnabled": true,
+                "policies": {
+                    "quarantinePolicy": {
+                        "status": "disabled"
+                    },
+                    "trustPolicy": {
+                        "type": "Notary",
+                        "status": "disabled"
+                    },
+                    "retentionPolicy": {
+                        "days": 7,
+                        "status": "disabled"
+                    }
+                },
+                "encryption": {
+                    "status": "disabled"
+                },
+                "dataEndpointEnabled": false,
+                "publicNetworkAccess": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "apiVersion": "2016-10-01",
+            "name": "[{{name}}]",
+            "location": "[{{regionId}}]",
+            "properties": {
+                "sku": {
+                    "family": "A",
+                    "name": "standard"
+                },
+                "enabledForDeployment": false
+            }
+        },
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces/computes",
+            "apiVersion": "2020-06-01",
+            "name": "[concat({{name}}, '/lcu-compute')]",
+            "location": "[{{regionId}}]",
+            "dependsOn": [
+                "[resourceId('Microsoft.MachineLearningServices/workspaces', {{name}})]"
+            ],
+            "properties": {
+                "computeType": "AmlCompute",
+                "computeLocation": "[{{regionId}}]",
+                "properties": {
+                    "vmSize": "STANDARD_D12_V2",
+                    "vmPriority": "Dedicated",
+                    "scaleSettings": {
+                        "maxNodeCount": 6,
+                        "minNodeCount": 0,
+                        "nodeIdleTimeBeforeScaleDown": "PT2M"
+                    },
+                    "remoteLoginPortPublicAccess": "Enabled"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces",
+            "apiVersion": "2020-06-01",
+            "name": "[{{name}}]",
+            "location": "[{{regionId}}]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('safename'))]",
+                "[resourceId('Microsoft.ContainerRegistry/registries', {{name}})]",
+                "[resourceId('Microsoft.KeyVault/vaults', {{name}})]",
+                "[resourceId('microsoft.insights/components', {{name}})]"
+            ],
+            "sku": {
+                "name": "Enterprise",
+                "tier": "Enterprise"
+            },
+            "identity": {
+                "principalId": "9a3889ec-ed7f-493d-b7d2-4a92181951bc",
+                "tenantId": "6dcbebd0-f8d0-4a9d-89e5-5873e8146b0a",
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "friendlyName": "[{{name}}]",
+                "storageAccount": "[resourceId('Microsoft.Storage/storageAccounts', parameters('safename'))]",
+                "containerRegistry": "[resourceId('Microsoft.ContainerRegistry/registries', {{name}})]",
+                "keyVault": "[resourceId('Microsoft.KeyVault/vaults', {{name}})]",
+                "applicationInsights": "[resourceId('microsoft.insights/components', {{name}})]",
+                "hbiWorkspace": false,
+                "allowPublicAccessWhenBehindVnet": false,
+                "discoveryUrl": "https://[{{regionId}}].experiments.azureml.net/discovery"
+            }
+        }
+    ]
+}
