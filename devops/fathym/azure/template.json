@@ -340,7 +340,7 @@
                       "deploymentMode": "Incremental",
                       "enableDeploymentPrerequisites": "None",
                       "location": "{{Environment.AzureRegion}}",
-                      "overrideParameters": "-name {{Environment.EnvironmentLookup}} -safename {{Environment.SafeEnvironmentLookup}} -subscriptionId {{Environment.AzureSubID}}",
+                      "overrideParameters": "-name {{Environment.EnvironmentLookup}} -safename {{Environment.SafeEnvironmentLookup}} -subscriptionId {{Environment.AzureSubID}} -tenantId {{Environment.AzureTenantID}}",
                       "resourceGroupName": "{{Environment.EnvironmentLookup}}",
                       "runAgentServiceAsUser": "false",
                       "templateLocation": "Linked artifact"

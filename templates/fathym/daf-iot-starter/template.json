@@ -10,6 +10,9 @@
         "subscriptionId": {
             "type": "string"
         },
+        "tenantId": {
+            "type": "string"
+        },
         "regionId": {
             "defaultValue": "[{{regionId}}]",
             "type": "string"

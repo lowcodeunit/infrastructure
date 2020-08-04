@@ -5,7 +5,7 @@
         {
             "type": "Microsoft.ContainerRegistry/registries",
             "apiVersion": "2019-12-01-preview",
-            "name": "[{{name}}]",
+            "name": "[parameters('safename')]",
             "location": "[{{regionId}}]",
             "sku": {
                 "name": "Basic",
@@ -43,6 +43,7 @@
                     "family": "A",
                     "name": "standard"
                 },
+                "tenantId": "[parameters('tenantId')]",
                 "enabledForDeployment": false
             }
         },
