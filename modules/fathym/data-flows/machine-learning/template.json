@@ -39,7 +39,6 @@
         "tier": "Enterprise"
       },
       "identity": {
-        "tenantId": "[parameters('tenantId')]",
         "type": "SystemAssigned"
       },
       "properties": {
