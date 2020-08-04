@@ -33,6 +33,14 @@
         },
         {
             "type": "modules",
+            "path": "fathym\\data-flows\\container-registry"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\data-flows\\key-vault"
+        },
+        {
+            "type": "modules",
             "path": "fathym\\data-flows\\cold-storage",
             "name": "parameters('safename')"
         },

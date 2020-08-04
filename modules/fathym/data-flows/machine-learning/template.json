@@ -3,51 +3,6 @@
     "contentVersion": "1.0.0.0",
     "resources": [
         {
-            "type": "Microsoft.ContainerRegistry/registries",
-            "apiVersion": "2019-12-01-preview",
-            "name": "[parameters('safename')]",
-            "location": "[{{regionId}}]",
-            "sku": {
-                "name": "Basic",
-                "tier": "Basic"
-            },
-            "properties": {
-                "adminUserEnabled": true,
-                "policies": {
-                    "quarantinePolicy": {
-                        "status": "disabled"
-                    },
-                    "trustPolicy": {
-                        "type": "Notary",
-                        "status": "disabled"
-                    },
-                    "retentionPolicy": {
-                        "days": 7,
-                        "status": "disabled"
-                    }
-                },
-                "encryption": {
-                    "status": "disabled"
-                },
-                "dataEndpointEnabled": false,
-                "publicNetworkAccess": "Enabled"
-            }
-        },
-        {
-            "type": "Microsoft.KeyVault/vaults",
-            "apiVersion": "2016-10-01",
-            "name": "[{{name}}]",
-            "location": "[{{regionId}}]",
-            "properties": {
-                "sku": {
-                    "family": "A",
-                    "name": "standard"
-                },
-                "tenantId": "[parameters('tenantId')]",
-                "enabledForDeployment": false
-            }
-        },
-        {
             "type": "Microsoft.MachineLearningServices/workspaces/computes",
             "apiVersion": "2020-06-01",
             "name": "[concat({{name}}, '/lcu-compute')]",
@@ -77,7 +32,7 @@
             "location": "[{{regionId}}]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('safename'))]",
-                "[resourceId('Microsoft.ContainerRegistry/registries', {{name}})]",
+                "[resourceId('Microsoft.ContainerRegistry/registries', parameters('safename'))]",
                 "[resourceId('Microsoft.KeyVault/vaults', {{name}})]",
                 "[resourceId('microsoft.insights/components', {{name}})]"
             ],
@@ -93,7 +48,7 @@
             "properties": {
                 "friendlyName": "[{{name}}]",
                 "storageAccount": "[resourceId('Microsoft.Storage/storageAccounts', parameters('safename'))]",
-                "containerRegistry": "[resourceId('Microsoft.ContainerRegistry/registries', {{name}})]",
+                "containerRegistry": "[resourceId('Microsoft.ContainerRegistry/registries', parameters('safename'))]",
                 "keyVault": "[resourceId('Microsoft.KeyVault/vaults', {{name}})]",
                 "applicationInsights": "[resourceId('microsoft.insights/components', {{name}})]",
                 "hbiWorkspace": false,
