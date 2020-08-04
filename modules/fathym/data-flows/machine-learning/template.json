@@ -60,7 +60,7 @@
         "accessPolicies": [
           {
             "tenantId": "[parameters('tenantId')]",
-            "objectId": "[reference(resourceId('Microsoft.MachineLearningServices/workspaces', {{name}}), '2019-08-01', 'full').identity.principalId]",
+            "objectId": "[reference(resourceId('Microsoft.MachineLearningServices/workspaces', {{name}}), '2020-06-01', 'full').identity.principalId]",
             "permissions": {
               "keys": ["all"],
               "secrets": ["all"],
