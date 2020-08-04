@@ -55,6 +55,25 @@
                 "allowPublicAccessWhenBehindVnet": false,
                 "discoveryUrl": "https://[{{regionId}}].experiments.azureml.net/discovery"
             }
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults/accessPolicies",
+            "name": "[concat(parameters('safename'), '/add')]",
+            "apiVersion": "2019-09-01",
+            "properties": {
+                "accessPolicies": [
+                    {
+                        "tenantId": "[parameters('tenantId')]",
+                        "objectId": "[reference(resourceId('Microsoft.MachineLearningServices/workspaces', {{name}}), '2019-08-01', 'full').identity.principalId]",
+                        "permissions": {
+                            "keys": ["all"],
+                            "secrets": ["all"],
+                            "certificates": ["all"],
+                            "storage": ["all"]
+                        }
+                    }
+                ]
+            }
         }
     ]
 }
