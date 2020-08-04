@@ -39,8 +39,7 @@
         "tier": "Enterprise"
       },
       "identity": {
-        "principalId": "9a3889ec-ed7f-493d-b7d2-4a92181951bc",
-        "tenantId": "6dcbebd0-f8d0-4a9d-89e5-5873e8146b0a",
+        "tenantId": "[parameters('tenantId')]",
         "type": "SystemAssigned"
       },
       "properties": {
@@ -62,7 +61,7 @@
         "accessPolicies": [
           {
             "tenantId": "[parameters('tenantId')]",
-            "objectId": null,
+            "objectId": "[reference(resourceId('Microsoft.MachineLearningServices/workspaces', {{name}}), '2019-08-01', 'full').identity.principalId]",
             "permissions": {
               "keys": ["all"],
               "secrets": ["all"],
