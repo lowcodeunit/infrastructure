@@ -62,6 +62,7 @@
         "accessPolicies": [
           {
             "tenantId": "[parameters('tenantId')]",
+            "objectId": null,
             "permissions": {
               "keys": ["all"],
               "secrets": ["all"],
