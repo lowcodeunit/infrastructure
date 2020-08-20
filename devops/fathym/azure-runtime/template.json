@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.lowcodeunit.com/schemas/latest/azureDevOpsDefinition.json#",
   "Feed": {
-    "Name": "LCU-{{Enterprise.PrimaryAPIKey}}",
+    "Name": "LCU-{{Enterprise.EnterpriseLookup}}",
     "Upstreams": [
       {
         "location": "https://registry.npmjs.org/",
@@ -655,7 +655,7 @@
     ]
   },
   "Project": {
-    "Name": "LCU - {{Enterprise.PrimaryAPIKey}}",
+    "Name": "LCU - {{Enterprise.EnterpriseLookup}}",
     "Description": "Dev Ops automation and integrations for {{Enterprise.Name}} Low Code Units",
     "Capabilities": {
       "versioncontrol": {
