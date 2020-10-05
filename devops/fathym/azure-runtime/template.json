@@ -33,6 +33,21 @@
   "Pipelines": {
     "Initialize": [
       {
+        "Name": "Infrastructure",
+        "Type": "Build",
+        "DependsOn": null, 
+        "TimeoutMinutes": 60
+      },
+      {
+        "Name": "Infrastructure",
+        "Type": "Release",
+        "DependsOn": {
+          "Type": "Build",
+          "Name": "Infrastructure"
+        },
+        "TimeoutMinutes": 60
+      },
+      {
         "Name": "Deploy LCU Runtime",
         "Type": "Release",
         "DependsOn": {

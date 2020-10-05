@@ -1,7 +1,15 @@
 {
     "$schema": "https://schema.lowcodeunit.com/schemas/latest/deploymentTemplateDefinition.json#",
     "parameters": {
+        "locationName": {
+            "defaultValue": "West US 2",
+            "type": "string"
+        },
         "name": {
+            "type": "string"
+        },
+        "regionId": {
+            "defaultValue": "[{{regionId}}]",
             "type": "string"
         },
         "safename": {
@@ -10,12 +18,7 @@
         "subscriptionId": {
             "type": "string"
         },
-        "regionId": {
-            "defaultValue": "[{{regionId}}]",
-            "type": "string"
-        },
-        "locationName": {
-            "defaultValue": "West US 2",
+        "tenantId": {
             "type": "string"
         }
     },
