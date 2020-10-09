@@ -37,15 +37,6 @@
         "Type": "Build",
         "DependsOn": null, 
         "TimeoutMinutes": 60
-      },
-      {
-        "Name": "Infrastructure",
-        "Type": "Release",
-        "DependsOn": {
-          "Type": "Build",
-          "Name": "Infrastructure"
-        },
-        "TimeoutMinutes": 60
       }
     ],
     "Builds": [
