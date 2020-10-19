@@ -83,7 +83,7 @@
         },
         {
             "type": "modules",
-            "path": "fathym\\iot\\basic-stream"
+            "path": "fathym\\iot\\basic-data-stream"
         }
     ]
 }
