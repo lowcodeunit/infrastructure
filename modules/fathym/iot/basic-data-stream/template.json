@@ -33,6 +33,7 @@
                   "eventHubName": "[concat({{name}}, '-dslcu')]",
                   "serviceBusNamespace": "[concat({{name}}, '-ds')]",
                   "sharedAccessPolicyName": "RootManageSharedAccessKey",
+                  "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.EventHub/namespaces/eventhubs/authorizationRules', concat({{name}}, '-ds'), concat({{name}}, '-dslcu'), 'RootManageSharedAccessKey'),'2017-04-01').primaryKey]",
                   "authenticationMode": "ConnectionString"
                 }
               },
