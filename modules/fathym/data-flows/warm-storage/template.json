@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "resources": [
         {
-            "apiVersion": "2015-04-08",
+            "apiVersion": "2020-04-01",
             "kind": "GlobalDocumentDB",
             "type": "Microsoft.DocumentDb/databaseAccounts",
             "name": "[{{name}}]",
