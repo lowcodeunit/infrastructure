@@ -21,111 +21,103 @@
         "dataLocale": "en-US",
         "compatibilityLevel": "1.1",
         "jobType": "Cloud",
+        "inputs": [
+          {
+            "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/', {{name}}, '-dslcu-data-stream')]",
+            "properties": {
+              "type": "Stream",
+              "datasource": {
+                "type": "Microsoft.ServiceBus/EventHub",
+                "properties": {
+                  "consumerGroupName": "lcu",
+                  "eventHubName": "[concat({{name}}, '-dslcu')]",
+                  "serviceBusNamespace": "[concat({{name}}, '-ds')]",
+                  "sharedAccessPolicyName": "RootManageSharedAccessKey",
+                  "authenticationMode": "ConnectionString"
+                }
+              },
+              "compression": {
+                "type": "None"
+              },
+              "serialization": {
+                "type": "Json",
+                "properties": {
+                  "encoding": "UTF8"
+                }
+              }
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/lcu-hot-storage')]",
+            "properties": {
+              "datasource": {
+                "type": "Microsoft.ServiceBus/Topic",
+                "properties": {
+                  "topicName": "lcu",
+                  "serviceBusNamespace": "[{{name}}]",
+                  "sharedAccessPolicyName": "RootManageSharedAccessKey",
+                  "authenticationMode": "ConnectionString"
+                }
+              },
+              "serialization": {
+                "type": "Json",
+                "properties": {
+                  "encoding": "UTF8",
+                  "format": "Array"
+                }
+              }
+            }
+          },
+          {
+            "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/', parameters('safename'), '-cold-storage')]",
+            "properties": {
+              "datasource": {
+                "type": "Microsoft.Storage/Blob",
+                "properties": {
+                  "storageAccounts": [
+                    {
+                      "accountName": "[parameters('safename')]"
+                    }
+                  ],
+                  "container": "cold-storage",
+                  "pathPattern": "telemetry/{date}/{time}",
+                  "dateFormat": "yyyy/MM/dd",
+                  "timeFormat": "HH",
+                  "authenticationMode": "ConnectionString"
+                }
+              },
+              "serialization": {
+                "type": "Json",
+                "properties": {
+                  "encoding": "UTF8",
+                  "format": "Array"
+                }
+              }
+            }
+          },
+          {
+            "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/', {{name}}, '-telemetry-warm-storage')]",
+            "properties": {
+              "datasource": {
+                "type": "Microsoft.Storage/DocumentDB",
+                "properties": {
+                  "collectionNamePattern": "telemetry",
+                  "partitionKey": "DeviceID",
+                  "documentId": "id",
+                  "accountId": "[{{name}}]",
+                  "database": "[{{name}}]"
+                }
+              }
+            }
+          }
+        ],
         "transformation": {
           "name": "Transformation",
           "properties": {
             "streamingUnits": 1,
             "query": "SELECT * INTO [mike1019aint-cold-storage] FROM [mike-1019a-int-dslcu-data-stream]\r\n\r\nSELECT * INTO [mike-1019a-int-telemetry-warm-storage] FROM [mike-1019a-int-dslcu-data-stream]\r\n\r\nSELECT * INTO [lcu-hot-storage] FROM [mike-1019a-int-dslcu-data-stream]"
-          }
-        }
-      }
-    },
-    {
-      "type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
-      "apiVersion": "2017-04-01-preview",
-      "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/', {{name}}, '-dslcu-data-stream')]",
-      "dependsOn": ["[resourceId('Microsoft.StreamAnalytics/streamingjobs', concat({{name}}, '-iot-lcu-asa-data-map'))]"],
-      "properties": {
-        "type": "Stream",
-        "datasource": {
-          "type": "Microsoft.ServiceBus/EventHub",
-          "properties": {
-            "consumerGroupName": "lcu",
-            "eventHubName": "[concat({{name}}, '-dslcu')]",
-            "serviceBusNamespace": "[concat({{name}}, '-ds')]",
-            "sharedAccessPolicyName": "RootManageSharedAccessKey",
-            "authenticationMode": "ConnectionString"
-          }
-        },
-        "compression": {
-          "type": "None"
-        },
-        "serialization": {
-          "type": "Json",
-          "properties": {
-            "encoding": "UTF8"
-          }
-        }
-      }
-    },
-    {
-      "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
-      "apiVersion": "2017-04-01-preview",
-      "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/lcu-hot-storage')]",
-      "dependsOn": ["[resourceId('Microsoft.StreamAnalytics/streamingjobs', concat({{name}}, '-iot-lcu-asa-data-map'))]"],
-      "properties": {
-        "datasource": {
-          "type": "Microsoft.ServiceBus/Topic",
-          "properties": {
-            "topicName": "lcu",
-            "serviceBusNamespace": "[{{name}}]",
-            "sharedAccessPolicyName": "RootManageSharedAccessKey",
-            "authenticationMode": "ConnectionString"
-          }
-        },
-        "serialization": {
-          "type": "Json",
-          "properties": {
-            "encoding": "UTF8",
-            "format": "Array"
-          }
-        }
-      }
-    },
-    {
-      "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
-      "apiVersion": "2017-04-01-preview",
-      "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/', parameters('safename'), '-cold-storage')]",
-      "dependsOn": ["[resourceId('Microsoft.StreamAnalytics/streamingjobs', concat({{name}}, '-iot-lcu-asa-data-map'))]"],
-      "properties": {
-        "datasource": {
-          "type": "Microsoft.Storage/Blob",
-          "properties": {
-            "storageAccounts": [
-              {
-                "accountName": "[parameters('safename')]"
-              }
-            ],
-            "container": "cold-storage",
-            "pathPattern": "telemetry/{date}/{time}",
-            "dateFormat": "yyyy/MM/dd",
-            "timeFormat": "HH",
-            "authenticationMode": "ConnectionString"
-          }
-        },
-        "serialization": {
-          "type": "Json",
-          "properties": {
-            "encoding": "UTF8",
-            "format": "Array"
-          }
-        }
-      }
-    },
-    {
-      "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
-      "apiVersion": "2017-04-01-preview",
-      "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/', {{name}}, '-telemetry-warm-storage')]",
-      "dependsOn": ["[resourceId('Microsoft.StreamAnalytics/streamingjobs', concat({{name}}, '-iot-lcu-asa-data-map'))]"],
-      "properties": {
-        "datasource": {
-          "type": "Microsoft.Storage/DocumentDB",
-          "properties": {
-            "collectionNamePattern": "telemetry",
-            "partitionKey": "DeviceID",
-            "documentId": "id",
-            "accountId": "[{{name}}]",
-            "database": "[{{name}}]"
           }
         }
       }
