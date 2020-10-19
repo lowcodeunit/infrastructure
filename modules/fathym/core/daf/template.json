@@ -5,6 +5,28 @@
     {
       "apiVersion": "2018-02-01",
       "name": "[{{name}}]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[{{locationName}}]",
+      "kind": "app",
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "dependsOn": [],
+      "properties": {
+        "name": "[{{name}}]",
+        "workerSize": "0",
+        "workerSizeId": "0",
+        "numberOfWorkers": "1",
+        "hostingEnvironment": ""
+      },
+      "sku": {
+        "tier": "Standard",
+        "name": "S1"
+      }
+    },
+    {
+      "apiVersion": "2018-02-01",
+      "name": "[{{name}}]",
       "type": "Microsoft.Web/sites",
       "location": "[{{locationName}}]",
       "tags": {
@@ -63,28 +85,6 @@
         "serverFarmId": "[concat('/subscriptions/', {{subscriptionId}},'/resourcegroups/', {{name}}, '/providers/Microsoft.Web/serverfarms/', {{name}})]",
         "hostingEnvironment": "",
         "clientAffinityEnabled": true
-      }
-    },
-    {
-      "apiVersion": "2018-02-01",
-      "name": "[{{name}}]",
-      "type": "Microsoft.Web/serverfarms",
-      "location": "[{{locationName}}]",
-      "kind": "",
-      "tags": {
-        "Architecture": "LowCodeUnit"
-      },
-      "dependsOn": [],
-      "properties": {
-        "name": "[{{name}}]",
-        "workerSize": "0",
-        "workerSizeId": "0",
-        "numberOfWorkers": "1",
-        "hostingEnvironment": ""
-      },
-      "sku": {
-        "tier": "Standard",
-        "name": "S1"
       }
     }
   ]

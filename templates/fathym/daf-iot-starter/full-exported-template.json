@@ -1,0 +1,90 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "IotHubs_mike_1016a_int_connectionString": {
+      "type": "SecureString"
+    },
+    "IotHubs_mike_1016a_int_containerName": {
+      "type": "SecureString"
+    },
+    "certificates___fathym_int_com_password": {
+      "type": "SecureString"
+    },
+    "sites_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "IotHubs_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "vaults_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "serverfarms_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "sites_mike_1016a_int_iot_fn_name": {
+      "defaultValue": "mike-1016a-int-iot-fn",
+      "type": "String"
+    },
+    "certificates___fathym_int_com_name": {
+      "defaultValue": "*.fathym-int.com",
+      "type": "String"
+    },
+    "components_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "namespaces_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "storageAccounts_mike1016aint_name": {
+      "defaultValue": "mike1016aint",
+      "type": "String"
+    },
+    "namespaces_mike_1016a_int_ds_name": {
+      "defaultValue": "mike-1016a-int-ds",
+      "type": "String"
+    },
+    "SignalR_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "safename": {
+      "defaultValue": "mike1016aint",
+      "type": "String"
+    },
+    "databaseAccounts_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "serverfarms_mike_1016a_int_iot_fnplan056049_name": {
+      "defaultValue": "mike-1016a-int-iot-fnplan056049",
+      "type": "String"
+    },
+    "workspaces_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "streamingjobs_mike_1016a_int_iot_lcu_asa_data_map_name": {
+      "defaultValue": "mike-1016a-int-iot-lcu-asa-data-map",
+      "type": "String"
+    },
+    "smartdetectoralertrules_failure_anomalies___mike_1016a_int_name": {
+      "defaultValue": "failure anomalies - mike-1016a-int",
+      "type": "String"
+    },
+    "actiongroups_application_insights_smart_detection_externalid": {
+      "defaultValue": "/subscriptions/32271d36-d77b-485b-b7b2-0c990d2abf56/resourceGroups/mike-84e-int/providers/microsoft.insights/actiongroups/application insights smart detection",
+      "type": "String"
+    }
+  },
+  "variables": {},
+  "resources": [
+  ]
+}

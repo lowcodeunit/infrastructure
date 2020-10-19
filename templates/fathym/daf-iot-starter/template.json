@@ -25,19 +25,23 @@
     "resources": [
         {
             "type": "modules",
-            "path": "fathym\\core\\insights"
-        },
-        {
-            "type": "modules",
-            "path": "fathym\\core\\state"
-        },
-        {
-            "type": "modules",
             "path": "fathym\\data-flows\\container-registry"
         },
         {
             "type": "modules",
-            "path": "fathym\\data-flows\\key-vault"
+            "path": "fathym\\data-flows\\device-stream"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\core\\insights"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\core\\key-vault"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\core\\state"
         },
         {
             "type": "modules",
@@ -59,10 +63,6 @@
         },
         {
             "type": "modules",
-            "path": "fathym\\data-flows\\device-stream"
-        },
-        {
-            "type": "modules",
             "path": "fathym\\data-flows\\data-map"
         },
         {
@@ -76,6 +76,14 @@
         {
             "type": "modules",
             "path": "fathym\\data-flows\\warm-storage"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\iot\\telemetry-container"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\iot\\basic-stream"
         }
     ]
 }

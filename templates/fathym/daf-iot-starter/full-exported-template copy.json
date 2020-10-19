@@ -1,0 +1,1523 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "IotHubs_mike_1016a_int_connectionString": {
+      "type": "SecureString"
+    },
+    "IotHubs_mike_1016a_int_containerName": {
+      "type": "SecureString"
+    },
+    "certificates___fathym_int_com_password": {
+      "type": "SecureString"
+    },
+    "sites_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "IotHubs_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "vaults_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "serverfarms_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "sites_mike_1016a_int_iot_fn_name": {
+      "defaultValue": "mike-1016a-int-iot-fn",
+      "type": "String"
+    },
+    "certificates___fathym_int_com_name": {
+      "defaultValue": "*.fathym-int.com",
+      "type": "String"
+    },
+    "components_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "namespaces_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "storageAccounts_mike1016aint_name": {
+      "defaultValue": "mike1016aint",
+      "type": "String"
+    },
+    "namespaces_mike_1016a_int_ds_name": {
+      "defaultValue": "mike-1016a-int-ds",
+      "type": "String"
+    },
+    "SignalR_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "registries_mike1016aint_name": {
+      "defaultValue": "mike1016aint",
+      "type": "String"
+    },
+    "databaseAccounts_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "serverfarms_mike_1016a_int_iot_fnplan056049_name": {
+      "defaultValue": "mike-1016a-int-iot-fnplan056049",
+      "type": "String"
+    },
+    "workspaces_mike_1016a_int_name": {
+      "defaultValue": "mike-1016a-int",
+      "type": "String"
+    },
+    "streamingjobs_mike_1016a_int_iot_lcu_asa_data_map_name": {
+      "defaultValue": "mike-1016a-int-iot-lcu-asa-data-map",
+      "type": "String"
+    },
+    "smartdetectoralertrules_failure_anomalies___mike_1016a_int_name": {
+      "defaultValue": "failure anomalies - mike-1016a-int",
+      "type": "String"
+    },
+    "actiongroups_application_insights_smart_detection_externalid": {
+      "defaultValue": "/subscriptions/32271d36-d77b-485b-b7b2-0c990d2abf56/resourceGroups/mike-84e-int/providers/microsoft.insights/actiongroups/application insights smart detection",
+      "type": "String"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.ContainerRegistry/registries",
+      "apiVersion": "2019-12-01-preview",
+      "name": "[parameters('registries_mike1016aint_name')]",
+      "location": "westus2",
+      "sku": {
+        "name": "Basic",
+        "tier": "Basic"
+      },
+      "properties": {
+        "adminUserEnabled": true,
+        "policies": {
+          "quarantinePolicy": {
+            "status": "disabled"
+          },
+          "trustPolicy": {
+            "type": "Notary",
+            "status": "disabled"
+          },
+          "retentionPolicy": {
+            "days": 7,
+            "status": "disabled"
+          }
+        },
+        "encryption": {
+          "status": "disabled"
+        },
+        "dataEndpointEnabled": false,
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Devices/IotHubs",
+      "apiVersion": "2020-07-10-preview",
+      "name": "[parameters('IotHubs_mike_1016a_int_name')]",
+      "location": "westus2",
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "sku": {
+        "name": "S1",
+        "tier": "Standard",
+        "capacity": 1
+      },
+      "identity": {
+        "type": "None"
+      },
+      "properties": {
+        "ipFilterRules": [],
+        "eventHubEndpoints": {
+          "events": {
+            "retentionTimeInDays": 7,
+            "partitionCount": 32
+          }
+        },
+        "routing": {
+          "endpoints": {
+            "serviceBusQueues": [],
+            "serviceBusTopics": [],
+            "eventHubs": [],
+            "storageContainers": []
+          },
+          "routes": [],
+          "fallbackRoute": {
+            "name": "$fallback",
+            "source": "DeviceMessages",
+            "condition": "true",
+            "endpointNames": ["events"],
+            "isEnabled": true
+          }
+        },
+        "storageEndpoints": {
+          "$default": {
+            "sasTtlAsIso8601": "PT1H",
+            "connectionString": "[parameters('IotHubs_mike_1016a_int_connectionString')]",
+            "containerName": "[parameters('IotHubs_mike_1016a_int_containerName')]"
+          }
+        },
+        "messagingEndpoints": {
+          "fileNotifications": {
+            "lockDurationAsIso8601": "PT1M",
+            "ttlAsIso8601": "PT1H",
+            "maxDeliveryCount": 10
+          }
+        },
+        "enableFileUploadNotifications": false,
+        "cloudToDevice": {
+          "maxDeliveryCount": 10,
+          "defaultTtlAsIso8601": "PT1H",
+          "feedback": {
+            "lockDurationAsIso8601": "PT1M",
+            "ttlAsIso8601": "PT1H",
+            "maxDeliveryCount": 10
+          }
+        },
+        "features": "None"
+      }
+    },
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts",
+      "apiVersion": "2020-06-01-preview",
+      "name": "[parameters('databaseAccounts_mike_1016a_int_name')]",
+      "location": "West US 2",
+      "tags": {
+        "defaultExperience": "",
+        "Architecture": "LowCodeUnit"
+      },
+      "kind": "GlobalDocumentDB",
+      "identity": {
+        "type": "None"
+      },
+      "properties": {
+        "publicNetworkAccess": "Enabled",
+        "enableAutomaticFailover": false,
+        "enableMultipleWriteLocations": false,
+        "isVirtualNetworkFilterEnabled": false,
+        "virtualNetworkRules": [],
+        "disableKeyBasedMetadataWriteAccess": false,
+        "enableFreeTier": false,
+        "enableAnalyticalStorage": false,
+        "createMode": "Default",
+        "databaseAccountOfferType": "Standard",
+        "consistencyPolicy": {
+          "defaultConsistencyLevel": "Session",
+          "maxIntervalInSeconds": 5,
+          "maxStalenessPrefix": 100
+        },
+        "locations": [
+          {
+            "locationName": "West US 2",
+            "provisioningState": "Succeeded",
+            "failoverPriority": 0,
+            "isZoneRedundant": false
+          }
+        ],
+        "cors": [],
+        "capabilities": [],
+        "ipRules": [],
+        "backupPolicy": {
+          "type": "Periodic",
+          "periodicModeProperties": {
+            "backupIntervalInMinutes": 240,
+            "backupRetentionIntervalInHours": 8
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.EventHub/namespaces",
+      "apiVersion": "2018-01-01-preview",
+      "name": "[parameters('namespaces_mike_1016a_int_ds_name')]",
+      "location": "West US 2",
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "sku": {
+        "name": "Standard",
+        "tier": "Standard",
+        "capacity": 1
+      },
+      "properties": {
+        "zoneRedundant": false,
+        "isAutoInflateEnabled": true,
+        "maximumThroughputUnits": 1,
+        "kafkaEnabled": true
+      }
+    },
+    {
+      "type": "microsoft.insights/components",
+      "apiVersion": "2018-05-01-preview",
+      "name": "[parameters('components_mike_1016a_int_name')]",
+      "location": "westus2",
+      "kind": "other",
+      "properties": {
+        "Application_Type": "other",
+        "Flow_Type": "Redfield",
+        "Request_Source": "IbizaAIExtension",
+        "RetentionInDays": 90,
+        "publicNetworkAccessForIngestion": "Enabled",
+        "publicNetworkAccessForQuery": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2016-10-01",
+      "name": "[parameters('vaults_mike_1016a_int_name')]",
+      "location": "westus2",
+      "properties": {
+        "sku": {
+          "family": "A",
+          "name": "standard"
+        },
+        "tenantId": "6dcbebd0-f8d0-4a9d-89e5-5873e8146b0a",
+        "accessPolicies": [
+          {
+            "tenantId": "6dcbebd0-f8d0-4a9d-89e5-5873e8146b0a",
+            "objectId": "ab7597ee-3a5f-4d62-919b-463ca75fcb77",
+            "permissions": {
+              "keys": ["all"],
+              "secrets": ["all"],
+              "certificates": ["all"]
+            }
+          }
+        ],
+        "enabledForDeployment": false
+      }
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces",
+      "apiVersion": "2018-01-01-preview",
+      "name": "[parameters('namespaces_mike_1016a_int_name')]",
+      "location": "West US 2",
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "sku": {
+        "name": "Standard",
+        "tier": "Standard"
+      },
+      "properties": {
+        "zoneRedundant": false
+      }
+    },
+    {
+      "type": "Microsoft.SignalRService/SignalR",
+      "apiVersion": "2020-07-01-preview",
+      "name": "[parameters('SignalR_mike_1016a_int_name')]",
+      "location": "westus2",
+      "sku": {
+        "name": "Standard_S1",
+        "tier": "Standard",
+        "size": "S1",
+        "capacity": 2
+      },
+      "kind": "SignalR",
+      "properties": {
+        "tls": {
+          "clientCertEnabled": false
+        },
+        "features": [
+          {
+            "flag": "ServiceMode",
+            "value": "Default",
+            "properties": {}
+          },
+          {
+            "flag": "EnableConnectivityLogs",
+            "value": "False",
+            "properties": {}
+          },
+          {
+            "flag": "EnableMessagingLogs",
+            "value": "False",
+            "properties": {}
+          }
+        ],
+        "cors": {
+          "allowedOrigins": ["*"]
+        },
+        "upstream": {},
+        "networkACLs": {
+          "defaultAction": "Deny",
+          "publicNetwork": {
+            "allow": ["ServerConnection", "ClientConnection", "RESTAPI"]
+          },
+          "privateEndpoints": []
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2019-06-01",
+      "name": "[parameters('storageAccounts_mike1016aint_name')]",
+      "location": "westus2",
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "sku": {
+        "name": "Standard_RAGRS",
+        "tier": "Standard"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": true,
+        "encryption": {
+          "services": {
+            "file": {
+              "keyType": "Account",
+              "enabled": true
+            },
+            "blob": {
+              "keyType": "Account",
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        },
+        "accessTier": "Hot"
+      }
+    },
+    {
+      "type": "Microsoft.StreamAnalytics/streamingjobs",
+      "apiVersion": "2017-04-01-preview",
+      "name": "[parameters('streamingjobs_mike_1016a_int_iot_lcu_asa_data_map_name')]",
+      "location": "West US 2",
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "properties": {
+        "sku": {
+          "name": "Standard"
+        },
+        "outputStartMode": "JobStartTime",
+        "outputStartTime": "2020-10-16T20:30:33.177Z",
+        "eventsOutOfOrderPolicy": "Adjust",
+        "outputErrorPolicy": "Drop",
+        "eventsLateArrivalMaxDelayInSeconds": 5,
+        "dataLocale": "en-US",
+        "compatibilityLevel": "1.1",
+        "jobType": "Cloud"
+      }
+    },
+    {
+      "type": "Microsoft.Web/certificates",
+      "apiVersion": "2018-11-01",
+      "name": "[parameters('certificates___fathym_int_com_name')]",
+      "location": "West US 2",
+      "properties": {
+        "hostNames": ["[parameters('certificates___fathym_int_com_name')]"],
+        "password": "[parameters('certificates___fathym_int_com_password')]"
+      }
+    },
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2018-02-01",
+      "name": "[parameters('serverfarms_mike_1016a_int_name')]",
+      "location": "West US 2",
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "sku": {
+        "name": "S1",
+        "tier": "Standard",
+        "size": "S1",
+        "family": "S",
+        "capacity": 1
+      },
+      "kind": "app",
+      "properties": {
+        "perSiteScaling": false,
+        "maximumElasticWorkerCount": 1,
+        "isSpot": false,
+        "reserved": false,
+        "isXenon": false,
+        "hyperV": false,
+        "targetWorkerCount": 0,
+        "targetWorkerSizeId": 0
+      }
+    },
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2018-02-01",
+      "name": "[parameters('serverfarms_mike_1016a_int_iot_fnplan056049_name')]",
+      "location": "West US 2",
+      "sku": {
+        "name": "Y1",
+        "tier": "Dynamic",
+        "size": "Y1",
+        "family": "Y",
+        "capacity": 0
+      },
+      "kind": "functionapp",
+      "properties": {
+        "perSiteScaling": false,
+        "maximumElasticWorkerCount": 1,
+        "isSpot": false,
+        "reserved": false,
+        "isXenon": false,
+        "hyperV": false,
+        "targetWorkerCount": 0,
+        "targetWorkerSizeId": 0
+      }
+    },
+    {
+      "type": "microsoft.alertsmanagement/smartdetectoralertrules",
+      "apiVersion": "2019-06-01",
+      "name": "[parameters('smartdetectoralertrules_failure_anomalies___mike_1016a_int_name')]",
+      "location": "global",
+      "dependsOn": ["[resourceId('microsoft.insights/components', parameters('components_mike_1016a_int_name'))]"],
+      "properties": {
+        "description": "Failure Anomalies notifies you of an unusual rise in the rate of failed HTTP requests or dependency calls.",
+        "state": "Enabled",
+        "severity": "Sev3",
+        "frequency": "PT1M",
+        "detector": {
+          "id": "FailureAnomaliesDetector",
+          "name": "Failure Anomalies",
+          "description": "Detects if your application experiences an abnormal rise in the rate of HTTP requests or dependency calls that are reported as failed. The anomaly detection uses machine learning algorithms and occurs in near real time, therefore there's no need to define a frequency for this signal.<br/></br/>To help you triage and diagnose the problem, an analysis of the characteristics of the failures and related telemetry is provided with the detection. This feature works for any app, hosted in the cloud or on your own servers, that generates request or dependency telemetry - for example, if you have a worker role that calls <a class=\"ext-smartDetecor-link\" href=\\\"https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#trackrequest\\\" target=\\\"_blank\\\">TrackRequest()</a> or <a class=\"ext-smartDetecor-link\" href=\\\"https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#trackdependency\\\" target=\\\"_blank\\\">TrackDependency()</a>.<br/><br/><a class=\"ext-smartDetecor-link\" href=\\\"https://docs.microsoft.com/azure/azure-monitor/app/proactive-failure-diagnostics\\\" target=\\\"_blank\\\">Learn more about Failure Anomalies</a>",
+          "supportedResourceTypes": ["ApplicationInsights"]
+        },
+        "scope": ["[resourceId('microsoft.insights/components', parameters('components_mike_1016a_int_name'))]"],
+        "actionGroups": {
+          "groupIds": ["[parameters('actiongroups_application_insights_smart_detection_externalid')]"]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "apiVersion": "2020-06-01-preview",
+      "name": "[concat(parameters('databaseAccounts_mike_1016a_int_name'), '/', parameters('databaseAccounts_mike_1016a_int_name'))]",
+      "dependsOn": ["[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_mike_1016a_int_name'))]"],
+      "properties": {
+        "resource": {
+          "id": "mike-1016a-int"
+        },
+        "options": {}
+      }
+    },
+    {
+      "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('namespaces_mike_1016a_int_ds_name'), '/RootManageSharedAccessKey')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_mike_1016a_int_ds_name'))]"],
+      "properties": {
+        "rights": ["Listen", "Manage", "Send"]
+      }
+    },
+    {
+      "type": "Microsoft.EventHub/namespaces/eventhubs",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('namespaces_mike_1016a_int_ds_name'), '/', parameters('namespaces_mike_1016a_int_ds_name'), 'lcu')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_mike_1016a_int_ds_name'))]"],
+      "properties": {
+        "messageRetentionInDays": 7,
+        "partitionCount": 32,
+        "status": "Active"
+      }
+    },
+    {
+      "type": "Microsoft.EventHub/namespaces/networkRuleSets",
+      "apiVersion": "2018-01-01-preview",
+      "name": "[concat(parameters('namespaces_mike_1016a_int_ds_name'), '/default')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_mike_1016a_int_ds_name'))]"],
+      "properties": {
+        "defaultAction": "Deny",
+        "virtualNetworkRules": [],
+        "ipRules": []
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2016-10-01",
+      "name": "[concat(parameters('vaults_mike_1016a_int_name'), '/0a09ea31-a946-451c-8440-1b1c80611e83-fIjGGzX37XqeMRF1VOHF3Kivo-AH3X3yhEMjTmiLNFg')]",
+      "location": "westus2",
+      "dependsOn": ["[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_mike_1016a_int_name'))]"],
+      "properties": {
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2016-10-01",
+      "name": "[concat(parameters('vaults_mike_1016a_int_name'), '/0a09ea31-a946-451c-8440-1b1c80611e83-zR9ehtt6Zvh4Vflxav5mLbya2R5YGOwD8BBiYL8hh-M')]",
+      "location": "westus2",
+      "dependsOn": ["[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_mike_1016a_int_name'))]"],
+      "properties": {
+        "attributes": {
+          "enabled": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.MachineLearningServices/workspaces/computes",
+      "apiVersion": "2020-09-01-preview",
+      "name": "[concat(parameters('workspaces_mike_1016a_int_name'), '/lcu-compute')]",
+      "location": "westus2",
+      "dependsOn": ["[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaces_mike_1016a_int_name'))]"],
+      "properties": {
+        "computeType": "AmlCompute",
+        "computeLocation": "westus2",
+        "properties": {
+          "vmSize": "STANDARD_D12_V2",
+          "vmPriority": "Dedicated",
+          "scaleSettings": {
+            "maxNodeCount": 6,
+            "minNodeCount": 0,
+            "nodeIdleTimeBeforeScaleDown": "PT2M"
+          },
+          "remoteLoginPortPublicAccess": "Enabled",
+          "osType": "Linux",
+          "enableNodePublicIp": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.MachineLearningServices/workspaces/datastores",
+      "apiVersion": "2020-05-01-preview",
+      "name": "[concat(parameters('workspaces_mike_1016a_int_name'), '/workspaceblobstore')]",
+      "location": "westus2",
+      "dependsOn": ["[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaces_mike_1016a_int_name'))]"]
+    },
+    {
+      "type": "Microsoft.MachineLearningServices/workspaces/datastores",
+      "apiVersion": "2020-05-01-preview",
+      "name": "[concat(parameters('workspaces_mike_1016a_int_name'), '/workspacefilestore')]",
+      "location": "westus2",
+      "dependsOn": ["[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaces_mike_1016a_int_name'))]"]
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('namespaces_mike_1016a_int_name'), '/RootManageSharedAccessKey')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_mike_1016a_int_name'))]"],
+      "properties": {
+        "rights": ["Listen", "Manage", "Send"]
+      }
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces/networkRuleSets",
+      "apiVersion": "2018-01-01-preview",
+      "name": "[concat(parameters('namespaces_mike_1016a_int_name'), '/default')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_mike_1016a_int_name'))]"],
+      "properties": {
+        "defaultAction": "Deny",
+        "virtualNetworkRules": [],
+        "ipRules": []
+      }
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces/topics",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('namespaces_mike_1016a_int_name'), '/lcu')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_mike_1016a_int_name'))]"],
+      "properties": {
+        "defaultMessageTimeToLive": "P14D",
+        "maxSizeInMegabytes": 81920,
+        "requiresDuplicateDetection": true,
+        "duplicateDetectionHistoryTimeWindow": "PT30S",
+        "enableBatchedOperations": true,
+        "status": "Active",
+        "supportOrdering": false,
+        "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+        "enablePartitioning": true,
+        "enableExpress": false
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default')]",
+      "dependsOn": ["[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"],
+      "sku": {
+        "name": "Standard_RAGRS",
+        "tier": "Standard"
+      },
+      "properties": {
+        "cors": {
+          "corsRules": [
+            {
+              "allowedOrigins": ["https://mlworkspace.azure.ai", "https://ml.azure.com", "https://*.ml.azure.com"],
+              "allowedMethods": ["GET", "HEAD"],
+              "maxAgeInSeconds": 1800,
+              "exposedHeaders": ["*"],
+              "allowedHeaders": ["*"]
+            }
+          ]
+        },
+        "deleteRetentionPolicy": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/fileServices",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default')]",
+      "dependsOn": ["[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"],
+      "sku": {
+        "name": "Standard_RAGRS",
+        "tier": "Standard"
+      },
+      "properties": {
+        "cors": {
+          "corsRules": []
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/queueServices",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default')]",
+      "dependsOn": ["[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"],
+      "properties": {
+        "cors": {
+          "corsRules": []
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/tableServices",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default')]",
+      "dependsOn": ["[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"],
+      "properties": {
+        "cors": {
+          "corsRules": []
+        }
+      }
+    },
+    {
+      "type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
+      "apiVersion": "2017-04-01-preview",
+      "name": "[concat(parameters('streamingjobs_mike_1016a_int_iot_lcu_asa_data_map_name'), '/mike-1016a-int-dslcu-data-stream')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_mike_1016a_int_iot_lcu_asa_data_map_name'))]"
+      ],
+      "properties": {
+        "type": "Stream",
+        "datasource": {
+          "type": "Microsoft.ServiceBus/EventHub",
+          "properties": {
+            "consumerGroupName": "lcu",
+            "eventHubName": "mike-1016a-int-dslcu",
+            "serviceBusNamespace": "mike-1016a-int-ds",
+            "sharedAccessPolicyName": "RootManageSharedAccessKey",
+            "authenticationMode": "ConnectionString"
+          }
+        },
+        "compression": {
+          "type": "None"
+        },
+        "serialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+      "apiVersion": "2017-04-01-preview",
+      "name": "[concat(parameters('streamingjobs_mike_1016a_int_iot_lcu_asa_data_map_name'), '/lcu-hot-storage')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_mike_1016a_int_iot_lcu_asa_data_map_name'))]"
+      ],
+      "properties": {
+        "datasource": {
+          "type": "Microsoft.ServiceBus/Topic",
+          "properties": {
+            "topicName": "lcu",
+            "serviceBusNamespace": "mike-1016a-int",
+            "sharedAccessPolicyName": "RootManageSharedAccessKey",
+            "authenticationMode": "ConnectionString"
+          }
+        },
+        "serialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8",
+            "format": "Array"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+      "apiVersion": "2017-04-01-preview",
+      "name": "[concat(parameters('streamingjobs_mike_1016a_int_iot_lcu_asa_data_map_name'), '/mike1016aint-cold-storage')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_mike_1016a_int_iot_lcu_asa_data_map_name'))]"
+      ],
+      "properties": {
+        "datasource": {
+          "type": "Microsoft.Storage/Blob",
+          "properties": {
+            "storageAccounts": [
+              {
+                "accountName": "mike1016aint"
+              }
+            ],
+            "container": "cold-storage",
+            "pathPattern": "telemetry/{date}/{time}",
+            "dateFormat": "yyyy/MM/dd",
+            "timeFormat": "HH",
+            "authenticationMode": "ConnectionString"
+          }
+        },
+        "serialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8",
+            "format": "Array"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+      "apiVersion": "2017-04-01-preview",
+      "name": "[concat(parameters('streamingjobs_mike_1016a_int_iot_lcu_asa_data_map_name'), '/mike-1016a-int-telemetry-warm-storage')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamingjobs_mike_1016a_int_iot_lcu_asa_data_map_name'))]"
+      ],
+      "properties": {
+        "datasource": {
+          "type": "Microsoft.Storage/DocumentDB",
+          "properties": {
+            "collectionNamePattern": "telemetry",
+            "partitionKey": "DeviceID",
+            "documentId": "id",
+            "accountId": "mike-1016a-int",
+            "database": "mike-1016a-int"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2018-11-01",
+      "name": "[parameters('sites_mike_1016a_int_name')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_mike_1016a_int_name'))]"],
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "kind": "app",
+      "properties": {
+        "enabled": true,
+        "hostNameSslStates": [
+          {
+            "name": "mike-1016a.fathym-int.com",
+            "sslState": "SniEnabled",
+            "thumbprint": "3F7F8A0882919E4FABFC88B895DB21D8A6F0809F",
+            "hostType": "Standard"
+          },
+          {
+            "name": "[concat(parameters('sites_mike_1016a_int_name'), '.azurewebsites.net')]",
+            "sslState": "Disabled",
+            "hostType": "Standard"
+          },
+          {
+            "name": "[concat(parameters('sites_mike_1016a_int_name'), '.scm.azurewebsites.net')]",
+            "sslState": "Disabled",
+            "hostType": "Repository"
+          }
+        ],
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_mike_1016a_int_name'))]",
+        "reserved": false,
+        "isXenon": false,
+        "hyperV": false,
+        "siteConfig": {},
+        "scmSiteAlsoStopped": false,
+        "clientAffinityEnabled": true,
+        "clientCertEnabled": false,
+        "hostNamesDisabled": false,
+        "containerSize": 0,
+        "dailyMemoryTimeQuota": 0,
+        "httpsOnly": true,
+        "redundancyMode": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2018-11-01",
+      "name": "[parameters('sites_mike_1016a_int_iot_fn_name')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_mike_1016a_int_iot_fnplan056049_name'))]"],
+      "kind": "functionapp",
+      "properties": {
+        "enabled": true,
+        "hostNameSslStates": [
+          {
+            "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '.azurewebsites.net')]",
+            "sslState": "Disabled",
+            "hostType": "Standard"
+          },
+          {
+            "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '.scm.azurewebsites.net')]",
+            "sslState": "Disabled",
+            "hostType": "Repository"
+          }
+        ],
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_mike_1016a_int_iot_fnplan056049_name'))]",
+        "reserved": false,
+        "isXenon": false,
+        "hyperV": false,
+        "siteConfig": {},
+        "scmSiteAlsoStopped": false,
+        "clientAffinityEnabled": false,
+        "clientCertEnabled": false,
+        "hostNamesDisabled": false,
+        "containerSize": 1536,
+        "dailyMemoryTimeQuota": 0,
+        "httpsOnly": false,
+        "redundancyMode": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_name'), '/web')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_name'))]"],
+      "tags": {
+        "Architecture": "LowCodeUnit"
+      },
+      "properties": {
+        "numberOfWorkers": 1,
+        "defaultDocuments": [
+          "Default.htm",
+          "Default.html",
+          "Default.asp",
+          "index.htm",
+          "index.html",
+          "iisstart.htm",
+          "default.aspx",
+          "index.php",
+          "hostingstart.html"
+        ],
+        "netFrameworkVersion": "v4.0",
+        "phpVersion": "5.6",
+        "requestTracingEnabled": false,
+        "remoteDebuggingEnabled": false,
+        "remoteDebuggingVersion": "VS2019",
+        "httpLoggingEnabled": false,
+        "logsDirectorySizeLimit": 35,
+        "detailedErrorLoggingEnabled": false,
+        "publishingUsername": "$mike-1016a-int",
+        "azureStorageAccounts": {},
+        "scmType": "None",
+        "use32BitWorkerProcess": true,
+        "webSocketsEnabled": false,
+        "alwaysOn": true,
+        "managedPipelineMode": "Integrated",
+        "virtualApplications": [
+          {
+            "virtualPath": "/",
+            "physicalPath": "site\\wwwroot",
+            "preloadEnabled": true
+          }
+        ],
+        "loadBalancing": "LeastRequests",
+        "experiments": {
+          "rampUpRules": []
+        },
+        "autoHealEnabled": false,
+        "localMySqlEnabled": false,
+        "ipSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictionsUseMain": false,
+        "http20Enabled": false,
+        "minTlsVersion": "1.2",
+        "ftpsState": "AllAllowed",
+        "reservedInstanceCount": 0
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/web')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "numberOfWorkers": -1,
+        "defaultDocuments": [
+          "Default.htm",
+          "Default.html",
+          "Default.asp",
+          "index.htm",
+          "index.html",
+          "iisstart.htm",
+          "default.aspx",
+          "index.php"
+        ],
+        "netFrameworkVersion": "v4.0",
+        "phpVersion": "5.6",
+        "requestTracingEnabled": false,
+        "remoteDebuggingEnabled": false,
+        "httpLoggingEnabled": false,
+        "logsDirectorySizeLimit": 35,
+        "detailedErrorLoggingEnabled": false,
+        "publishingUsername": "$mike-1016a-int-iot-fn",
+        "azureStorageAccounts": {},
+        "scmType": "None",
+        "use32BitWorkerProcess": true,
+        "webSocketsEnabled": false,
+        "alwaysOn": false,
+        "managedPipelineMode": "Integrated",
+        "virtualApplications": [
+          {
+            "virtualPath": "/",
+            "physicalPath": "site\\wwwroot",
+            "preloadEnabled": false
+          }
+        ],
+        "loadBalancing": "LeastRequests",
+        "experiments": {
+          "rampUpRules": []
+        },
+        "autoHealEnabled": false,
+        "cors": {
+          "allowedOrigins": ["https://functions.azure.com", "https://functions-staging.azure.com", "https://functions-next.azure.com"],
+          "supportCredentials": false
+        },
+        "localMySqlEnabled": false,
+        "ipSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictionsUseMain": false,
+        "http20Enabled": false,
+        "minTlsVersion": "1.2",
+        "ftpsState": "AllAllowed",
+        "reservedInstanceCount": 0
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/0f1ded996cc3491dbf810f581be0b2ca')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "N/A",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2020-10-16T20:33:21.9907823Z",
+        "end_time": "2020-10-16T20:33:34.7421776Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/1b2617f83f814b839baad6ffd05459f0')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "N/A",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2020-10-16T19:32:34.4292366Z",
+        "end_time": "2020-10-16T19:33:04.0894962Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/4eb7de4c27044d14b8500ae96fa89c71')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "N/A",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2020-10-16T20:27:40.3574624Z",
+        "end_time": "2020-10-16T20:27:53.5997098Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/5320c9d315384bd79244b4f65edf087c')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "N/A",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2020-10-16T19:29:14.6171545Z",
+        "end_time": "2020-10-16T19:29:40.952056Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/54ee510d3ab946419e7c8fa6969d6582')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "N/A",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2020-10-16T20:38:32.2807385Z",
+        "end_time": "2020-10-16T20:38:55.9590372Z",
+        "active": true
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/68f9e53865c642d6a55d97d5b248f945')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "N/A",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2020-10-16T19:23:24.5426113Z",
+        "end_time": "2020-10-16T19:23:49.3710501Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/92148839bf564ca284bf7ecdd37feb67')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "N/A",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2020-10-16T19:26:07.8270374Z",
+        "end_time": "2020-10-16T19:26:34.3301753Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/b0b9cd9c27d042b0807cb271c1768f9c')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "N/A",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2020-10-16T20:32:25.7448716Z",
+        "end_time": "2020-10-16T20:32:52.7159056Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/c8a76b2ef5bd4a48a234561f57215508')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "N/A",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2020-10-16T20:36:01.5707429Z",
+        "end_time": "2020-10-16T20:36:34.5024824Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/deployments",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/e2416b730df5415ea6e3267783643d4e')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "status": 4,
+        "author_email": "N/A",
+        "author": "N/A",
+        "deployer": "ZipDeploy",
+        "message": "Created via a push deployment",
+        "start_time": "2020-10-16T20:31:02.2387316Z",
+        "end_time": "2020-10-16T20:31:28.7192842Z",
+        "active": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/functions",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/data-emulator')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "script_root_path_href": "https://mike-1016a-int-iot-fn.azurewebsites.net/admin/vfs/site/wwwroot/data-emulator/",
+        "script_href": "https://mike-1016a-int-iot-fn.azurewebsites.net/admin/vfs/site/wwwroot/data-emulator/run.csx",
+        "config_href": "https://mike-1016a-int-iot-fn.azurewebsites.net/admin/vfs/site/wwwroot/data-emulator/function.json",
+        "href": "https://mike-1016a-int-iot-fn.azurewebsites.net/admin/functions/data-emulator",
+        "config": {}
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/functions",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/warm-query')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "script_root_path_href": "https://mike-1016a-int-iot-fn.azurewebsites.net/admin/vfs/site/wwwroot/warm-query/",
+        "script_href": "https://mike-1016a-int-iot-fn.azurewebsites.net/admin/vfs/site/wwwroot/warm-query/run.csx",
+        "config_href": "https://mike-1016a-int-iot-fn.azurewebsites.net/admin/vfs/site/wwwroot/warm-query/function.json",
+        "href": "https://mike-1016a-int-iot-fn.azurewebsites.net/admin/functions/warm-query",
+        "config": {}
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/hostNameBindings",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_name'), '/mike-1016a.fathym-int.com')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_name'))]"],
+      "properties": {
+        "siteName": "mike-1016a-int",
+        "hostNameType": "Verified",
+        "sslState": "SniEnabled",
+        "thumbprint": "3F7F8A0882919E4FABFC88B895DB21D8A6F0809F"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/hostNameBindings",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_name'), '/', parameters('sites_mike_1016a_int_name'), '.azurewebsites.net')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_name'))]"],
+      "properties": {
+        "siteName": "mike-1016a-int",
+        "hostNameType": "Verified"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/hostNameBindings",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('sites_mike_1016a_int_iot_fn_name'), '/', parameters('sites_mike_1016a_int_iot_fn_name'), '.azurewebsites.net')]",
+      "location": "West US 2",
+      "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('sites_mike_1016a_int_iot_fn_name'))]"],
+      "properties": {
+        "siteName": "mike-1016a-int-iot-fn",
+        "hostNameType": "Verified"
+      }
+    },
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+      "apiVersion": "2020-06-01-preview",
+      "name": "[concat(parameters('databaseAccounts_mike_1016a_int_name'), '/', parameters('databaseAccounts_mike_1016a_int_name'), '/telemetry')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('databaseAccounts_mike_1016a_int_name'), parameters('databaseAccounts_mike_1016a_int_name'))]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_mike_1016a_int_name'))]"
+      ],
+      "properties": {
+        "resource": {
+          "id": "telemetry",
+          "indexingPolicy": {
+            "indexingMode": "consistent",
+            "automatic": true,
+            "includedPaths": [
+              {
+                "path": "/*"
+              }
+            ],
+            "excludedPaths": [
+              {
+                "path": "/\"_etag\"/?"
+              }
+            ]
+          },
+          "partitionKey": {
+            "paths": ["/DeviceID"],
+            "kind": "Hash",
+            "version": 1
+          },
+          "defaultTtl": 259200,
+          "conflictResolutionPolicy": {
+            "mode": "LastWriterWins",
+            "conflictResolutionPath": "/_ts"
+          }
+        },
+        "options": {}
+      }
+    },
+    {
+      "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('namespaces_mike_1016a_int_ds_name'), '/', parameters('namespaces_mike_1016a_int_ds_name'), 'lcu/ManageAccessPolicy')]",
+      "location": "West US 2",
+      "dependsOn": [
+        "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_mike_1016a_int_ds_name'), concat(parameters('namespaces_mike_1016a_int_ds_name'), 'lcu'))]",
+        "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_mike_1016a_int_ds_name'))]"
+      ],
+      "properties": {
+        "rights": ["Listen", "Send", "Manage"]
+      }
+    },
+    {
+      "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('namespaces_mike_1016a_int_ds_name'), '/', parameters('namespaces_mike_1016a_int_ds_name'), 'lcu/$Default')]",
+      "location": "West US 2",
+      "dependsOn": [
+        "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_mike_1016a_int_ds_name'), concat(parameters('namespaces_mike_1016a_int_ds_name'), 'lcu'))]",
+        "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_mike_1016a_int_ds_name'))]"
+      ],
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('namespaces_mike_1016a_int_ds_name'), '/', parameters('namespaces_mike_1016a_int_ds_name'), 'lcu/lcu')]",
+      "location": "West US 2",
+      "dependsOn": [
+        "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('namespaces_mike_1016a_int_ds_name'), concat(parameters('namespaces_mike_1016a_int_ds_name'), 'lcu'))]",
+        "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_mike_1016a_int_ds_name'))]"
+      ],
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default/azureml-blobstore-0a09ea31-a946-451c-8440-1b1c80611e83')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_mike1016aint_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"
+      ],
+      "properties": {
+        "defaultEncryptionScope": "$account-encryption-key",
+        "denyEncryptionScopeOverride": false,
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default/azure-webjobs-hosts')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_mike1016aint_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"
+      ],
+      "properties": {
+        "defaultEncryptionScope": "$account-encryption-key",
+        "denyEncryptionScopeOverride": false,
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default/azure-webjobs-secrets')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_mike1016aint_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"
+      ],
+      "properties": {
+        "defaultEncryptionScope": "$account-encryption-key",
+        "denyEncryptionScopeOverride": false,
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default/cold-storage')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_mike1016aint_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"
+      ],
+      "properties": {
+        "defaultEncryptionScope": "$account-encryption-key",
+        "denyEncryptionScopeOverride": false,
+        "publicAccess": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default/azureml-filestore-0a09ea31-a946-451c-8440-1b1c80611e83')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccounts_mike1016aint_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"
+      ],
+      "properties": {
+        "accessTier": "TransactionOptimized",
+        "shareQuota": 5120,
+        "enabledProtocols": "SMB"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default/mike-1016a-int-iot-fn18772992d')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccounts_mike1016aint_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"
+      ],
+      "properties": {
+        "accessTier": "TransactionOptimized",
+        "shareQuota": 5120,
+        "enabledProtocols": "SMB"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/tableServices/tables",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default/AzureWebJobsHostLogs202010')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/tableServices', parameters('storageAccounts_mike1016aint_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/tableServices/tables",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('storageAccounts_mike1016aint_name'), '/default/AzureWebJobsHostLogscommon')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/tableServices', parameters('storageAccounts_mike1016aint_name'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/storedProcedures",
+      "apiVersion": "2020-06-01-preview",
+      "name": "[concat(parameters('databaseAccounts_mike_1016a_int_name'), '/', parameters('databaseAccounts_mike_1016a_int_name'), '/telemetry/bulkUpsert_v_2_0')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers', parameters('databaseAccounts_mike_1016a_int_name'), parameters('databaseAccounts_mike_1016a_int_name'), 'telemetry')]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('databaseAccounts_mike_1016a_int_name'), parameters('databaseAccounts_mike_1016a_int_name'))]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_mike_1016a_int_name'))]"
+      ],
+      "properties": {
+        "resource": {
+          "id": "bulkUpsert_v_2_0",
+          "body": "// Copyright (c) Microsoft Corporation.  All rights reserved.\r\n\r\nfunction bulkUpsert_v_2_0(docs, optimizeForInserts, startIndex) {\r\n    /**\r\n* A DocumentDB stored procedure that upserts a batch of documents (insert new or update if present) using its id property.<br/>\r\n* This implementation queries for each document's id, and creates if absent and patches if found.\r\n* The script sets response body to the number of docs imported and is called multiple times \r\n* by the client until total number of docs desired by the client is imported.\r\n* @param  {Object[]} docs - Array of documents to import.\r\n* v2 : Uses a different API now to read documents\r\n*/\r\n    var ErrorCode = {\r\n        CONFLICT: 409,\r\n        FORBIDDEN: 403,\r\n        INSUFFICIENT_STORAGE: 507\r\n    };\r\n    var context = getContext();\r\n    var collection = context.getCollection();\r\n    var collectionLink = collection.getSelfLink();\r\n    var response = context.getResponse();\r\n    // The count of imported docs, also used as current doc index.\r\n    var count = startIndex;\r\n    var replaceCount = 0;\r\n\r\n    // Validate input.\r\n    if (!docs) {\r\n        throw new Error(\"Input documents array is undefined or null.\");\r\n    }\r\n\r\n    var docsLength = docs.length;\r\n    if (docsLength === 0) {\r\n        response.setBody(0);\r\n    }\r\n\r\n    tryCreate(docs[count], createCallback);\r\n\r\n    function tryCreate(doc, createCallback) {\r\n        var options = {\r\n            disableAutomaticIdGeneration: optimizeForInserts\r\n        };\r\n\r\n        // replace this with collection.UpsertDocument() when it supports patch\r\n        var isAccepted = collection.createDocument(collectionLink, doc, options, createCallback);\r\n\r\n        // If the request was accepted, createCallback will be called.\r\n        // Otherwise report current count back to the client, \r\n        // which will call the script again with remaining set of docs.\r\n        // This condition will happen when this stored procedure has been running too long\r\n        // and is about to get cancelled by the server. This will allow the calling client\r\n        // to resume this batch from the point we got to before isAccepted was set to false\r\n        if (!isAccepted) getContext().getResponse().setBody({ \"total\": count, \"replaced\": replaceCount });\r\n    }\r\n\r\n    // To replace the document, first issue a query to find it and then call replace.\r\n    function retrieveDoc(doc, continuation, retrieveCallback) {\r\n        var query = { query: \"select * from root r where r.id = @id\", parameters: [{ name: \"@id\", value: doc.id }] };\r\n        var requestOptions = { continuation: continuation };\r\n        var isAccepted = collection.readDocument(__.getAltLink() + '/docs/' + doc.id, requestOptions, function (err, retrievedDoc, responseOptions) {\r\n            if (err) {\r\n               throw err;\r\n            }\r\n\r\n            if (!retrievedDoc) {\r\n                throw new Error(\"Error in reading document.\");\r\n            }\r\n\r\n            retrieveCallback(retrievedDoc);\r\n        });\r\n\r\n        // this will be retried , set the current count \r\n        if (!isAccepted) getContext().getResponse().setBody({ \"total\": count, \"replaced\": replaceCount });\r\n    }\r\n\r\n    function tryReplace(document, replaceCallback) {\r\n        retrieveDoc(document, null, function (retrievedDoc) {\r\n            var existingDocSelfLink = retrievedDoc._self;\r\n            replaceCount = replaceCount + 1;\r\n            mergeReplace(retrievedDoc, document);\r\n            var isAccepted = collection.replaceDocument(existingDocSelfLink, retrievedDoc, replaceCallback);\r\n            if (!isAccepted) getContext().getResponse().setBody({ \"total\": count, \"replaced\": replaceCount });\r\n        });\r\n    }\r\n\r\n    // Merges properties recursively from source into dest object by reference. \r\n    // All properties present in the source are overwritten in dest\r\n    // Note - Array values are not merged but overwritten\r\n    function mergeReplace(dest, source) {\r\n\r\n        if (dest instanceof Array) {\r\n            var k = dest.length;\r\n            while (k > source.length) {\r\n                dest.pop();\r\n                k--;\r\n            }\r\n        }\r\n\r\n        for (var prop in source) {\r\n            if (source[prop] && source[prop] instanceof Object && dest[prop] instanceof Object) {\r\n                mergeReplace(dest[prop], source[prop]);\r\n            } else {\r\n                dest[prop] = source[prop];\r\n            }\r\n        }\r\n    }\r\n\r\n    function createCallback(err, doc, options) {\r\n        if (err) {\r\n            // Replace the document if status code is 409 and upsert is enabled\r\n            if (err.number === ErrorCode.CONFLICT) {\r\n                return tryReplace(docs[count], createCallback);\r\n            }\r\n            // storage quota exceeded, remap to a 507 so fx can indentify in substatus header\r\n            else if (err.number === ErrorCode.FORBIDDEN) {\r\n                err.number = ErrorCode.INSUFFICIENT_STORAGE;\r\n                throw err;\r\n            } else {\r\n                throw err;\r\n            }\r\n        } else {\r\n            // One more document has been inserted, increment the count.\r\n            count++;\r\n\r\n            if (count >= docsLength) {\r\n                // If we have created all documents, we are done. Just set the response.\r\n                getContext().getResponse().setBody({ \"total\": count, \"replaced\": replaceCount });\r\n            } else {\r\n                // Call the CRUD API to create a document.\r\n                return tryCreate(docs[count], createCallback);\r\n            }\r\n        }\r\n    }\r\n}\r\n"
+        },
+        "options": {}
+      }
+    },
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/throughputSettings",
+      "apiVersion": "2020-06-01-preview",
+      "name": "[concat(parameters('databaseAccounts_mike_1016a_int_name'), '/', parameters('databaseAccounts_mike_1016a_int_name'), '/telemetry/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers', parameters('databaseAccounts_mike_1016a_int_name'), parameters('databaseAccounts_mike_1016a_int_name'), 'telemetry')]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('databaseAccounts_mike_1016a_int_name'), parameters('databaseAccounts_mike_1016a_int_name'))]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_mike_1016a_int_name'))]"
+      ],
+      "properties": {
+        "resource": {
+          "throughput": 400
+        }
+      }
+    },
+    {
+      "type": "Microsoft.MachineLearningServices/workspaces",
+      "apiVersion": "2020-09-01-preview",
+      "name": "[parameters('workspaces_mike_1016a_int_name')]",
+      "location": "westus2",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]",
+        "[resourceId('Microsoft.ContainerRegistry/registries', parameters('registries_mike1016aint_name'))]",
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_mike_1016a_int_name'))]",
+        "[resourceId('microsoft.insights/components', parameters('components_mike_1016a_int_name'))]"
+      ],
+      "sku": {
+        "name": "Enterprise",
+        "tier": "Enterprise"
+      },
+      "identity": {
+        "principalId": "ab7597ee-3a5f-4d62-919b-463ca75fcb77",
+        "tenantId": "6dcbebd0-f8d0-4a9d-89e5-5873e8146b0a",
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "friendlyName": "[parameters('workspaces_mike_1016a_int_name')]",
+        "storageAccount": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_mike1016aint_name'))]",
+        "containerRegistry": "[resourceId('Microsoft.ContainerRegistry/registries', parameters('registries_mike1016aint_name'))]",
+        "keyVault": "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_mike_1016a_int_name'))]",
+        "applicationInsights": "[resourceId('microsoft.insights/components', parameters('components_mike_1016a_int_name'))]",
+        "hbiWorkspace": false,
+        "allowPublicAccessWhenBehindVnet": false,
+        "discoveryUrl": "https://westus2.experiments.azureml.net/discovery"
+      }
+    }
+  ]
+}

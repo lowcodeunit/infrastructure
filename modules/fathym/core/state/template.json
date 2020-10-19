@@ -7,6 +7,11 @@
             "name": "[{{name}}]",
             "apiVersion": "2018-10-01",
             "location": "[{{regionId}}]",
+            "sku": {
+                "name": "Standard_S1",
+                "tier": "Standard",
+                "capacity": 2
+            },
             "properties": {
                 "hostNamePrefix": "[{{name}}]",
                 "features": [
@@ -15,11 +20,6 @@
                         "value": "Default"
                     }
                 ]
-            },
-            "sku": {
-                "name": "Standard_S1",
-                "tier": "Standard",
-                "capacity": 2
             }
         }
     ]

@@ -1,0 +1,90 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "apiVersion": "2020-06-01-preview",
+      "name": "[concat({{name}}, '/', {{name}})]",
+      "dependsOn": ["[resourceId('Microsoft.DocumentDB/databaseAccounts', {{name}})]"],
+      "properties": {
+        "resource": {
+          "id": "[{{name}}]"
+        },
+        "options": {}
+      }
+    },
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+      "apiVersion": "2020-06-01-preview",
+      "name": "[concat({{name}}, '/', {{name}}, '/telemetry')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', {{name}}, {{name}})]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts', {{name}})]"
+      ],
+      "properties": {
+        "resource": {
+          "id": "telemetry",
+          "indexingPolicy": {
+            "indexingMode": "consistent",
+            "automatic": true,
+            "includedPaths": [
+              {
+                "path": "/*"
+              }
+            ],
+            "excludedPaths": [
+              {
+                "path": "/\"_etag\"/?"
+              }
+            ]
+          },
+          "partitionKey": {
+            "paths": ["/DeviceID"],
+            "kind": "Hash",
+            "version": 1
+          },
+          "defaultTtl": 259200,
+          "conflictResolutionPolicy": {
+            "mode": "LastWriterWins",
+            "conflictResolutionPath": "/_ts"
+          }
+        },
+        "options": {}
+      }
+    },
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/storedProcedures",
+      "apiVersion": "2020-06-01-preview",
+      "name": "[concat({{name}}, '/', {{name}}, '/telemetry/bulkUpsert_v_2_0')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers', {{name}}, {{name}}, 'telemetry')]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', {{name}}, {{name}})]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts', {{name}})]"
+      ],
+      "properties": {
+        "resource": {
+          "id": "bulkUpsert_v_2_0",
+          "body": "// Copyright (c) Microsoft Corporation.  All rights reserved.\r\n\r\nfunction bulkUpsert_v_2_0(docs, optimizeForInserts, startIndex) {\r\n    /**\r\n* A DocumentDB stored procedure that upserts a batch of documents (insert new or update if present) using its id property.<br/>\r\n* This implementation queries for each document's id, and creates if absent and patches if found.\r\n* The script sets response body to the number of docs imported and is called multiple times \r\n* by the client until total number of docs desired by the client is imported.\r\n* @param  {Object[]} docs - Array of documents to import.\r\n* v2 : Uses a different API now to read documents\r\n*/\r\n    var ErrorCode = {\r\n        CONFLICT: 409,\r\n        FORBIDDEN: 403,\r\n        INSUFFICIENT_STORAGE: 507\r\n    };\r\n    var context = getContext();\r\n    var collection = context.getCollection();\r\n    var collectionLink = collection.getSelfLink();\r\n    var response = context.getResponse();\r\n    // The count of imported docs, also used as current doc index.\r\n    var count = startIndex;\r\n    var replaceCount = 0;\r\n\r\n    // Validate input.\r\n    if (!docs) {\r\n        throw new Error(\"Input documents array is undefined or null.\");\r\n    }\r\n\r\n    var docsLength = docs.length;\r\n    if (docsLength === 0) {\r\n        response.setBody(0);\r\n    }\r\n\r\n    tryCreate(docs[count], createCallback);\r\n\r\n    function tryCreate(doc, createCallback) {\r\n        var options = {\r\n            disableAutomaticIdGeneration: optimizeForInserts\r\n        };\r\n\r\n        // replace this with collection.UpsertDocument() when it supports patch\r\n        var isAccepted = collection.createDocument(collectionLink, doc, options, createCallback);\r\n\r\n        // If the request was accepted, createCallback will be called.\r\n        // Otherwise report current count back to the client, \r\n        // which will call the script again with remaining set of docs.\r\n        // This condition will happen when this stored procedure has been running too long\r\n        // and is about to get cancelled by the server. This will allow the calling client\r\n        // to resume this batch from the point we got to before isAccepted was set to false\r\n        if (!isAccepted) getContext().getResponse().setBody({ \"total\": count, \"replaced\": replaceCount });\r\n    }\r\n\r\n    // To replace the document, first issue a query to find it and then call replace.\r\n    function retrieveDoc(doc, continuation, retrieveCallback) {\r\n        var query = { query: \"select * from root r where r.id = @id\", parameters: [{ name: \"@id\", value: doc.id }] };\r\n        var requestOptions = { continuation: continuation };\r\n        var isAccepted = collection.readDocument(__.getAltLink() + '/docs/' + doc.id, requestOptions, function (err, retrievedDoc, responseOptions) {\r\n            if (err) {\r\n               throw err;\r\n            }\r\n\r\n            if (!retrievedDoc) {\r\n                throw new Error(\"Error in reading document.\");\r\n            }\r\n\r\n            retrieveCallback(retrievedDoc);\r\n        });\r\n\r\n        // this will be retried , set the current count \r\n        if (!isAccepted) getContext().getResponse().setBody({ \"total\": count, \"replaced\": replaceCount });\r\n    }\r\n\r\n    function tryReplace(document, replaceCallback) {\r\n        retrieveDoc(document, null, function (retrievedDoc) {\r\n            var existingDocSelfLink = retrievedDoc._self;\r\n            replaceCount = replaceCount + 1;\r\n            mergeReplace(retrievedDoc, document);\r\n            var isAccepted = collection.replaceDocument(existingDocSelfLink, retrievedDoc, replaceCallback);\r\n            if (!isAccepted) getContext().getResponse().setBody({ \"total\": count, \"replaced\": replaceCount });\r\n        });\r\n    }\r\n\r\n    // Merges properties recursively from source into dest object by reference. \r\n    // All properties present in the source are overwritten in dest\r\n    // Note - Array values are not merged but overwritten\r\n    function mergeReplace(dest, source) {\r\n\r\n        if (dest instanceof Array) {\r\n            var k = dest.length;\r\n            while (k > source.length) {\r\n                dest.pop();\r\n                k--;\r\n            }\r\n        }\r\n\r\n        for (var prop in source) {\r\n            if (source[prop] && source[prop] instanceof Object && dest[prop] instanceof Object) {\r\n                mergeReplace(dest[prop], source[prop]);\r\n            } else {\r\n                dest[prop] = source[prop];\r\n            }\r\n        }\r\n    }\r\n\r\n    function createCallback(err, doc, options) {\r\n        if (err) {\r\n            // Replace the document if status code is 409 and upsert is enabled\r\n            if (err.number === ErrorCode.CONFLICT) {\r\n                return tryReplace(docs[count], createCallback);\r\n            }\r\n            // storage quota exceeded, remap to a 507 so fx can indentify in substatus header\r\n            else if (err.number === ErrorCode.FORBIDDEN) {\r\n                err.number = ErrorCode.INSUFFICIENT_STORAGE;\r\n                throw err;\r\n            } else {\r\n                throw err;\r\n            }\r\n        } else {\r\n            // One more document has been inserted, increment the count.\r\n            count++;\r\n\r\n            if (count >= docsLength) {\r\n                // If we have created all documents, we are done. Just set the response.\r\n                getContext().getResponse().setBody({ \"total\": count, \"replaced\": replaceCount });\r\n            } else {\r\n                // Call the CRUD API to create a document.\r\n                return tryCreate(docs[count], createCallback);\r\n            }\r\n        }\r\n    }\r\n}\r\n"
+        },
+        "options": {}
+      }
+    },
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/throughputSettings",
+      "apiVersion": "2020-06-01-preview",
+      "name": "[concat({{name}}, '/', {{name}}, '/telemetry/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers', {{name}}, {{name}}, 'telemetry')]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', {{name}}, {{name}})]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts', {{name}})]"
+      ],
+      "properties": {
+        "resource": {
+          "throughput": 400
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}

@@ -7,10 +7,14 @@
             "apiVersion": "2015-05-01",
             "name": "[{{name}}]",
             "location": "[{{regionId}}]",
+            "kind": "other",
             "properties": {
                 "Application_Type": "other",
                 "Flow_Type": "Redfield",
-                "Request_Source": "IbizaAIExtension"
+                "Request_Source": "IbizaAIExtension",
+                "RetentionInDays": 90,
+                "publicNetworkAccessForIngestion": "Enabled",
+                "publicNetworkAccessForQuery": "Enabled"
             }
         }
     ]
