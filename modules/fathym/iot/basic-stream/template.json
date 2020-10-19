@@ -23,7 +23,7 @@
         "jobType": "Cloud",
         "inputs": [
           {
-            "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/', {{name}}, '-dslcu-data-stream')]",
+            "name": "[concat({{name}}, '-dslcu-data-stream')]",
             "properties": {
               "type": "Stream",
               "datasource": {
@@ -50,7 +50,7 @@
         ],
         "outputs": [
           {
-            "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/lcu-hot-storage')]",
+            "name": "[concat({{name}}, '-lcu-hot-storage')]",
             "properties": {
               "datasource": {
                 "type": "Microsoft.ServiceBus/Topic",
@@ -71,7 +71,7 @@
             }
           },
           {
-            "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/', parameters('safename'), '-cold-storage')]",
+            "name": "[concat(parameters('safename'), '-cold-storage')]",
             "properties": {
               "datasource": {
                 "type": "Microsoft.Storage/Blob",
@@ -98,7 +98,7 @@
             }
           },
           {
-            "name": "[concat(concat({{name}}, '-iot-lcu-asa-data-map'), '/', {{name}}, '-telemetry-warm-storage')]",
+            "name": "[concat({{name}}, '-telemetry-warm-storage')]",
             "properties": {
               "datasource": {
                 "type": "Microsoft.Storage/DocumentDB",
