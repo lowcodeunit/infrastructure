@@ -68,7 +68,7 @@
           "type": "Microsoft.ServiceBus/Topic",
           "properties": {
             "topicName": "lcu",
-            "serviceBusNamespace": "[{{name}})]",
+            "serviceBusNamespace": "[{{name}}]",
             "sharedAccessPolicyName": "RootManageSharedAccessKey",
             "authenticationMode": "ConnectionString"
           }
