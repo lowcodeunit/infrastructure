@@ -33,7 +33,7 @@
         "jobType": "Cloud",
         "inputs": [
           {
-            "name": "[concat({{name}}, '-dslcu-data-stream')]",
+            "name": "data-stream",
             "properties": {
               "type": "Stream",
               "datasource": {
@@ -61,7 +61,7 @@
         ],
         "outputs": [
           {
-            "name": "[concat({{name}}, '-lcu-hot-storage')]",
+            "name": "hot-storage",
             "properties": {
               "datasource": {
                 "type": "Microsoft.ServiceBus/Topic",
@@ -83,7 +83,7 @@
             }
           },
           {
-            "name": "[concat(parameters('safename'), '-cold-storage')]",
+            "name": "cold-storage",
             "properties": {
               "datasource": {
                 "type": "Microsoft.Storage/Blob",
@@ -111,7 +111,7 @@
             }
           },
           {
-            "name": "[concat({{name}}, '-telemetry-warm-storage')]",
+            "name": "telemetry-warm-storage",
             "properties": {
               "datasource": {
                 "type": "Microsoft.Storage/DocumentDB",
@@ -131,7 +131,7 @@
           "name": "Transformation",
           "properties": {
             "streamingUnits": 1,
-            "query": "SELECT * INTO [mike1019aint-cold-storage] FROM [mike-1019a-int-dslcu-data-stream]\r\n\r\nSELECT * INTO [mike-1019a-int-telemetry-warm-storage] FROM [mike-1019a-int-dslcu-data-stream]\r\n\r\nSELECT * INTO [lcu-hot-storage] FROM [mike-1019a-int-dslcu-data-stream]"
+            "query": "SELECT * INTO [cold-storage] FROM [data-stream]\r\n\r\nSELECT * INTO [telemetry-warm-storage] FROM [data-stream]\r\n\r\nSELECT * INTO [hot-storage] FROM [data-stream]"
           }
         }
       }
