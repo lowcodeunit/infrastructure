@@ -10,8 +10,8 @@
         "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', {{name}}, {{name}})]",
         "[resourceId('Microsoft.DocumentDB/databaseAccounts', {{name}})]",
         "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers', {{name}}, {{name}}, 'telemetry')]",
-        "[resourceId('Microsoft.EventHub/namespaces', {{name}})]",
-        "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'lcu'))]",
+        "[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-ds'))]",
+        "[resourceId('Microsoft.EventHub/namespaces/eventhubs', concat({{name}}, '-ds'), concat({{name}}, '-dslcu'))]",
         "[resourceId('Microsoft.ServiceBus/namespaces', {{name}})]",
         "[resourceId('Microsoft.ServiceBus/namespaces/topics', {{name}}, 'lcu')]",
         "[resourceId('Microsoft.Storage/storageAccounts', parameters('safename'))]"
