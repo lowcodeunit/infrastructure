@@ -32,8 +32,8 @@
                   "consumerGroupName": "lcu",
                   "eventHubName": "[concat({{name}}, '-dslcu')]",
                   "serviceBusNamespace": "[concat({{name}}, '-ds')]",
-                  "sharedAccessPolicyName": "RootManageSharedAccessKey",
-                  "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.EventHub/namespaces/eventhubs/authorizationRules', concat({{name}}, '-ds'), concat({{name}}, '-dslcu'), 'RootManageSharedAccessKey'),'2017-04-01').primaryKey]",
+                  "sharedAccessPolicyName": "ManageAccessPolicy",
+                  "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.EventHub/namespaces/eventhubs/authorizationRules', concat({{name}}, '-ds'), concat({{name}}, '-dslcu'), 'ManageAccessPolicy'),'2017-04-01').primaryKey]",
                   "authenticationMode": "ConnectionString"
                 }
               },
@@ -59,6 +59,7 @@
                   "topicName": "lcu",
                   "serviceBusNamespace": "[{{name}}]",
                   "sharedAccessPolicyName": "RootManageSharedAccessKey",
+                  "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.ServiceBus/namespaces/AuthorizationRules', parameters('name'), 'RootManageSharedAccessKey'),'2017-04-01').primaryKey]",
                   "authenticationMode": "ConnectionString"
                 }
               },
@@ -79,7 +80,8 @@
                 "properties": {
                   "storageAccounts": [
                     {
-                      "accountName": "[parameters('safename')]"
+                      "accountName": "[parameters('safename')]",
+                      "accountKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('safename')), '2019-04-01').keys[0].value]"
                     }
                   ],
                   "container": "cold-storage",
