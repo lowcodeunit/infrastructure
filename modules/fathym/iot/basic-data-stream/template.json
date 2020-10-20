@@ -14,7 +14,7 @@
         "sku": {
           "name": "Standard"
         },
-        "outputStartMode": "LastOutputEventTime",
+        "outputStartMode": "JobStartTime",
         "eventsOutOfOrderPolicy": "Adjust",
         "outputErrorPolicy": "Drop",
         "eventsLateArrivalMaxDelayInSeconds": 5,
@@ -110,6 +110,7 @@
                   "partitionKey": "DeviceID",
                   "documentId": "id",
                   "accountId": "[{{name}}]",
+                  "accountKey": "[listKeys(resourceId('Microsoft.DocumentDB/databaseAccounts', {{name}}), '2019-08-01').primaryMasterKey]",
                   "database": "[{{name}}]"
                 }
               }
