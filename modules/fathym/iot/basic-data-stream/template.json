@@ -13,7 +13,7 @@
         "[resourceId('Microsoft.EventHub/namespaces', {{name}})]",
         "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'lcu'))]",
         "[resourceId('Microsoft.ServiceBus/namespaces', {{name}})]",
-        "[resourceId('Microsoft.ServiceBus/namespaces/topics', concat({{name}}, '/lcu'))]",
+        "[resourceId('Microsoft.ServiceBus/namespaces/topics', {{name}}, 'lcu')]",
         "[resourceId('Microsoft.Storage/storageAccounts', parameters('safename'))]"
       ],
       "location": "[{{locationName}}]",
