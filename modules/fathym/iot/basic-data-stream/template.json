@@ -6,6 +6,15 @@
       "type": "Microsoft.StreamAnalytics/streamingjobs",
       "apiVersion": "2017-04-01-preview",
       "name": "[concat({{name}}, '-iot-lcu-asa-data-map')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', {{name}}, {{name}})]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts', {{name}})]",
+        "[resourceId('Microsoft.EventHub/namespaces', {{name}})]",
+        "[resourceId('Microsoft.EventHub/namespaces/eventhubs', {{name}}, concat({{name}}, 'lcu'))]",
+        "[resourceId('Microsoft.ServiceBus/namespaces', {{name}})]",
+        "[resourceId('Microsoft.ServiceBus/namespaces/topics', concat({{name}}, '/lcu'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('safename')]"
+      ],
       "location": "[{{locationName}}]",
       "tags": {
         "Architecture": "LowCodeUnit"
