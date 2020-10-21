@@ -40,7 +40,7 @@
                 "properties": {
                     "iotHubNamespace": "[{{name}}]",
                     "sharedAccessPolicyName": "service",
-                    "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.Devices/IotHubs/IotHubKeys', {{name}}, 'service'),'2017-04-01').primaryKey]",
+                    "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.Devices/IotHubs/IotHubKeys', {{name}}, 'service'),'2020-04-01').primaryKey]",
                     "consumerGroupName": "lcu",
                     "endpoint": "messages/events"
                 }
