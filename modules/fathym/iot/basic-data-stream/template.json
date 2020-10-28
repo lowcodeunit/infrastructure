@@ -9,6 +9,7 @@
       "dependsOn": [
         "[resourceId('Microsoft.EventHub/namespaces', concat({{name}}, '-ds'))]",
         "[resourceId('Microsoft.EventHub/namespaces/eventhubs', concat({{name}}, '-ds'), concat({{name}}, '-dslcu'))]",
+        "[resourceId('Microsoft.EventHub/namespaces/eventhubs/authorizationRules', concat({{name}}, '-ds'), concat({{name}}, '-dslcu'), 'ManageAccessPolicy')]",
         "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', {{name}}, {{name}})]",
         "[resourceId('Microsoft.DocumentDB/databaseAccounts', {{name}})]",
         "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers', {{name}}, {{name}}, 'telemetry')]",
