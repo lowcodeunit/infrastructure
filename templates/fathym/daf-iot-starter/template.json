@@ -88,6 +88,10 @@
         {
             "type": "modules",
             "path": "fathym\\iot\\basic-device-stream"
+        },
+        {
+            "type": "modules",
+            "path": "fathym\\iot\\device-provisioning"
         }
     ]
 }
