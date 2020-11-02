@@ -6,6 +6,9 @@
       "type": "Microsoft.Devices/provisioningServices",
       "apiVersion": "2020-03-01",
       "name": "[{{name}}]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Devices/IotHubs', {{name}})]"
+      ],
       "location": "[{{regionId}}]",
       "sku": {
         "name": "S1",
@@ -17,7 +20,7 @@
         "provisioningState": "Succeeded",
         "iotHubs": [
           {
-            "connectionString": "[concat('HostName=', {{name}}, '.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=****')]",
+            "connectionString": "[concat('HostName=', {{name}}, '.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=', listKeys(resourceId('Microsoft.Devices/IotHubs/IotHubKeys', {{name}}, 'service'),'2020-04-01').primaryKey)]",
             "location": "[{{regionId}}]"
           }
         ],
