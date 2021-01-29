@@ -17,7 +17,8 @@
         "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers', {{name}}, {{name}}, 'telemetry')]",
         "[resourceId('Microsoft.ServiceBus/namespaces', {{name}})]",
         "[resourceId('Microsoft.ServiceBus/namespaces/topics', {{name}}, 'lcu')]",
-        "[resourceId('Microsoft.Storage/storageAccounts', parameters('safename'))]"
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('safename'))]",
+        "[resourceId('Microsoft.SignalRService/SignalR', {{name}})]"
       ],
       "location": "[{{locationName}}]",
       "tags": {
