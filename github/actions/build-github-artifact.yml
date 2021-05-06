@@ -1,4 +1,4 @@
-name: Build
+name: Build GitHub Artifact
 
 on:
   push:
