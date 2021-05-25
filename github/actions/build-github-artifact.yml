@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 12
           registry-url: {{NPMRegistry}}
-      - name: NPM Instal
+      - name: NPM Install
         run: npm install
       - name: NPM Publish
         run: {{BuildScript}}
