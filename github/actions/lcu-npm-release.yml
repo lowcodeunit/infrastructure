@@ -1,0 +1,65 @@
+name: Build Release
+
+on:
+  push:
+    branches: [{{Branch}}]
+  pull_request:
+    branches: [{{Branch}}]
+
+jobs:
+  build:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    steps:
+    # checkout repository
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+
+    # set branch name variable
+    - name: Set branch name variable
+      id: vars
+      run: echo ::set-output name=branch_name::${GITHUB_REF#refs/*/}
+
+    - name: Echo current branch
+      run: echo "The current branch is ${{{{ steps.vars.outputs.branch_name }}}}"
+
+    # bump version and push tag
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.26.0
+      id: versionBump
+      env:
+        GITHUB_TOKEN: ${{{{ secrets.GITHUB_TOKEN }}}}
+        RELEASE_BRANCHES: main
+        DEFAULT_BUMP: minor
+        WITH_V: false
+    - run: echo "The new version is ${{{{ steps.versionBump.outputs.new_tag }}}}"
+
+    # replace text in package.json
+    - name: replace text
+      shell: pwsh
+      run: (Get-Content -path package.json -Raw) -replace "version patch","version ${{{{ steps.versionBump.outputs.new_tag }}}} --no-git-tag-version -f" | Set-Content -Path package.json
+
+    # run npm commands
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 12
+        registry-url: {{NPMRegistry}}
+
+    # install npm dependencies from package-lock.json
+    - name: npm install
+      run: {{InstallCommand}}
+
+    # build & publish npm packages to npmjs.org
+    - name: npm build & publish
+      if: ${{{{ steps.versionBump.outputs.new_tag != '' }}}}
+      run: {{DeployCommand}}
+      env:
+        NODE_AUTH_TOKEN: ${{{{ secrets.NPM_TOKEN }}}}
+    
+    # Archive build artifacts from specfic folder
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: {{Organization}}-{{Repository}}
+        path: {{Output}}

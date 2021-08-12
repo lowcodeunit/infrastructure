@@ -13,10 +13,13 @@ jobs:
         with:
           node-version: 12
           registry-url: {{NPMRegistry}}
+
       - name: NPM Install
-        run: npm install
+        run: {{InstallCommand}}
+
       - name: NPM Publish
         run: {{BuildScript}}
+
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
