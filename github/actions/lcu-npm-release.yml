@@ -2,7 +2,7 @@ name: Build Release
 
 on:
   push:
-    branches: [{{Branch}}]
+    branches: [~]
   pull_request:
     branches: [{{Branch}}]
 

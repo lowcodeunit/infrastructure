@@ -1,0 +1,16 @@
+name: {{Name}}
+
+on:
+  push:
+    branches: [{{Branches}}]
+  pull_request:
+    branches: [{{Branches}}]
+
+env:
+  Branches: {{Branches}}
+  NPMRegistry: {{NPMRegistry}}
+  InstallCommand: {{InstallCommand}}
+  DeployCommand: {{DeployCommand}}
+  Organization: {{Organization}}
+  Repository: {{Repository}}
+  Output: {{Output}}

@@ -6,6 +6,14 @@ on:
   pull_request:
     branches: [{{Branch}}]
 
+env:
+  NPM_REGISTRY: {{NPMRegistry}}
+  INSTALL_COMMAND: {{InstallCommand}}
+  BUILD_COMMAND: {{BuildCommand}}
+  ORGANIZATION: {{Organization}}
+  INSTALL_COMMAND: {{InstallCommand}}
+  INSTALL_COMMAND: {{InstallCommand}}
+
 jobs:
   build:
     name: Build and Publish
@@ -44,16 +52,16 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: 12
-        registry-url: {{NPMRegistry}}
+        registry-url: ${{{{ env.NPM_REGISTRY }}}}
 
     # install npm dependencies from package-lock.json
     - name: npm install
-      run: {{InstallCommand}}
+      run: ${{{{ env.INSTALL_COMMAND }}}}
 
     # build & publish npm packages to npmjs.org
     - name: npm build
       if: ${{{{ steps.versionBump.outputs.new_tag != '' }}}}
-      run: {{BuildCommand}}
+      run: ${{{{ env.BUILD_COMMAND }}}}
       env:
         NODE_AUTH_TOKEN: ${{{{ secrets.NPM_TOKEN }}}}
     
