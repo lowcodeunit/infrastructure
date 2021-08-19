@@ -1,0 +1,84 @@
+name: Build Prerelease
+
+on:
+  push:
+    branches:
+    - 'integration'
+    - 'feature/**'
+  pull_request:
+    branches:
+    - 'integration'
+    
+env:
+  AZURE_FUNCTIONAPP_NAME: 'fathym-cloud-int-personas-state-api-iotensemble'  # set this to your application's name
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'state-api-iot-ensemble'    # set this to the path to your web app project, defaults to the repository root 
+  project_file: 'state-api-iot-ensemble/state-api-iot-ensemble.csproj'
+  nuget_feed_name: 'LCU'
+  nuget_feed_source: 'https://fathym.pkgs.visualstudio.com/_packaging/LCU/nuget/v3/index.json'
+  nuget_config: 'nuget.config'
+
+jobs:
+  build:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    environment: integration
+    strategy:
+      matrix:
+        dotnet: [ '3.1.x' ]    
+    steps:
+    # checkout repository
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+
+    # set branch name variable
+    - name: Set branch name variable
+      id: vars
+      run: echo ::set-output name=branchName::${GITHUB_REF##*/}
+      
+    - name: Echo current branch
+      run: echo "The current branch is ${{ steps.vars.outputs.branchName }}"            
+
+    # bump version and push tag
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.26.0
+      id: versionBump
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        RELEASE_BRANCHES: integration,feature*
+        DEFAULT_BUMP: patch
+        WITH_V: false
+    - run: echo "The new version is ${{ steps.versionBump.outputs.new_tag }}"
+        
+    # restore and build dotnet     
+    - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+        
+    - name: Auth NuGet Remove
+      run: nuget sources remove -Name ${{ env.nuget_feed_name }}
+        
+    - name: Auth NuGet Add
+      run: nuget sources add -Name ${{ env.nuget_feed_name }} -Source ${{ env.nuget_feed_source }} -username "github_actions" -password ${{ secrets.AZDEVOPS_PAT }}
+     
+    - name: Restore NuGet Packages
+      run: nuget restore ${{ env.project_file }}        
+
+    - name: 'Resolve Project Dependencies Using Dotnet'
+      shell: pwsh
+      run: |
+        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        dotnet build --configuration Release --output ./output
+        popd
+        
+    - name: 'Run Azure Functions Action'
+      uses: Azure/functions-action@v1
+      if: ${{ steps.vars.outputs.branchName == 'integration' }}
+      id: fa
+      with:
+        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
+        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+        scm-do-build-during-deployment: true
+        enable-oryx-build: false
