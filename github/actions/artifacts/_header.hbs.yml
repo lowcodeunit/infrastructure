@@ -8,6 +8,7 @@ on:
 
 env:
   Branches: {{Branches}}
+  MainBranch: {{MainBranch}}
   NPMRegistry: {{NPMRegistry}}
   InstallCommand: {{InstallCommand}}
   BuildCommand: {{BuildCommand}}
