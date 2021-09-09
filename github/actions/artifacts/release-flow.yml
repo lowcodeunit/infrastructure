@@ -19,13 +19,17 @@ jobs:
           if ['$BRANCH' == '$MAIN_BRANCH']
           then
               echo "::set-output name=versionBump::minor"
+              echo "::set-output name=prerelease::true"
           else
               echo "::set-output name=versionBump::patch"
+              echo "::set-output name=prerelease::false"
           fi
         env:
           BRANCH: ${{ steps.vars.outputs.branchName }}
           MAIN_BRANCH: ${{ env.MainBranch }}
+      - run: echo "GitHub Ref ${{ github.ref }}"
       - run: echo "Current branch is ${{ steps.vars.outputs.branchName }}"
+      - run: echo "Version is prerelease? ${{ steps.vars.outputs.prerelease }}"
       - run: echo "Version bump type is ${{ steps.vars.outputs.versionBump }}"
 
       # bump version and push tag
@@ -36,6 +40,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_BRANCHES: ${{ steps.vars.outputs.branchName }}
           DEFAULT_BUMP: ${{ steps.vars.outputs.versionBump }}
+          TAG_CONTEXT: branch
+          PRE_RELEASE: ${{ steps.vars.outputs.prerelease }}
           WITH_V: false
 
       - name: Echo current version
