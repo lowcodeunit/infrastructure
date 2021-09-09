@@ -10,30 +10,23 @@ jobs:
         with:
           fetch-depth: '0'
 
-      # set branch name variable
-      - name: Set branch name variable
+      # set variables
+      - name: Set variables
         id: vars
-        run: echo ::set-output name=branchName::${GITHUB_REF##*/}
-
-      - name: Echo current branch
-        run: echo "The current branch is ${{ steps.vars.outputs.branchName }}"
-
-      # set version bump type
-      - name: Version Bump Type
-        id: versionBumpType
         run: |
-          if [$BRANCH == $MAIN_BRANCH]
+          echo ::set-output name=branchName::${GITHUB_REF##*/}
+          
+          if ['$BRANCH' == '$MAIN_BRANCH']
           then
-              echo "::set-output name=versionBump::'minor'"
+              echo "::set-output name=versionBump::minor"
           else
-              echo "::set-output name=versionBump::'patch'"
+              echo "::set-output name=versionBump::patch"
           fi
         env:
           BRANCH: ${{ steps.vars.outputs.branchName }}
           MAIN_BRANCH: ${{ env.MainBranch }}
-
-      - name: Echo version bump type
-        run: echo "The new version bump type is ${{ steps.vars.outputs.versionBump }}"
+      - run: echo "Current branch is ${{ steps.vars.outputs.branchName }}"
+      - run: echo "Version bump type is ${{ steps.vars.outputs.versionBump }}"
 
       # bump version and push tag
       - name: Bump version and push tag
