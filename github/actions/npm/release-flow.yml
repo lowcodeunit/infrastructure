@@ -18,6 +18,17 @@ jobs:
       - name: Echo current branch
         run: echo "The current branch is ${{ steps.vars.outputs.branchName }}"
 
+      # set version bump type
+      - name: Version Bump Type
+        id: versionBumpType
+        run: |
+          if [steps.vars.outputs.branchName == env.MainBranch]
+          then
+              echo "::set-output name=versionBump::'minor'"
+          else
+              echo "::set-output name=versionBump::'patch'"
+          fi
+
       # bump version and push tag
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.26.0
@@ -25,7 +36,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_BRANCHES: ${{ steps.vars.outputs.branchName }}
-          DEFAULT_BUMP: minor
+          DEFAULT_BUMP: ${{ steps.vars.outputs.versionBump }}
           WITH_V: false
       - run: echo "The new version is ${{ steps.versionBump.outputs.new_tag }}"
 
