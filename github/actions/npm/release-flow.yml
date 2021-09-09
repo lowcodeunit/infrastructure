@@ -22,12 +22,18 @@ jobs:
       - name: Version Bump Type
         id: versionBumpType
         run: |
-          if [steps.vars.outputs.branchName == env.MainBranch]
+          if [$BRANCH == $MAIN_BRANCH]
           then
               echo "::set-output name=versionBump::'minor'"
           else
               echo "::set-output name=versionBump::'patch'"
           fi
+        env:
+          BRANCH: ${{ steps.vars.outputs.branchName }}
+          MAIN_BRANCH: ${{ env.MainBranch }}
+
+      - name: Echo version bump type
+        run: echo "The new version bump type is ${{ steps.vars.outputs.versionBump }}"
 
       # bump version and push tag
       - name: Bump version and push tag
@@ -38,7 +44,9 @@ jobs:
           RELEASE_BRANCHES: ${{ steps.vars.outputs.branchName }}
           DEFAULT_BUMP: ${{ steps.vars.outputs.versionBump }}
           WITH_V: false
-      - run: echo "The new version is ${{ steps.versionBump.outputs.new_tag }}"
+
+      - name: Echo current version
+        run: echo "The new version is ${{ steps.versionBump.outputs.new_tag }}"
 
       # replace text in package.json for main branch
       - name: replace version text for main branch

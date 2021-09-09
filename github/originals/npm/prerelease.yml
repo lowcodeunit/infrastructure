@@ -36,7 +36,9 @@ jobs:
         RELEASE_BRANCHES: integration,feature*
         DEFAULT_BUMP: patch
         WITH_V: false
-    - run: echo "The new version is ${{ steps.versionBump.outputs.new_tag }}"
+
+    - name: Echo current version
+      run: echo "The new version is ${{ steps.versionBump.outputs.new_tag }}"
 
     # replace text in package.json
     - name: replace tag text
