@@ -32,7 +32,6 @@ jobs:
         run: |
           echo "GitHub Ref ${{ github.ref }}"
           echo "Current branch is ${{ steps.vars.outputs.branchName }}"
-          echo "a is ${{ steps.vars.outputs.a }}"
           echo "Version bump type is ${{ steps.vars.outputs.versionBump }}"
 
       # bump version and push tag
