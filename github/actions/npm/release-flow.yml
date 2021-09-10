@@ -14,18 +14,19 @@ jobs:
       - name: Set variables
         id: vars
         run: |
-          echo ::set-output name=branchName::${GITHUB_REF##*/}
-          
-          if [${GITHUB_REF##*/} == '${{ env.MainBranch }}']
+          branch=${GITHUB_REF##*/}
+
+          echo ::set-output name=branchName::$branch
+           
+          if [ "$branch" == "${{ env.MainBranch }}" ]
           then
               echo "::set-output name=versionBump::minor"
           else
               echo "::set-output name=versionBump::patch"
           fi
-          
-      - name: Set Variable Checks
-        run: |
-          echo "GitHub Ref ${{ github.ref }}"
+
+      - run: |
+          echo "Set Variable Checks ${{ github.ref }}"
           echo "Current branch is ${{ steps.vars.outputs.branchName }}"
           echo "Version bump type is ${{ steps.vars.outputs.versionBump }}"
 
@@ -36,8 +37,7 @@ jobs:
         env:
           DEFAULT_BUMP: ${{ steps.vars.outputs.versionBump }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PRERELEASE_SUFFIX: ${{ steps.vars.outputs.branchName }}
-          RELEASE_BRANCHES: ${{ env.MainBranch }}
+          RELEASE_BRANCHES: .*
           TAG_CONTEXT: branch
           WITH_V: false
       - run: echo "New version is ${{ steps.versionBump.outputs.new_tag }}"
