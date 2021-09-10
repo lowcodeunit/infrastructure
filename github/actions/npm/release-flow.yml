@@ -19,27 +19,33 @@ jobs:
           if ['$BRANCH' == '$MAIN_BRANCH']
           then
               echo "::set-output name=versionBump::minor"
+              echo "::set-output name=prerelease::true"
           else
               echo "::set-output name=versionBump::patch"
+              echo "::set-output name=prerelease::false"
           fi
         env:
           BRANCH: ${{ steps.vars.outputs.branchName }}
           MAIN_BRANCH: ${{ env.MainBranch }}
-      - run: echo "Current branch is ${{ steps.vars.outputs.branchName }}"
-      - run: echo "Version bump type is ${{ steps.vars.outputs.versionBump }}"
+          
+      - name: Set Variable Checks
+        run: |
+          echo "GitHub Ref ${{ github.ref }}"
+          echo "Current branch is ${{ steps.vars.outputs.branchName }}"
+          echo "Version bump type is ${{ steps.vars.outputs.versionBump }}"
 
       # bump version and push tag
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.26.0
         id: versionBump
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_BRANCHES: ${{ steps.vars.outputs.branchName }}
           DEFAULT_BUMP: ${{ steps.vars.outputs.versionBump }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PRERELEASE_SUFFIX: ${{ steps.vars.outputs.branchName }}
+          RELEASE_BRANCHES: ${{ env.MainBranch }}
+          TAG_CONTEXT: branch
           WITH_V: false
-
-      - name: Echo current version
-        run: echo "The new version is ${{ steps.versionBump.outputs.new_tag }}"
+      - run: echo "New version is ${{ steps.versionBump.outputs.new_tag }}"
 
       # replace text in package.json for main branch
       - name: replace version text for main branch
