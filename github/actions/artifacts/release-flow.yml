@@ -16,17 +16,12 @@ jobs:
         run: |
           echo ::set-output name=branchName::${GITHUB_REF##*/}
           
-          if ['$BRANCH' == '$MAIN_BRANCH']
+          if [${GITHUB_REF##*/} == '${{ env.MainBranch }}']
           then
               echo "::set-output name=versionBump::minor"
-              echo "::set-output name=prerelease::true"
           else
               echo "::set-output name=versionBump::patch"
-              echo "::set-output name=prerelease::false"
           fi
-        env:
-          BRANCH: ${{ steps.vars.outputs.branchName }}
-          MAIN_BRANCH: ${{ env.MainBranch }}
           
       - name: Set Variable Checks
         run: |
