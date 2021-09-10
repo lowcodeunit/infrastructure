@@ -32,13 +32,12 @@ jobs:
 
       # bump version and push tag
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.26.0
+        uses: fathym/github-tag-action@master
         id: versionBump
         env:
           DEFAULT_BUMP: ${{ steps.vars.outputs.versionBump }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_BRANCHES: .*
-          TAG_CONTEXT: branch
           WITH_V: false
       - run: echo "New version is ${{ steps.versionBump.outputs.new_tag }}"
 
