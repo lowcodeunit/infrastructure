@@ -32,7 +32,7 @@ jobs:
 
       # bump version and push tag
       - name: Bump version and push tag
-        uses: fathym/github-tag-action@1
+        uses: fathym/github-tag-action@master
         id: versionBump
         env:
           DEFAULT_BUMP: ${{ steps.vars.outputs.versionBump }}
