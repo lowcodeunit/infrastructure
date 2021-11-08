@@ -60,16 +60,19 @@ jobs:
 
       # run npm commands
       - uses: actions/setup-node@v2
+        if: ${{ !!env.InstallCommand || !!env.BuildCommand }}
         with:
-          node-version: 12
+          node-version: 14
           registry-url: ${{ env.NPMRegistry }}
 
       # install npm dependencies from package-lock.json
       - name: npm install
+        if: ${{ !!env.InstallCommand }}
         run: ${{ env.InstallCommand }}
 
       # build npm
       - name: npm build
+        if: ${{ !!env.BuildCommand }}
         run: ${{ env.BuildCommand }}
 
       # publish github artifacts
