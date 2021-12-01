@@ -1,0 +1,14 @@
+name: Sync, build and deploy Plasmic app
+
+on:
+  repository_dispatch:
+    types: [plasmic]
+  push:
+    branches: [{{Branches}}]
+  pull_request:
+    branches: [{{Branches}}]
+
+env:
+  Branches: {{Branches}}
+  MainBranch: {{MainBranch}}
+  NPMRegistry: {{NPMRegistry}}
