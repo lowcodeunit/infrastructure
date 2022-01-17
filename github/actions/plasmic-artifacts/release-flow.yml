@@ -13,7 +13,7 @@ jobs:
         name: Setting up node v14...
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: '14'
       - id: cache
         name: Recovering cache...
         uses: actions/cache@v2
@@ -80,3 +80,11 @@ jobs:
         with:
           name: plasmic-artifact
           path: ${{ steps.build.outputs.publish_dir }}
+
+      # webhook to LowCodeUnit
+      - name: Invoke deployment hook
+        uses: fathym/workflow-webhook@v2
+        env:
+          webhook_url: ${{ secrets.LCU_WEBHOOK_URL }}
+          webhook_secret: ${{ secrets.LCU_WEBHOOK_SECRET }}
+          data: '{ "EnterpriseLookup": "${{ secrets.LCU_ENTERPRISE_LOOKUP }}" }'

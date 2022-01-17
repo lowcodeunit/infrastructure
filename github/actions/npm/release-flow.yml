@@ -74,3 +74,11 @@ jobs:
         run: ${{ env.DeployCommand }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # webhook to LowCodeUnit
+      - name: Invoke deployment hook
+        uses: fathym/workflow-webhook@v2
+        env:
+          webhook_url: ${{ secrets.LCU_WEBHOOK_URL }}
+          webhook_secret: ${{ secrets.LCU_WEBHOOK_SECRET }}
+          data: '{ "EnterpriseLookup": "${{ secrets.LCU_ENTERPRISE_LOOKUP }}" }'

@@ -81,3 +81,11 @@ jobs:
         with:
           name: ${{ github.event.organization.name }}-${{ github.event.repository.name }}
           path: ${{ env.Output }}
+
+      # webhook to LowCodeUnit
+      - name: Invoke deployment hook
+        uses: fathym/workflow-webhook@v2
+        env:
+          webhook_url: ${{ secrets.LCU_WEBHOOK_URL }}
+          webhook_secret: ${{ secrets.LCU_WEBHOOK_SECRET }}
+          data: '{ "EnterpriseLookup": "${{ secrets.LCU_ENTERPRISE_LOOKUP }}" }'
