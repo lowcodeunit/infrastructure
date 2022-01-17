@@ -88,4 +88,4 @@ jobs:
         env:
           webhook_url: ${{ secrets.LCU_WEBHOOK_URL }}
           webhook_secret: ${{ secrets.LCU_WEBHOOK_SECRET }}
-          data: '{ "EnterpriseLookup": "${{ secrets.LCU_ENTERPRISE_LOOKUP }}" }'
+          data: '{ "EnterpriseLookup": "${{ secrets.LCU_ENTERPRISE_LOOKUP }}", "Username": "${{ secrets.LCU_USERNAME }}" }'
