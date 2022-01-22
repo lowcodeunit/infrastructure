@@ -23,12 +23,3 @@
 [Landing Page - Svelte](https://www.lowcodeunit.com/svelte-deployment)
 
 [Landing Page - Micro Frontends](https://www.lowcodeunit.com/micro-frontends)
-
-
-http://lowcodeunit.com/react
-
-https://www.lowcodeunit.com/vue
-https://www.lowcodeunit.com/angular
-https://www.lowcodeunit.com/svelte-deployment
-
-https://www.lowcodeunit.com/micro-frontends
