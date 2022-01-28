@@ -30,10 +30,18 @@ jobs:
           echo "Current branch is ${{ steps.vars.outputs.branchName }}"
           echo "Version bump type is ${{ steps.vars.outputs.versionBump }}"
 
+      # Check package.json exists
+      - name: Check package.json existence
+        id: package_json_exists
+        uses: fathym/file-existence-action@master
+        with:
+          files: "package.json"
+
       # bump version and push tag
       - name: Bump version and push tag
-        uses: fathym/github-tag-action@master
         id: versionBump
+        uses: fathym/github-tag-action@master
+        if: ${{ steps.package_json_exists.outputs.files_exists == 'true' }}
         env:
           DEFAULT_BUMP: ${{ steps.vars.outputs.versionBump }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -60,19 +68,19 @@ jobs:
 
       # run npm commands
       - uses: actions/setup-node@v2
-        if: ${{ !!env.InstallCommand || !!env.BuildCommand }}
+        if: ${{ (!!env.InstallCommand || !!env.BuildCommand) && steps.package_json_exists.outputs.files_exists == 'true' }}
         with:
           node-version: 14
           registry-url: ${{ env.NPMRegistry }}
 
       # install npm dependencies from package-lock.json
       - name: npm install
-        if: ${{ !!env.InstallCommand }}
+        if: ${{ !!env.InstallCommand && steps.package_json_exists.outputs.files_exists == 'true' }}
         run: ${{ env.InstallCommand }}
 
       # build npm
       - name: npm build
-        if: ${{ !!env.BuildCommand }}
+        if: ${{ !!env.BuildCommand && steps.package_json_exists.outputs.files_exists == 'true' }}
         run: ${{ env.BuildCommand }}
 
       # publish github artifacts
