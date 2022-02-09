@@ -80,7 +80,7 @@ jobs:
 
       # build & publish npm packages to npmjs.org
       - name: npm build & publish
-        if: ${{ !!env.DeployCommand && && steps.package_json_exists.outputs.files_exists == 'true' }}
+        if: ${{ !!env.DeployCommand && steps.package_json_exists.outputs.files_exists == 'true' }}
         run: ${{ env.DeployCommand }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
