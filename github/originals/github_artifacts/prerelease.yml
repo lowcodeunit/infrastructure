@@ -50,7 +50,7 @@ jobs:
     # run npm commands
     - uses: actions/setup-node@v2
       with:
-        node-version: 12        
+        node-version: 16        
 
     # install npm dependencies from package-lock.json
     - name: npm install
