@@ -68,10 +68,10 @@ jobs:
 
       # run npm commands
       - uses: actions/setup-node@v2
-        if: ${{ (!!env.InstallCommand || !!env.BuildCommand) && steps.package_json_exists.outputs.files_exists != 'true' }}
+        if: ${{ (!!env.InstallCommand || !!env.BuildCommand) && steps.package_json_exists.outputs.files_exists == 'true' }}
         with:
-          node-version: 14
-          registry-url: ${{ env.NPMRegistry }}
+          node-version: 16
+          registry-url: '${{ env.NPMRegistry }}'
 
       # install npm dependencies from package-lock.json
       - name: npm install
