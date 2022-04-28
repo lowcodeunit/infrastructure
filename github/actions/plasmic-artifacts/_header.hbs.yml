@@ -4,11 +4,13 @@ on:
   repository_dispatch:
     types: [plasmic]
   push:
-    branches: [{{Branches}}]
+    branches: [{ { Branches } }]
   pull_request:
-    branches: [{{Branches}}]
+    branches: [{ { Branches } }]
+
+permissions: write-all
 
 env:
-  Branches: {{Branches}}
-  MainBranch: {{MainBranch}}
-  NPMRegistry: {{NPMRegistry}}
+  Branches: { { Branches } }
+  MainBranch: { { MainBranch } }
+  NPMRegistry: { { NPMRegistry } }
