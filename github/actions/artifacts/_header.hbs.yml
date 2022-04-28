@@ -1,17 +1,17 @@
-name: { { Name } }
+name: {{Name}}
 
 on:
   push:
-    branches: [{ { Branches } }]
+    branches: [{{Branches}}]
   pull_request:
-    branches: [{ { Branches } }]
+    branches: [{{Branches}}]
 
 permissions: write-all
 
 env:
-  Branches: { { Branches } }
-  MainBranch: { { MainBranch } }
-  NPMRegistry: { { NPMRegistry } }
-  InstallCommand: { { InstallCommand } }
-  BuildCommand: { { BuildCommand } }
-  Output: { { Output } }
+  Branches: {{Branches}}
+  MainBranch: {{MainBranch}}
+  NPMRegistry: {{NPMRegistry}}
+  InstallCommand: {{InstallCommand}}
+  BuildCommand: {{BuildCommand}}
+  Output: {{Output}}
