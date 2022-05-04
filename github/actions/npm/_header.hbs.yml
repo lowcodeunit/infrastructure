@@ -9,6 +9,7 @@ on:
 permissions: write-all
 
 env:
+  CI: false
   Branches: {{Branches}}
   MainBranch: {{MainBranch}}
   NPMRegistry: {{NPMRegistry}}

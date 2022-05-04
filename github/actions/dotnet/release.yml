@@ -40,17 +40,6 @@ jobs:
     - name: Echo current branch
       run: echo "The current branch is ${{ steps.vars.outputs.branchName }}"
 
-    # bump version and push tag
-    - name: Bump version and push tag
-      uses: anothrNick/github-tag-action@1.26.0
-      id: versionBump
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        RELEASE_BRANCHES: main,master
-        DEFAULT_BUMP: minor
-        WITH_V: false
-    - run: echo "The new version is ${{ steps.versionBump.outputs.new_tag }}"
-
     # restore and build dotnet     
     - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
       uses: actions/setup-dotnet@v1.7.2
@@ -82,3 +71,14 @@ jobs:
         publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
         scm-do-build-during-deployment: true
         enable-oryx-build: false
+
+    # bump version and push tag
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.26.0
+      id: versionBump
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        RELEASE_BRANCHES: main,master
+        DEFAULT_BUMP: minor
+        WITH_V: false
+    - run: echo "The new version is ${{ steps.versionBump.outputs.new_tag }}"
