@@ -1,0 +1,1836 @@
+[{
+	"Button": "Launch Micro Frontend",
+	"Applications": {
+		"NPM": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "The public site being used as the home page.",
+					"Name": "Public Site",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-it/micro-frontend-starter-home-page",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}],
+		"GitHub": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites and documentation built with Docusaurus.",
+					"Name": "Docusaurus - Documentation - Forked Recipe",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/docs.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": "public-web-docusaurus",
+					"Type": null,
+					"Build": "latest"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/docs/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": {
+				"Name": null,
+				"Output": "./build",
+				"Type": null,
+				"BuildCommand": "npm run build",
+				"InstallCommand": "npm ci",
+				"NPMRegistry": null,
+				"Lookup": "react",
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		}, {
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for blogs built with Gatsby.",
+					"Name": "Blog Starter with Gatsby - Forked Recipe",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/blog.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": "gatsby-starter-blog",
+					"Type": null,
+					"Build": "latest"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/blog/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": {
+				"Name": null,
+				"Output": "./public",
+				"Type": null,
+				"BuildCommand": "npm run build",
+				"InstallCommand": "npm i",
+				"NPMRegistry": null,
+				"Lookup": "react-gatsby",
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		}, {
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites built with React.",
+					"Name": "React Quickstart Project - Backend Admin",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/admin.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": "public-web-react",
+					"Type": null,
+					"Build": "latest"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/admin/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": {
+				"Name": null,
+				"Output": "./build",
+				"Type": null,
+				"BuildCommand": "npm run build",
+				"InstallCommand": "npm ci",
+				"NPMRegistry": null,
+				"Lookup": "react",
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		}]
+	},
+	"Description": "A modular frontend example using Plasmic, Gatsby, Docusaurus and React. See how to use routing to seamlessly deploy different tech stacks on the one domain.",
+	"ID": "00000000-0000-0000-0000-000000000008",
+	"Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
+	"Image": "https://www.fathym.com/img/microfe.png",
+	"Lookup": "micro-frontend-starter",
+	"Name": "Create your First Micro Frontend",
+	"PreviewImage": "https://www.fathym.com/assets/images/MFERPlasmicGatsbyDocuReact.png",
+	"RecipeType": "MFE",
+	"SourceCode": null,
+	"Sources": {
+		"gatsby-starter-blog": {
+			"DevOpsActionTriggerLookups": null,
+			"Name": null,
+			"Type": null,
+			"Branches": ["master"],
+			"MainBranch": "master",
+			"Organization": "fathym-it",
+			"Repository": "gatsby-starter-blog",
+			"Lookup": null,
+			"Username": null,
+			"Archived": false,
+			"Created": "0001-01-01T00:00:00",
+			"ID": "00000000-0000-0000-0000-000000000000",
+			"Label": null,
+			"Registry": null,
+			"TenantLookup": null,
+			"Updated": "0001-01-01T00:00:00"
+		},
+		"public-web-docusaurus": {
+			"DevOpsActionTriggerLookups": null,
+			"Name": null,
+			"Type": null,
+			"Branches": ["main"],
+			"MainBranch": "main",
+			"Organization": "fathym-it",
+			"Repository": "public-web-docusaurus-docs-only",
+			"Lookup": null,
+			"Username": null,
+			"Archived": false,
+			"Created": "0001-01-01T00:00:00",
+			"ID": "00000000-0000-0000-0000-000000000000",
+			"Label": null,
+			"Registry": null,
+			"TenantLookup": null,
+			"Updated": "0001-01-01T00:00:00"
+		},
+		"public-web-react": {
+			"DevOpsActionTriggerLookups": null,
+			"Name": null,
+			"Type": null,
+			"Branches": ["main"],
+			"MainBranch": "main",
+			"Organization": "fathym-it",
+			"Repository": "public-web-react",
+			"Lookup": null,
+			"Username": null,
+			"Archived": false,
+			"Created": "0001-01-01T00:00:00",
+			"ID": "00000000-0000-0000-0000-000000000000",
+			"Label": null,
+			"Registry": null,
+			"TenantLookup": null,
+			"Updated": "0001-01-01T00:00:00"
+		}
+	},
+	"SuccessType": "Project",
+	"Tier": "3",
+	"VideoURL": null
+}, {
+	"Button": "Launch No Code",
+	"Applications": {
+		"Zip": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "The public site being used as the home page.",
+					"Name": "Public Site",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"ZipFile": "https://www.fathym.com/templates/grapes/homepage.zip",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}]
+	},
+	"Description": "A template to start customizing a no-code site with open-source website builder GrapesJS.",
+	"ID": "00000000-0000-0000-0000-000000000009",
+	"Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
+	"Image": "https://www.fathym.com/img/nocode.png",
+	"Lookup": "website-no-code",
+	"Name": "Create a Website with No Code",
+	"PreviewImage": "https://www.fathym.com/plasmic/new_fathym_com/images/homeNoCodepng3.png",
+	"RecipeType": "MFE",
+	"SourceCode": null,
+	"Sources": {},
+	"SuccessType": "Application",
+	"Tier": "3",
+	"VideoURL": null
+}, {
+	"Button": "Launch Fathym Arcade",
+	"Applications": {
+		"GitHub": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "The landing page for the arcade",
+					"Name": "Home Page",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": "GitHub",
+					"Type": null,
+					"Build": "latest"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": {
+				"Name": null,
+				"Output": "./public",
+				"Type": null,
+				"BuildCommand": "npm run build",
+				"InstallCommand": "npm ci",
+				"NPMRegistry": null,
+				"Lookup": "arcade",
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		}],
+		"NPM": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "Pacman game with Thinky ghosts.",
+					"Name": "Pacman-canvas",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/pacman-canvas.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-arcade/pacman-canvas",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/pacman-canvas/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}, {
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "Fly a bird while dodging poles.",
+					"Name": "Clumsy Bird",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/clumsy-bird.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-arcade/clumsy-bird",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/clumsy-bird/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}, {
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "Inspired by Tetris. How far can you go?",
+					"Name": "Hextris",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/hextris.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-arcade/hextris",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/hextris/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}, {
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "Don't be led astray by this fun-styled maze game.",
+					"Name": "Astray",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/astray.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-arcade/astray",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/astray/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}, {
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A simple, fast numbers game. Can you get it to read 2048?",
+					"Name": "2048",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/2048.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-arcade/twenty48",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/2048/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}]
+	},
+	"Description": "A carousel that displays open-source online games built with different frameworks and deployed together on one domain.",
+	"ID": "00000000-0000-0000-0000-000000000010",
+	"Ingredients": "Arcade latest, cup of coffee (or a beer), let cook for 2 minutes",
+	"Image": "https://www.fathym.com/img/arcade.png",
+	"Lookup": "arcade",
+	"Name": "Fathym Arcade",
+	"PreviewImage": "https://www.fathym.com/assets/images/fathym-arcade.png",
+	"RecipeType": "MFE",
+	"SourceCode": "https://github.com/fathym-it/arcade-recipe",
+	"Sources": {
+		"GitHub": {
+			"DevOpsActionTriggerLookups": null,
+			"Name": null,
+			"Type": null,
+			"Branches": ["main"],
+			"MainBranch": "main",
+			"Organization": "fathym-it",
+			"Repository": "arcade-recipe",
+			"Lookup": null,
+			"Username": null,
+			"Archived": false,
+			"Created": "0001-01-01T00:00:00",
+			"ID": "00000000-0000-0000-0000-000000000000",
+			"Label": null,
+			"Registry": null,
+			"TenantLookup": null,
+			"Updated": "0001-01-01T00:00:00"
+		}
+	},
+	"SuccessType": "Project",
+	"Tier": "3",
+	"VideoURL": ""
+}, {
+	"Button": null,
+	"Applications": {
+		"NPM": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites and documentation built with Docusaurus.",
+					"Name": "Docusaurus - Documentation - Open Source",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-it/public-web-docusaurus",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}],
+		"GitHub": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites and documentation built with Docusaurus.",
+					"Name": "Docusaurus - Documentation - Forked Recipe",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": "GitHub",
+					"Type": null,
+					"Build": "latest"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": {
+				"Name": null,
+				"Output": "./build",
+				"Type": null,
+				"BuildCommand": "npm run build",
+				"InstallCommand": "npm ci",
+				"NPMRegistry": null,
+				"Lookup": "react",
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		}]
+	},
+	"Description": "A customizable starter for writing docs and blogs with Markdown/MDX.",
+	"ID": "00000000-0000-0000-0000-000000000005",
+	"Ingredients": "Docusaurus latest, cup of coffee (or a beer), let cook for 2 minutes",
+	"Image": "https://www.fathym.com/img/docusaurus.png",
+	"Lookup": "docusaurus",
+	"Name": "Docusaurus - Documentation",
+	"PreviewImage": "https://docusaurus.io/img/docusaurus.svg",
+	"RecipeType": "LaunchVsFork",
+	"SourceCode": "https://github.com/fathym-it/public-web-docusaurus",
+	"Sources": {
+		"GitHub": {
+			"DevOpsActionTriggerLookups": null,
+			"Name": null,
+			"Type": null,
+			"Branches": ["main"],
+			"MainBranch": "main",
+			"Organization": "fathym-it",
+			"Repository": "public-web-docusaurus",
+			"Lookup": null,
+			"Username": null,
+			"Archived": false,
+			"Created": "0001-01-01T00:00:00",
+			"ID": "00000000-0000-0000-0000-000000000000",
+			"Label": null,
+			"Registry": null,
+			"TenantLookup": null,
+			"Updated": "0001-01-01T00:00:00"
+		}
+	},
+	"SuccessType": null,
+	"Tier": "3",
+	"VideoURL": "https://www.youtube.com/embed/bmFvFF9A348"
+}, {
+	"Button": null,
+	"Applications": {
+		"NPM": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites built with Gatsby.",
+					"Name": "Gatsby - Headless Websites - Open Source",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-it/public-web-gatsby",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}],
+		"GitHub": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites built with Gatsby.",
+					"Name": "Gatsby - Headless Websites - Forked Recipe",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": "GitHub",
+					"Type": null,
+					"Build": "latest"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": {
+				"Name": null,
+				"Output": "./public",
+				"Type": null,
+				"BuildCommand": "npm run build",
+				"InstallCommand": "npm ci",
+				"NPMRegistry": null,
+				"Lookup": "react-gatsby",
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		}]
+	},
+	"Description": "A customizable starter to quickly deploy a Gatsby app to Fathym.",
+	"ID": "00000000-0000-0000-0000-000000000006",
+	"Ingredients": "Gatsby latest, cup of coffee (or a beer), let cook for 2 minutes",
+	"Image": "https://www.fathym.com/img/gatsby.png",
+	"Lookup": "gatsby",
+	"Name": "Gatsby - Headless Websites",
+	"PreviewImage": "https://pbs.twimg.com/profile_images/1135999619781939201/HZ-pCQcP_400x400.png",
+	"RecipeType": "LaunchVsFork",
+	"SourceCode": "https://github.com/fathym-it/public-web-gatsby",
+	"Sources": {
+		"GitHub": {
+			"DevOpsActionTriggerLookups": null,
+			"Name": null,
+			"Type": null,
+			"Branches": ["main"],
+			"MainBranch": "main",
+			"Organization": "fathym-it",
+			"Repository": "public-web-gatsby",
+			"Lookup": null,
+			"Username": null,
+			"Archived": false,
+			"Created": "0001-01-01T00:00:00",
+			"ID": "00000000-0000-0000-0000-000000000000",
+			"Label": null,
+			"Registry": null,
+			"TenantLookup": null,
+			"Updated": "0001-01-01T00:00:00"
+		}
+	},
+	"SuccessType": null,
+	"Tier": "3",
+	"VideoURL": "https://www.youtube.com/embed/pfgJFR12jKs"
+}, {
+	"Button": null,
+	"Applications": {
+		"NPM": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for blogs built with Gatsby.",
+					"Name": "Blog Starter with Gatsby - Open Source",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-it/gatsby-starter-blog",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}],
+		"GitHub": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for blogs built with Gatsby.",
+					"Name": "Blog Starter with Gatsby - Forked Recipe",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": "GitHub",
+					"Type": null,
+					"Build": "latest"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": {
+				"Name": null,
+				"Output": "./public",
+				"Type": null,
+				"BuildCommand": "npm run build",
+				"InstallCommand": "npm i",
+				"NPMRegistry": null,
+				"Lookup": "react-gatsby",
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		}]
+	},
+	"Description": "A customizable starter template for you to create a blog.",
+	"ID": "00000000-0000-0000-0000-000000000007",
+	"Ingredients": "Gatsby latest, cup of coffee (or a beer), let cook for 2 minutes",
+	"Image": "https://www.fathym.com/img/starterblog.png",
+	"Lookup": "gatsby-starter-blog",
+	"Name": "Blog Starter with Gatsby",
+	"PreviewImage": "https://www.fathym.com/assets/images/gatsby-starter-blog.png",
+	"RecipeType": "LaunchVsFork",
+	"SourceCode": "https://github.com/fathym-it/gatsby-starter-blog",
+	"Sources": {
+		"GitHub": {
+			"DevOpsActionTriggerLookups": null,
+			"Name": null,
+			"Type": null,
+			"Branches": ["master"],
+			"MainBranch": "master",
+			"Organization": "fathym-it",
+			"Repository": "gatsby-starter-blog",
+			"Lookup": null,
+			"Username": null,
+			"Archived": false,
+			"Created": "0001-01-01T00:00:00",
+			"ID": "00000000-0000-0000-0000-000000000000",
+			"Label": null,
+			"Registry": null,
+			"TenantLookup": null,
+			"Updated": "0001-01-01T00:00:00"
+		}
+	},
+	"SuccessType": null,
+	"Tier": "3",
+	"VideoURL": null
+}, {
+	"Button": null,
+	"Applications": {
+		"NPM": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites built with Angular.",
+					"Name": "Angular Quickstart Project - Open Source",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-it/public-web-angular",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}],
+		"GitHub": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites built with Angular.",
+					"Name": "Angular Quickstart Project - Forked Recipe",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": "GitHub",
+					"Type": null,
+					"Build": "latest"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": {
+				"Name": null,
+				"Output": "./dist/angular-typescript-app",
+				"Type": null,
+				"BuildCommand": "npm run build",
+				"InstallCommand": "npm ci",
+				"NPMRegistry": null,
+				"Lookup": "angular",
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		}]
+	},
+	"Description": "A basic template to quickly deploy an Angular app to Fathym.",
+	"ID": "00000000-0000-0000-0000-000000000001",
+	"Ingredients": "Angular latest, cup of coffee (or a beer), let cook for 2 minutes",
+	"Image": "https://www.fathym.com/img/angular.png",
+	"Lookup": "angular",
+	"Name": "Angular Quickstart Project",
+	"PreviewImage": "https://angular.io/assets/images/logos/angular/angular.svg",
+	"RecipeType": "LaunchVsFork",
+	"SourceCode": "https://github.com/fathym-it/public-web-angular",
+	"Sources": {
+		"GitHub": {
+			"DevOpsActionTriggerLookups": null,
+			"Name": null,
+			"Type": null,
+			"Branches": ["main"],
+			"MainBranch": "main",
+			"Organization": "fathym-it",
+			"Repository": "public-web-angular",
+			"Lookup": null,
+			"Username": null,
+			"Archived": false,
+			"Created": "0001-01-01T00:00:00",
+			"ID": "00000000-0000-0000-0000-000000000000",
+			"Label": null,
+			"Registry": null,
+			"TenantLookup": null,
+			"Updated": "0001-01-01T00:00:00"
+		}
+	},
+	"SuccessType": null,
+	"Tier": "3",
+	"VideoURL": "https://www.youtube.com/embed/FEWQr9RQ1Us"
+}, {
+	"Button": null,
+	"Applications": {
+		"NPM": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites built with React.",
+					"Name": "React Quickstart Project - Open Source",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-it/public-web-react",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}],
+		"GitHub": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites built with React.",
+					"Name": "React Quickstart Project - Forked Recipe",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": "GitHub",
+					"Type": null,
+					"Build": "latest"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": {
+				"Name": null,
+				"Output": "./build",
+				"Type": null,
+				"BuildCommand": "npm run build",
+				"InstallCommand": "npm ci",
+				"NPMRegistry": null,
+				"Lookup": "react",
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		}]
+	},
+	"Description": "A basic template to quickly deploy a React app to Fathym.",
+	"ID": "00000000-0000-0000-0000-000000000002",
+	"Ingredients": null,
+	"Image": "https://www.fathym.com/img/react.png",
+	"Lookup": "react",
+	"Name": "React Quickstart Project",
+	"PreviewImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
+	"RecipeType": "LaunchVsFork",
+	"SourceCode": "https://github.com/fathym-it/public-web-react",
+	"Sources": {
+		"GitHub": {
+			"DevOpsActionTriggerLookups": null,
+			"Name": null,
+			"Type": null,
+			"Branches": ["main"],
+			"MainBranch": "main",
+			"Organization": "fathym-it",
+			"Repository": "public-web-react",
+			"Lookup": null,
+			"Username": null,
+			"Archived": false,
+			"Created": "0001-01-01T00:00:00",
+			"ID": "00000000-0000-0000-0000-000000000000",
+			"Label": null,
+			"Registry": null,
+			"TenantLookup": null,
+			"Updated": "0001-01-01T00:00:00"
+		}
+	},
+	"SuccessType": null,
+	"Tier": "3",
+	"VideoURL": "https://www.youtube.com/embed/afqLbfqUF5Q"
+}, {
+	"Button": null,
+	"Applications": {
+		"NPM": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites built with Vue.",
+					"Name": "Vue Quickstart Project - Open Source",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-it/public-web-vue",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}],
+		"GitHub": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites built with Vue.",
+					"Name": "Vue Quickstart Project - Forked Recipe",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": "GitHub",
+					"Type": null,
+					"Build": "latest"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": {
+				"Name": null,
+				"Output": "./dist",
+				"Type": null,
+				"BuildCommand": "npm run build",
+				"InstallCommand": "npm ci",
+				"NPMRegistry": null,
+				"Lookup": "vue",
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		}]
+	},
+	"Description": "A basic template to quickly deploy a Vue app to Fathym. ",
+	"ID": "00000000-0000-0000-0000-000000000003",
+	"Ingredients": "Vue latest, cup of coffee (or a beer), let cook for 2 minutes",
+	"Image": "https://www.fathym.com/img/vue.png",
+	"Lookup": "vue",
+	"Name": "Vue Quickstart Project",
+	"PreviewImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png",
+	"RecipeType": "LaunchVsFork",
+	"SourceCode": "https://github.com/fathym-it/public-web-vue",
+	"Sources": {
+		"GitHub": {
+			"DevOpsActionTriggerLookups": null,
+			"Name": null,
+			"Type": null,
+			"Branches": ["main"],
+			"MainBranch": "main",
+			"Organization": "fathym-it",
+			"Repository": "public-web-vue",
+			"Lookup": null,
+			"Username": null,
+			"Archived": false,
+			"Created": "0001-01-01T00:00:00",
+			"ID": "00000000-0000-0000-0000-000000000000",
+			"Label": null,
+			"Registry": null,
+			"TenantLookup": null,
+			"Updated": "0001-01-01T00:00:00"
+		}
+	},
+	"SuccessType": null,
+	"Tier": "2",
+	"VideoURL": "https://www.youtube.com/embed/CoF3JKY8638"
+}, {
+	"Button": null,
+	"Applications": {
+		"NPM": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites built with Svelte.",
+					"Name": "Svelte Quickstart Project - Open Source",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": null,
+					"Type": null,
+					"CurrentVersion": null,
+					"Package": "@fathym-it/public-web-svelte",
+					"Version": "latest",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": null
+		}],
+		"GitHub": [{
+			"Application": {
+				"AccessRightLookups": null,
+				"Application": {
+					"Description": "A basic starting point for sites built with Svelte.",
+					"Name": "Svelte Quickstart Project - Forked Recipe",
+					"Priority": 0,
+					"PriorityShift": 0
+				},
+				"DataTokens": null,
+				"LicenseConfigurationLookups": null,
+				"LookupConfig": {
+					"AccessRightsAllAny": "Any",
+					"AllowedMethods": null,
+					"HeaderRegex": null,
+					"IsPrivate": false,
+					"IsTriggerSignIn": false,
+					"LicensesAllAny": "All",
+					"PathRegex": "/.*",
+					"QueryRegex": null,
+					"TerminateRequest": false,
+					"UserAgentRegex": null
+				},
+				"LowCodeUnit": {
+					"SourceControlLookup": "GitHub",
+					"Type": null,
+					"Build": "latest"
+				},
+				"ModifierLookups": null,
+				"Processor": {
+					"CacheControl": null,
+					"ModifierLookups": null,
+					"Priority": 0,
+					"Type": null,
+					"BaseHref": "/",
+					"DefaultFile": "index.html",
+					"Archived": false,
+					"Created": "0001-01-01T00:00:00",
+					"ID": "00000000-0000-0000-0000-000000000000",
+					"Label": null,
+					"Registry": null,
+					"TenantLookup": null,
+					"Updated": "0001-01-01T00:00:00"
+				}
+			},
+			"DevOpsArtifact": {
+				"Name": null,
+				"Output": "./public",
+				"Type": null,
+				"BuildCommand": "npm run build",
+				"InstallCommand": "npm ci",
+				"NPMRegistry": null,
+				"Lookup": "svelte",
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		}]
+	},
+	"Description": "A basic template to quickly deploy a Svelte app to Fathym.",
+	"ID": "00000000-0000-0000-0000-000000000004",
+	"Ingredients": "Svelte latest, cup of coffee (or a beer), let cook for 2 minutes",
+	"Image": "https://www.fathym.com/img/svelte.png",
+	"Lookup": "svelte",
+	"Name": "Svelte Quickstart Project",
+	"PreviewImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/1200px-Svelte_Logo.svg.png",
+	"RecipeType": "LaunchVsFork",
+	"SourceCode": "https://github.com/fathym-it/public-web-svelte",
+	"Sources": {
+		"GitHub": {
+			"DevOpsActionTriggerLookups": null,
+			"Name": null,
+			"Type": null,
+			"Branches": ["main"],
+			"MainBranch": "main",
+			"Organization": "fathym-it",
+			"Repository": "public-web-svelte",
+			"Lookup": null,
+			"Username": null,
+			"Archived": false,
+			"Created": "0001-01-01T00:00:00",
+			"ID": "00000000-0000-0000-0000-000000000000",
+			"Label": null,
+			"Registry": null,
+			"TenantLookup": null,
+			"Updated": "0001-01-01T00:00:00"
+		}
+	},
+	"SuccessType": null,
+	"Tier": "2",
+	"VideoURL": "https://www.youtube.com/embed/gOo_lTcJo7Y"
+}]
