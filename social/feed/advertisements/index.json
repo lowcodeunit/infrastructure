@@ -1,10 +1,10 @@
 [{
 	"ConditionType": "Chain",
 	"Conditions": [{
-		"Rule": "GitHubConnected"
+		"Rule": "GitHubNotConnected"
 	},
 	{
-		"Rule": "SourcesConnected"
+		"Rule": "SourcesNotConnected"
 	}],
 	"Advertisements": [
 		{
@@ -37,7 +37,7 @@
 {
 	"ConditionType": "Chain",
 	"Conditions": [{
-		"Rule": "ProjectsConnected"
+		"Rule": "ProjectsNotConnected"
 	}
 	],
 	"Advertisements": [{

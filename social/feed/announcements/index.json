@@ -1,0 +1,101 @@
+[{
+	"ConditionType": "Chain",
+	"Conditions": [{
+			"Rule": "ProjectsNotConnected"
+		}
+	],
+	"Announcements": [{
+		"Actions": [{
+			"Action": "/dashboard/create-project",
+			"ActionType": "Link",
+			"Color": "primary",
+			"Icon": "add",
+			"Text": "Create Project"
+		}],
+		"Avatar": "./assets/images/thinky.png",
+		"Badge": null,
+		"Contributors": null,
+		"Group": null,
+		"ID": "deploy-your-first-project",
+		"IsPinned": false,
+		"IsShortForm": false,
+		"RefreshLink": null,
+		"Status": null,
+		"Subtext": null,
+		"Subtitle": "Leverage Fathym to deploy your frontend code and deliver your sites with ease.",
+		"Tabs": [{
+			"Data": {
+				"Video": "<iframe width=\"400\" height=\"225\" src=\"https://www.youtube.com/embed/Lt_U1q9_e1s\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+			},
+			"Title": "Get Started"
+		}],
+		"Timestamp": null,
+		"Title": "Your Code. Low Code. No Code.  Deploy your first project now!",
+		"Type": "announcement"
+	}]
+	
+},
+{
+	"ConditionType": "Chain",
+	"Conditions": [{
+		"Rule": "GitHubNotConnected"
+	},
+	{
+		"Rule": "SourcesNotConnected"
+	}],    
+		"Actions": [{
+			"Action": "/.oauth/GitHubOAuth?redirectUri=%2Fdashboard",
+			"ActionType": "Link",
+			"Color": "primary",
+			"Icon": "add",
+			"Text": "Connect with GitHub"
+		}],
+		"Avatar": "./assets/images/thinky.png",
+		"Badge": null,
+		"Contributors": null,
+		"Group": null,
+		"ID": "connect-to-github",
+		"IsPinned": false,
+		"IsShortForm": false,
+		"RefreshLink": null,
+		"Status": null,
+		"Subtext": null,
+		"Subtitle": "Git the most out of your Fathym experience, with code deploys and team coordination.",
+		"Tabs": [{
+			"Data": {
+				"Video": "<iframe width=\"400\" height=\"225\" src=\"https://www.youtube.com/embed/-2B1Rj4dWVI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+			},
+			"Title": "Get Started"
+		}],
+		"Timestamp": null,
+		"Title": "We don't have connection with your GitHub!",
+		"Type": "announcement"
+	}, {
+		"Actions": [{
+			"Action": "AddSourceControl",
+			"ActionType": "Modal",
+			"Color": "primary",
+			"Icon": "add",
+			"Text": "Connect Source Control"
+		}],
+		"Avatar": "./assets/images/thinky.png",
+		"Badge": null,
+		"Contributors": null,
+		"Group": null,
+		"ID": "connect-first-github-repository",
+		"IsPinned": false,
+		"IsShortForm": false,
+		"RefreshLink": null,
+		"Status": null,
+		"Subtext": null,
+		"Subtitle": "Connect your first GitHub repository to improve the way your team works together.",
+		"Tabs": [{
+			"Data": {
+				"Video": "<iframe width=\"400\" height=\"225\" src=\"https://www.youtube.com/embed/xIT3xJrvjRI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+			},
+			"Title": "Get Started"
+		}],
+		"Timestamp": null,
+		"Title": "Improve team collaboration with familiar views, new tools and streamlined data.",
+		"Type": "announcement"
+}]
