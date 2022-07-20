@@ -11,7 +11,7 @@
 			"Actions": [{
 				"Action": "/.oauth/GitHubOAuth?redirectUri=%2Fdashboard",
 				"ActionType": "Link",
-				"Color": "accent",
+				"Color": "primary",
 				"Icon": "add",
 				"Text": "Connect with GitHub"
 			}],
@@ -44,7 +44,7 @@
 		"Actions": [{
 			"Action": "/dashboard/create-project",
 			"ActionType": "Link",
-			"Color": "primary",
+			"Color": "",
 			"Icon": "add",
 			"Text": "Create Project"
 		}],
