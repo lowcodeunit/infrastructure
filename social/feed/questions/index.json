@@ -2,7 +2,7 @@
 	"Actions": [{
 		"Action": "/dashboard/create-project",
 		"ActionType": "Link",
-		"Color": "primary",
+		"Color": "",
 		"Icon": "add",
 		"Text": "Yes"
 	}, {
@@ -19,7 +19,7 @@
 	"Actions": [{
 		"Action": "/.oauth/GitHubOAuth?redirectUri=%2Fsocial-dashboard",
 		"ActionType": "Link",
-		"Color": "accent",
+		"Color": "primary",
 		"Icon": "add",
 		"Text": "Connect with GitHub"
 	}, {
