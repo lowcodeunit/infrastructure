@@ -1,0 +1,67 @@
+[{
+	"ConditionType": "None",
+	"Questions": [{
+		"Actions": [{
+			"Action": "/dashboard/create-project",
+			"ActionType": "Link",
+			"Color": "primary",
+			"Icon": "add",
+			"Text": "Yes"
+		}, {
+			"Action": "Question",
+			"ActionType": "Next",
+			"Color": "",
+			"Icon": null,
+			"Text": "No"
+		}],
+		"Description": "Fathym offers a number of ways to get started deploying your website, from no code to your code, and pre-built open source solutions.",
+		"Image": "https://www.fathym.com/img/questions/deploy-website-card-image.png",
+		"Title": "Are you here to create or deploy a website?"
+	}]
+},
+{
+	"ConditionType": "Chain",
+	"Conditions": [{
+		"Rule": "GitHubNotConnected"
+	}],
+	"Questions": [{
+		"Actions": [{
+			"Action": "/.oauth/GitHubOAuth?redirectUri=%2Fdashboard",
+			"ActionType": "Link",
+			"Color": "primary",
+			"Icon": "add",
+			"Text": "Yes, let's connect to Github"
+		}, {
+			"Action": "Question",
+			"ActionType": "Next",
+			"Color": "",
+			"Icon": null,
+			"Text": "No, not now"
+		}],
+		"Description": "Connecting to Github allows you easy, quick access to your projects, files and history.",
+		"Image": "https://www.fathym.com/img/questions/githublogo.png",
+		"Title": "Would you like to connect to your Github?"
+	}]
+},
+{
+	"ConditionType": "None",
+	"Questions": [{
+		"Actions": [{
+			"Action": "/dashboard/create-project",
+			"ActionType": "Link",
+			"Color": "primary",
+			"Icon": "add",
+			"Text": "Yes, let's Import a Project"
+		}, {
+			"Action": "Question",
+			"ActionType": "Next",
+			"Color": "",
+			"Icon": null,
+			"Text": "No, not now"
+		}],
+		"Description": "Importing an existing project is one of the easiest and fastest ways to get it published.",
+		"Image": "https://www.fathym.com/img/questions/importproject.jpeg",
+		"Title": "Would you like to Import an Existing Project?"
+	}]
+}
+]

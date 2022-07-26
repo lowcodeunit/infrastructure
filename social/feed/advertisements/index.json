@@ -1,0 +1,56 @@
+[{
+	"ConditionType": "Chain",
+	"Conditions": [{
+		"Rule": "GitHubNotConnected"
+	},
+	{
+		"Rule": "SourcesNotConnected"
+	}],
+	"Advertisements": [
+		{
+			"Actions": [{
+				"Action": "/.oauth/GitHubOAuth?redirectUri=%2Fdashboard",
+				"ActionType": "Link",
+				"Color": "primary",
+				"Icon": "add",
+				"Text": "Connect with GitHub"
+			}],
+			"Description": "Visibility across repositories, automated DevOps CI/CD processes, and unified management.",
+			"Image": "https://www.fathym.com/dashboard/assets/images/thinky.png",
+			"Lead": "Get the most out of GitHub for your team",
+			"Position": 0
+		}, {
+			"Actions": [{
+				"Action": "Source",
+				"ActionType": "Modal",
+				"Color": "",
+				"Icon": "add",
+				"Text": "Connect Source"
+			}],
+			"Description": "Easily see development activity, deploy applications to users, and more.",
+			"Image": "https://www.fathym.com/dashboard/assets/images/thinky.png",
+			"Lead": "Connect your GitHub sources for more value",
+			"Position": 0
+		}
+	]
+},
+{
+	"ConditionType": "Chain",
+	"Conditions": [{
+		"Rule": "ProjectsNotConnected"
+	}
+	],
+	"Advertisements": [{
+		"Actions": [{
+			"Action": "/dashboard/create-project",
+			"ActionType": "Link",
+			"Color": "",
+			"Icon": "add",
+			"Text": "Create Project"
+		}],
+		"Description": "Organize your feed, create applications, deploy your solutions.",
+		"Image": "https://www.fathym.com/dashboard/assets/images/thinky.png",
+		"Lead": "Take advantage of projects and applications",
+		"Position": 0
+	}]
+}]
