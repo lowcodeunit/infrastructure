@@ -5,7 +5,7 @@
 			"Action": "/dashboard/create-project",
 			"ActionType": "Link",
 			"Color": "primary",
-			"Icon": "add",
+			"Icon": null,
 			"Text": "Yes"
 		}, {
 			"Action": "Question",
@@ -29,8 +29,8 @@
 			"Action": "/.oauth/GitHubOAuth?redirectUri=%2Fdashboard",
 			"ActionType": "Link",
 			"Color": "primary",
-			"Icon": "add",
-			"Text": "Yes, let's connect to Github"
+			"Icon": null,
+			"Text": "Yes, let's connect"
 		}, {
 			"Action": "Question",
 			"ActionType": "Next",
@@ -50,8 +50,8 @@
 			"Action": "/dashboard/create-project",
 			"ActionType": "Link",
 			"Color": "primary",
-			"Icon": "add",
-			"Text": "Yes, let's Import a Project"
+			"Icon": null,
+			"Text": "Yes, let's import"
 		}, {
 			"Action": "Question",
 			"ActionType": "Next",
