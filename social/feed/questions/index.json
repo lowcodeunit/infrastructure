@@ -6,7 +6,7 @@
 			"ActionType": "Link",
 			"Color": "primary",
 			"Icon": null,
-			"Text": "Yes"
+			"Text": "Yes, let's Deploy my Site"
 		}, {
 			"Action": "Question",
 			"ActionType": "Next",
@@ -16,7 +16,7 @@
 		}],
 		"Description": "Fathym offers a number of ways to get started deploying your website, from no code to your code, and pre-built open source solutions.",
 		"Image": "https://www.fathym.com/img/questions/deploy-website-card-image.png",
-		"Title": "Are you here to create or deploy a website?"
+		"Title": "Would you like to create or deploy a website?"
 	}]
 },
 {
@@ -30,7 +30,7 @@
 			"ActionType": "Link",
 			"Color": "primary",
 			"Icon": null,
-			"Text": "Yes, let's connect"
+			"Text": "Yes, let's Connect"
 		}, {
 			"Action": "Question",
 			"ActionType": "Next",
@@ -51,7 +51,7 @@
 			"ActionType": "Link",
 			"Color": "primary",
 			"Icon": null,
-			"Text": "Yes, let's import"
+			"Text": "Yes, let's Import"
 		}, {
 			"Action": "Question",
 			"ActionType": "Next",
@@ -62,6 +62,48 @@
 		"Description": "Importing an existing project is one of the easiest and fastest ways to get it published.",
 		"Image": "https://www.fathym.com/img/questions/importproject.jpeg",
 		"Title": "Would you like to Import an Existing Project?"
+	}]
+},
+{
+	"ConditionType": "None",
+	"Questions": [{
+		"Actions": [{
+			"Action": "/dashboard/create-project",
+			"ActionType": "Link",
+			"Color": "primary",
+			"Icon": null,
+			"Text": "Yes, use a Template"
+		}, {
+			"Action": "Question",
+			"ActionType": "Next",
+			"Color": "",
+			"Icon": null,
+			"Text": "No, not now"
+		}],
+		"Description": "Templates are a simple, efficient way to create a project and will give you immediate results.",
+		"Image": "https://www.fathym.com/img/questions/createaproject.png",
+		"Title": "Would you like to use a template to create your project?"
+	}]
+},
+{
+	"ConditionType": "None",
+	"Questions": [{
+		"Actions": [{
+			"Action": "/dashboard/create-project",
+			"ActionType": "Link",
+			"Color": "primary",
+			"Icon": null,
+			"Text": "Yes, let's use Custom Domain"
+		}, {
+			"Action": "Question",
+			"ActionType": "Next",
+			"Color": "",
+			"Icon": null,
+			"Text": "No, not now"
+		}],
+		"Description": "A Custom Domain builds trust with your audience, strengthens your brand, and drives traffic to your site.",
+		"Image": "https://www.fathym.com/img/questions/customdomain.png",
+		"Title": "Would you like to use a custom domain?"
 	}]
 }
 ]
