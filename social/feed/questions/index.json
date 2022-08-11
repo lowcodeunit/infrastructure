@@ -84,26 +84,5 @@
 		"Image": "https://www.fathym.com/img/questions/createaproject.png",
 		"Title": "Would you like to use a template to create your project?"
 	}]
-},
-{
-	"ConditionType": "None",
-	"Questions": [{
-		"Actions": [{
-			"Action": "/dashboard/create-project",
-			"ActionType": "Link",
-			"Color": "primary",
-			"Icon": null,
-			"Text": "Yes, let's use Custom Domain"
-		}, {
-			"Action": "Question",
-			"ActionType": "Next",
-			"Color": "",
-			"Icon": null,
-			"Text": "No, not now"
-		}],
-		"Description": "A Custom Domain builds trust with your audience, strengthens your brand, and drives traffic to your site.",
-		"Image": "https://www.fathym.com/img/questions/customdomain.png",
-		"Title": "Would you like to use a custom domain?"
-	}]
 }
 ]
