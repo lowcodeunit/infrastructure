@@ -7,7 +7,7 @@
         "Actions": [{
             "Action": "/dashboard/create-project",
             "ActionType": "Link",
-            "Color": "",
+            "Color": "primary",
             "Icon": "add",
             "Text": "Create Project"
         }],
