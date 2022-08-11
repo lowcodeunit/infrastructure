@@ -6,7 +6,7 @@
 			"ActionType": "Link",
 			"Color": "primary",
 			"Icon": null,
-			"Text": "Yes, let's Deploy my Site"
+			"Text": "Yes"
 		}, {
 			"Action": "Question",
 			"ActionType": "Next",
@@ -30,7 +30,7 @@
 			"ActionType": "Link",
 			"Color": "primary",
 			"Icon": null,
-			"Text": "Yes, let's Connect"
+			"Text": "Yes"
 		}, {
 			"Action": "Question",
 			"ActionType": "Next",
@@ -51,7 +51,7 @@
 			"ActionType": "Link",
 			"Color": "primary",
 			"Icon": null,
-			"Text": "Yes, let's Import"
+			"Text": "Yes"
 		}, {
 			"Action": "Question",
 			"ActionType": "Next",
@@ -72,7 +72,7 @@
 			"ActionType": "Link",
 			"Color": "primary",
 			"Icon": null,
-			"Text": "Yes, use a Template"
+			"Text": "Yes"
 		}, {
 			"Action": "Question",
 			"ActionType": "Next",
