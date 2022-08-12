@@ -7,7 +7,7 @@
         "Actions": [{
             "Action": "/dashboard/create-project",
             "ActionType": "Link",
-            "Color": "",
+            "Color": "primary",
             "Icon": "add",
             "Text": "Create Project"
         }],
@@ -102,5 +102,38 @@
             "Type": "announcement"
         }
     ]
+},
+{
+    "ConditionType": "None",
+    "Announcements": [{
+        "Actions": [{
+            "Action": "/dashboard/projects",
+            "ActionType": "Link",
+            "Color": "primary",
+            "Icon": "add",
+            "Text": "Use Routes to organize pages of your project."
+        }],
+        "Avatar": "./assets/images/thinky.png",
+        "Badge": null,
+        "Contributors": null,
+        "Group": null,
+        "ID": "modularize-your-monolith",
+        "IsPinned": false,
+        "IsShortForm": false,
+        "RefreshLink": null,
+        "Status": null,
+        "Subtext": null,
+        "Subtitle": "Leverage Fathym to break out one or more apps or pages from your monolith site.",
+        "Tabs": [{
+            "Data": {
+                "Video": "<iframe width=\"400\" height=\"225\" src=\"https://www.youtube.com/embed/xqifvcZTXec\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+            },
+            "Title": "Get Started"
+        }],
+        "Timestamp": null,
+        "Title": "Modularize your Frontend Monolith.",
+        "Type": "announcement"
+    }]
+
 }
 ]
