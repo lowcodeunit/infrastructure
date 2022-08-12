@@ -109,7 +109,7 @@
         "Actions": [{
             "Action": "/dashboard/projects",
             "ActionType": "Link",
-            "Color": "",
+            "Color": "primary",
             "Icon": "add",
             "Text": "Use Routes to organize pages of your project."
         }],
