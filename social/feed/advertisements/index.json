@@ -1,13 +1,13 @@
 [{
-	"ConditionType": "Chain",
-	"Conditions": [{
-		"Rule": "GitHubNotConnected"
-	},
-	{
-		"Rule": "SourcesNotConnected"
-	}],
-	"Advertisements": [
-		{
+		"ConditionType": "Chain",
+		"Conditions": [{
+				"Rule": "GitHubNotConnected"
+			},
+			{
+				"Rule": "SourcesNotConnected"
+			}
+		],
+		"Advertisements": [{
 			"Actions": [{
 				"Action": "/.oauth/GitHubOAuth?redirectUri=%2Fdashboard",
 				"ActionType": "Link",
@@ -16,7 +16,7 @@
 				"Text": "Connect with GitHub"
 			}],
 			"Description": "Visibility across repositories, automated DevOps CI/CD processes, and unified management.",
-			"Image": "https://www.fathym.com/dashboard/assets/images/thinky.png",
+			"Image": "https://www.fathym.com/img/questions/githublogo.png",
 			"Lead": "Get the most out of GitHub for your team",
 			"Position": 0
 		}, {
@@ -28,29 +28,44 @@
 				"Text": "Connect Source"
 			}],
 			"Description": "Easily see development activity, deploy applications to users, and more.",
-			"Image": "https://www.fathym.com/dashboard/assets/images/thinky.png",
+			"Image": "https://fathym.com/img/questions/colorwheel.png",
 			"Lead": "Connect your GitHub sources for more value",
 			"Position": 0
-		}
-	]
-},
-{
-	"ConditionType": "Chain",
-	"Conditions": [{
-		"Rule": "ProjectsNotConnected"
-	}
-	],
-	"Advertisements": [{
-		"Actions": [{
-			"Action": "/dashboard/create-project",
-			"ActionType": "Link",
-			"Color": "",
-			"Icon": "add",
-			"Text": "Create Project"
+		}]
+	},
+	{
+		"ConditionType": "Chain",
+		"Conditions": [{
+			"Rule": "ProjectsNotConnected"
 		}],
-		"Description": "Organize your feed, create applications, deploy your solutions.",
-		"Image": "https://www.fathym.com/dashboard/assets/images/thinky.png",
-		"Lead": "Take advantage of projects and applications",
-		"Position": 0
-	}]
-}]
+		"Advertisements": [{
+			"Actions": [{
+				"Action": "/dashboard/create-project",
+				"ActionType": "Link",
+				"Color": "",
+				"Icon": "add",
+				"Text": "Create Project"
+			}],
+			"Description": "Organize your feed, create applications, deploy your solutions.",
+			"Image": "https://fathym.com/img/questions/sunshine.png",
+			"Lead": "Take advantage of projects and applications",
+			"Position": 0
+		}]
+	},
+	{
+		"ConditionType": "None",
+		"Advertisements": [{
+			"Actions": [{
+				"Action": "/dashboard/create-project",
+				"ActionType": "Link",
+				"Color": "",
+				"Icon": "add",
+				"Text": "Create Project"
+			}],
+			"Description": "Build trust with your audience and drive traffic to your site.",
+			"Image": "https://fathym.com/img/questions/domainwall.png",
+			"Lead": "Strengthen your brand with a custom domain",
+			"Position": 0
+		}]
+	}
+]
