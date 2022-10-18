@@ -776,313 +776,6 @@
     "VideoURL": ""
   },
   {
-    "Name": "Smart Building Demo Starter",
-    "Description": "A starter for custom smart buildings apps that utilizes IoT and Weather data.",
-    "Applications": {
-      "NPM": [
-        {
-          "Application": {
-            "AccessRightLookups": null,
-            "Application": {
-              "Description": "A starter for custom smart buildings apps that utilizes IoT and Weather data.",
-              "Name": "Smart Building Demo Starter - Open Source"
-            },
-            "LookupConfig": {
-              "PathRegex": "/demos/smart-building.*"
-            },
-            "LowCodeUnit": {
-              "Package": "@fathym-it/smart-building-demo",
-              "Version": "latest"
-            },
-            "ModifierLookups": null,
-            "Processor": {
-              "BaseHref": "/demos/smart-building/",
-              "DefaultFile": "index.html"
-            }
-          }
-        }
-      ],
-      "GitHub": [
-        {
-          "Application": {
-            "AccessRightLookups": null,
-            "Application": {
-              "Description": "A starter for custom smart buildings apps that utilizes IoT and Weather data.",
-              "Name": "Smart Building Demo Starter - Forked Recipe"
-            },
-            "LookupConfig": {
-              "PathRegex": "/demos/smart-building.*"
-            },
-            "LowCodeUnit": {
-              "SourceControlLookup": "GitHub",
-              "Build": "latest"
-            },
-            "Processor": {
-              "BaseHref": "/demos/smart-building/",
-              "DefaultFile": "index.html"
-            }
-          },
-          "DevOpsArtifact": {
-            "Output": "./build",
-            "BuildCommand": "npm run build",
-            "InstallCommand": "npm ci",
-            "Lookup": "react"
-          }
-        }
-      ],
-      "API": [
-        {
-          "Application": {
-            "AccessRightLookups": null,
-            "Application": {
-              "Name": "IoT Ensemble API Proxy",
-              "Description": "The API Proxy for IoT Ensemble APIS."
-            },
-            "LookupConfig": {
-              "PathRegex": "/api/demos/iot-ensemble.*"
-            },
-            "LowCodeUnit": {
-              "APIRoot": "https://fathym-cloud-prd.azure-api.net/fcp-iotensemble",
-              "Security": "lcu-subscription-key~__replace_me__"
-            },
-            "Processor": {
-              "InboundPath": "api/demos/iot-ensemble"
-            }
-          }
-        },
-        {
-          "Application": {
-            "AccessRightLookups": null,
-            "Application": {
-              "Name": "Habistack API Proxy",
-              "Description": "The API Proxy for Habistack APIS."
-            },
-            "LookupConfig": {
-              "PathRegex": "/api/demos/habistack.*"
-            },
-            "LowCodeUnit": {
-              "APIRoot": "https://fathym-cloud-prd.azure-api.net/habistack/weather/ground",
-              "Security": "lcu-subscription-key~__replace_me__"
-            },
-            "Processor": {
-              "InboundPath": "api/demos/habistack"
-            }
-          }
-        }
-      ]
-    },
-    "ID": "00000000-0000-0000-0000-000000000011",
-    "Ingredients": "React latest, IoT Ensemble API key, Habistack API key",
-    "Image": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
-    "Lookup": "smart-building-demo",
-    "PreviewImage": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
-    "RecipeType": "LaunchVsFork",
-    "SourceCode": "https://github.com/fathym-it/smart-building-demo",
-    "Sources": {
-      "GitHub": {
-        "Branches": ["main"],
-        "MainBranch": "main",
-        "Organization": "fathym-it",
-        "Repository": "smart-building-demo"
-      }
-    },
-    "SuccessType": null,
-    "Tier": "3",
-    "VideoURL": ""
-  },
-  {
-    "Name": "Habistack Real Time Charts Starter",
-    "Description": "A starter for custom Habistack real time charts of Weather data.",
-    "Applications": {
-      "NPM": [
-        {
-          "Application": {
-            "AccessRightLookups": null,
-            "Application": {
-              "Description": "A starter for custom Habistack real time charts of Weather data.",
-              "Name": "Habistack Real Time Charts Starter - Open Source"
-            },
-            "LookupConfig": {
-              "PathRegex": "/demos/habistack.*"
-            },
-            "LowCodeUnit": {
-              "Package": "@fathym-it/habistack-real-time-charts",
-              "Version": "latest"
-            },
-            "ModifierLookups": null,
-            "Processor": {
-              "BaseHref": "/demos/habistack/",
-              "DefaultFile": "index.html"
-            }
-          }
-        }
-      ],
-      "GitHub": [
-        {
-          "Application": {
-            "AccessRightLookups": null,
-            "Application": {
-              "Description": "A starter for custom Habistack real time charts of Weather data.",
-              "Name": "Habistack Real Time Charts Starter - Forked Recipe"
-            },
-            "LookupConfig": {
-              "PathRegex": "/demos/habistack.*"
-            },
-            "LowCodeUnit": {
-              "SourceControlLookup": "GitHub",
-              "Build": "latest"
-            },
-            "Processor": {
-              "BaseHref": "/demos/habistack/",
-              "DefaultFile": "index.html"
-            }
-          },
-          "DevOpsArtifact": {
-            "Output": "./build",
-            "BuildCommand": "npm run build",
-            "InstallCommand": "npm ci",
-            "Lookup": "react"
-          }
-        }
-      ],
-      "API": [
-        {
-          "Application": {
-            "AccessRightLookups": null,
-            "Application": {
-              "Name": "Habistack API Proxy",
-              "Description": "The API Proxy for Habistack APIS."
-            },
-            "LookupConfig": {
-              "PathRegex": "/api/demos/habistack.*"
-            },
-            "LowCodeUnit": {
-              "APIRoot": "https://fathym-cloud-prd.azure-api.net/habistack/weather/ground",
-              "Security": "lcu-subscription-key~__replace_me__"
-            },
-            "Processor": {
-              "InboundPath": "api/demos/habistack"
-            }
-          }
-        }
-      ]
-    },
-    "ID": "00000000-0000-0000-0000-000000000012",
-    "Ingredients": "React latest, Habistack API key",
-    "Image": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
-    "Lookup": "habistack-real-time-charts",
-    "PreviewImage": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
-    "RecipeType": "LaunchVsFork",
-    "SourceCode": "https://github.com/fathym-it/habistack-real-time-charts",
-    "Sources": {
-      "GitHub": {
-        "Branches": ["main"],
-        "MainBranch": "main",
-        "Organization": "fathym-it",
-        "Repository": "habistack-real-time-charts"
-      }
-    },
-    "SuccessType": null,
-    "Tier": "3",
-    "VideoURL": ""
-  },
-  {
-    "Name": "IoT Ensemble Real Time Charts Starter",
-    "Description": "A starter for custom IoT Ensemble real time charts of IoT data.",
-    "Applications": {
-      "NPM": [
-        {
-          "Application": {
-            "AccessRightLookups": null,
-            "Application": {
-              "Description": "A starter for custom IoT Ensemble real time charts of IoT data.",
-              "Name": "IoT Ensemble Real Time Charts Starter - Open Source"
-            },
-            "LookupConfig": {
-              "PathRegex": "/demos/iot-ensemble.*"
-            },
-            "LowCodeUnit": {
-              "Package": "@fathym-it/iot-ensemble-client-real-time-charts",
-              "Version": "latest"
-            },
-            "ModifierLookups": null,
-            "Processor": {
-              "BaseHref": "/demos/iot-ensemble/",
-              "DefaultFile": "index.html"
-            }
-          }
-        }
-      ],
-      "GitHub": [
-        {
-          "Application": {
-            "AccessRightLookups": null,
-            "Application": {
-              "Description": "A starter for custom IoT Ensemble real time charts of IoT data.",
-              "Name": "IoT Ensemble Real Time Charts Starter - Forked Recipe"
-            },
-            "LookupConfig": {
-              "PathRegex": "/demos/iot-ensemble.*"
-            },
-            "LowCodeUnit": {
-              "SourceControlLookup": "GitHub",
-              "Build": "latest"
-            },
-            "Processor": {
-              "BaseHref": "/demos/iot-ensemble/",
-              "DefaultFile": "index.html"
-            }
-          },
-          "DevOpsArtifact": {
-            "Output": "./build",
-            "BuildCommand": "npm run build",
-            "InstallCommand": "npm ci",
-            "Lookup": "react"
-          }
-        }
-      ],
-      "API": [
-        {
-          "Application": {
-            "AccessRightLookups": null,
-            "Application": {
-              "Name": "IoT Ensemble API Proxy",
-              "Description": "The API Proxy for IoT Ensemble APIS."
-            },
-            "LookupConfig": {
-              "PathRegex": "/api/demos/iot-ensemble.*"
-            },
-            "LowCodeUnit": {
-              "APIRoot": "https://fathym-cloud-prd.azure-api.net/fcp-iotensemble",
-              "Security": "lcu-subscription-key~__replace_me__"
-            },
-            "Processor": {
-              "InboundPath": "api/demos/iot-ensemble"
-            }
-          }
-        }
-      ]
-    },
-    "ID": "00000000-0000-0000-0000-000000000013",
-    "Ingredients": "React latest, IoT Ensemble API key",
-    "Image": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
-    "Lookup": "iot-ensemble-client-real-time-charts",
-    "PreviewImage": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
-    "RecipeType": "LaunchVsFork",
-    "SourceCode": "https://github.com/fathym-it/iot-ensemble-client-real-time-charts",
-    "Sources": {
-      "GitHub": {
-        "Branches": ["main"],
-        "MainBranch": "main",
-        "Organization": "fathym-it",
-        "Repository": "iot-ensemble-client-real-time-charts"
-      }
-    },
-    "SuccessType": null,
-    "Tier": "3",
-    "VideoURL": ""
-  },
-  {
     "Button": null,
     "Applications": {
       "NPM": [
@@ -2194,5 +1887,371 @@
     "SuccessType": null,
     "Tier": "2",
     "VideoURL": "https://www.youtube.com/embed/gOo_lTcJo7Y"
+  },
+  {
+    "Name": "Smart Building Demo Starter",
+    "Description": "A starter for custom smart buildings apps that utilizes IoT and Weather data.",
+    "Applications": {
+      "NPM": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "A starter for custom smart buildings apps that utilizes IoT and Weather data.",
+              "Name": "Smart Building Demo Starter - Open Source"
+            },
+            "LookupConfig": {
+              "PathRegex": "/demos/smart-building.*"
+            },
+            "LowCodeUnit": {
+              "Package": "@fathym-it/smart-building-demo",
+              "Version": "latest"
+            },
+            "ModifierLookups": null,
+            "Processor": {
+              "BaseHref": "/demos/smart-building/",
+              "DefaultFile": "index.html"
+            }
+          }
+        }
+      ],
+      "GitHub": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "A starter for custom smart buildings apps that utilizes IoT and Weather data.",
+              "Name": "Smart Building Demo Starter - Forked Recipe"
+            },
+            "LookupConfig": {
+              "PathRegex": "/demos/smart-building.*"
+            },
+            "LowCodeUnit": {
+              "SourceControlLookup": "GitHub",
+              "Build": "latest"
+            },
+            "Processor": {
+              "BaseHref": "/demos/smart-building/",
+              "DefaultFile": "index.html"
+            }
+          },
+          "DevOpsArtifact": {
+            "Output": "./build",
+            "BuildCommand": "npm run build",
+            "InstallCommand": "npm ci",
+            "Lookup": "react"
+          }
+        }
+      ],
+      "API": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Name": "IoT Ensemble API Proxy",
+              "Description": "The API Proxy for IoT Ensemble APIS."
+            },
+            "LookupConfig": {
+              "PathRegex": "/api/demos/iot-ensemble.*"
+            },
+            "LowCodeUnit": {
+              "APIRoot": "https://fathym-cloud-prd.azure-api.net/fcp-iotensemble",
+              "Security": "lcu-subscription-key~__replace_me__"
+            },
+            "Processor": {
+              "InboundPath": "api/demos/iot-ensemble"
+            }
+          }
+        },
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Name": "Habistack API Proxy",
+              "Description": "The API Proxy for Habistack APIS."
+            },
+            "LookupConfig": {
+              "PathRegex": "/api/demos/habistack.*"
+            },
+            "LowCodeUnit": {
+              "APIRoot": "https://fathym-cloud-prd.azure-api.net/habistack/weather/ground",
+              "Security": "lcu-subscription-key~__replace_me__"
+            },
+            "Processor": {
+              "InboundPath": "api/demos/habistack"
+            }
+          }
+        },
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Name": "Geocodio API Proxy",
+              "Description": "The API Proxy for Geocodio APIS."
+            },
+            "LookupConfig": {
+              "PathRegex": "/api/demos/geocodio.*"
+            },
+            "LowCodeUnit": {
+              "APIRoot": "https://api.geocod.io/v1.7/",
+              "Security": "?api_key~__replace_me__"
+            },
+            "Processor": {
+              "InboundPath": "api/demos/geocodio"
+            }
+          }
+        }
+      ]
+    },
+    "DataTokens": {
+      "lcu-state-config": {
+        "Name": "state-config",
+        "Description": "state-config",
+        "Value": "{\n  \"PointAPIQuery\": \"/api/v0/point-query\",\n  \"VariablesAPIQuery\": \"/api/v0/api-variables\",\n  \"HabistackAPIRoot\": \"/api/demos/habistack\",\n  \"GeocodioAPIRoot\": \"/api/demos/geocodio\",\n  \"GeocodioQuery\": \"/geocode\",\n  \"IoTAPIQuery\": \"/WarmQuery?includeEmulated=true&page=1&pageSize=100\",\n  \"IoTAPIRoot\": \"/api/demos/iot-ensemble\",\n  \"SelectedVariables\": [\n    \"WindGust_Surface\",\n    \"WindSpeed_10Meters\",\n    \"WindDirection_10Meters\"\n  ],\n  \"Location\": \"Denver, CO\",\n  \"RefreshRate\": \"30000\"\n}"
+      }
+    },
+    "ID": "00000000-0000-0000-0000-000000000011",
+    "Ingredients": "React latest, IoT Ensemble API key, Habistack API key",
+    "Image": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
+    "Lookup": "smart-building-demo",
+    "PreviewImage": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
+    "RecipeType": "LaunchVsFork",
+    "SourceCode": "https://github.com/fathym-it/smart-building-demo",
+    "Sources": {
+      "GitHub": {
+        "Branches": ["main"],
+        "MainBranch": "main",
+        "Organization": "fathym-it",
+        "Repository": "smart-building-demo"
+      }
+    },
+    "SuccessType": null,
+    "Tier": "3",
+    "VideoURL": ""
+  },
+  {
+    "Name": "Habistack Real Time Charts Starter",
+    "Description": "A starter for custom Habistack real time charts of Weather data.",
+    "Applications": {
+      "NPM": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "A starter for custom Habistack real time charts of Weather data.",
+              "Name": "Habistack Real Time Charts Starter - Open Source"
+            },
+            "LookupConfig": {
+              "PathRegex": "/demos/habistack.*"
+            },
+            "LowCodeUnit": {
+              "Package": "@fathym-it/habistack-real-time-charts",
+              "Version": "latest"
+            },
+            "ModifierLookups": null,
+            "Processor": {
+              "BaseHref": "/demos/habistack/",
+              "DefaultFile": "index.html"
+            }
+          }
+        }
+      ],
+      "GitHub": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "A starter for custom Habistack real time charts of Weather data.",
+              "Name": "Habistack Real Time Charts Starter - Forked Recipe"
+            },
+            "LookupConfig": {
+              "PathRegex": "/demos/habistack.*"
+            },
+            "LowCodeUnit": {
+              "SourceControlLookup": "GitHub",
+              "Build": "latest"
+            },
+            "Processor": {
+              "BaseHref": "/demos/habistack/",
+              "DefaultFile": "index.html"
+            }
+          },
+          "DevOpsArtifact": {
+            "Output": "./build",
+            "BuildCommand": "npm run build",
+            "InstallCommand": "npm ci",
+            "Lookup": "react"
+          }
+        }
+      ],
+      "API": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Name": "Habistack API Proxy",
+              "Description": "The API Proxy for Habistack APIS."
+            },
+            "LookupConfig": {
+              "PathRegex": "/api/demos/habistack.*"
+            },
+            "LowCodeUnit": {
+              "APIRoot": "https://fathym-cloud-prd.azure-api.net/habistack/weather/ground",
+              "Security": "lcu-subscription-key~__replace_me__"
+            },
+            "Processor": {
+              "InboundPath": "api/demos/habistack"
+            }
+          }
+        },
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Name": "Geocodio API Proxy",
+              "Description": "The API Proxy for Geocodio APIS."
+            },
+            "LookupConfig": {
+              "PathRegex": "/api/demos/geocodio.*"
+            },
+            "LowCodeUnit": {
+              "APIRoot": "https://api.geocod.io/v1.7/",
+              "Security": "?api_key~__replace_me__"
+            },
+            "Processor": {
+              "InboundPath": "api/demos/geocodio"
+            }
+          }
+        }
+      ]
+    },
+    "DataTokens": {
+      "lcu-state-config": {
+        "Name": "state-config",
+        "Description": "state-config",
+        "Value": "{\n    \"PointAPIQuery\": \"/api/v0/point-query\",\n    \"VariablesAPIQuery\": \"/api/v0/api-variables\",\n    \"APIRoot\": \"/api/demos/habistack\",\n    \"GeocodioAPIRoot\": \"/api/demos/geocodio\",\n    \"GeocodioQuery\": \"/geocode\"\n}"
+      }
+    },
+    "ID": "00000000-0000-0000-0000-000000000012",
+    "Ingredients": "React latest, Habistack API key",
+    "Image": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
+    "Lookup": "habistack-real-time-charts",
+    "PreviewImage": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
+    "RecipeType": "LaunchVsFork",
+    "SourceCode": "https://github.com/fathym-it/habistack-real-time-charts",
+    "Sources": {
+      "GitHub": {
+        "Branches": ["main"],
+        "MainBranch": "main",
+        "Organization": "fathym-it",
+        "Repository": "habistack-real-time-charts"
+      }
+    },
+    "SuccessType": null,
+    "Tier": "3",
+    "VideoURL": ""
+  },
+  {
+    "Name": "IoT Ensemble Real Time Charts Starter",
+    "Description": "A starter for custom IoT Ensemble real time charts of IoT data.",
+    "Applications": {
+      "NPM": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "A starter for custom IoT Ensemble real time charts of IoT data.",
+              "Name": "IoT Ensemble Real Time Charts Starter - Open Source"
+            },
+            "LookupConfig": {
+              "PathRegex": "/demos/iot-ensemble.*"
+            },
+            "LowCodeUnit": {
+              "Package": "@fathym-it/iot-ensemble-client-real-time-charts",
+              "Version": "latest"
+            },
+            "ModifierLookups": null,
+            "Processor": {
+              "BaseHref": "/demos/iot-ensemble/",
+              "DefaultFile": "index.html"
+            }
+          }
+        }
+      ],
+      "GitHub": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "A starter for custom IoT Ensemble real time charts of IoT data.",
+              "Name": "IoT Ensemble Real Time Charts Starter - Forked Recipe"
+            },
+            "LookupConfig": {
+              "PathRegex": "/demos/iot-ensemble.*"
+            },
+            "LowCodeUnit": {
+              "SourceControlLookup": "GitHub",
+              "Build": "latest"
+            },
+            "Processor": {
+              "BaseHref": "/demos/iot-ensemble/",
+              "DefaultFile": "index.html"
+            }
+          },
+          "DevOpsArtifact": {
+            "Output": "./build",
+            "BuildCommand": "npm run build",
+            "InstallCommand": "npm ci",
+            "Lookup": "react"
+          }
+        }
+      ],
+      "API": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Name": "IoT Ensemble API Proxy",
+              "Description": "The API Proxy for IoT Ensemble APIS."
+            },
+            "LookupConfig": {
+              "PathRegex": "/api/demos/iot-ensemble.*"
+            },
+            "LowCodeUnit": {
+              "APIRoot": "https://fathym-cloud-prd.azure-api.net/fcp-iotensemble",
+              "Security": "lcu-subscription-key~__replace_me__"
+            },
+            "Processor": {
+              "InboundPath": "api/demos/iot-ensemble"
+            }
+          }
+        }
+      ]
+    },
+    "DataTokens": {
+      "lcu-state-config": {
+        "Name": "state-config",
+        "Description": "state-config",
+        "Value": "{\n    \"APIQuery\": \"/WarmQuery?includeEmulated=true&page=1&pageSize=100\",\n    \"APIRoot\": \"/api/demos/iot-ensemble\"\n}"
+      }
+    },
+    "ID": "00000000-0000-0000-0000-000000000013",
+    "Ingredients": "React latest, IoT Ensemble API key",
+    "Image": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
+    "Lookup": "iot-ensemble-client-real-time-charts",
+    "PreviewImage": "https://www.fathym.com/dashboard/assets/images/black_thinky.png",
+    "RecipeType": "LaunchVsFork",
+    "SourceCode": "https://github.com/fathym-it/iot-ensemble-client-real-time-charts",
+    "Sources": {
+      "GitHub": {
+        "Branches": ["main"],
+        "MainBranch": "main",
+        "Organization": "fathym-it",
+        "Repository": "iot-ensemble-client-real-time-charts"
+      }
+    },
+    "SuccessType": null,
+    "Tier": "3",
+    "VideoURL": ""
   }
 ]
