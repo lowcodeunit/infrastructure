@@ -829,6 +829,46 @@
             "Lookup": "react"
           }
         }
+      ],
+      "API": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Name": "IoT Ensemble API Proxy",
+              "Description": "The API Proxy for IoT Ensemble APIS."
+            },
+            "LookupConfig": {
+              "PathRegex": "/api/demos/iot-ensemble.*"
+            },
+            "LowCodeUnit": {
+              "APIRoot": "https://fathym-cloud-prd.azure-api.net/fcp-iotensemble",
+              "Security": "lcu-subscription-key~__replace_me__"
+            },
+            "Processor": {
+              "InboundPath": "api/demos/iot-ensemble"
+            }
+          }
+        },
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Name": "Habistack API Proxy",
+              "Description": "The API Proxy for Habistack APIS."
+            },
+            "LookupConfig": {
+              "PathRegex": "/api/demos/habistack.*"
+            },
+            "LowCodeUnit": {
+              "APIRoot": "https://fathym-cloud-prd.azure-api.net/habistack/weather/ground",
+              "Security": "lcu-subscription-key~__replace_me__"
+            },
+            "Processor": {
+              "InboundPath": "api/demos/habistack"
+            }
+          }
+        }
       ]
     },
     "ID": "00000000-0000-0000-0000-000000000011",
@@ -904,6 +944,27 @@
             "Lookup": "react"
           }
         }
+      ],
+      "API": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Name": "Habistack API Proxy",
+              "Description": "The API Proxy for Habistack APIS."
+            },
+            "LookupConfig": {
+              "PathRegex": "/api/demos/habistack.*"
+            },
+            "LowCodeUnit": {
+              "APIRoot": "https://fathym-cloud-prd.azure-api.net/habistack/weather/ground",
+              "Security": "lcu-subscription-key~__replace_me__"
+            },
+            "Processor": {
+              "InboundPath": "api/demos/habistack"
+            }
+          }
+        }
       ]
     },
     "ID": "00000000-0000-0000-0000-000000000012",
@@ -977,6 +1038,27 @@
             "BuildCommand": "npm run build",
             "InstallCommand": "npm ci",
             "Lookup": "react"
+          }
+        }
+      ],
+      "API": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Name": "IoT Ensemble API Proxy",
+              "Description": "The API Proxy for IoT Ensemble APIS."
+            },
+            "LookupConfig": {
+              "PathRegex": "/api/demos/iot-ensemble.*"
+            },
+            "LowCodeUnit": {
+              "APIRoot": "https://fathym-cloud-prd.azure-api.net/fcp-iotensemble",
+              "Security": "lcu-subscription-key~__replace_me__"
+            },
+            "Processor": {
+              "InboundPath": "api/demos/iot-ensemble"
+            }
           }
         }
       ]
