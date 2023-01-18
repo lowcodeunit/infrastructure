@@ -2227,7 +2227,7 @@
 		"Lookup": "alfresco-starter",
 		"Name": "Alfresco",
 		"PreviewImage": "https://www.fathym.com/img/alfresco-logo.png",
-		"RecipeType": "alfresco",
+		"RecipeType": "MFE",
 		"SourceCode": null,
 		"Sources": {
 			"hyland-homepage-gatsby": {
