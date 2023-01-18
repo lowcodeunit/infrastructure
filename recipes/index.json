@@ -1887,7 +1887,6 @@
     "SuccessType": null,
     "Tier": "2",
     "VideoURL": "https://www.youtube.com/embed/gOo_lTcJo7Y"
-<<<<<<< HEAD
   },
   {
 		"Button": "Launch Alfresco",
@@ -2254,7 +2253,4 @@
 		"Tier": "3",
 		"VideoURL": null
 	}
-=======
-  }
->>>>>>> master
 ]
