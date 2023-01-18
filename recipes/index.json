@@ -1887,5 +1887,370 @@
     "SuccessType": null,
     "Tier": "2",
     "VideoURL": "https://www.youtube.com/embed/gOo_lTcJo7Y"
-  }
+  },
+  {
+		"Button": "Launch Alfresco",
+		"Applications": {
+      "API": [{
+        "Application": {
+					"AccessRightLookups": null,
+					"Application": {
+						"Description": "Alfresco API",
+						"Name": "Alfresco API",
+						"Priority": 10000,
+						"PriorityShift": 0
+					},
+					"DataTokens": null,
+					"LicenseConfigurationLookups": null,
+					"LookupConfig": {
+						"AccessRightsAllAny": "Any",
+						"AllowedMethods": null,
+						"HeaderRegex": null,
+						"IsPrivate": false,
+						"IsTriggerSignIn": false,
+						"LicensesAllAny": "All",
+						"PathRegex": "/.*",
+						"QueryRegex": null,
+						"TerminateRequest": false,
+						"UserAgentRegex": null
+					},
+					"LowCodeUnit": {
+            "APIRoot": "HOST_IP_VARIABLE",
+						"Type": null,
+						"Archived": false,
+						"Created": "0001-01-01T00:00:00",
+						"ID": "00000000-0000-0000-0000-000000000000",
+						"Label": null,
+						"Registry": null,
+            "Security": "~",
+						"TenantLookup": null,
+						"Updated": "0001-01-01T00:00:00"
+					},
+					"ModifierLookups": null,
+					"Processor": {
+            "InboundPath": "/alfresco",
+						"Priority": 0,
+						"Type": null,
+						"Archived": false,
+						"Created": "0001-01-01T00:00:00",
+						"ID": "00000000-0000-0000-0000-000000000000",
+						"Label": null,
+						"Registry": null,
+						"TenantLookup": null,
+						"Updated": "0001-01-01T00:00:00"
+					}
+				}			
+      }],
+			"NPM": [
+      {
+        "Application": {
+          "AccessRightLookups": null,
+          "Application": {
+            "Description": "Alfresco ADF Default",
+            "Name": "Alfresco ADF Default",
+            "Priority": 20000,
+            "PriorityShift": 0
+          },
+          "DataTokens": null,
+          "LicenseConfigurationLookups": null,
+          "LookupConfig": {
+            "AccessRightsAllAny": "Any",
+            "AllowedMethods": null,
+            "HeaderRegex": null,
+            "IsPrivate": false,
+            "IsTriggerSignIn": false,
+            "LicensesAllAny": "All",
+            "PathRegex": "/dashboard.*",
+            "QueryRegex": null,
+            "TerminateRequest": false,
+            "UserAgentRegex": null
+          },
+          "LowCodeUnit": {
+            "SourceControlLookup": null,
+            "Type": null,
+            "CurrentVersion": null,
+            "Package": "@fathym-hyland/alfresco-default",
+            "Version": "latest",
+            "Archived": false,
+            "Created": "0001-01-01T00:00:00",
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "Label": null,
+            "Registry": null,
+            "TenantLookup": null,
+            "Updated": "0001-01-01T00:00:00"
+          },
+          "ModifierLookups": null,
+          "Processor": {
+            "CacheControl": null,
+            "ModifierLookups": null,
+            "Priority": 0,
+            "Type": null,
+            "BaseHref": "/dashboard/",
+            "DefaultFile": "index.html",
+            "Archived": false,
+            "Created": "0001-01-01T00:00:00",
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "Label": null,
+            "Registry": null,
+            "TenantLookup": null,
+            "Updated": "0001-01-01T00:00:00"
+          }
+        },
+        "DevOpsArtifact": null        
+      },
+      {
+        "Application": {
+          "AccessRightLookups": null,
+          "Application": {
+            "Description": "Hyland Flow",
+            "Name": "Hyland Flow",
+            "Priority": 25000,
+            "PriorityShift": 0
+          },
+          "DataTokens": null,
+          "LicenseConfigurationLookups": null,
+          "LookupConfig": {
+            "AccessRightsAllAny": "Any",
+            "AllowedMethods": null,
+            "HeaderRegex": null,
+            "IsPrivate": true,
+            "IsTriggerSignIn": true,
+            "LicensesAllAny": "All",
+            "PathRegex": "/dashboard/flow.*",
+            "QueryRegex": null,
+            "TerminateRequest": false,
+            "UserAgentRegex": null
+          },
+          "LowCodeUnit": {
+            "SourceControlLookup": null,
+            "Type": null,
+            "CurrentVersion": null,
+            "Package": "@fathym-hyland/hyland-flow",
+            "Version": "latest",
+            "Archived": false,
+            "Created": "0001-01-01T00:00:00",
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "Label": null,
+            "Registry": null,
+            "TenantLookup": null,
+            "Updated": "0001-01-01T00:00:00"
+          },
+          "ModifierLookups": null,
+          "Processor": {
+            "CacheControl": null,
+            "ModifierLookups": null,
+            "Priority": 0,
+            "Type": null,
+            "BaseHref": "/dashboard/flow",
+            "DefaultFile": "index.html",
+            "Archived": false,
+            "Created": "0001-01-01T00:00:00",
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "Label": null,
+            "Registry": null,
+            "TenantLookup": null,
+            "Updated": "0001-01-01T00:00:00"
+          }
+        },
+        "DevOpsArtifact": null
+      },
+      {
+        "Application": {
+          "AccessRightLookups": null,
+          "Application": {
+            "Description": "Hyland Flow StoryBook",
+            "Name": "Hyland Flow Storybook",
+            "Priority": 30000,
+            "PriorityShift": 0
+          },
+          "DataTokens": null,
+          "LicenseConfigurationLookups": null,
+          "LookupConfig": {
+            "AccessRightsAllAny": "Any",
+            "AllowedMethods": null,
+            "HeaderRegex": null,
+            "IsPrivate": true,
+            "IsTriggerSignIn": true,
+            "LicensesAllAny": "All",
+            "PathRegex": "/qa/storybooks/hyland-flow.*",
+            "QueryRegex": null,
+            "TerminateRequest": false,
+            "UserAgentRegex": null
+          },
+          "LowCodeUnit": {
+            "SourceControlLookup": null,
+            "Type": null,
+            "CurrentVersion": null,
+            "Package": "@fathym-hyland/hyland-flow-storybook",
+            "Version": "latest",
+            "Archived": false,
+            "Created": "0001-01-01T00:00:00",
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "Label": null,
+            "Registry": null,
+            "TenantLookup": null,
+            "Updated": "0001-01-01T00:00:00"
+          },
+          "ModifierLookups": null,
+          "Processor": {
+            "CacheControl": null,
+            "ModifierLookups": null,
+            "Priority": 0,
+            "Type": null,
+            "BaseHref": "/qa/storybooks/hyland-flow/",
+            "DefaultFile": "index.html",
+            "Archived": false,
+            "Created": "0001-01-01T00:00:00",
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "Label": null,
+            "Registry": null,
+            "TenantLookup": null,
+            "Updated": "0001-01-01T00:00:00"
+          }
+        },
+        "DevOpsArtifact": null
+      }],
+			"GitHub": [{
+					"Application": {
+						"AccessRightLookups": null,
+						"Application": {
+							"Description": "Custom application for @fathym-hyland/hyland-homepage-gatsby@main to deploy Fathym Hyland Landing Page",
+							"Name": "Fathym Hyland Landing Page",
+							"Priority": 5000,
+							"PriorityShift": 0
+						},
+						"DataTokens": null,
+						"LicenseConfigurationLookups": null,
+						"LookupConfig": {
+							"AccessRightsAllAny": "Any",
+							"AllowedMethods": null,
+							"HeaderRegex": null,
+							"IsPrivate": false,
+							"IsTriggerSignIn": false,
+							"LicensesAllAny": "All",
+							"PathRegex": "/.*",
+							"QueryRegex": null,
+							"TerminateRequest": false,
+							"UserAgentRegex": null
+						},
+						"LowCodeUnit": {
+							"SourceControlLookup": "hyland-homepage-gatsby",
+							"Type": null,
+							"Build": "latest"
+						},
+						"ModifierLookups": null,
+						"Processor": {
+							"CacheControl": null,
+							"ModifierLookups": null,
+							"Priority": 0,
+							"Type": null,
+							"BaseHref": "/",
+							"DefaultFile": "index.html",
+							"Archived": false,
+							"Created": "0001-01-01T00:00:00",
+							"ID": "00000000-0000-0000-0000-000000000000",
+							"Label": null,
+							"Registry": null,
+							"TenantLookup": null,
+							"Updated": "0001-01-01T00:00:00"
+						}
+					},
+					"DevOpsArtifact": {
+						"Name": null,
+						"Output": "./public",
+						"Type": null,
+						"BuildCommand": "npm run build",
+						"InstallCommand": "npm i",
+						"NPMRegistry": null,
+						"Lookup": null,
+						"Archived": false,
+						"Created": "0001-01-01T00:00:00",
+						"ID": "00000000-0000-0000-0000-000000000000",
+						"Label": null,
+						"Registry": null,
+						"TenantLookup": null,
+						"Updated": "0001-01-01T00:00:00"
+					}
+				}
+			],
+      "SPA": [{       
+					"Application": {
+						"AccessRightLookups": null,
+						"Application": {
+							"Description": "Alfresco Admin",
+							"Name": "Alfresco Admin",
+							"Priority": 15000,
+							"PriorityShift": 0
+						},
+						"DataTokens": null,
+						"LicenseConfigurationLookups": null,
+						"LookupConfig": {
+							"AccessRightsAllAny": "Any",
+							"AllowedMethods": null,
+							"HeaderRegex": null,
+							"IsPrivate": false,
+							"IsTriggerSignIn": false,
+							"LicensesAllAny": "All",
+							"PathRegex": "/admin/alfresco.*",
+							"QueryRegex": null,
+							"TerminateRequest": false,
+							"UserAgentRegex": null
+						},
+						"LowCodeUnit": {
+              "SPARoot": "HOST_IP_VARIABLE",
+							"Type": null,
+							"Build": "latest"
+						},
+						"ModifierLookups": null,
+						"Processor": {
+							"CacheControl": null,
+							"ModifierLookups": null,
+							"Priority": 0,
+							"Type": null,
+							"InboundPath": "admin/alfresco",
+							"Archived": false,
+							"Created": "0001-01-01T00:00:00",
+							"ID": "00000000-0000-0000-0000-000000000000",
+							"Label": null,
+							"Registry": null,
+							"TenantLookup": null,
+							"Updated": "0001-01-01T00:00:00"
+						}
+					},
+					"DevOpsArtifact": null	
+      }]
+		},
+		"Description": "A modular frontend example for Alfresco.",
+		"ID": "00000000-0000-0000-0000-000000000011",
+		"Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
+		"Image": "https://www.fathym.com/img/microfe.png",
+		"Lookup": "alfresco-starter",
+		"Name": "Alfresco",
+		"PreviewImage": "https://www.fathym.com/assets/images/MFERPlasmicGatsbyDocuReact.png",
+		"RecipeType": "mfe",
+		"SourceCode": null,
+		"Sources": {
+			"hyland-homepage-gatsby": {
+				"DevOpsActionTriggerLookups": null,
+				"Name": null,
+				"Type": null,
+				"Branches": ["main"],
+				"MainBranch": "main",
+				"Organization": "fathym-hyland",
+				"Repository": "hyland-homepage-gatsby",
+				"Lookup": null,
+				"Username": null,
+				"Archived": false,
+				"Created": "0001-01-01T00:00:00",
+				"ID": "00000000-0000-0000-0000-000000000000",
+				"Label": null,
+				"Registry": null,
+				"TenantLookup": null,
+				"Updated": "0001-01-01T00:00:00"
+			}
+		},
+		"SuccessType": "Project",
+		"Tier": "3",
+		"VideoURL": null
+	}
 ]
