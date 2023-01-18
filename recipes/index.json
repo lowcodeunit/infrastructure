@@ -1,5 +1,334 @@
 [
   {
+    "Button": "Alfresco ADF",
+    "Applications": {
+      "NPM": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "The public site being used as the home page.",
+              "Name": "Public Site",
+              "Priority": 0,
+              "PriorityShift": 0
+            },
+            "DataTokens": null,
+            "LicenseConfigurationLookups": null,
+            "LookupConfig": {
+              "AccessRightsAllAny": "Any",
+              "AllowedMethods": null,
+              "HeaderRegex": null,
+              "IsPrivate": false,
+              "IsTriggerSignIn": false,
+              "LicensesAllAny": "All",
+              "PathRegex": "/.*",
+              "QueryRegex": null,
+              "TerminateRequest": false,
+              "UserAgentRegex": null
+            },
+            "LowCodeUnit": {
+              "SourceControlLookup": null,
+              "Type": null,
+              "CurrentVersion": null,
+              "Package": "@fathym-it/micro-frontend-starter-home-page",
+              "Version": "latest",
+              "Archived": false,
+              "Created": "0001-01-01T00:00:00",
+              "ID": "00000000-0000-0000-0000-000000000000",
+              "Label": null,
+              "Registry": null,
+              "TenantLookup": null,
+              "Updated": "0001-01-01T00:00:00"
+            },
+            "ModifierLookups": null,
+            "Processor": {
+              "CacheControl": null,
+              "ModifierLookups": null,
+              "Priority": 0,
+              "Type": null,
+              "BaseHref": "/",
+              "DefaultFile": "index.html",
+              "Archived": false,
+              "Created": "0001-01-01T00:00:00",
+              "ID": "00000000-0000-0000-0000-000000000000",
+              "Label": null,
+              "Registry": null,
+              "TenantLookup": null,
+              "Updated": "0001-01-01T00:00:00"
+            }
+          },
+          "DevOpsArtifact": null
+        }
+      ],
+      "GitHub": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "A basic starting point for sites and documentation built with Docusaurus.",
+              "Name": "Docusaurus - Documentation - Forked Recipe",
+              "Priority": 0,
+              "PriorityShift": 0
+            },
+            "DataTokens": null,
+            "LicenseConfigurationLookups": null,
+            "LookupConfig": {
+              "AccessRightsAllAny": "Any",
+              "AllowedMethods": null,
+              "HeaderRegex": null,
+              "IsPrivate": false,
+              "IsTriggerSignIn": false,
+              "LicensesAllAny": "All",
+              "PathRegex": "/docs.*",
+              "QueryRegex": null,
+              "TerminateRequest": false,
+              "UserAgentRegex": null
+            },
+            "LowCodeUnit": {
+              "SourceControlLookup": "public-web-docusaurus",
+              "Type": null,
+              "Build": "latest"
+            },
+            "ModifierLookups": null,
+            "Processor": {
+              "CacheControl": null,
+              "ModifierLookups": null,
+              "Priority": 0,
+              "Type": null,
+              "BaseHref": "/docs/",
+              "DefaultFile": "index.html",
+              "Archived": false,
+              "Created": "0001-01-01T00:00:00",
+              "ID": "00000000-0000-0000-0000-000000000000",
+              "Label": null,
+              "Registry": null,
+              "TenantLookup": null,
+              "Updated": "0001-01-01T00:00:00"
+            }
+          },
+          "DevOpsArtifact": {
+            "Name": null,
+            "Output": "./build",
+            "Type": null,
+            "BuildCommand": "npm run build",
+            "InstallCommand": "npm ci",
+            "NPMRegistry": null,
+            "Lookup": "react",
+            "Archived": false,
+            "Created": "0001-01-01T00:00:00",
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "Label": null,
+            "Registry": null,
+            "TenantLookup": null,
+            "Updated": "0001-01-01T00:00:00"
+          }
+        },
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "A basic starting point for blogs built with Gatsby.",
+              "Name": "Blog Starter with Gatsby - Forked Recipe",
+              "Priority": 0,
+              "PriorityShift": 0
+            },
+            "DataTokens": null,
+            "LicenseConfigurationLookups": null,
+            "LookupConfig": {
+              "AccessRightsAllAny": "Any",
+              "AllowedMethods": null,
+              "HeaderRegex": null,
+              "IsPrivate": false,
+              "IsTriggerSignIn": false,
+              "LicensesAllAny": "All",
+              "PathRegex": "/blog.*",
+              "QueryRegex": null,
+              "TerminateRequest": false,
+              "UserAgentRegex": null
+            },
+            "LowCodeUnit": {
+              "SourceControlLookup": "gatsby-starter-blog",
+              "Type": null,
+              "Build": "latest"
+            },
+            "ModifierLookups": null,
+            "Processor": {
+              "CacheControl": null,
+              "ModifierLookups": null,
+              "Priority": 0,
+              "Type": null,
+              "BaseHref": "/blog/",
+              "DefaultFile": "index.html",
+              "Archived": false,
+              "Created": "0001-01-01T00:00:00",
+              "ID": "00000000-0000-0000-0000-000000000000",
+              "Label": null,
+              "Registry": null,
+              "TenantLookup": null,
+              "Updated": "0001-01-01T00:00:00"
+            }
+          },
+          "DevOpsArtifact": {
+            "Name": null,
+            "Output": "./public",
+            "Type": null,
+            "BuildCommand": "npm run build",
+            "InstallCommand": "npm i",
+            "NPMRegistry": null,
+            "Lookup": "react-gatsby",
+            "Archived": false,
+            "Created": "0001-01-01T00:00:00",
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "Label": null,
+            "Registry": null,
+            "TenantLookup": null,
+            "Updated": "0001-01-01T00:00:00"
+          }
+        },
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "A basic starting point for sites built with React.",
+              "Name": "React Quickstart Project - Backend Admin",
+              "Priority": 0,
+              "PriorityShift": 0
+            },
+            "DataTokens": null,
+            "LicenseConfigurationLookups": null,
+            "LookupConfig": {
+              "AccessRightsAllAny": "Any",
+              "AllowedMethods": null,
+              "HeaderRegex": null,
+              "IsPrivate": false,
+              "IsTriggerSignIn": false,
+              "LicensesAllAny": "All",
+              "PathRegex": "/admin.*",
+              "QueryRegex": null,
+              "TerminateRequest": false,
+              "UserAgentRegex": null
+            },
+            "LowCodeUnit": {
+              "SourceControlLookup": "public-web-react",
+              "Type": null,
+              "Build": "latest"
+            },
+            "ModifierLookups": null,
+            "Processor": {
+              "CacheControl": null,
+              "ModifierLookups": null,
+              "Priority": 0,
+              "Type": null,
+              "BaseHref": "/admin/",
+              "DefaultFile": "index.html",
+              "Archived": false,
+              "Created": "0001-01-01T00:00:00",
+              "ID": "00000000-0000-0000-0000-000000000000",
+              "Label": null,
+              "Registry": null,
+              "TenantLookup": null,
+              "Updated": "0001-01-01T00:00:00"
+            }
+          },
+          "DevOpsArtifact": {
+            "Name": null,
+            "Output": "./build",
+            "Type": null,
+            "BuildCommand": "npm run build",
+            "InstallCommand": "npm ci",
+            "NPMRegistry": null,
+            "Lookup": "react",
+            "Archived": false,
+            "Created": "0001-01-01T00:00:00",
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "Label": null,
+            "Registry": null,
+            "TenantLookup": null,
+            "Updated": "0001-01-01T00:00:00"
+          }
+        }
+      ]
+    },
+    "Description": "A modular frontend example using Plasmic, Gatsby, Docusaurus and React. See how to use routing to seamlessly deploy different tech stacks on the one domain.",
+    "ID": "00000000-0000-0000-0000-000000000008",
+    "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
+    "Image": "https://www.fathym.com/img/microfe.png",
+    "Lookup": "micro-frontend-starter",
+    "Name": "Modular Frontend",
+    "PreviewImage": "https://www.fathym.com/assets/images/MFERPlasmicGatsbyDocuReact.png",
+    "RecipeType": "MFE",
+    "SourceCode": null,
+    "Sources": {
+      "gatsby-starter-blog": {
+        "DevOpsActionTriggerLookups": null,
+        "Name": null,
+        "Type": null,
+        "Branches": ["master"],
+        "MainBranch": "master",
+        "Organization": "fathym-it",
+        "Repository": "gatsby-starter-blog",
+        "Lookup": null,
+        "Username": null,
+        "Archived": false,
+        "Created": "0001-01-01T00:00:00",
+        "ID": "00000000-0000-0000-0000-000000000000",
+        "Label": null,
+        "Registry": null,
+        "TenantLookup": null,
+        "Updated": "0001-01-01T00:00:00"
+      },
+      "public-web-docusaurus": {
+        "DevOpsActionTriggerLookups": null,
+        "Name": null,
+        "Type": null,
+        "Branches": ["main"],
+        "MainBranch": "main",
+        "Organization": "fathym-it",
+        "Repository": "public-web-docusaurus-docs-only",
+        "Lookup": null,
+        "Username": null,
+        "Archived": false,
+        "Created": "0001-01-01T00:00:00",
+        "ID": "00000000-0000-0000-0000-000000000000",
+        "Label": null,
+        "Registry": null,
+        "TenantLookup": null,
+        "Updated": "0001-01-01T00:00:00"
+      },
+      "public-web-react": {
+        "DevOpsActionTriggerLookups": null,
+        "Name": null,
+        "Type": null,
+        "Branches": ["main"],
+        "MainBranch": "main",
+        "Organization": "fathym-it",
+        "Repository": "public-web-react",
+        "Lookup": null,
+        "Username": null,
+        "Archived": false,
+        "Created": "0001-01-01T00:00:00",
+        "ID": "00000000-0000-0000-0000-000000000000",
+        "Label": null,
+        "Registry": null,
+        "TenantLookup": null,
+        "Updated": "0001-01-01T00:00:00"
+      }
+    },
+    "SuccessType": "Project",
+    "Tier": "3",
+    "VideoURL": null
+  },
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  {
     "Button": "Launch Micro Frontend",
     "Applications": {
       "NPM": [
