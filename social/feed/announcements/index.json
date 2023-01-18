@@ -111,7 +111,7 @@
             "ActionType": "Link",
             "Color": "primary",
             "Icon": "add",
-            "Text": "Use Routes to organize pages of your project."
+            "Text": "Use Routes"
         }],
         "Avatar": "./assets/images/thinky.png",
         "Badge": null,
@@ -123,7 +123,7 @@
         "RefreshLink": null,
         "Status": null,
         "Subtext": null,
-        "Subtitle": "Leverage Fathym to break out one or more apps or pages from your monolith site.",
+        "Subtitle": "Leverage Fathym to break out and organize one or more apps or pages from your monolith site.",
         "Tabs": [{
             "Data": {
                 "Video": "<iframe width=\"400\" height=\"225\" src=\"https://www.youtube.com/embed/xqifvcZTXec\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
