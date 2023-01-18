@@ -1889,7 +1889,7 @@
     "VideoURL": "https://www.youtube.com/embed/gOo_lTcJo7Y"
   },
   {
-		"Button": null,
+		"Button": "Launch Alfresco",
 		"Applications": {
       "API": [{
         "Application": {
