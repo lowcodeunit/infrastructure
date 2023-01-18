@@ -2223,11 +2223,11 @@
 		"Description": "A modular frontend example for Alfresco.",
 		"ID": "00000000-0000-0000-0000-000000000011",
 		"Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
-		"Image": "https://www.fathym.com/img/microfe.png",
+		"Image": "https://www.fathym.com/img/hyland-alfresco-500x275.png",
 		"Lookup": "alfresco-starter",
 		"Name": "Alfresco",
 		"PreviewImage": "https://www.fathym.com/assets/images/MFERPlasmicGatsbyDocuReact.png",
-		"RecipeType": "mfe",
+		"RecipeType": "alfresco",
 		"SourceCode": null,
 		"Sources": {
 			"hyland-homepage-gatsby": {
