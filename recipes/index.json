@@ -1909,7 +1909,7 @@
 						"IsPrivate": false,
 						"IsTriggerSignIn": false,
 						"LicensesAllAny": "All",
-						"PathRegex": "/.*",
+						"PathRegex": "/alfresco.*",
 						"QueryRegex": null,
 						"TerminateRequest": false,
 						"UserAgentRegex": null
