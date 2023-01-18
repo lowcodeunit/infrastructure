@@ -2220,7 +2220,7 @@
 					"DevOpsArtifact": null	
       }]
 		},
-		"Description": "A modular frontend example for Alfresco. See how to use routing to seamlessly deploy different tech stacks on the one domain.",
+		"Description": "A modular frontend example for Alfresco.",
 		"ID": "00000000-0000-0000-0000-000000000011",
 		"Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
 		"Image": "https://www.fathym.com/img/microfe.png",
