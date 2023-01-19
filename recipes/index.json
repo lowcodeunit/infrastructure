@@ -1,5 +1,64 @@
 [
   {
+    "Button": "Launch Baserow",
+    "Applications": {
+      "API": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "Baserow API",
+              "Name": "Baserow API"
+            },
+            "LookupConfig": {
+              "PathRegex": "/api/baserow.*"
+            },
+            "LowCodeUnit": {
+              "APIRoot": "https://api.baserow.io/api",
+              "Security": "Authorization~Token BASEROW_API_TOKEN"
+            },
+            "ModifierLookups": null,
+            "Processor": {
+              "InboundPath": "/api/baserow"
+            }
+          }
+        }
+      ],
+      "NPM": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "Baserow React Carousel",
+              "Name": "Baserow React Carousel"
+            },
+            "LookupConfig": {
+              "PathRegex": "/baserow/carousel.*"
+            },
+            "LowCodeUnit": {
+              "Package": "@fathym-hyland/alfresco-default",
+              "Version": "latest"
+            },
+            "Processor": {
+              "BaseHref": "/baserow/carousel/",
+              "DefaultFile": "index.html"
+            }
+          }
+        }
+      ]
+    },
+    "Description": "A react frontend for your Baserow.",
+    "ID": "00000000-0000-0000-0000-000000000012",
+    "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
+    "Image": "https://gitlab.com/uploads/-/system/project/avatar/10858056/logo.jpg",
+    "Lookup": "mui-baserow-carousel",
+    "Name": "MUI Baserow Carousel",
+    "PreviewImage": "https://gitlab.com/uploads/-/system/project/avatar/10858056/logo.jpg",
+    "RecipeType": "MFE",
+    "SuccessType": "Project",
+    "Tier": "3"
+  },
+  {
     "Button": "Launch Alfresco",
     "Applications": {
       "API": [
