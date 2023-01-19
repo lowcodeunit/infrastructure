@@ -99,7 +99,7 @@
             },
             "ModifierLookups": null,
             "Processor": {
-              "InboundPath": "alfresco",
+              "InboundPath": "/alfresco",
               "Priority": 0,
               "Type": null,
               "Archived": false,
