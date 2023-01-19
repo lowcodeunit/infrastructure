@@ -36,7 +36,7 @@
               "PathRegex": "/baserow/carousel.*"
             },
             "LowCodeUnit": {
-              "Package": "@fathym-hyland/alfresco-default",
+              "Package": "@fathym-it/mui-baserow-carousel",
               "Version": "latest"
             },
             "Processor": {
