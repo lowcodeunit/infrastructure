@@ -50,10 +50,10 @@
     "Description": "A react frontend for your Baserow.",
     "ID": "00000000-0000-0000-0000-000000000012",
     "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
-    "Image": "https://gitlab.com/uploads/-/system/project/avatar/10858056/logo.jpg",
+    "Image": "https://www.fathym.com/img/baserow-logo500x275.jpg",
     "Lookup": "mui-baserow-carousel",
     "Name": "MUI Baserow Carousel",
-    "PreviewImage": "https://gitlab.com/uploads/-/system/project/avatar/10858056/logo.jpg",
+    "PreviewImage": "https://www.fathym.com/img/baserow-thumbnail-logo.jpg",
     "RecipeType": "MFE",
     "SuccessType": "Project",
     "Tier": "3"
