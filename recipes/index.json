@@ -19,7 +19,7 @@
             },
             "ModifierLookups": null,
             "Processor": {
-              "InboundPath": "/api/baserow"
+              "InboundPath": "api/baserow"
             }
           }
         }
