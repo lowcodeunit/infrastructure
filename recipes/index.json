@@ -2,6 +2,70 @@
   {
     "Button": "Launch Baserow",
     "Applications": {
+      "GitHub": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "The landing page for the baserow",
+              "Name": "Home Page",
+              "Priority": 0,
+              "PriorityShift": 0
+            },
+            "DataTokens": null,
+            "LicenseConfigurationLookups": null,
+            "LookupConfig": {
+              "AccessRightsAllAny": "Any",
+              "AllowedMethods": null,
+              "HeaderRegex": null,
+              "IsPrivate": false,
+              "IsTriggerSignIn": false,
+              "LicensesAllAny": "All",
+              "PathRegex": "/.*",
+              "QueryRegex": null,
+              "TerminateRequest": false,
+              "UserAgentRegex": null
+            },
+            "LowCodeUnit": {
+              "SourceControlLookup": "GitHub",
+              "Type": null,
+              "Build": "latest"
+            },
+            "ModifierLookups": null,
+            "Processor": {
+              "CacheControl": null,
+              "ModifierLookups": null,
+              "Priority": 0,
+              "Type": null,
+              "BaseHref": "/",
+              "DefaultFile": "index.html",
+              "Archived": false,
+              "Created": "0001-01-01T00:00:00",
+              "ID": "00000000-0000-0000-0000-000000000000",
+              "Label": null,
+              "Registry": null,
+              "TenantLookup": null,
+              "Updated": "0001-01-01T00:00:00"
+            }
+          },
+          "DevOpsArtifact": {
+            "Name": null,
+            "Output": "./public",
+            "Type": null,
+            "BuildCommand": "npm run build",
+            "InstallCommand": "npm ci",
+            "NPMRegistry": null,
+            "Lookup": "baserow",
+            "Archived": false,
+            "Created": "0001-01-01T00:00:00",
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "Label": null,
+            "Registry": null,
+            "TenantLookup": null,
+            "Updated": "0001-01-01T00:00:00"
+          }
+        }
+      ],
       "API": [
         {
           "Application": {
@@ -55,6 +119,27 @@
     "Name": "MUI Baserow Carousel",
     "PreviewImage": "https://www.fathym.com/img/baserow-thumbnail-logo.jpg",
     "RecipeType": "MFE",
+    "SourceCode": "https://github.com/fathym-it/baserow-landing-page",
+    "Sources": {
+      "GitHub": {
+        "DevOpsActionTriggerLookups": null,
+        "Name": null,
+        "Type": null,
+        "Branches": ["main"],
+        "MainBranch": "main",
+        "Organization": "fathym-it",
+        "Repository": "baserow-landing-page",
+        "Lookup": null,
+        "Username": null,
+        "Archived": false,
+        "Created": "0001-01-01T00:00:00",
+        "ID": "00000000-0000-0000-0000-000000000000",
+        "Label": null,
+        "Registry": null,
+        "TenantLookup": null,
+        "Updated": "0001-01-01T00:00:00"
+      }
+    },
     "SuccessType": "Project",
     "Tier": "3"
   },
