@@ -288,7 +288,7 @@
           "Application": {
             "AccessRightLookups": null,
             "Application": {
-              "Description": "Custom application for @fathym-hyland/hyland-homepage-gatsby@main to deploy Fathym Hyland Landing Page",
+              "Description": "Custom application for @fathym-it/hyland-homepage-gatsby@main to deploy Fathym Hyland Landing Page",
               "Name": "Fathym Hyland Landing Page",
               "Priority": 5000,
               "PriorityShift": 0
@@ -412,7 +412,7 @@
         "Type": null,
         "Branches": ["main"],
         "MainBranch": "main",
-        "Organization": "fathym-hyland",
+        "Organization": "fathym-it",
         "Repository": "hyland-homepage-gatsby",
         "Lookup": null,
         "Username": null,
