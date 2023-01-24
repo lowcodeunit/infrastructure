@@ -119,7 +119,7 @@
     "Name": "MUI Baserow Carousel",
     "PreviewImage": "https://www.fathym.com/img/baserow-thumbnail-logo.jpg",
     "RecipeType": "MFE",
-    "SourceCode": "https://github.com/fathym-it/baserow-landing-page",
+    "SourceCode": null,
     "Sources": {
       "GitHub": {
         "DevOpsActionTriggerLookups": null,
