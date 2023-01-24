@@ -1,12 +1,13 @@
 name: Sync, build and deploy Plasmic app
 
 on:
-  repository_dispatch:
-    types: [plasmic]
   push:
     branches: [{{Branches}}]
   pull_request:
     branches: [{{Branches}}]
+  repository_dispatch:
+    types: [plasmic]  
+  workflow_dispatch:
     
 permissions: write-all
 
