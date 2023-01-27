@@ -29,6 +29,7 @@
             "LowCodeUnit": {
               "SourceControlLookup": "GitHub",
               "Type": null,
+              "Path": "lcu-github-artifacts-release.yml",
               "Build": "latest"
             },
             "ModifierLookups": null,
@@ -339,7 +340,8 @@
             "LowCodeUnit": {
               "SourceControlLookup": "hyland-homepage-gatsby",
               "Type": null,
-              "Build": "latest"
+              "Path": "lcu-github-artifacts-release.yml",
+              "Build": "latest"             
             },
             "ModifierLookups": null,
             "Processor": {
