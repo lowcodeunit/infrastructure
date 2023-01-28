@@ -1,0 +1,186 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "subscriptionId": {
+            "value": "4bc90c73-3f96-4ed2-854c-6967d35d2868"
+        },
+        "name": {
+            "value": "lcu-{{RESOURCE_NAME}}"
+        },
+        "location": {
+            "value": "West US"
+        },
+        "hostingPlanName": {
+            "value": "lcu-{{RESOURCE_NAME}}"
+        },
+        "serverFarmResourceGroup": {
+            "value": "{{RESOURCE_NAME}}"
+        },
+        "ftpsState": {
+            "value": "FtpsOnly"
+        },
+        "sku": {
+            "value": "PremiumV2"
+        },
+        "skuCode": {
+            "value": "P1v2"
+        },
+        "workerSize": {
+            "value": "3"
+        },
+        "workerSizeId": {
+            "value": "3"
+        },
+        "numberOfWorkers": {
+            "value": "1"
+        },
+        "kind": {
+            "value": "linux"
+        },
+        "reserved": {
+            "value": true
+        },
+        "alwaysOn": {
+            "value": true
+        },
+        "linuxFxVersion": {
+            "value": "DOCKER|mcr.microsoft.com/appsvc/wordpress-alpine-php:latest"
+        },
+        "dockerRegistryUrl": {
+            "value": "https://mcr.microsoft.com"
+        },
+        "storageSizeGB": {
+            "value": 128
+        },
+        "storageIops": {
+            "value": 700
+        },
+        "storageAutoGrow": {
+            "value": "Enabled"
+        },
+        "backupRetentionDays": {
+            "value": 7
+        },
+        "geoRedundantBackup": {
+            "value": "Disabled"
+        },
+        "vmName": {
+            "value": "Standard_D2ds_v4"
+        },
+        "serverEdition": {
+            "value": "GeneralPurpose"
+        },
+        "vCores": {
+            "value": 2
+        },
+        "charset": {
+            "value": "utf8"
+        },
+        "collation": {
+            "value": "utf8_general_ci"
+        },
+        "serverName": {
+            "value": "{{RESOURCE_NAME}}-dbserver"
+        },
+        "serverUsername": {
+            "value": "{{DB_SERVER_USERNAME}}"
+        },
+        "serverPassword": {
+            "value": "{{DB_SERVER_PASSWORD}}"
+        },
+        "databaseName": {
+            "value": "{{[safe] RESOURCE_NAME}}_database"
+        },
+        "publicNetworkAccess": {
+            "value": "Disabled"
+        },
+        "wordpressTitle": {
+            "value": "WordPress On Azure"
+        },
+        "wordpressAdminEmail": {
+            "value": "{{USERNAME}}"
+        },
+        "wordpressUsername": {
+            "value": "{{WORDPRESS_USERNAME}}"
+        },
+        "wordpressPassword": {
+            "value": "{{WORDPRESS_PASSWORD}}"
+        },
+        "wpLocaleCode": {
+            "value": "en_US"
+        },
+        "cdnProfileName": {
+            "value": "{{RESOURCE_NAME}}-cdnprofile"
+        },
+        "cdnEndpointName": {
+            "value": "{{RESOURCE_NAME}}-endpoint"
+        },
+        "cdnType": {
+            "value": "Standard_Microsoft"
+        },
+        "storageAccountName": {
+            "value": "{{[safe] RESOURCE_NAME}}"
+        },
+        "blobContainerName": {
+            "value": "{{[safe] RESOURCE_NAME}}"
+        },
+        "storageAccountType": {
+            "value": "Standard_RAGRS"
+        },
+        "storageAccountKind": {
+            "value": "StorageV2"
+        },
+        "accessTier": {
+            "value": "Hot"
+        },
+        "minimumTlsVersion": {
+            "value": "TLS1_2"
+        },
+        "supportsHttpsTrafficOnly": {
+            "value": true
+        },
+        "allowBlobPublicAccess": {
+            "value": true
+        },
+        "allowSharedKeyAccess": {
+            "value": true
+        },
+        "allowCrossTenantReplication": {
+            "value": true
+        },
+        "networkAclsBypass": {
+            "value": "AzureServices"
+        },
+        "networkAclsDefaultAction": {
+            "value": "Allow"
+        },
+        "keySource": {
+            "value": "Microsoft.Storage"
+        },
+        "encryptionEnabled": {
+            "value": true
+        },
+        "infrastructureEncryptionEnabled": {
+            "value": false
+        },
+        "blobPublicAccessLevel": {
+            "value": "blob"
+        },
+        "vnetName": {
+            "value": "{{RESOURCE_NAME}}-vnet"
+        },
+        "subnetForApp": {
+            "value": "{{RESOURCE_NAME}}-appsubnet"
+        },
+        "subnetForDb": {
+            "value": "{{RESOURCE_NAME}}-dbsubnet"
+        },
+        "privateDnsZoneNameForDb": {
+            "value": "{{RESOURCE_NAME}}-privatelink.mysql.database.azure.com"
+        },
+        "vnetrg": {
+            "value": ""
+        }
+    }
+}
