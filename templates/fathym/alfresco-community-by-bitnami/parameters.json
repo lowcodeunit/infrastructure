@@ -1,0 +1,151 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westus2"
+        },
+        "networkInterfaceName1": {
+            "value": "fathym-alfresco-test-1833_z1"
+        },
+        "networkInterfaceName2": {
+            "value": "fathym-alfresco-test-16_z2"
+        },
+        "networkInterfaceName3": {
+            "value": "fathym-alfresco-test-1143_z3"
+        },
+        "networkSecurityGroupName": {
+            "value": "fathym-alfresco-test-1-nsg"
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "HTTP",
+                    "properties": {
+                        "priority": 1010,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "80"
+                    }
+                },
+                {
+                    "name": "HTTPS",
+                    "properties": {
+                        "priority": 1020,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "443"
+                    }
+                },
+                {
+                    "name": "SSH",
+                    "properties": {
+                        "priority": 1030,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                }
+            ]
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "virtualNetworkName": {
+            "value": "fathym-alfresco-test-1_group-vnet"
+        },
+        "addressPrefixes": {
+            "value": [
+                "10.0.0.0/16"
+            ]
+        },
+        "subnets": {
+            "value": [
+                {
+                    "name": "default",
+                    "properties": {
+                        "addressPrefix": "10.0.0.0/24"
+                    }
+                }
+            ]
+        },
+        "publicIpAddressName1": {
+            "value": "fathym-alfresco-test-1-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Static"
+        },
+        "publicIpAddressSku": {
+            "value": "Standard"
+        },
+        "pipDeleteOption": {
+            "value": "Detach"
+        },
+        "publicIpAddressName2": {
+            "value": "fathym-alfresco-test-2-ip"
+        },
+        "publicIpAddressName3": {
+            "value": "fathym-alfresco-test-3-ip"
+        },
+        "virtualMachineName": {
+            "value": "fathym-alfresco-test-1"
+        },
+        "virtualMachineName1": {
+            "value": "fathym-alfresco-test-1"
+        },
+        "virtualMachineComputerName1": {
+            "value": "fathym-alfresco-test-1"
+        },
+        "virtualMachineRG": {
+            "value": "fathym-alfresco-test-1_group"
+        },
+        "osDiskType": {
+            "value": "Premium_LRS"
+        },
+        "osDiskDeleteOption": {
+            "value": "Delete"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_B2s"
+        },
+        "nicDeleteOption": {
+            "value": "Detach"
+        },
+        "adminUsername": {
+            "value": "azureuser"
+        },
+        "virtualMachineName2": {
+            "value": "fathym-alfresco-test-2"
+        },
+        "virtualMachineComputerName2": {
+            "value": "fathym-alfresco-test-2"
+        },
+        "virtualMachineName3": {
+            "value": "fathym-alfresco-test-3"
+        },
+        "virtualMachineComputerName3": {
+            "value": "fathym-alfresco-test-3"
+        },
+        "zone": {
+            "value": "1"
+        }
+    }
+}
