@@ -6,16 +6,16 @@
             "value": "westus2"
         },
         "networkInterfaceName1": {
-            "value": "fathym-alfresco-test-1833_z1"
+            "value": "{{RESOURCE_NAME}}-z1"
         },
         "networkInterfaceName2": {
-            "value": "fathym-alfresco-test-16_z2"
+            "value": "{{RESOURCE_NAME}}-z2"
         },
         "networkInterfaceName3": {
-            "value": "fathym-alfresco-test-1143_z3"
+            "value": "{{RESOURCE_NAME}}-z3"
         },
         "networkSecurityGroupName": {
-            "value": "fathym-alfresco-test-1-nsg"
+            "value": "{{RESOURCE_NAME}}-nsg"
         },
         "networkSecurityGroupRules": {
             "value": [
@@ -70,7 +70,7 @@
             "value": "default"
         },
         "virtualNetworkName": {
-            "value": "fathym-alfresco-test-1_group-vnet"
+            "value": "{{RESOURCE_NAME}}-vnet"
         },
         "addressPrefixes": {
             "value": [
@@ -88,7 +88,7 @@
             ]
         },
         "publicIpAddressName1": {
-            "value": "fathym-alfresco-test-1-ip"
+            "value": "{{RESOURCE_NAME}}-z1-ip"
         },
         "publicIpAddressType": {
             "value": "Static"
@@ -100,22 +100,22 @@
             "value": "Detach"
         },
         "publicIpAddressName2": {
-            "value": "fathym-alfresco-test-2-ip"
+            "value": "{{RESOURCE_NAME}}-z2-ip"
         },
         "publicIpAddressName3": {
-            "value": "fathym-alfresco-test-3-ip"
-        },
-        "virtualMachineName": {
-            "value": "fathym-alfresco-test-1"
-        },
-        "virtualMachineName1": {
-            "value": "fathym-alfresco-test-1"
-        },
-        "virtualMachineComputerName1": {
-            "value": "fathym-alfresco-test-1"
+            "value": "{{RESOURCE_NAME}}-z3-ip"
         },
         "virtualMachineRG": {
-            "value": "fathym-alfresco-test-1_group"
+            "value": "{{RESOURCE_NAME}}"
+        },
+        "virtualMachineName": {
+            "value": "{{RESOURCE_NAME}}-1"
+        },
+        "virtualMachineName1": {
+            "value": "{{RESOURCE_NAME}}-1"
+        },
+        "virtualMachineComputerName1": {
+            "value": "{{RESOURCE_NAME}}-1"
         },
         "osDiskType": {
             "value": "Premium_LRS"
@@ -133,16 +133,16 @@
             "value": "azureuser"
         },
         "virtualMachineName2": {
-            "value": "fathym-alfresco-test-2"
+            "value": "{{RESOURCE_NAME}}-2"
         },
         "virtualMachineComputerName2": {
-            "value": "fathym-alfresco-test-2"
+            "value": "{{RESOURCE_NAME}}-2"
         },
         "virtualMachineName3": {
-            "value": "fathym-alfresco-test-3"
+            "value": "{{RESOURCE_NAME}}-3"
         },
         "virtualMachineComputerName3": {
-            "value": "fathym-alfresco-test-3"
+            "value": "{{RESOURCE_NAME}}-3"
         },
         "zone": {
             "value": "1"
