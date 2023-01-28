@@ -2,6 +2,71 @@
   {
     "Button": "Launch Baserow",
     "Applications": {
+      "GitHub": [
+        {
+          "Application": {
+            "AccessRightLookups": null,
+            "Application": {
+              "Description": "The landing page for the baserow",
+              "Name": "Home Page",
+              "Priority": 0,
+              "PriorityShift": 0
+            },
+            "DataTokens": null,
+            "LicenseConfigurationLookups": null,
+            "LookupConfig": {
+              "AccessRightsAllAny": "Any",
+              "AllowedMethods": null,
+              "HeaderRegex": null,
+              "IsPrivate": false,
+              "IsTriggerSignIn": false,
+              "LicensesAllAny": "All",
+              "PathRegex": "/.*",
+              "QueryRegex": null,
+              "TerminateRequest": false,
+              "UserAgentRegex": null
+            },
+            "LowCodeUnit": {
+              "SourceControlLookup": "GitHub",
+              "Type": null,
+              "Path": "lcu-github-artifacts-release.yml",
+              "Build": "latest"
+            },
+            "ModifierLookups": null,
+            "Processor": {
+              "CacheControl": null,
+              "ModifierLookups": null,
+              "Priority": 0,
+              "Type": null,
+              "BaseHref": "/",
+              "DefaultFile": "index.html",
+              "Archived": false,
+              "Created": "0001-01-01T00:00:00",
+              "ID": "00000000-0000-0000-0000-000000000000",
+              "Label": null,
+              "Registry": null,
+              "TenantLookup": null,
+              "Updated": "0001-01-01T00:00:00"
+            }
+          },
+          "DevOpsArtifact": {
+            "Name": null,
+            "Output": "./public",
+            "Type": null,
+            "BuildCommand": "npm run build",
+            "InstallCommand": "npm ci",
+            "NPMRegistry": null,
+            "Lookup": "baserow",
+            "Archived": false,
+            "Created": "0001-01-01T00:00:00",
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "Label": null,
+            "Registry": null,
+            "TenantLookup": null,
+            "Updated": "0001-01-01T00:00:00"
+          }
+        }
+      ],
       "API": [
         {
           "Application": {
@@ -50,11 +115,32 @@
     "Description": "A react frontend for your Baserow.",
     "ID": "00000000-0000-0000-0000-000000000012",
     "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
-    "Image": "https://gitlab.com/uploads/-/system/project/avatar/10858056/logo.jpg",
+    "Image": "https://www.fathym.com/img/baserow-logo500x275.jpg",
     "Lookup": "mui-baserow-carousel",
     "Name": "MUI Baserow Carousel",
-    "PreviewImage": "https://gitlab.com/uploads/-/system/project/avatar/10858056/logo.jpg",
+    "PreviewImage": "https://www.fathym.com/img/baserow-thumbnail-logo.jpg",
     "RecipeType": "MFE",
+    "SourceCode": null,
+    "Sources": {
+      "GitHub": {
+        "DevOpsActionTriggerLookups": null,
+        "Name": null,
+        "Type": null,
+        "Branches": ["main"],
+        "MainBranch": "main",
+        "Organization": "fathym-it",
+        "Repository": "baserow-landing-page",
+        "Lookup": null,
+        "Username": null,
+        "Archived": false,
+        "Created": "0001-01-01T00:00:00",
+        "ID": "00000000-0000-0000-0000-000000000000",
+        "Label": null,
+        "Registry": null,
+        "TenantLookup": null,
+        "Updated": "0001-01-01T00:00:00"
+      }
+    },
     "SuccessType": "Project",
     "Tier": "3"
   },
@@ -174,62 +260,6 @@
           "Application": {
             "AccessRightLookups": null,
             "Application": {
-              "Description": "Hyland Flow",
-              "Name": "Hyland Flow",
-              "Priority": 25000,
-              "PriorityShift": 0
-            },
-            "DataTokens": null,
-            "LicenseConfigurationLookups": null,
-            "LookupConfig": {
-              "AccessRightsAllAny": "Any",
-              "AllowedMethods": null,
-              "HeaderRegex": null,
-              "IsPrivate": false,
-              "IsTriggerSignIn": false,
-              "LicensesAllAny": "All",
-              "PathRegex": "/dashboard/flow.*",
-              "QueryRegex": null,
-              "TerminateRequest": false,
-              "UserAgentRegex": null
-            },
-            "LowCodeUnit": {
-              "SourceControlLookup": null,
-              "Type": null,
-              "CurrentVersion": null,
-              "Package": "@fathym-hyland/hyland-flow",
-              "Version": "latest",
-              "Archived": false,
-              "Created": "0001-01-01T00:00:00",
-              "ID": "00000000-0000-0000-0000-000000000000",
-              "Label": null,
-              "Registry": null,
-              "TenantLookup": null,
-              "Updated": "0001-01-01T00:00:00"
-            },
-            "ModifierLookups": null,
-            "Processor": {
-              "CacheControl": null,
-              "ModifierLookups": null,
-              "Priority": 0,
-              "Type": null,
-              "BaseHref": "/dashboard/flow",
-              "DefaultFile": "index.html",
-              "Archived": false,
-              "Created": "0001-01-01T00:00:00",
-              "ID": "00000000-0000-0000-0000-000000000000",
-              "Label": null,
-              "Registry": null,
-              "TenantLookup": null,
-              "Updated": "0001-01-01T00:00:00"
-            }
-          },
-          "DevOpsArtifact": null
-        },
-        {
-          "Application": {
-            "AccessRightLookups": null,
-            "Application": {
               "Description": "Hyland Flow StoryBook",
               "Name": "Hyland Flow Storybook",
               "Priority": 30000,
@@ -288,7 +318,7 @@
           "Application": {
             "AccessRightLookups": null,
             "Application": {
-              "Description": "Custom application for @fathym-hyland/hyland-homepage-gatsby@main to deploy Fathym Hyland Landing Page",
+              "Description": "Custom application for @fathym-it/hyland-homepage-gatsby@main to deploy Fathym Hyland Landing Page",
               "Name": "Fathym Hyland Landing Page",
               "Priority": 5000,
               "PriorityShift": 0
@@ -310,7 +340,8 @@
             "LowCodeUnit": {
               "SourceControlLookup": "hyland-homepage-gatsby",
               "Type": null,
-              "Build": "latest"
+              "Path": "lcu-github-artifacts-release.yml",
+              "Build": "latest"             
             },
             "ModifierLookups": null,
             "Processor": {
@@ -412,7 +443,7 @@
         "Type": null,
         "Branches": ["main"],
         "MainBranch": "main",
-        "Organization": "fathym-hyland",
+        "Organization": "fathym-it",
         "Repository": "hyland-homepage-gatsby",
         "Lookup": null,
         "Username": null,
