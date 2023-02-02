@@ -132,6 +132,9 @@
         "adminUsername": {
             "value": "azureuser"
         },
+        "adminPublicKey": {
+            "value": "{{SSH_PUBLIC_KEY}}"
+        },
         "virtualMachineName2": {
             "value": "{{RESOURCE_NAME}}-2"
         },
