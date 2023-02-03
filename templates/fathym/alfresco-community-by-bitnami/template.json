@@ -480,6 +480,18 @@
         "adminUsername": {
             "type": "string",
             "value": "[parameters('adminUsername')]"
+        },
+        "PUBLIC_IP_ADDRESS_1": {
+          "type": "string",
+          "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpAddressName1'))).dnsSettings.fqdn]"
+        },
+        "PUBLIC_IP_ADDRESS_2": {
+          "type": "string",
+          "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpAddressName2'))).dnsSettings.fqdn]"
+        },
+        "PUBLIC_IP_ADDRESS_3": {
+          "type": "string",
+          "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpAddressName3'))).dnsSettings.fqdn]"
         }
     }
 }
