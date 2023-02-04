@@ -8,12 +8,6 @@
         "networkInterfaceName1": {
             "type": "string"
         },
-        "networkInterfaceName2": {
-            "type": "string"
-        },
-        "networkInterfaceName3": {
-            "type": "string"
-        },
         "networkSecurityGroupName": {
             "type": "string"
         },
@@ -44,12 +38,6 @@
         "pipDeleteOption": {
             "type": "string"
         },
-        "publicIpAddressName2": {
-            "type": "string"
-        },
-        "publicIpAddressName3": {
-            "type": "string"
-        },
         "virtualMachineName": {
             "type": "string"
         },
@@ -78,18 +66,6 @@
             "type": "string"
         },
         "adminPublicKey": {
-            "type": "string"
-        },
-        "virtualMachineName2": {
-            "type": "string"
-        },
-        "virtualMachineComputerName2": {
-            "type": "string"
-        },
-        "virtualMachineName3": {
-            "type": "string"
-        },
-        "virtualMachineComputerName3": {
             "type": "string"
         },
         "zone": {
@@ -137,72 +113,6 @@
             }
         },
         {
-            "name": "[parameters('networkInterfaceName2')]",
-            "type": "Microsoft.Network/networkInterfaces",
-            "apiVersion": "2021-08-01",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]",
-                "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
-                "[concat('Microsoft.Network/publicIpAddresses/', parameters('publicIpAddressName2'))]"
-            ],
-            "properties": {
-                "ipConfigurations": [
-                    {
-                        "name": "ipconfig1",
-                        "properties": {
-                            "subnet": {
-                                "id": "[variables('subnetRef')]"
-                            },
-                            "privateIPAllocationMethod": "Dynamic",
-                            "publicIpAddress": {
-                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName2'))]",
-                                "properties": {
-                                    "deleteOption": "[parameters('pipDeleteOption')]"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "networkSecurityGroup": {
-                    "id": "[variables('nsgId')]"
-                }
-            }
-        },
-        {
-            "name": "[parameters('networkInterfaceName3')]",
-            "type": "Microsoft.Network/networkInterfaces",
-            "apiVersion": "2021-08-01",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]",
-                "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
-                "[concat('Microsoft.Network/publicIpAddresses/', parameters('publicIpAddressName3'))]"
-            ],
-            "properties": {
-                "ipConfigurations": [
-                    {
-                        "name": "ipconfig1",
-                        "properties": {
-                            "subnet": {
-                                "id": "[variables('subnetRef')]"
-                            },
-                            "privateIPAllocationMethod": "Dynamic",
-                            "publicIpAddress": {
-                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName3'))]",
-                                "properties": {
-                                    "deleteOption": "[parameters('pipDeleteOption')]"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "networkSecurityGroup": {
-                    "id": "[variables('nsgId')]"
-                }
-            }
-        },
-        {
             "name": "[parameters('networkSecurityGroupName')]",
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2019-02-01",
@@ -225,40 +135,6 @@
         },
         {
             "name": "[parameters('publicIpAddressName1')]",
-            "type": "Microsoft.Network/publicIpAddresses",
-            "apiVersion": "2020-08-01",
-            "location": "[parameters('location')]",
-            "properties": {
-                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]"
-            },
-            "sku": {
-                "name": "[parameters('publicIpAddressSku')]"
-            },
-            "zones": [
-                "1",
-                "2",
-                "3"
-            ]
-        },
-        {
-            "name": "[parameters('publicIpAddressName2')]",
-            "type": "Microsoft.Network/publicIpAddresses",
-            "apiVersion": "2020-08-01",
-            "location": "[parameters('location')]",
-            "properties": {
-                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]"
-            },
-            "sku": {
-                "name": "[parameters('publicIpAddressSku')]"
-            },
-            "zones": [
-                "1",
-                "2",
-                "3"
-            ]
-        },
-        {
-            "name": "[parameters('publicIpAddressName3')]",
             "type": "Microsoft.Network/publicIpAddresses",
             "apiVersion": "2020-08-01",
             "location": "[parameters('location')]",
@@ -340,140 +216,6 @@
             "zones": [
                 "1"
             ]
-        },
-        {
-            "name": "[parameters('virtualMachineName2')]",
-            "type": "Microsoft.Compute/virtualMachines",
-            "apiVersion": "2022-03-01",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName2'))]"
-            ],
-            "properties": {
-                "hardwareProfile": {
-                    "vmSize": "[parameters('virtualMachineSize')]"
-                },
-                "storageProfile": {
-                    "osDisk": {
-                        "createOption": "fromImage",
-                        "managedDisk": {
-                            "storageAccountType": "[parameters('osDiskType')]"
-                        },
-                        "deleteOption": "[parameters('osDiskDeleteOption')]"
-                    },
-                    "imageReference": {
-                        "publisher": "bitnami",
-                        "offer": "alfrescocommunity",
-                        "sku": "201602",
-                        "version": "latest"
-                    }
-                },
-                "networkProfile": {
-                    "networkInterfaces": [
-                        {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaceName2'))]",
-                            "properties": {
-                                "deleteOption": "[parameters('nicDeleteOption')]"
-                            }
-                        }
-                    ]
-                },
-                "osProfile": {
-                    "computerName": "[parameters('virtualMachineComputerName2')]",
-                    "adminUsername": "[parameters('adminUsername')]",
-                    "linuxConfiguration": {
-                        "disablePasswordAuthentication": true,
-                        "ssh": {
-                          "publicKeys": [
-                            {
-                              "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
-                              "keyData": "[parameters('adminPublicKey')]"
-                            }
-                          ]
-                        }
-                    }
-                },
-                "diagnosticsProfile": {
-                    "bootDiagnostics": {
-                        "enabled": true
-                    }
-                }
-            },
-            "plan": {
-                "name": "201602",
-                "publisher": "bitnami",
-                "product": "alfrescocommunity"
-            },
-            "zones": [
-                "2"
-            ]
-        },
-        {
-            "name": "[parameters('virtualMachineName3')]",
-            "type": "Microsoft.Compute/virtualMachines",
-            "apiVersion": "2022-03-01",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName3'))]"
-            ],
-            "properties": {
-                "hardwareProfile": {
-                    "vmSize": "[parameters('virtualMachineSize')]"
-                },
-                "storageProfile": {
-                    "osDisk": {
-                        "createOption": "fromImage",
-                        "managedDisk": {
-                            "storageAccountType": "[parameters('osDiskType')]"
-                        },
-                        "deleteOption": "[parameters('osDiskDeleteOption')]"
-                    },
-                    "imageReference": {
-                        "publisher": "bitnami",
-                        "offer": "alfrescocommunity",
-                        "sku": "201602",
-                        "version": "latest"
-                    }
-                },
-                "networkProfile": {
-                    "networkInterfaces": [
-                        {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaceName3'))]",
-                            "properties": {
-                                "deleteOption": "[parameters('nicDeleteOption')]"
-                            }
-                        }
-                    ]
-                },
-                "osProfile": {
-                    "computerName": "[parameters('virtualMachineComputerName3')]",
-                    "adminUsername": "[parameters('adminUsername')]",
-                    "linuxConfiguration": {
-                        "disablePasswordAuthentication": true,
-                        "ssh": {
-                          "publicKeys": [
-                            {
-                              "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
-                              "keyData": "[parameters('adminPublicKey')]"
-                            }
-                          ]
-                        }
-                    }
-                },
-                "diagnosticsProfile": {
-                    "bootDiagnostics": {
-                        "enabled": true
-                    }
-                }
-            },
-            "plan": {
-                "name": "201602",
-                "publisher": "bitnami",
-                "product": "alfrescocommunity"
-            },
-            "zones": [
-                "3"
-            ]
         }
     ],
     "outputs": {
@@ -484,14 +226,6 @@
         "PUBLIC_IP_ADDRESS_1": {
           "type": "string",
           "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpAddressName1'))).dnsSettings.fqdn]"
-        },
-        "PUBLIC_IP_ADDRESS_2": {
-          "type": "string",
-          "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpAddressName2'))).dnsSettings.fqdn]"
-        },
-        "PUBLIC_IP_ADDRESS_3": {
-          "type": "string",
-          "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpAddressName3'))).dnsSettings.fqdn]"
         }
     }
 }

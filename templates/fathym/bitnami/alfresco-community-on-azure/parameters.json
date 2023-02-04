@@ -8,12 +8,6 @@
         "networkInterfaceName1": {
             "value": "{{RESOURCE_NAME}}-z1"
         },
-        "networkInterfaceName2": {
-            "value": "{{RESOURCE_NAME}}-z2"
-        },
-        "networkInterfaceName3": {
-            "value": "{{RESOURCE_NAME}}-z3"
-        },
         "networkSecurityGroupName": {
             "value": "{{RESOURCE_NAME}}-nsg"
         },
@@ -99,12 +93,6 @@
         "pipDeleteOption": {
             "value": "Detach"
         },
-        "publicIpAddressName2": {
-            "value": "{{RESOURCE_NAME}}-z2-ip"
-        },
-        "publicIpAddressName3": {
-            "value": "{{RESOURCE_NAME}}-z3-ip"
-        },
         "virtualMachineRG": {
             "value": "{{RESOURCE_NAME}}"
         },
@@ -134,18 +122,6 @@
         },
         "adminPublicKey": {
             "value": "{{SSH_PUBLIC_KEY}}"
-        },
-        "virtualMachineName2": {
-            "value": "{{RESOURCE_NAME}}-2"
-        },
-        "virtualMachineComputerName2": {
-            "value": "{{RESOURCE_NAME}}-2"
-        },
-        "virtualMachineName3": {
-            "value": "{{RESOURCE_NAME}}-3"
-        },
-        "virtualMachineComputerName3": {
-            "value": "{{RESOURCE_NAME}}-3"
         },
         "zone": {
             "value": "1"
