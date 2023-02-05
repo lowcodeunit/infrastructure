@@ -223,7 +223,7 @@
             "type": "string",
             "value": "[parameters('adminUsername')]"
         },
-        "PUBLIC_IP_ADDRESS_1": {
+        "publicIpAddress1": {
           "type": "string",
           "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpAddressName1'))).dnsSettings.fqdn]"
         }
