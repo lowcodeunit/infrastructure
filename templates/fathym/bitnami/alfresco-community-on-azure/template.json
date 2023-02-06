@@ -77,7 +77,7 @@
     "vnetName": "[parameters('virtualNetworkName')]",
     "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
-    "publicIpAddressName1": "[parameters('publicIpAddressName1')"
+    "publicIpAddressName1": "[parameters('publicIpAddressName1')]"
   },
   "resources": [
     {
