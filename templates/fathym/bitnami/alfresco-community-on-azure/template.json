@@ -220,7 +220,7 @@
     },
     "publicIpAddress1": {
       "type": "string",
-      "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpAddressName1'))).dnsSettings.fqdn]"
+      "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpAddressName1'))).ipAddress]"
     }
   }
 }
