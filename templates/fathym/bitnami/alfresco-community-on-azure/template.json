@@ -219,7 +219,7 @@
       "value": "[parameters('adminUsername')]"
     },
     "publicIpAddress1": {
-      "type": "object",
+      "type": "string",
       "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpAddressName1'))).ipAddress]"
     }
   }
