@@ -210,7 +210,7 @@
         "publisher": "bitnami",
         "product": "alfrescocommunity"
       },
-      "zones": ["1"]
+      "zones": ["1", "2", "3"]
     }
   ],
   "outputs": {
