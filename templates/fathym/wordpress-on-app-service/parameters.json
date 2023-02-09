@@ -90,7 +90,7 @@
             "value": "{{DB_SERVER_PASSWORD}}"
         },
         "databaseName": {
-            "value": "{{[alphanumlower] RESOURCE_NAME}}_database"
+            "value": "{{alphanumlower RESOURCE_NAME}}_database"
         },
         "publicNetworkAccess": {
             "value": "Disabled"
@@ -120,10 +120,10 @@
             "value": "Standard_Microsoft"
         },
         "storageAccountName": {
-            "value": "{{[alphanumlower] RESOURCE_NAME}}"
+            "value": "{{alphanumlower RESOURCE_NAME}}"
         },
         "blobContainerName": {
-            "value": "{{[alphanumlower] RESOURCE_NAME}}"
+            "value": "{{alphanumlower RESOURCE_NAME}}"
         },
         "storageAccountType": {
             "value": "Standard_RAGRS"
