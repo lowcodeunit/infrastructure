@@ -145,7 +145,7 @@
       "sku": {
         "name": "[parameters('publicIpAddressSku')]"
       },
-      "zones": ["1"]
+      "zones": ["1", "2", "3"]
     },
     {
       "name": "[parameters('virtualMachineName1')]",
@@ -210,7 +210,7 @@
         "publisher": "bitnami",
         "product": "alfrescocommunity"
       },
-      "zones": ["1", "2", "3"]
+      "zones": ["1"]
     }
   ],
   "outputs": {
