@@ -145,7 +145,7 @@
       "sku": {
         "name": "[parameters('publicIpAddressSku')]"
       },
-      "zones": ["1", "2", "3"]
+      "zones": ["1"]
     },
     {
       "name": "[parameters('virtualMachineName1')]",
