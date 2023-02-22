@@ -30,12 +30,24 @@ jobs:
           echo "Current branch is ${{ steps.vars.outputs.branchName }}"
           echo "Version bump type is ${{ steps.vars.outputs.versionBump }}"
 
+      # bump version
+      - name: Bump version
+        uses: fathym/github-tag-action@master
+        id: versionBump
+        env:
+          DEFAULT_BUMP: ${{ steps.vars.outputs.versionBump }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_BRANCHES: .*
+          WITH_V: false
+          DRY_RUN: true
+      - run: echo "New version is ${{ steps.versionBump.outputs.new_tag }}"
+
       # Check package.json exists
       - name: Check package.json existence
         id: package_json_exists
         uses: fathym/file-existence-action@master
         with:
-          files: "package.json"
+          files: 'package.json'
 
       # replace text in package.json for main branch
       - name: replace version text for main branch
@@ -82,16 +94,16 @@ jobs:
 
       # bump version and push tag
       - name: Bump version and push tag
-        id: versionBump
         uses: fathym/github-tag-action@master
-        if: ${{ steps.package_json_exists.outputs.files_exists == 'true' }}
+        id: versionBumpTag
         env:
           DEFAULT_BUMP: ${{ steps.vars.outputs.versionBump }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_BRANCHES: .*
           WITH_V: false
+          DRY_RUN: false
       - run: echo "New version is ${{ steps.versionBump.outputs.new_tag }}"
-      
+
       # webhook to LowCodeUnit
       - name: Invoke deployment hook
         uses: fathym/workflow-webhook@v2
