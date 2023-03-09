@@ -99,7 +99,7 @@
             "value": "WordPress On Azure"
         },
         "wordpressAdminEmail": {
-            "value": "{{USERNAME}}"
+            "value": "{{WORDPRESS_ADMIN_EMAIL}}"
         },
         "wordpressUsername": {
             "value": "{{WORDPRESS_USERNAME}}"
