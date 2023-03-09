@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "subscriptionId": {
-            "value": "4bc90c73-3f96-4ed2-854c-6967d35d2868"
+            "value": "{{$Cloud.SubscriptionID}}"
         },
         "name": {
             "value": "lcu-{{RESOURCE_NAME}}"
