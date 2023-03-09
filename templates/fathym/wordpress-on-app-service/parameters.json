@@ -6,13 +6,13 @@
             "value": "{{$Cloud.SubscriptionID}}"
         },
         "name": {
-            "value": "lcu-{{RESOURCE_NAME}}"
+            "value": "{{RESOURCE_NAME}}"
         },
         "location": {
             "value": "West US"
         },
         "hostingPlanName": {
-            "value": "lcu-{{RESOURCE_NAME}}"
+            "value": "{{RESOURCE_NAME}}"
         },
         "serverFarmResourceGroup": {
             "value": "{{RESOURCE_NAME}}"
