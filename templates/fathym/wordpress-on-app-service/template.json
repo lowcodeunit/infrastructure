@@ -394,8 +394,8 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]"
             ],
-            "resourceGroup": "fathym-wp-test1_group",
-            "subscriptionId": "4bc90c73-3f96-4ed2-854c-6967d35d2868",
+            "resourceGroup": "[resourceGroup().name]",
+            "subscriptionId": "[parameters('subscriptionId')]",
             "properties": {
                 "mode": "Incremental",
                 "template": {
