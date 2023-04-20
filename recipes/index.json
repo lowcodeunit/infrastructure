@@ -115,10 +115,10 @@
     "Description": "A react frontend for your Baserow.",
     "ID": "00000000-0000-0000-0000-000000000012",
     "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
-    "Image": "https://www.fathym.com/img/baserow-logo500x275.jpg",
+    "Image": "https://www.fathym.com/img/fathym-baserow-starter.png",
     "Lookup": "mui-baserow-carousel",
     "Name": "MUI Baserow Carousel",
-    "PreviewImage": "https://www.fathym.com/img/fathym-baserow-starter.png",
+    "PreviewImage": "https://www.fathym.com/img/baserow-thumbnail-logo.jpg",
     "RecipeType": "MFE",
     "SourceCode": null,
     "Sources": {
