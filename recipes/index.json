@@ -112,7 +112,7 @@
         }
       ]
     },
-    "Description": "A react frontend for your Baserow.",
+    "Description": "A simple frontend starting point for a Material UI React site using Baserow as a CMS backend via an API proxy.",
     "ID": "00000000-0000-0000-0000-000000000012",
     "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/fathym-baserow-starter.png",
@@ -427,7 +427,7 @@
         }
       ]
     },
-    "Description": "A modular frontend example for Alfresco.",
+    "Description": "A simple frontend starting point for an Alfresco Development Framework (ADF) Angular app using Alfresco as a content management solution via an API proxy.",
     "ID": "00000000-0000-0000-0000-000000000011",
     "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/fathym-alfresco-starter.png",
