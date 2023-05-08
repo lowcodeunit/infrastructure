@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_fuxa_container_name": {
+            "defaultValue": "fuxa-container",
+            "type": "String"
+        },
+        "serverfarms_ASP_Fuxa_a6f3_name": {
+            "defaultValue": "ASP-Fuxa-a6f3",
+            "type": "String"
+        },
+        "storageAccounts_fuxastorage_name": {
+            "defaultValue": "fuxastorage",
+            "type": "String"
+        }
+    }
+}
