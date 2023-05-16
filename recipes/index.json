@@ -112,10 +112,10 @@
         }
       ]
     },
-    "Description": "A react frontend for your Baserow.",
+    "Description": "A simple frontend starting point for a Material UI React site using Baserow as a CMS backend via an API proxy.",
     "ID": "00000000-0000-0000-0000-000000000012",
     "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
-    "Image": "https://www.fathym.com/img/baserow-logo500x275.jpg",
+    "Image": "https://www.fathym.com/img/fathym-baserow-starter.png",
     "Lookup": "mui-baserow-carousel",
     "Name": "MUI Baserow Carousel",
     "PreviewImage": "https://www.fathym.com/img/baserow-thumbnail-logo.jpg",
@@ -185,7 +185,7 @@
             },
             "ModifierLookups": null,
             "Processor": {
-              "InboundPath": "/alfresco",
+              "InboundPath": "alfresco",
               "Priority": 0,
               "Type": null,
               "Archived": false,
@@ -332,7 +332,7 @@
               "IsPrivate": false,
               "IsTriggerSignIn": false,
               "LicensesAllAny": "All",
-              "PathRegex": "/.*",
+              "PathRegex": "/home.*",
               "QueryRegex": null,
               "TerminateRequest": false,
               "UserAgentRegex": null
@@ -349,7 +349,7 @@
               "ModifierLookups": null,
               "Priority": 0,
               "Type": null,
-              "BaseHref": "/",
+              "BaseHref": "/home",
               "DefaultFile": "index.html",
               "Archived": false,
               "Created": "0001-01-01T00:00:00",
@@ -397,7 +397,7 @@
               "IsPrivate": false,
               "IsTriggerSignIn": false,
               "LicensesAllAny": "All",
-              "PathRegex": "/admin/alfresco.*",
+              "PathRegex": "/.*",
               "QueryRegex": null,
               "TerminateRequest": false,
               "UserAgentRegex": null
@@ -413,7 +413,7 @@
               "ModifierLookups": null,
               "Priority": 0,
               "Type": null,
-              "InboundPath": "admin/alfresco",
+              "InboundPath": "/",
               "Archived": false,
               "Created": "0001-01-01T00:00:00",
               "ID": "00000000-0000-0000-0000-000000000000",
@@ -427,10 +427,10 @@
         }
       ]
     },
-    "Description": "A modular frontend example for Alfresco.",
+    "Description": "A simple frontend starting point for an Alfresco Development Framework (ADF) Angular app using Alfresco as a content management solution via an API proxy.",
     "ID": "00000000-0000-0000-0000-000000000011",
     "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
-    "Image": "https://www.fathym.com/img/hyland-alfresco-500x275.png",
+    "Image": "https://www.fathym.com/img/fathym-alfresco-starter.png",
     "Lookup": "alfresco-starter",
     "Name": "Alfresco",
     "PreviewImage": "https://www.fathym.com/img/alfresco-logo.png",
