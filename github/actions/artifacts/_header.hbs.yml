@@ -1,19 +1,19 @@
-name: { { Name } }
+name: {{Name}}
 
 on:
   push:
-    branches: [{ { Branches } }]
+    branches: [{{Branches}}]
   pull_request:
-    branches: [{ { Branches } }]
+    branches: [{{Branches}}]
   workflow_dispatch:
 
 permissions: write-all
 
 env:
   CI: false
-  Branches: { { Branches } }
-  MainBranch: { { MainBranch } }
-  NPMRegistry: { { NPMRegistry } }
-  InstallCommand: { { InstallCommand } }
-  BuildCommand: { { BuildCommand } }
-  Output: { { Output } }
+  Branches: {{Branches}}
+  MainBranch: {{MainBranch}}
+  NPMRegistry: {{NPMRegistry}}
+  InstallCommand: {{InstallCommand}}
+  BuildCommand: {{BuildCommand}}
+  Output: {{Output}}
