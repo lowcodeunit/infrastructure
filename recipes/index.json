@@ -129,7 +129,7 @@
         "Branches": ["main"],
         "MainBranch": "main",
         "Organization": "fathym-it",
-        "Repository": "baserow-landing-page",
+        "Repository": "landing-page-baserow-launchpad",
         "Lookup": null,
         "Username": null,
         "Archived": false,
