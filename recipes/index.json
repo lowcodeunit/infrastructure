@@ -318,8 +318,8 @@
           "Application": {
             "AccessRightLookups": null,
             "Application": {
-              "Description": "Custom application for @fathym-it/hyland-homepage-gatsby@main to deploy Fathym Hyland Landing Page",
-              "Name": "Fathym Hyland Landing Page",
+              "Description": "Custom application to deploy Fathym Alfresco Landing Page",
+              "Name": "Fathym Alfresco Landing Page",
               "Priority": 5000,
               "PriorityShift": 0
             },
@@ -338,7 +338,7 @@
               "UserAgentRegex": null
             },
             "LowCodeUnit": {
-              "SourceControlLookup": "hyland-homepage-gatsby",
+              "SourceControlLookup": "landing-page-alfresco-launchpad",
               "Type": null,
               "Path": "lcu-github-artifacts-release.yml",
               "Build": "latest"             
@@ -437,14 +437,14 @@
     "RecipeType": "MFE",
     "SourceCode": null,
     "Sources": {
-      "hyland-homepage-gatsby": {
+      "landing-page-baserow-launchpad": {
         "DevOpsActionTriggerLookups": null,
         "Name": null,
         "Type": null,
         "Branches": ["main"],
         "MainBranch": "main",
         "Organization": "fathym-it",
-        "Repository": "hyland-homepage-gatsby",
+        "Repository": "landing-page-baserow-launchpad",
         "Lookup": null,
         "Username": null,
         "Archived": false,
