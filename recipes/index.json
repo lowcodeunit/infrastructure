@@ -437,14 +437,14 @@
     "RecipeType": "MFE",
     "SourceCode": null,
     "Sources": {
-      "landing-page-baserow-launchpad": {
+      "landing-page-alfresco-launchpad": {
         "DevOpsActionTriggerLookups": null,
         "Name": null,
         "Type": null,
         "Branches": ["main"],
         "MainBranch": "main",
         "Organization": "fathym-it",
-        "Repository": "landing-page-baserow-launchpad",
+        "Repository": "landing-page-alfresco-launchpad",
         "Lookup": null,
         "Username": null,
         "Archived": false,
