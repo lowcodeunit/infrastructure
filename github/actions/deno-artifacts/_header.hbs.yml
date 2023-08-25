@@ -2,23 +2,11 @@ name: {{Name}}
 
 on:
   push:
-    branches: [{{Branches}}]
+    branches: [{{ Branches }}]
   pull_request:
-    branches: [{{Branches}}]
+    branches: [{{ Branches }}]
 
 permissions: write-all
 
 env:
-  CI: false
-  Branches: {{Branches}}
-  MainBranch: {{MainBranch}}
-  AppName: {{APP_NAME}}
-  Output: {{Output}}
-name: Docker Build and Push
-
-on: 
-  push:
-    branches: main
-
-env:
-  APP_NAME: {{IMAGE_NAME}}
+  APP_NAME: {{APP_NAME}}
