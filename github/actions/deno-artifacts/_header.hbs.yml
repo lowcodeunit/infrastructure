@@ -12,6 +12,7 @@ env:
   CI: false
   Branches: {{Branches}}
   MainBranch: {{MainBranch}}
+  AppName: {{APP_NAME}}
   Output: {{Output}}
 name: Docker Build and Push
 
