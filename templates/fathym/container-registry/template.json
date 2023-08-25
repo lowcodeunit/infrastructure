@@ -49,6 +49,10 @@
         "acrUsername": {
             "type": "string",
             "value": "[parameters('registryName')]"
+        },
+        "acrPassword": {
+            "type": "string",
+            "value": "[listCredentials(resourceId('Microsoft.ContainerRegistry/registries', parameters('registryName')), [parameters('registryApiVersion')]).passwords[0].value]"
         }
     }
 }
