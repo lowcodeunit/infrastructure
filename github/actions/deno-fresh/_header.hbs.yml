@@ -1,0 +1,12 @@
+name: {{Name}}
+
+on:
+  push:
+    branches: [{{ Branches }}]
+  pull_request:
+    branches: [{{ Branches }}]
+
+permissions: write-all
+
+env:
+  APP_NAME: {{APP_NAME}}
