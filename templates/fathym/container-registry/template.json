@@ -41,5 +41,10 @@
             }
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "ACR_REGISTRY": {
+            "type": "string",
+            "value": "[parameters('registryName')].azurecr.io"
+        }
+    }
 }

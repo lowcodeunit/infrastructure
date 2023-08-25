@@ -1,0 +1,54 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "value": "{{SUBSCRIPTION_ID}}"
+        },
+        "location": {
+            "value": "West US 2"
+        },
+        "hostingPlanName": {
+            "value": "{{RESOURCE_NAME}}-app-service-plan"
+        },
+        "serverFarmResourceGroup": {
+            "value": "{{RESOURCE_NAME}}"
+        },
+        "alwaysOn": {
+            "value": true
+        },
+        "ftpsState": {
+            "value": "FtpsOnly"
+        },
+        "sku": {
+            "value": "PremiumV3"
+        },
+        "skuCode": {
+            "value": "P1V3"
+        },
+        "numberOfWorkers": {
+            "value": "1"
+        },
+        "workerSize": {
+            "value": "6"
+        },
+        "workerSizeId": {
+            "value": "6"
+        },
+        "linuxFxVersion": {
+            "value": "DOCKER|/null:null"
+        },
+        "dockerRegistryUrl": {
+            "value": "{{ACR_REGISTRY}}"
+        },
+        "dockerRegistryUsername": {
+            "value": "{{ACR_USERNAME}}"
+        },
+        "dockerRegistryPassword": {
+            "value": "{{ACR_PASSWORD}}"
+        },
+        "dockerRegistryStartupCommand": {
+            "value": ""
+        }
+    }
+}
