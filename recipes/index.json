@@ -1244,8 +1244,8 @@
           "Application": {
             "AccessRightLookups": null,
             "Application": {
-              "Description": "A basic starting point for sites and documentation built with Docusaurus.",
-              "Name": "Docusaurus - Documentation - Open Source",
+              "Description": "A Docusaurus starter app for docs and blogs written with Markdown/MDX.",
+              "Name": "Docusaurus Starter - NPM Launch",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1302,8 +1302,8 @@
           "Application": {
             "AccessRightLookups": null,
             "Application": {
-              "Description": "A basic starting point for sites and documentation built with Docusaurus.",
-              "Name": "Docusaurus - Documentation - Forked Recipe",
+              "Description": "A Docusaurus starter app for docs and blogs written with Markdown/MDX.",
+              "Name": "Docusaurus Starter - GitHub Fork",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1362,7 +1362,7 @@
         }
       ]
     },
-    "Description": "A Docusaurus starter app for docs and blogs written with Markdown/MDX. Fork the GitHub repository or launch the NPM package.",
+    "Description": "A Docusaurus starter app for docs and blogs written with Markdown/MDX.",
     "ID": "00000000-0000-0000-0000-000000000005",
     "Ingredients": "Docusaurus latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/docusaurus.png",
@@ -1521,7 +1521,7 @@
         }
       ]
     },
-    "Description": "A Gatsby headless starter app. Fork the GitHub repository or launch the NPM package.",
+    "Description": "A Gatsby headless starter app.",
     "ID": "00000000-0000-0000-0000-000000000006",
     "Ingredients": "Gatsby latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/gatsby.png",
@@ -1680,7 +1680,7 @@
         }
       ]
     },
-    "Description": "A Gatsby blog starter app. Fork the GitHub repository or launch the NPM package.",
+    "Description": "A Gatsby blog starter app.",
     "ID": "00000000-0000-0000-0000-000000000007",
     "Ingredients": "Gatsby latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/starterblog.png",
@@ -1839,7 +1839,7 @@
         }
       ]
     },
-    "Description": "An Angular starter app. Fork the GitHub repository or launch the NPM package.",
+    "Description": "An Angular starter app.",
     "ID": "00000000-0000-0000-0000-000000000001",
     "Ingredients": "Angular latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/angular.png",
@@ -1998,7 +1998,7 @@
         }
       ]
     },
-    "Description": "A React starter app. Fork the GitHub repository or launch the NPM package.",
+    "Description": "A React starter app.",
     "ID": "00000000-0000-0000-0000-000000000002",
     "Ingredients": null,
     "Image": "https://www.fathym.com/img/react.png",
@@ -2157,7 +2157,7 @@
         }
       ]
     },
-    "Description": "A Vue starter app. Fork the GitHub repository or launch the NPM package.",
+    "Description": "A Vue starter app.",
     "ID": "00000000-0000-0000-0000-000000000003",
     "Ingredients": "Vue latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/vue.png",
@@ -2316,7 +2316,7 @@
         }
       ]
     },
-    "Description": "A Svelte starter app. Fork the GitHub repository or launch the NPM package.",
+    "Description": "A Svelte starter app.",
     "ID": "00000000-0000-0000-0000-000000000004",
     "Ingredients": "Svelte latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/svelte.png",
