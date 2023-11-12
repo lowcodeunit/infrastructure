@@ -1,0 +1,133 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "d2cPartitions": {
+      "type": "int"
+    },
+    "enableDataResidency": {
+      "type": "bool"
+    },
+    "features": {
+      "type": "string"
+    },
+    "iotHubDataContributorRoleDefinitionId": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "principalId": {
+      "type": "string"
+    },
+    "resourceLookup": {
+      "type": "string"
+    },
+    "securityEnabled": {
+      "type": "bool"
+    },
+    "skuName": {
+      "type": "string"
+    },
+    "skuUnits": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "iotHubName": "[concat(variables('name'), '-iot-hub') ]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2018-05-01",
+      "location": "[parameters('location')]",
+      "name": "[parameters('name')]",
+      "properties": {},
+      "tags": {
+        "ResourceLookup": "[parameters('resourceLookup')]"
+      }
+    },
+    {
+      "name": "iot-ref-arch",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "resourceGroup": "[parameters('name')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/resourceGroups', parameters('name'))]"
+      ],
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "outer"
+        },
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "apiVersion": "2023-06-30-preview",
+              "type": "Microsoft.Devices/IotHubs",
+              "name": "[variables('iotHubName')]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "eventHubEndpoints": {
+                  "events": {
+                    "retentionTimeInDays": 1,
+                    "partitionCount": "[parameters('d2cPartitions')]"
+                  }
+                },
+                "features": "[parameters('features')]",
+                "enableDataResidency": "[parameters('enableDataResidency')]",
+                "minTlsVersion": "1.2",
+                "disableLocalAuth": false
+              },
+              "sku": {
+                "name": "[parameters('skuName')]",
+                "capacity": "[parameters('skuUnits')]"
+              },
+              "tags": {
+                "Resource": "[parameters('resourceLookup')]"
+              }
+            },
+            {
+              "condition": "[parameters('securityEnabled')]",
+              "type": "Microsoft.Security/IoTSecuritySolutions",
+              "apiVersion": "2019-08-01",
+              "name": "[variables('iotHubName')]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "status": "Enabled",
+                "unmaskedIpLoggingStatus": "Enabled",
+                "disabledDataSources": [],
+                "displayName": "[variables('iotHubName')]",
+                "iotHubs": [
+                  "[resourceId('Microsoft.Devices/IotHubs', variables('iotHubName'))]"
+                ],
+                "recommendationsConfiguration": []
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Devices/IotHubs', variables('iotHubName'))]"
+              ]
+            },
+            {
+              "condition": "[not(empty(parameter(principalId)))]",
+              "apiVersion": "2020-04-01-preview",
+              "name": "[concat(variables('iotHubName'), '/Microsoft.Authorization/', guid(uniqueString(variables('iotHubName'))))]",
+              "type": "Microsoft.Devices/IotHubs/providers/roleAssignments",
+              "dependsOn": ["[variables('iotHubName')]"],
+              "properties": {
+                "roleDefinitionId": "[concat('/subscriptions/', [subscription().subscriptionId], '/resourcegroups/', [parameters('name')], '/providers/Microsoft.Authorization/roleDefinitions/', [parameters('iotHubDataContributorRoleDefinitionId')]]",
+                "principalId": "[parameters('principalId')]",
+                "principalType": "User"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}
