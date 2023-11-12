@@ -112,12 +112,12 @@
         }
       ]
     },
-    "Description": "A simple frontend starting point for a Material UI React site using Baserow as a CMS backend via an API proxy.",
+    "Description": "A Material UI React starter site integrated with Baserow as a content management solution.",
     "ID": "00000000-0000-0000-0000-000000000012",
     "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/fathym-baserow-starter.png",
-    "Lookup": "mui-baserow-carousel",
-    "Name": "MUI Baserow Carousel",
+    "Lookup": "baserow-launch-pad",
+    "Name": "Baserow Launch Pad",
     "PreviewImage": "https://www.fathym.com/img/baserow-thumbnail-logo.jpg",
     "RecipeType": "MFE",
     "SourceCode": null,
@@ -427,12 +427,12 @@
         }
       ]
     },
-    "Description": "A simple frontend starting point for an Alfresco Development Framework (ADF) Angular app using Alfresco as a content management solution via an API proxy.",
+    "Description": "An Alfresco Development Framework (ADF) Angular starter app integrated with Alfresco as a content management solution.",
     "ID": "00000000-0000-0000-0000-000000000011",
     "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/fathym-alfresco-starter.png",
     "Lookup": "alfresco-starter",
-    "Name": "Alfresco",
+    "Name": "Alfresco Launch Pad",
     "PreviewImage": "https://www.fathym.com/img/alfresco-logo.png",
     "RecipeType": "MFE",
     "SourceCode": null,
@@ -839,12 +839,12 @@
         }
       ]
     },
-    "Description": "A template to start customizing a no-code site with open-source website builder GrapesJS.",
+    "Description": "An instance of open-source no-code website builder GrapesJS for building custom websites.",
     "ID": "00000000-0000-0000-0000-000000000009",
     "Ingredients": "Latest code, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/nocode.png",
     "Lookup": "website-no-code",
-    "Name": "No-Code Website",
+    "Name": "No-Code Site Builder",
     "PreviewImage": "https://www.fathym.com/img/grapesjslogo.jpg",
     "RecipeType": "MFE",
     "SourceCode": null,
@@ -1244,8 +1244,8 @@
           "Application": {
             "AccessRightLookups": null,
             "Application": {
-              "Description": "A basic starting point for sites and documentation built with Docusaurus.",
-              "Name": "Docusaurus - Documentation - Open Source",
+              "Description": "A Docusaurus starter app for docs and blogs written with Markdown/MDX.",
+              "Name": "Docusaurus Starter - NPM Launch",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1302,8 +1302,8 @@
           "Application": {
             "AccessRightLookups": null,
             "Application": {
-              "Description": "A basic starting point for sites and documentation built with Docusaurus.",
-              "Name": "Docusaurus - Documentation - Forked Recipe",
+              "Description": "A Docusaurus starter app for docs and blogs written with Markdown/MDX.",
+              "Name": "Docusaurus Starter - GitHub Fork",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1362,7 +1362,7 @@
         }
       ]
     },
-    "Description": "A customizable starter for writing docs and blogs with Markdown/MDX.",
+    "Description": "A Docusaurus starter app for docs and blogs written with Markdown/MDX.",
     "ID": "00000000-0000-0000-0000-000000000005",
     "Ingredients": "Docusaurus latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/docusaurus.png",
@@ -1404,7 +1404,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for sites built with Gatsby.",
-              "Name": "Gatsby - Headless Websites - Open Source",
+              "Name": "Gatsby Headless Starter - NPM Launch",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1462,7 +1462,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for sites built with Gatsby.",
-              "Name": "Gatsby - Headless Websites - Forked Recipe",
+              "Name": "Gatsby Headless Starter - GitHub Fork",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1521,12 +1521,12 @@
         }
       ]
     },
-    "Description": "A customizable starter to quickly deploy a Gatsby app to Fathym.",
+    "Description": "A Gatsby headless starter app.",
     "ID": "00000000-0000-0000-0000-000000000006",
     "Ingredients": "Gatsby latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/gatsby.png",
     "Lookup": "gatsby",
-    "Name": "Gatsby Starter",
+    "Name": "Gatsby Headless Starter",
     "PreviewImage": "https://pbs.twimg.com/profile_images/1135999619781939201/HZ-pCQcP_400x400.png",
     "RecipeType": "LaunchVsFork",
     "SourceCode": "https://github.com/fathym-it/public-web-gatsby",
@@ -1563,7 +1563,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for blogs built with Gatsby.",
-              "Name": "Blog Starter with Gatsby - Open Source",
+              "Name": "Gatsby Blog Starter - NPM Launch",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1621,7 +1621,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for blogs built with Gatsby.",
-              "Name": "Blog Starter with Gatsby - Forked Recipe",
+              "Name": "Gatsby Blog Starter - GitHub Fork",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1680,7 +1680,7 @@
         }
       ]
     },
-    "Description": "A customizable starter template for you to create a blog.",
+    "Description": "A Gatsby blog starter app.",
     "ID": "00000000-0000-0000-0000-000000000007",
     "Ingredients": "Gatsby latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/starterblog.png",
@@ -1722,7 +1722,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for sites built with Angular.",
-              "Name": "Angular Quickstart Project - Open Source",
+              "Name": "Angular Starter - NPM Launch",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1780,7 +1780,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for sites built with Angular.",
-              "Name": "Angular Quickstart Project - Forked Recipe",
+              "Name": "Angular Starter - GitHub Fork",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1839,12 +1839,12 @@
         }
       ]
     },
-    "Description": "A basic template to quickly deploy an Angular app to Fathym.",
+    "Description": "An Angular starter app.",
     "ID": "00000000-0000-0000-0000-000000000001",
     "Ingredients": "Angular latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/angular.png",
     "Lookup": "angular",
-    "Name": "Angular Quick Start",
+    "Name": "Angular Starter",
     "PreviewImage": "https://angular.io/assets/images/logos/angular/angular.svg",
     "RecipeType": "LaunchVsFork",
     "SourceCode": "https://github.com/fathym-it/public-web-angular",
@@ -1881,7 +1881,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for sites built with React.",
-              "Name": "React Quickstart Project - Open Source",
+              "Name": "React Starter - NPM Launch",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1939,7 +1939,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for sites built with React.",
-              "Name": "React Quickstart Project - Forked Recipe",
+              "Name": "React Starter - GitHub Fork",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -1998,12 +1998,12 @@
         }
       ]
     },
-    "Description": "A basic template to quickly deploy a React app to Fathym.",
+    "Description": "A React starter app.",
     "ID": "00000000-0000-0000-0000-000000000002",
     "Ingredients": null,
     "Image": "https://www.fathym.com/img/react.png",
     "Lookup": "react",
-    "Name": "React Quick Start",
+    "Name": "React Starter",
     "PreviewImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
     "RecipeType": "LaunchVsFork",
     "SourceCode": "https://github.com/fathym-it/public-web-react",
@@ -2040,7 +2040,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for sites built with Vue.",
-              "Name": "Vue Quickstart Project - Open Source",
+              "Name": "Vue Starter - NPM Launch",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -2098,7 +2098,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for sites built with Vue.",
-              "Name": "Vue Quickstart Project - Forked Recipe",
+              "Name": "Vue Starter - GitHub Fork",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -2157,12 +2157,12 @@
         }
       ]
     },
-    "Description": "A basic template to quickly deploy a Vue app to Fathym. ",
+    "Description": "A Vue starter app.",
     "ID": "00000000-0000-0000-0000-000000000003",
     "Ingredients": "Vue latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/vue.png",
     "Lookup": "vue",
-    "Name": "Vue Quick Start",
+    "Name": "Vue Starter",
     "PreviewImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png",
     "RecipeType": "LaunchVsFork",
     "SourceCode": "https://github.com/fathym-it/public-web-vue",
@@ -2199,7 +2199,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for sites built with Svelte.",
-              "Name": "Svelte Quickstart Project - Open Source",
+              "Name": "Svelte Starter - NPM Launch",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -2257,7 +2257,7 @@
             "AccessRightLookups": null,
             "Application": {
               "Description": "A basic starting point for sites built with Svelte.",
-              "Name": "Svelte Quickstart Project - Forked Recipe",
+              "Name": "Svelte Starter - GitHub Fork",
               "Priority": 0,
               "PriorityShift": 0
             },
@@ -2316,12 +2316,12 @@
         }
       ]
     },
-    "Description": "A basic template to quickly deploy a Svelte app to Fathym.",
+    "Description": "A Svelte starter app.",
     "ID": "00000000-0000-0000-0000-000000000004",
     "Ingredients": "Svelte latest, cup of coffee (or a beer), let cook for 2 minutes",
     "Image": "https://www.fathym.com/img/svelte.png",
     "Lookup": "svelte",
-    "Name": "Svelte Quick Start",
+    "Name": "Svelte Starter",
     "PreviewImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/1200px-Svelte_Logo.svg.png",
     "RecipeType": "LaunchVsFork",
     "SourceCode": "https://github.com/fathym-it/public-web-svelte",
