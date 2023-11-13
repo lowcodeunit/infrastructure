@@ -7,10 +7,5 @@
   },
   "Microsoft.Security": {
     "Types": ["iotSecuritySolutions"]
-  },
-  "Microsoft.Kusto": {
-    "Types": [
-      "clusters/databases/principalassignments"
-    ]
   }
 }
