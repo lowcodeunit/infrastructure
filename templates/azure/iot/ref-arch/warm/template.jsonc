@@ -1,0 +1,90 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "The Region of the Azure Data Explorer Cluster."
+      }
+    },
+    "principalId": {
+      "type": "string"
+    },
+    "resourceLookup": {
+      "type": "string"
+    },
+    "shortName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 10,
+      "metadata": {
+        "description": "The short name to use in naming the Azure Data Explorer Cluster. Use only lowercase letters and numbers."
+      }
+    },
+    "sku": {
+      "type": "object",
+      "metadata": {
+        "description": "Specifies the sku"
+      }
+    }
+  },
+  "variables": {
+    "clusterName": "[concat(variables('shortName'), '-data-explorer') ]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Kusto/Clusters",
+      "apiVersion": "2022-11-11",
+      "name": "[variables('clusterName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "enableStreamingIngest": true,
+        "enablePurge": true,
+        "enableDoubleEncryption": true,
+        "enableDiskEncryption": true,
+        "trustedExternalTenants": [],
+        "enableAutoStop": true
+      },
+      "sku": "[parameters('sku')]",
+      "zones": ["1", "2", "3"],
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "tags": {
+        "ResourceLookup": "[parameters('resourceLookup')]"
+      }
+    },
+    {
+      "type": "Microsoft.Kusto/Clusters/Databases",
+      "apiVersion": "2023-08-15",
+      "dependsOn": [
+        "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
+      ],
+      "name": "[concat(variables('clusterName'), '/Telemetry')]",
+      "location": "West US 2",
+      "kind": "ReadWrite",
+      "properties": {
+        "softDeletePeriod": "P3650D",
+        "hotCachePeriod": "P90D"
+      }
+    },
+    {
+      "condition": "[not(empty(parameter(principalId)))]",
+      "type": "Microsoft.Kusto/Clusters/Databases/PrincipalAssignments",
+      "apiVersion": "2023-08-15",
+      "dependsOn": [
+        "[resourceId('Microsoft.Kusto/Clusters/Databases', variables('clusterName'), 'Telemetry')]",
+        "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
+      ],
+      "name": "[concat(variables('clusterName'), '/Telemetry/616cacd5-4067-4ad6-b24a-7436cca1419e')]",
+      "properties": {
+        "principalId": "michael.gearhardt@fathym.com",
+        "role": "Admin",
+        "principalType": "User",
+        "tenantId": "[subscription().tenantId]"
+      }
+    }
+  ],
+  "outputs": {}
+}

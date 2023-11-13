@@ -1,0 +1,16 @@
+{
+  "Microsoft.Devices": {
+    "Types": ["IotHubs"]
+  },
+  "Microsoft.Resources": {
+    "Types": ["deployments", "resourceGroups"]
+  },
+  "Microsoft.Security": {
+    "Types": ["iotSecuritySolutions"]
+  },
+  "Microsoft.Kusto": {
+    "Types": [
+      "clusters/databases/principalassignments"
+    ]
+  }
+}

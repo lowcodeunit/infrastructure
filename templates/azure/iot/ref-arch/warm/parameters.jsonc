@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "{{Location}}"
+    },
+    "principalId": {
+      "type": "string",
+      "value": "{{PrincipalID}}"
+    },
+    "resourceLookup": {
+      "type": "string",
+      "value": "{{ResourceLookup}}"
+    },
+    "shortName": {
+      "value": "{{ShortName}}"
+    },
+    "sku": {
+      "value": {
+        "capacity": 1,
+        "name": "Dev(No SLA)_Standard_E2a_v4",
+        "tier": "Basic"
+      }
+    }
+  }
+}

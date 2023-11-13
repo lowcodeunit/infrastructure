@@ -43,21 +43,21 @@
     {
       "type": "Microsoft.Resources/resourceGroups",
       "apiVersion": "2018-05-01",
-      "location": "[parameters('location')]",
       "name": "[parameters('name')]",
+      "location": "[parameters('location')]",
       "properties": {},
       "tags": {
         "ResourceLookup": "[parameters('resourceLookup')]"
       }
     },
     {
-      "name": "iot-ref-arch",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
-      "resourceGroup": "[parameters('name')]",
       "dependsOn": [
         "[resourceId('Microsoft.Resources/resourceGroups', parameters('name'))]"
       ],
+      "resourceGroup": "[parameters('name')]",
+      "name": "[variables('iotHubName')]",
       "properties": {
         "expressionEvaluationOptions": {
           "scope": "outer"
@@ -68,8 +68,8 @@
           "contentVersion": "1.0.0.0",
           "resources": [
             {
-              "apiVersion": "2023-06-30-preview",
               "type": "Microsoft.Devices/IotHubs",
+              "apiVersion": "2023-06-30-preview",
               "name": "[variables('iotHubName')]",
               "location": "[parameters('location')]",
               "properties": {
@@ -89,13 +89,16 @@
                 "capacity": "[parameters('skuUnits')]"
               },
               "tags": {
-                "Resource": "[parameters('resourceLookup')]"
+                "ResourceLookup": "[parameters('resourceLookup')]"
               }
             },
             {
               "condition": "[parameters('securityEnabled')]",
               "type": "Microsoft.Security/IoTSecuritySolutions",
               "apiVersion": "2019-08-01",
+              "dependsOn": [
+                "[resourceId('Microsoft.Devices/IotHubs', variables('iotHubName'))]"
+              ],
               "name": "[variables('iotHubName')]",
               "location": "[parameters('location')]",
               "properties": {
@@ -107,17 +110,14 @@
                   "[resourceId('Microsoft.Devices/IotHubs', variables('iotHubName'))]"
                 ],
                 "recommendationsConfiguration": []
-              },
-              "dependsOn": [
-                "[resourceId('Microsoft.Devices/IotHubs', variables('iotHubName'))]"
-              ]
+              }
             },
             {
               "condition": "[not(empty(parameter(principalId)))]",
-              "apiVersion": "2020-04-01-preview",
-              "name": "[concat(variables('iotHubName'), '/Microsoft.Authorization/', guid(uniqueString(variables('iotHubName'))))]",
               "type": "Microsoft.Devices/IotHubs/providers/roleAssignments",
+              "apiVersion": "2020-04-01-preview",
               "dependsOn": ["[variables('iotHubName')]"],
+              "name": "[concat(variables('iotHubName'), '/Microsoft.Authorization/', guid(uniqueString(variables('iotHubName'))))]",
               "properties": {
                 "roleDefinitionId": "[concat('/subscriptions/', [subscription().subscriptionId], '/resourcegroups/', [parameters('name')], '/providers/Microsoft.Authorization/roleDefinitions/', [parameters('iotHubDataContributorRoleDefinitionId')]]",
                 "principalId": "[parameters('principalId')]",
