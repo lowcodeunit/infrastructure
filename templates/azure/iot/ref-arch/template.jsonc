@@ -41,16 +41,6 @@
   },
   "resources": [
     {
-      "type": "Microsoft.Resources/resourceGroups",
-      "apiVersion": "2018-05-01",
-      "name": "[parameters('name')]",
-      "location": "[parameters('location')]",
-      "properties": {},
-      "tags": {
-        "ResourceLookup": "[parameters('resourceLookup')]"
-      }
-    },
-    {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
       "dependsOn": [
