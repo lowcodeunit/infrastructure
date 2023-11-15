@@ -113,7 +113,7 @@
               "dependsOn": ["[variables('iotHubName')]"],
               "name": "[concat(variables('iotHubName'), '/Microsoft.Authorization/', guid(uniqueString(variables('iotHubName'))))]",
               "properties": {
-                "roleDefinitionId": "[concat('/subscriptions/', [subscription().subscriptionId], '/resourcegroups/', parameters('name'), '/providers/Microsoft.Authorization/roleDefinitions/', parameters('iotHubDataContributorRoleDefinitionId')]",
+                "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', parameters('name'), '/providers/Microsoft.Authorization/roleDefinitions/', parameters('iotHubDataContributorRoleDefinitionId')]",
                 "principalId": "[parameters('principalId')]",
                 "principalType": "User"
               }
