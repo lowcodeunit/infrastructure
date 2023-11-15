@@ -78,6 +78,30 @@
       }
     },
     {
+        "type": "Microsoft.Kusto/Clusters/Databases/DataConnections",
+        "apiVersion": "2023-08-15",
+        "name": "[concat(variables('clusterName'), '/Telemetry/', variables('clusterName'), '-telemetry-mapping')]",
+        "location": "West US 2",
+        "dependsOn": [
+          "[resourceId('Microsoft.Kusto/Clusters/Databases', variables('clusterName'), 'Telemetry')]",
+          "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
+        ],
+        "kind": "IotHub",
+        "properties": {
+            "iotHubResourceId": "[resourceId('Microsoft.Devices/IotHubs', concat(parameters('name'), '-iot-hub'))]",
+            "consumerGroup": "dataexplorer",
+            "tableName": "Devices",
+            "mappingRuleName": "RawEventMapping",
+            "dataFormat": "MULTIJSON",
+            "eventSystemProperties": [
+                "iothub-connection-device-id"
+            ],
+            "sharedAccessPolicyName": "iothubowner",
+            "databaseRouting": "Multi",
+            "retrievalStartDate": "2023-11-12T19:00:00Z"
+        }
+    },
+    {
         "type": "Microsoft.Kusto/Clusters/Databases/Scripts",
         "apiVersion": "2022-02-01",
         "dependsOn": [
