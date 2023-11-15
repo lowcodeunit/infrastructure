@@ -74,6 +74,20 @@
       }
     },
     {
+        "type": "Microsoft.Kusto/Clusters/Databases/Scripts",
+        "apiVersion": "2022-02-01",
+        "dependsOn": [
+          "[resourceId('Microsoft.Kusto/Clusters/Databases', variables('clusterName'), 'Telemetry')]",
+          "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
+        ],
+        "name": "[concat(variables('clusterName'), '/Telemetry/Setup')]",
+        "properties": {
+            "scriptContent": ".create table Telemetry (rawData: dynamic)\n\n",
+            "continueOnErrors": false,
+            "forceUpdateTag": "[utcNow()]"
+        }
+    },
+    {
       "condition": "[not(empty(parameters('principalId')))]",
       "type": "Microsoft.Kusto/Clusters/Databases/PrincipalAssignments",
       "apiVersion": "2023-08-15",
