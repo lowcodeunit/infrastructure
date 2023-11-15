@@ -84,7 +84,7 @@
         "[resourceId('Microsoft.Kusto/Clusters/Databases', variables('clusterName'), 'Telemetry')]",
         "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
       ],
-      "name": "[concat(variables('clusterName'), '/Telemetry/', 'devices-mapping')]",
+      "name": "[concat(variables('clusterName'), '/Telemetry/devices-mapping')]",
       "location": "West US 2",
       "kind": "IotHub",
       "properties": {
