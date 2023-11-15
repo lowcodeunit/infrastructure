@@ -109,7 +109,7 @@
       ],
       "name": "[concat(variables('clusterName'), '/Telemetry/Setup')]",
       "properties": {
-        "scriptContent": ".create table Telemetry (rawData: dynamic)\n\n.create-or-alter table RawData ingestion json mapping 'RawEventMapping' '[{\"column\": \"rawData\", \"Properties\": {\"path\": \"$\"}}]'",
+        "scriptContent": ".create table Telemetry (rawData: dynamic)\n\n.create-or-alter table Telemetry ingestion json mapping 'RawEventMapping' '[{\"column\": \"rawData\", \"Properties\": {\"path\": \"$\"}}]'",
         "continueOnErrors": false,
         "forceUpdateTag": "[parameters('forceUpdateTag')]"
       }
