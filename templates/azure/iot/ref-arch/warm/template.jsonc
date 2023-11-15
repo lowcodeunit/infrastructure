@@ -33,7 +33,7 @@
     }
   },
   "variables": {
-    "clusterName": "[concat(variables('shortName'), '-data-explorer') ]"
+    "clusterName": "[concat(parameters('shortName'), '-data-explorer') ]"
   },
   "resources": [
     {
