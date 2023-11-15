@@ -84,7 +84,7 @@
         "[resourceId('Microsoft.Kusto/Clusters/Databases', variables('clusterName'), 'Telemetry')]",
         "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
       ],
-      "name": "[concat(variables('clusterName'), '-telemetry-mapping')]",
+      "name": "[concat(variables('clusterName'), '/Telemetry/', 'devices-mapping')]",
       "location": "West US 2",
       "kind": "IotHub",
       "properties": {
@@ -97,6 +97,21 @@
         "sharedAccessPolicyName": "iothubowner",
         "databaseRouting": "Multi",
         "retrievalStartDate": "2023-11-12T19:00:00Z"
+      }
+    },
+    {
+      "type": "Microsoft.Kusto/Clusters/Databases/Scripts",
+      "apiVersion": "2022-02-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Kusto/Clusters/Databases/DataConnections', concat(variables('clusterName'), '-telemetry-mapping'))]",
+        "[resourceId('Microsoft.Kusto/Clusters/Databases', variables('clusterName'), 'Telemetry')]",
+        "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
+      ],
+      "name": "[concat(variables('clusterName'), '/Telemetry/Setup')]",
+      "properties": {
+        "scriptContent": ".create table Telemetry (rawData: dynamic)\n\n.create-or-alter table Telemetry ingestion json mapping 'RawEventMapping' '[{\"column\": \"rawData\", \"Properties\": {\"path\": \"$\"}}]'",
+        "continueOnErrors": false,
+        "forceUpdateTag": "[parameters('forceUpdateTag')]"
       }
     },
     {
