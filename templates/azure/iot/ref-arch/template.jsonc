@@ -40,7 +40,7 @@
     }
   },
   "variables": {
-    "iotHubName": "[concat(variables('name'), '-iot-hub') ]"
+    "iotHubName": "[concat(parameters('name'), '-iot-hub') ]"
   },
   "resources": [
     {
