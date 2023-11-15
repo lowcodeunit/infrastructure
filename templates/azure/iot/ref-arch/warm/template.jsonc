@@ -80,12 +80,11 @@
     {
         "type": "Microsoft.Kusto/Clusters/Databases/DataConnections",
         "apiVersion": "2023-08-15",
-        "name": "[concat(variables('clusterName'), '/Telemetry/', variables('clusterName'), '-telemetry-mapping')]",
-        "location": "West US 2",
         "dependsOn": [
           "[resourceId('Microsoft.Kusto/Clusters/Databases', variables('clusterName'), 'Telemetry')]",
           "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
         ],
+        "location": "West US 2",
         "kind": "IotHub",
         "properties": {
             "iotHubResourceId": "[resourceId('Microsoft.Devices/IotHubs', concat(parameters('name'), '-iot-hub'))]",
