@@ -6,8 +6,8 @@
       "type": "string"
     },
     "forceUpdateTag": {
-        "defaultValue": "[utcNow()]",
-        "type": "string"
+      "defaultValue": "[utcNow()]",
+      "type": "string"
     },
     "location": {
       "type": "string",
@@ -78,43 +78,41 @@
       }
     },
     {
-        "type": "Microsoft.Kusto/Clusters/Databases/DataConnections",
-        "apiVersion": "2023-08-15",
-        "dependsOn": [
-          "[resourceId('Microsoft.Kusto/Clusters/Databases', variables('clusterName'), 'Telemetry')]",
-          "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
-        ],
-        "name": "[concat(variables('clusterName'), '-telemetry-mapping')]",
-        "location": "West US 2",
-        "kind": "IotHub",
-        "properties": {
-            "iotHubResourceId": "[resourceId('Microsoft.Devices/IotHubs', concat(parameters('name'), '-iot-hub'))]",
-            "consumerGroup": "dataexplorer",
-            "tableName": "Devices",
-            "mappingRuleName": "RawEventMapping",
-            "dataFormat": "MULTIJSON",
-            "eventSystemProperties": [
-                "iothub-connection-device-id"
-            ],
-            "sharedAccessPolicyName": "iothubowner",
-            "databaseRouting": "Multi",
-            "retrievalStartDate": "2023-11-12T19:00:00Z"
-        }
+      "type": "Microsoft.Kusto/Clusters/Databases/DataConnections",
+      "apiVersion": "2023-08-15",
+      "dependsOn": [
+        "[resourceId('Microsoft.Kusto/Clusters/Databases', variables('clusterName'), 'Telemetry')]",
+        "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
+      ],
+      "name": "[concat(variables('clusterName'), '-telemetry-mapping')]",
+      "location": "West US 2",
+      "kind": "IotHub",
+      "properties": {
+        "iotHubResourceId": "[resourceId('Microsoft.Devices/IotHubs', concat(parameters('name'), '-iot-hub'))]",
+        "consumerGroup": "dataexplorer",
+        "tableName": "Devices",
+        "mappingRuleName": "RawEventMapping",
+        "dataFormat": "MULTIJSON",
+        "eventSystemProperties": ["iothub-connection-device-id"],
+        "sharedAccessPolicyName": "iothubowner",
+        "databaseRouting": "Multi",
+        "retrievalStartDate": "2023-11-12T19:00:00Z"
+      }
     },
     {
-        "type": "Microsoft.Kusto/Clusters/Databases/Scripts",
-        "apiVersion": "2022-02-01",
-        "dependsOn": [
-          "[resourceId('Microsoft.Kusto/Clusters/Databases/DataConnections', variables('clusterName'), 'Telemetry', concat(variables('clusterName'), '-telemetry-mapping'))]",
-          "[resourceId('Microsoft.Kusto/Clusters/Databases', variables('clusterName'), 'Telemetry')]",
-          "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
-        ],
-        "name": "[concat(variables('clusterName'), '/Telemetry/Setup')]",
-        "properties": {
-            "scriptContent": ".create table Telemetry (rawData: dynamic)\n\n.create-or-alter table RawData ingestion json mapping 'RawEventMapping' '[{\"column\": \"rawData\", \"Properties\": {\"path\": \"$\"}}]'",
-            "continueOnErrors": false,
-            "forceUpdateTag": "[parameters('forceUpdateTag')]"
-        }
+      "type": "Microsoft.Kusto/Clusters/Databases/Scripts",
+      "apiVersion": "2022-02-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Kusto/Clusters/Databases/DataConnections', variables('clusterName'), 'Telemetry', concat(variables('clusterName'), '-telemetry-mapping'))]",
+        "[resourceId('Microsoft.Kusto/Clusters/Databases', variables('clusterName'), 'Telemetry')]",
+        "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
+      ],
+      "name": "[concat(variables('clusterName'), '/Telemetry/Setup')]",
+      "properties": {
+        "scriptContent": ".create table Telemetry (rawData: dynamic)\n\n.create-or-alter table RawData ingestion json mapping 'RawEventMapping' '[{\"column\": \"rawData\", \"Properties\": {\"path\": \"$\"}}]'",
+        "continueOnErrors": false,
+        "forceUpdateTag": "[parameters('forceUpdateTag')]"
+      }
     },
     {
       "condition": "[not(empty(parameters('principalId')))]",
