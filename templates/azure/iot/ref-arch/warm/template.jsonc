@@ -74,7 +74,7 @@
       }
     },
     {
-      "condition": "[not(empty(parameter(principalId)))]",
+      "condition": "[not(empty(parameter('principalId')))]",
       "type": "Microsoft.Kusto/Clusters/Databases/PrincipalAssignments",
       "apiVersion": "2023-08-15",
       "dependsOn": [
