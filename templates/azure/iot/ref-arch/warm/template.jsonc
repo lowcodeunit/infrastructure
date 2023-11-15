@@ -5,6 +5,10 @@
     "cloudLookup": {
       "type": "string"
     },
+    "forceUpdateTag": {
+        "defaultValue": "[utcNow()]",
+        "type": "string"
+    },
     "location": {
       "type": "string",
       "metadata": {
@@ -84,7 +88,7 @@
         "properties": {
             "scriptContent": ".create table Telemetry (rawData: dynamic)\n\n",
             "continueOnErrors": false,
-            "forceUpdateTag": "[utcNow()]"
+            "forceUpdateTag": "[parameters('forceUpdateTag')]"
         }
     },
     {
