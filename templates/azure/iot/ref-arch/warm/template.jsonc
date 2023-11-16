@@ -89,7 +89,7 @@
       ],
       "name": "[concat(variables('clusterName'), '/Telemetry/Setup')]",
       "properties": {
-        "scriptContent": ".creat-or-alter table Devices (rawData: dynamic)\n\n.create-or-alter table Devices ingestion json mapping 'RawDataMapping' '[{\"column\": \"rawData\", \"Properties\": {\"path\": \"$\"}}]'",
+        "scriptContent": ".create table Devices (rawData: dynamic)\n\n.create-or-alter table Devices ingestion json mapping 'RawDataMapping' '[{\"column\": \"rawData\", \"Properties\": {\"path\": \"$\"}}]'",
         "continueOnErrors": false,
         "forceUpdateTag": "[parameters('forceUpdateTag')]"
       }
