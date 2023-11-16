@@ -8,6 +8,9 @@
     "location": {
       "value": "{{Location}}"
     },
+    "name": {
+      "value": "{{Name}}"
+    },
     "principalId": {
       "value": "{{PrincipalID}}"
     },
