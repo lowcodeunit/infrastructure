@@ -15,6 +15,9 @@
         "description": "The Region of the Azure Data Explorer Cluster."
       }
     },
+    "name": {
+      "type": "string"
+    },
     "principalId": {
       "type": "string"
     },
