@@ -5,10 +5,6 @@
     "cloudLookup": {
       "type": "string"
     },
-    "forceUpdateTag": {
-      "defaultValue": "[utcNow()]",
-      "type": "string"
-    },
     "location": {
       "type": "string",
       "metadata": {
@@ -37,6 +33,10 @@
       "metadata": {
         "description": "Specifies the sku"
       }
+    },
+    "utcNow": {
+      "defaultValue": "[utcNow()]",
+      "type": "string"
     }
   },
   "variables": {
@@ -91,7 +91,7 @@
       "properties": {
         "scriptContent": ".create table Devices (rawData: dynamic)\n\n.create-or-alter table Devices ingestion json mapping 'RawDataMapping' '[{\"column\": \"rawData\", \"Properties\": {\"path\": \"$\"}}]'",
         "continueOnErrors": false,
-        "forceUpdateTag": "[parameters('forceUpdateTag')]"
+        "forceUpdateTag": "[parameters('utcNow')]"
       }
     },
     {
