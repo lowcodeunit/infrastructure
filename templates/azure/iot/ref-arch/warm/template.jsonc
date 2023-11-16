@@ -89,7 +89,7 @@
       ],
       "name": "[concat(variables('clusterName'), '/Telemetry/Setup')]",
       "properties": {
-        "scriptContent": ".create table Telemetry (rawData: dynamic)\n\n.create-or-alter table Telemetry ingestion json mapping 'RawEventMapping' '[{\"column\": \"rawData\", \"Properties\": {\"path\": \"$\"}}]'",
+        "scriptContent": ".create table Devices (rawData: dynamic)\n\n.create-or-alter table Devices ingestion json mapping 'RawDataMapping' '[{\"column\": \"rawData\", \"Properties\": {\"path\": \"$\"}}]'",
         "continueOnErrors": false,
         "forceUpdateTag": "[parameters('forceUpdateTag')]"
       }
@@ -109,7 +109,7 @@
         "iotHubResourceId": "[resourceId('Microsoft.Devices/IotHubs', concat(parameters('name'), '-iot-hub'))]",
         "consumerGroup": "dataexplorer",
         "tableName": "Devices",
-        "mappingRuleName": "RawEventMapping",
+        "mappingRuleName": "RawDataMapping",
         "dataFormat": "MULTIJSON",
         "eventSystemProperties": ["iothub-connection-device-id"],
         "sharedAccessPolicyName": "iothubowner",
