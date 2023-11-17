@@ -89,6 +89,17 @@
               }
             },
             {
+              "type": "Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups",
+              "apiVersion": "2022-04-30-preview",
+              "name": "[concat(parameters('iotHubName'), '-cg')]",
+              "properties": {
+                "name": "cg"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Devices/IotHubs', parameters('iotHubName'))]"
+              ]
+            },  
+            {
               "condition": "[parameters('securityEnabled')]",
               "type": "Microsoft.Security/IoTSecuritySolutions",
               "apiVersion": "2019-08-01",
