@@ -89,7 +89,7 @@
       ],
       "name": "[concat(variables('clusterName'), '/Telemetry/Setup')]",
       "properties": {
-        "scriptContent": ".create table Devices (rawData: dynamic)\n\n.create-or-alter table Devices ingestion json mapping 'RawDataMapping' '[{\"column\": \"rawData\", \"Properties\": {\"path\": \"$\"}}]'",
+        "scriptContent": ".create table Devices (rawData: dynamic)\n\n.create-or-alter table Devices ingestion json mapping 'RawDataMapping' '[{\"column\": \"rawData\", \"DataType\": \"dynamic\", \"Properties\": {\"path\": \"$\"}}]'",
         "continueOnErrors": false,
         "forceUpdateTag": "[parameters('utcNow')]"
       }
@@ -107,7 +107,7 @@
       "kind": "IotHub",
       "properties": {
         "iotHubResourceId": "[resourceId('Microsoft.Devices/IotHubs', concat(parameters('name'), '-iot-hub'))]",
-        "consumerGroup": "dataexplorer",
+        "consumerGroup": "[resourceId('Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups', concat(parameters('iotHubName'), '-cg'))]",
         "tableName": "Devices",
         "mappingRuleName": "RawDataMapping",
         "dataFormat": "MULTIJSON",
