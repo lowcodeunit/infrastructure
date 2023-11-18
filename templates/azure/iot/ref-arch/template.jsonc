@@ -37,6 +37,10 @@
     },
     "skuUnits": {
       "type": "string"
+    },
+    "utcNow": {
+      "defaultValue": "[utcNow()]",
+      "type": "string"
     }
   },
   "variables": {
@@ -48,7 +52,7 @@
       "apiVersion": "2019-10-01",
       "dependsOn": [],
       "resourceGroup": "[parameters('name')]",
-      "name": "[variables('iotHubName')]",
+      "name": "[concat(variables('iotHubName'), '-', parameters('utcNow')]",
       "properties": {
         "expressionEvaluationOptions": {
           "scope": "outer"
@@ -84,6 +88,17 @@
                 "ResourceLookup": "[parameters('resourceLookup')]"
               }
             },
+            {
+              "type": "Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups",
+              "apiVersion": "2022-04-30-preview",
+              "name": "[concat(parameters('iotHubName'), '-cg')]",
+              "properties": {
+                "name": "cg"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Devices/IotHubs', parameters('iotHubName'))]"
+              ]
+            },  
             {
               "condition": "[parameters('securityEnabled')]",
               "type": "Microsoft.Security/IoTSecuritySolutions",
