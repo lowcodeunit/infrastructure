@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "accountType": {
+      "value": "Standard_RAGRS"
+    },
+    "cloudLookup": {
+      "value": "{{CloudLookup}}"
+    },
+    "location": {
+      "value": "{{Location}}"
+    },
+    "name": {
+      "value": "{{Name}}"
+    },
+    "resourceLookup": {
+      "value": "{{ResourceLookup}}"
+    },
+    "shortName": {
+      "value": "{{ShortName}}"
+    }
+  }
+}
