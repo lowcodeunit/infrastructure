@@ -52,7 +52,7 @@
       "apiVersion": "2019-10-01",
       "dependsOn": [],
       "resourceGroup": "[parameters('name')]",
-      "name": "[concat(variables('iotHubName'), '-', parameters('utcNow')]",
+      "name": "[concat(variables('iotHubName'), '-', parameters('utcNow'))]",
       "properties": {
         "expressionEvaluationOptions": {
           "scope": "outer"
