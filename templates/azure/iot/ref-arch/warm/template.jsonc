@@ -107,7 +107,7 @@
       "kind": "IotHub",
       "properties": {
         "iotHubResourceId": "[resourceId('Microsoft.Devices/IotHubs', concat(parameters('name'), '-iot-hub'))]",
-        "consumerGroup": "[resourceId('Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups', variables('iotHubName'), 'cg')]",
+        "consumerGroup": "[resourceId('Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups', variables('iotHubName'), 'default', 'cg')]",
         "tableName": "Devices",
         "mappingRuleName": "RawDataMapping",
         "dataFormat": "MULTIJSON",
