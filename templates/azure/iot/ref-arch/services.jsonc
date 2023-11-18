@@ -1,6 +1,6 @@
 {
   "Microsoft.Devices": {
-    "Types": ["IotHubs"]
+    "Types": ["IotHubs", "IotHubs/eventHubEndpoints/ConsumerGroups"]
   },
   "Microsoft.Resources": {
     "Types": ["deployments", "resourceGroups"]
