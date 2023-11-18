@@ -91,13 +91,13 @@
             {
               "type": "Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups",
               "apiVersion": "2022-04-30-preview",
-              "name": "[concat(variables('iotHubName'), '-cg')]",
-              "properties": {
-                "name": "cg"
-              },
               "dependsOn": [
                 "[resourceId('Microsoft.Devices/IotHubs', variables('iotHubName'))]"
-              ]
+              ],
+              "name": "[concat(variables('iotHubName'), '/$default/cg')]",
+              "properties": {
+                "name": "cg"
+              }
             },  
             {
               "condition": "[parameters('securityEnabled')]",
