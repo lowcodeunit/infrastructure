@@ -160,6 +160,7 @@
         "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
       ],
       "name": "[variables('iotHubName')]",
+      "location": "[parameters('location')]",
       "properties": {
         "routing": {
           "endpoints": {
