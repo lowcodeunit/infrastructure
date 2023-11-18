@@ -17,6 +17,12 @@
     "iotHubDataContributorRoleDefinitionId": {
       "type": "string"
     },
+    "iotSkuName": {
+      "type": "string"
+    },
+    "iotSkuUnits": {
+      "type": "string"
+    },
     "location": {
       "type": "string"
     },
@@ -31,12 +37,6 @@
     },
     "securityEnabled": {
       "type": "bool"
-    },
-    "skuName": {
-      "type": "string"
-    },
-    "skuUnits": {
-      "type": "string"
     },
     "utcNow": {
       "defaultValue": "[utcNow()]",
@@ -80,8 +80,8 @@
                 "disableLocalAuth": false
               },
               "sku": {
-                "name": "[parameters('skuName')]",
-                "capacity": "[parameters('skuUnits')]"
+                "name": "[parameters('iotSkuName')]",
+                "capacity": "[parameters('iotSkuUnits')]"
               },
               "tags": {
                 "CloudLookup": "[parameters('cloudLookup')]",
