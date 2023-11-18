@@ -40,7 +40,8 @@
     }
   },
   "variables": {
-    "clusterName": "[concat(parameters('shortName'), '-data-explorer') ]"
+    "clusterName": "[concat(parameters('shortName'), '-data-explorer') ]",
+    "iotHubName": "[concat(parameters('name'), '-iot-hub')]"
   },
   "resources": [
     {
@@ -106,7 +107,7 @@
       "location": "West US 2",
       "kind": "IotHub",
       "properties": {
-        "iotHubResourceId": "[resourceId('Microsoft.Devices/IotHubs', concat(parameters('name'), '-iot-hub'))]",
+        "iotHubResourceId": "[resourceId('Microsoft.Devices/IotHubs', variables('iotHubName'))]",
         "consumerGroup": "[resourceId('Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups', variables('iotHubName'), 'events', 'cg')]",
         "tableName": "Devices",
         "mappingRuleName": "RawDataMapping",
