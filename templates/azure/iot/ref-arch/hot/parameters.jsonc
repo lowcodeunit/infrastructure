@@ -13,6 +13,9 @@
     },
     "resourceLookup": {
       "value": "{{ResourceLookup}}"
+    },
+    "shortName": {
+      "value": "{{ShortName}}"
     }
   }
 }

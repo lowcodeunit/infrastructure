@@ -13,9 +13,16 @@
     },
     "resourceLookup": {
       "type": "string"
+    },
+    "shortName": {
+      "type": "string"
     }
   },
-  "variables": {},
+  "variables": {
+    "functionName": "[concat(parameters('shortName'), '-iot-devices-flow')]",
+    "serverFarmName": "[concat(parameters('shortName'), '-functions-farm')]",
+    "storageAccountName": "[concat(parameters('shortName'), 'default') ]"
+  },
   "resources": [
     {
       "type": "Microsoft.SignalRService/SignalR",
@@ -46,6 +53,81 @@
         "capacity": 1
       },
       "dependsOn": [],
+      "tags": {
+        "CloudLookup": "[parameters('cloudLookup')]",
+        "ResourceLookup": "[parameters('resourceLookup')]"
+      }
+    },
+    {
+      "apiVersion": "2018-11-01",
+      "name": "[variables('functionName']",
+      "type": "Microsoft.Web/sites",
+      "kind": "functionapp,linux",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[concat('Microsoft.Web/serverfarms/', variables('serverFarmName'))]"
+      ],
+      "properties": {
+        "name": "[variables('functionName')]",
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~4"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "custom"
+            },
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
+            },
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
+            },
+            {
+              "name": "WEBSITE_CONTENTSHARE",
+              "value": "[variables('storageAccountName')]"
+            }
+          ],
+          "cors": {
+            "allowedOrigins": ["https://portal.azure.com"]
+          },
+          "use32BitWorkerProcess": false,
+          "ftpsState": "FtpsOnly",
+          "linuxFxVersion": ""
+        },
+        "clientAffinityEnabled": false,
+        "virtualNetworkSubnetId": null,
+        "publicNetworkAccess": "Enabled",
+        "httpsOnly": true,
+        "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('name'), '/providers/Microsoft.Web/serverfarms/', variables('serverFarmName'))]"
+      },
+      "tags": {
+        "CloudLookup": "[parameters('cloudLookup')]",
+        "ResourceLookup": "[parameters('resourceLookup')]"
+      }
+    },
+    {
+      "apiVersion": "2018-11-01",
+      "name": "[variables('serverFarmName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[parameters('location')]",
+      "kind": "linux",
+      "dependsOn": [],
+      "properties": {
+        "name": "[variables('serverFarmName')]",
+        "workerSize": "0",
+        "workerSizeId": "0",
+        "numberOfWorkers": "1",
+        "reserved": true
+      },
+      "sku": {
+        "Tier": "Dynamic",
+        "Name": "Y1"
+      },
       "tags": {
         "CloudLookup": "[parameters('cloudLookup')]",
         "ResourceLookup": "[parameters('resourceLookup')]"
