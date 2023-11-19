@@ -60,7 +60,7 @@
     },
     {
       "apiVersion": "2018-11-01",
-      "name": "[variables('functionName']",
+      "name": "[variables('functionName')]",
       "type": "Microsoft.Web/sites",
       "kind": "functionapp,linux",
       "location": "[parameters('location')]",
