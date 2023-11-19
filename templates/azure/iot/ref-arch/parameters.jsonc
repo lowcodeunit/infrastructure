@@ -37,6 +37,9 @@
     },
     "securityEnabled": {
         "value": false
+    },
+    "shortName": {
+      "value": "{{ShortName}}"
     }
   }
 }
