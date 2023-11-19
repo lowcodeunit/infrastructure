@@ -1,0 +1,7 @@
+{
+  "Microsoft.SignalRService": {
+    "Types": [
+      "SignalR"
+    ]
+  }
+}

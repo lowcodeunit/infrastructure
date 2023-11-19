@@ -1,0 +1,56 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "cloudLookup": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "resourceLookup": {
+      "type": "string"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.SignalRService/SignalR",
+      "apiVersion": "2023-08-01-preview",
+      "name": "[parameters('name')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "features": [
+          {
+            "flag": "ServiceMode",
+            "value": "Serverless"
+          },
+          {
+            "flag": "EnableConnectivityLogs",
+            "value": "true"
+          }
+        ],
+        "cors": {
+          "allowedOrigins": ["*"]
+        },
+        "tls": {
+          "clientCertEnabled": false
+        }
+      },
+      "sku": {
+        "name": "Premium_P1",
+        "tier": "Premium",
+        "capacity": 1
+      },
+      "dependsOn": [],
+      "tags": {
+        "CloudLookup": "[parameters('cloudLookup')]",
+        "ResourceLookup": "[parameters('resourceLookup')]"
+      }
+    }
+  ],
+  "outputs": {}
+}
