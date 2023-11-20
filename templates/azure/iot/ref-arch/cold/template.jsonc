@@ -187,7 +187,7 @@
           },
           "routes": [
             {
-              "name": "[concat(variables('storageAccountName'), '-telemetry')]",
+              "name": "[concat(variables('iotHubName'), '-telemetry')]",
               "source": "DeviceMessages",
               "condition": "true",
               "endpointNames": ["[variables('storageAccountName')]"],
