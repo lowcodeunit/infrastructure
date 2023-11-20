@@ -90,7 +90,7 @@
       ],
       "name": "[concat(variables('clusterName'), '/Telemetry/Setup')]",
       "properties": {
-        "scriptContent": ".create table Devices (DeviceID: string, RawData: dynamic)\n\n.create-or-alter table Devices ingestion json mapping 'RawDataMapping' '[{\"column\": \"DeviceID\", \"DataType\": \"string\", \"Properties\": {\"path\": \"$['iothub-connection-device-id']\"}}, {\"column\": \"RawData\", \"DataType\": \"dynamic\", \"Properties\": {\"path\": \"$\"}}]'",
+        "scriptContent": ".create table Devices (DeviceID: string, RawData: dynamic)\n\n.create-or-alter table Devices ingestion json mapping 'RawDataMapping' '[{\"column\": \"DeviceID\", \"DataType\": \"string\", \"Properties\": {\"path\": \"$.iothub-connection-device-id]\"}}, {\"column\": \"RawData\", \"DataType\": \"dynamic\", \"Properties\": {\"path\": \"$\"}}]'",
         "continueOnErrors": false,
         "forceUpdateTag": "[parameters('utcNow')]"
       }
