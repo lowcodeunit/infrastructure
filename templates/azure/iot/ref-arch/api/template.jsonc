@@ -26,7 +26,7 @@
   },
   "variables": {
     "analyticsWorkspaceName": "[concat(parameters('shortName'), '-analytics-workspace')]",
-    "apiManageName": "[concat(parameters('shortName'), '-api-management)]",
+    "apiManageName": "[concat(parameters('shortName'), '-api-management')]",
     "insightsName": "[concat(parameters('shortName'), '-insights')]"
   },
   "resources": [
