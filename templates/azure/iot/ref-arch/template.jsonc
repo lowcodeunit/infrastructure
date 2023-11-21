@@ -47,14 +47,54 @@
     }
   },
   "variables": {
+    "analyticsWorkspaceName": "[concat(parameters('shortName'), '-analytics-workspace')]",
+    "insightsName": "[concat(parameters('shortName'), '-insights')]",
     "iotHubName": "[concat(parameters('name'), '-iot-hub')]",
     "storageAccountName": "[concat(parameters('shortName'), 'default') ]"
   },
   "resources": [
     {
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "apiVersion": "2017-03-15-preview",
+      "name": "[variables('analyticsWorkspaceName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "sku": {
+          "name": "PerGB2018"
+        }
+      },
+      "tags": {
+        "CloudLookup": "[parameters('cloudLookup')]",
+        "ResourceLookup": "[parameters('resourceLookup')]"
+      }
+    },
+    {
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2020-02-02-preview",
+      "dependsOn": [
+        "[resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName'))]"
+      ],
+      "name": "[variables('insightsName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "ApplicationId": "[variables('insightsName')]",
+        "Application_Type": "web",
+        "Flow_Type": "Redfield",
+        "Request_Source": "IbizaAIExtension",
+        "WorkspaceResourceId": "resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName'))]"
+      },
+      "tags": {
+        "CloudLookup": "[parameters('cloudLookup')]",
+        "ResourceLookup": "[parameters('resourceLookup')]"
+      }
+    },
+    {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
-      "dependsOn": [],
+      "dependsOn": [
+        "[resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName'))]",
+        "[resourceId('microsoft.insights/components', variables('insightsName'))]"
+      ],
       "resourceGroup": "[parameters('name')]",
       "name": "[concat(variables('iotHubName'), '-', parameters('utcNow'))]",
       "properties": {

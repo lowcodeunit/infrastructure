@@ -2,10 +2,19 @@
   "Microsoft.Devices": {
     "Types": ["IotHubs", "IotHubs/eventHubEndpoints/ConsumerGroups"]
   },
+  "Microsoft.Insights": {
+    "Types": ["components"]
+  },
+  "Microsoft.OperationalInsights": {
+    "Types": ["workspaces"]
+  },
   "Microsoft.Resources": {
     "Types": ["deployments", "resourceGroups"]
   },
   "Microsoft.Security": {
     "Types": ["iotSecuritySolutions"]
+  },
+  "Microsoft.Storage": {
+    "Types": ["storageAccounts"]
   }
 }
