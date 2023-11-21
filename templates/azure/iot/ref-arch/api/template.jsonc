@@ -39,7 +39,9 @@
         "name": "Developer",
         "capacity": 1
       },
-      "identity": "[parameters('principalId')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
       "properties": {
         "publisherEmail": "[parameters('principalId')]",
         "publisherName": "[parameters('organizationName')]",
