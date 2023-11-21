@@ -48,7 +48,9 @@
   },
   "variables": {
     "analyticsWorkspaceName": "[concat(parameters('shortName'), '-analytics-workspace')]",
+    "insightsFailureAnomaliesName": "[concat(variables('insightsName'), '-failure-anomalies')]",
     "insightsName": "[concat(parameters('shortName'), '-insights')]",
+    "insightsSmartDetectionName": "[concat(variables('insightsName'), '-smart-detection')]",
     "iotHubName": "[concat(parameters('name'), '-iot-hub')]",
     "storageAccountName": "[concat(parameters('shortName'), 'default') ]"
   },
@@ -89,11 +91,73 @@
       }
     },
     {
+      "type": "Microsoft.Insights/actionGroups",
+      "apiVersion": "2023-01-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName'))]",
+        "[resourceId('Microsoft.Insights/components', variables('insightsName'))]"
+      ],
+      "name": "[variables('insightsSmartDetectionName')]",
+      "location": "Global",
+      "properties": {
+        "groupShortName": "SmartDetect",
+        "enabled": true,
+        "emailReceivers": [],
+        "smsReceivers": [],
+        "webhookReceivers": [],
+        "eventHubReceivers": [],
+        "itsmReceivers": [],
+        "azureAppPushReceivers": [],
+        "automationRunbookReceivers": [],
+        "voiceReceivers": [],
+        "logicAppReceivers": [],
+        "azureFunctionReceivers": [],
+        "armRoleReceivers": [
+          {
+            "name": "Monitoring Contributor",
+            "roleId": "749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+            "useCommonAlertSchema": true
+          },
+          {
+            "name": "Monitoring Reader",
+            "roleId": "43d0d8ad-25c7-4714-9337-8ba259a9fe05",
+            "useCommonAlertSchema": true
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.AlertsManagement/smartdetectoralertrules",
+      "apiVersion": "2021-04-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName'))]",
+        "[resourceId('Microsoft.Insights/components', variables('insightsName'))]",
+        "[resourceId('Microsoft.Insights/actionGroups', variables('insightsName'))]"
+      ],
+      "name": "[variables('insightsFailureAnomaliesName')]",
+      "location": "global",
+      "properties": {
+        "description": "Failure Anomalies notifies you of an unusual rise in the rate of failed HTTP requests or dependency calls.",
+        "state": "Enabled",
+        "severity": "Sev3",
+        "frequency": "PT1M",
+        "detector": {
+          "id": "FailureAnomaliesDetector"
+        },
+        "scope": ["[resourceId('Microsoft.Insights/components', variables('insightsName'))]"],
+        "actionGroups": {
+          "groupIds": [
+            "[resourceId('Microsoft.Insights/actionGroups', variables('insightsName'))]"
+          ]
+        }
+      }
+    },
+    {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
       "dependsOn": [
         "[resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName'))]",
-        "[resourceId('microsoft.insights/components', variables('insightsName'))]"
+        "[resourceId('Microsoft.Insights/components', variables('insightsName'))]"
       ],
       "resourceGroup": "[parameters('name')]",
       "name": "[concat(variables('iotHubName'), '-', parameters('utcNow'))]",
