@@ -3,7 +3,7 @@
     "Types": [
       "diagnostics",
       "loggers",
-      "service",
+      "service"
     ]
   }
 }
