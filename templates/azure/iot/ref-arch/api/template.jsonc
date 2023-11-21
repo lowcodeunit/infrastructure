@@ -39,7 +39,7 @@
         "name": "Developer",
         "capacity": 1
       },
-      "identity": "[parameters('identity')]",
+      "identity": "[parameters('principalId')]",
       "properties": {
         "publisherEmail": "[parameters('principalId')]",
         "publisherName": "[parameters('organizationName')]",
