@@ -20,6 +20,9 @@
     "resourceLookup": {
       "type": "string"
     },
+    "servicePrincipalId": {
+      "type": "string"
+    },
     "shortName": {
       "type": "string",
       "minLength": 1,
@@ -133,6 +136,20 @@
         "principalType": "User",
         "tenantId": "[subscription().tenantId]"
       }
+    },
+    {
+        "type": "Microsoft.Kusto/Clusters/PrincipalAssignments",
+        "apiVersion": "2023-08-15",
+        "name": "[concat(variables('clusterName'), '-service-principal')]",
+        "dependsOn": [
+            "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
+        ],
+        "properties": {
+            "principalId": "[parameters('servicePrincipalId')]",
+            "role": "AllDatabasesAdmin",
+            "principalType": "App",
+            "tenantId": "[subscription().tenantId]"
+        }
     }
   ],
   "outputs": {}
