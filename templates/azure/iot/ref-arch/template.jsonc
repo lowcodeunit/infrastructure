@@ -48,7 +48,6 @@
   },
   "variables": {
     "analyticsWorkspaceName": "[concat(parameters('shortName'), '-analytics-workspace')]",
-    "insightsFailureAnomaliesName": "[concat(variables('insightsName'), '-failure-anomalies')]",
     "insightsName": "[concat(parameters('shortName'), '-insights')]",
     "insightsSmartDetectionName": "[concat(variables('insightsName'), '-smart-detection')]",
     "iotHubName": "[concat(parameters('name'), '-iot-hub')]",
