@@ -127,32 +127,6 @@
       }
     },
     {
-      "type": "Microsoft.AlertsManagement/smartdetectoralertrules",
-      "apiVersion": "2021-04-01",
-      "dependsOn": [
-        "[resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName'))]",
-        "[resourceId('Microsoft.Insights/components', variables('insightsName'))]",
-        "[resourceId('Microsoft.Insights/actionGroups', variables('insightsSmartDetectionName'))]"
-      ],
-      "name": "[variables('insightsFailureAnomaliesName')]",
-      "location": "global",
-      "properties": {
-        "description": "Failure Anomalies notifies you of an unusual rise in the rate of failed HTTP requests or dependency calls.",
-        "state": "Enabled",
-        "severity": "Sev3",
-        "frequency": "PT1M",
-        "detector": {
-          "id": "FailureAnomaliesDetector"
-        },
-        "scope": ["[resourceId('Microsoft.Insights/components', variables('insightsName'))]"],
-        "actionGroups": {
-          "groupIds": [
-            "[resourceId('Microsoft.Insights/actionGroups', variables('insightsSmartDetectionName'))]"
-          ]
-        }
-      }
-    },
-    {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
       "dependsOn": [
