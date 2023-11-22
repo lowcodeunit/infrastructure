@@ -140,7 +140,7 @@
     {
         "type": "Microsoft.Kusto/Clusters/PrincipalAssignments",
         "apiVersion": "2023-08-15",
-        "name": "[concat(variables('clusterName'), '-service-principal')]",
+        "name": "[concat(variables('clusterName'), '/', parameters('servicePrincipalId'))]",
         "dependsOn": [
             "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
         ],
