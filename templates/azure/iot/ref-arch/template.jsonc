@@ -132,7 +132,7 @@
       "dependsOn": [
         "[resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName'))]",
         "[resourceId('Microsoft.Insights/components', variables('insightsName'))]",
-        "[resourceId('Microsoft.Insights/actionGroups', variables('insightsName'))]"
+        "[resourceId('Microsoft.Insights/actionGroups', variables('insightsSmartDetectionName'))]"
       ],
       "name": "[variables('insightsFailureAnomaliesName')]",
       "location": "global",
@@ -147,7 +147,7 @@
         "scope": ["[resourceId('Microsoft.Insights/components', variables('insightsName'))]"],
         "actionGroups": {
           "groupIds": [
-            "[resourceId('Microsoft.Insights/actionGroups', variables('insightsName'))]"
+            "[resourceId('Microsoft.Insights/actionGroups', variables('insightsSmartDetectionName'))]"
           ]
         }
       }
