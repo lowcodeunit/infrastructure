@@ -154,7 +154,7 @@
       "tags": {
         "CloudLookup": "[parameters('cloudLookup')]",
         "ResourceLookup": "[parameters('resourceLookup')]",
-        "hidden-link: /app-insights-resource-id": "[resourceId('Microsoft.Insights/components', parameters('insightsName'))]"
+        "hidden-link: /app-insights-resource-id": "[resourceId('Microsoft.Insights/components', variables('insightsName'))]"
       }
     },
     {
