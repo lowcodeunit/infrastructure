@@ -183,7 +183,7 @@
       "apiVersion": "2021-05-01-preview",
       "name": "[concat(variables('storageAccountName'), '-sa-blob-logs')]",
       "type": "Microsoft.Insights/diagnosticSettings",
-      "scope": "[concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'), '/blobServices/default')]",
+      "scope": "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'), '/blobServices/default')]",
       "dependsOn": [],
       "properties": {
         "workspaceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName')]",
