@@ -28,6 +28,7 @@
     "analyticsWorkspaceName": "[concat(parameters('shortName'), '-analytics-workspace')]",
     "functionName": "[concat(parameters('shortName'), '-iot-devices-flow')]",
     "insightsName": "[concat(parameters('shortName'), '-insights')]",
+    "iotHubName": "[concat(parameters('name'), '-iot-hub')]",
     "serverFarmName": "[concat(parameters('shortName'), '-functions-farm')]",
     "storageAccountName": "[concat(parameters('shortName'), 'default') ]"
   },
@@ -98,6 +99,14 @@
             {
               "name": "AzureWebJobsStorage",
               "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
+            },
+            {
+              "name": "IoTHubEndpoint",
+              "value": "[reference(resourceId('Microsoft.Devices/IoTHubs', variables('iotHubName'))).eventHubEndpoints.events.endpoint]"
+            },
+            {
+              "name": "AzureSignalRConnectionString",
+              "value": "[listkeys(resourceId('Microsoft.SignalRService/SignalR', concat(parameters('name'), '-signalr')), '2023-02-01').primaryConnectionString]"
             },
             {
               "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
