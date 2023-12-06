@@ -186,7 +186,7 @@
       "scope": "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'), '/blobServices/default')]",
       "dependsOn": [],
       "properties": {
-        "workspaceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName')]",
+        "workspaceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName'))]",
         "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')]",
         "logs": [
           {
