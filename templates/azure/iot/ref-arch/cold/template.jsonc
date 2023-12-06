@@ -196,13 +196,13 @@
           ]
         }
       },
-      "tags": {
-        "CloudLookup": "[parameters('cloudLookup')]",
-        "ResourceLookup": "[reference(resourceId('Microsoft.Devices/IotHubs', variables('iotHubName')),'2018-04-01','Full').tags.ResourceLookup]"
-      },
       "sku": {
         "name": "[parameters('iotSkuName')]",
         "capacity": "[parameters('iotSkuUnits')]"
+      },
+      "tags": {
+        "CloudLookup": "[parameters('cloudLookup')]",
+        "ResourceLookup": "[reference(resourceId('Microsoft.Devices/IotHubs', variables('iotHubName')),'2018-04-01','Full').tags.ResourceLookup]"
       }
     }
   ],
