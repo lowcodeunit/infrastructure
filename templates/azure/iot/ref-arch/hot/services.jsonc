@@ -1,7 +1,11 @@
 {
+  "Microsoft.Insights": {
+    "Types": ["diagnosticSettings"]
+  },
   "Microsoft.SignalRService": {
-    "Types": [
-      "SignalR"
-    ]
+    "Types": ["SignalR"]
+  },
+  "Microsoft.Web": {
+    "Types": ["sites", "serverfarms", "sourcecontrols"]
   }
 }
