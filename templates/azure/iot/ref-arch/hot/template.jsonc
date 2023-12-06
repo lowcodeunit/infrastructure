@@ -147,7 +147,7 @@
             }
           },
           "dependsOn": [
-            "[resourceId('Microsoft.Web/Sites', parameters('name'))]"
+            "[resourceId('Microsoft.Web/Sites', variables('functionName'))]"
           ]
         }
       ],
