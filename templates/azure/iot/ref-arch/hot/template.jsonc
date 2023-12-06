@@ -2,6 +2,9 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "branch": {
+      "type": "string"
+    },
     "cloudLookup": {
       "type": "string"
     },
@@ -9,6 +12,9 @@
       "type": "string"
     },
     "name": {
+      "type": "string"
+    },
+    "repoUrl": {
       "type": "string"
     },
     "resourceLookup": {
@@ -19,7 +25,10 @@
     }
   },
   "variables": {
+    "analyticsWorkspaceName": "[concat(parameters('shortName'), '-analytics-workspace')]",
     "functionName": "[concat(parameters('shortName'), '-iot-devices-flow')]",
+    "insightsName": "[concat(parameters('shortName'), '-insights')]",
+    "insightsInstrumentationKey": "[reference(resourceId('Microsoft.Insights/components', variables('insightsName')), '2014-04-01').InstrumentationKey]",
     "serverFarmName": "[concat(parameters('shortName'), '-functions-farm')]",
     "storageAccountName": "[concat(parameters('shortName'), 'default') ]"
   },
@@ -62,7 +71,7 @@
       "apiVersion": "2018-11-01",
       "name": "[variables('functionName')]",
       "type": "Microsoft.Web/sites",
-      "kind": "functionapp,linux",
+      "kind": "functionapp",
       "location": "[parameters('location')]",
       "dependsOn": [
         "[concat('Microsoft.Web/serverfarms/', variables('serverFarmName'))]"
@@ -77,7 +86,15 @@
             },
             {
               "name": "FUNCTIONS_WORKER_RUNTIME",
-              "value": "custom"
+              "value": "node"
+            },
+            {
+              "name": "WEBSITE_NODE_DEFAULT_VERSION",
+              "value": "~18"
+            },
+            {
+              "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+              "value": "concat('InstrumentationKey=', variables('insightsInstrumentationKey'), ';IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/;LiveEndpoint=https://westus2.livediagnostics.monitor.azure.com/')]"
             },
             {
               "name": "AzureWebJobsStorage",
@@ -97,7 +114,7 @@
           },
           "use32BitWorkerProcess": false,
           "ftpsState": "FtpsOnly",
-          "linuxFxVersion": ""
+          "netFrameworkVersion": "v6.0"
         },
         "clientAffinityEnabled": false,
         "virtualNetworkSubnetId": null,
@@ -105,9 +122,40 @@
         "httpsOnly": true,
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverFarmName'))]"
       },
+      "resources": [
+        {
+          "type": "sourcecontrols",
+          "name": "web",
+          "apiVersion": "2020-12-01",
+          "properties": {
+            "RepoUrl": "[parameters('repoUrl')]",
+            "branch": "[parameters('branch')]",
+            "deploymentRollbackEnabled": false,
+            "isGitHubAction": true,
+            "gitHubActionConfiguration": {
+              "generateWorkflowFile": true,
+              "workflowSettings": {
+                "appType": "functionapp",
+                "publishType": "code",
+                "os": "windows",
+                "runtimeStack": "node",
+                "workflowApiVersion": "2020-12-01",
+                "slotName": "production",
+                "variables": {
+                  "runtimeVersion": "18.x"
+                }
+              }
+            }
+          },
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/Sites', parameters('name'))]"
+          ]
+        }
+      ],
       "tags": {
         "CloudLookup": "[parameters('cloudLookup')]",
-        "ResourceLookup": "[parameters('resourceLookup')]"
+        "ResourceLookup": "[parameters('resourceLookup')]",
+        "hidden-link: /app-insights-resource-id": "[resourceId('Microsoft.Insights/components', parameters('insightsName'))]"
       }
     },
     {
@@ -115,14 +163,13 @@
       "name": "[variables('serverFarmName')]",
       "type": "Microsoft.Web/serverfarms",
       "location": "[parameters('location')]",
-      "kind": "linux",
+      "kind": "",
       "dependsOn": [],
       "properties": {
         "name": "[variables('serverFarmName')]",
         "workerSize": "0",
         "workerSizeId": "0",
-        "numberOfWorkers": "1",
-        "reserved": true
+        "numberOfWorkers": "1"
       },
       "sku": {
         "Tier": "Dynamic",
@@ -131,6 +178,29 @@
       "tags": {
         "CloudLookup": "[parameters('cloudLookup')]",
         "ResourceLookup": "[parameters('resourceLookup')]"
+      }
+    },
+    {
+      "apiVersion": "2021-05-01-preview",
+      "name": "[concat(variables('storageAccountName'), '-sa-blob-logs')]",
+      "type": "Microsoft.Insights/diagnosticSettings",
+      "scope": "[concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'), '/blobServices/default')]",
+      "dependsOn": [],
+      "properties": {
+        "workspaceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('analyticsWorkspaceName')]",
+        "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')]",
+        "logs": [
+          {
+            "category": "StorageWrite",
+            "enabled": true
+          }
+        ],
+        "metrics": [
+          {
+            "category": "Transaction",
+            "enabled": true
+          }
+        ]
       }
     }
   ],
