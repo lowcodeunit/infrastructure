@@ -20,6 +20,9 @@
     "name": {
       "value": "{{Name}}"
     },
+    "parentResourceLookup": {
+      "value": "{{ParentResourceLookup}}"
+    },
     "resourceLookup": {
       "value": "{{ResourceLookup}}"
     },
