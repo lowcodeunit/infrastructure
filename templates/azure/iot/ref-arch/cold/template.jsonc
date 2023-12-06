@@ -165,7 +165,7 @@
         "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('storageAccountName'), 'default')]",
         "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
       ],
-      "name": "[varabiles('iotHubName')]",
+      "name": "[varaibles('iotHubName')]",
       "location": "[parameters('location')]",
       "properties": {
         "routing": {
