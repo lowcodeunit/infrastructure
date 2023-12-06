@@ -196,6 +196,7 @@
           ]
         }
       },
+      "tags": null,
       "sku": {
         "name": "[parameters('iotSkuName')]",
         "capacity": "[parameters('iotSkuUnits')]"

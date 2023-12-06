@@ -132,6 +132,7 @@
         "httpsOnly": true,
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverFarmName'))]"
       },
+<<<<<<< HEAD
       "resources": [
         {
           "type": "sourcecontrols",
@@ -163,6 +164,8 @@
           ]
         }
       ],
+=======
+>>>>>>> origin/integration
       "tags": {
         "CloudLookup": "[parameters('cloudLookup')]",
         "ResourceLookup": "[parameters('resourceLookup')]",
