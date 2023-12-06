@@ -23,6 +23,9 @@
     "resourceLookup": {
       "type": "string"
     },
+    "parentResourceLookup": {
+      "type": "string"
+    },
     "shortName": {
       "type": "string"
     }
@@ -165,7 +168,7 @@
         "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('storageAccountName'), 'default')]",
         "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
       ],
-      "name": "[variables('iotHubName')]",
+      "name": "[varabiles('iotHubName')]",
       "location": "[parameters('location')]",
       "properties": {
         "routing": {
@@ -196,7 +199,7 @@
           ]
         }
       },
-      "tags": null,
+      "tags": "[reference(resourceId('Microsoft.Devices/IotHubs', varabiles('iotHubName')),'2018-04-01','Full').tags]",
       "sku": {
         "name": "[parameters('iotSkuName')]",
         "capacity": "[parameters('iotSkuUnits')]"
