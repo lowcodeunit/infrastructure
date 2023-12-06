@@ -132,37 +132,6 @@
         "httpsOnly": true,
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverFarmName'))]"
       },
-      "resources": [
-        {
-          "type": "sourcecontrols",
-          "name": "web",
-          "apiVersion": "2020-12-01",
-          "properties": {
-            "RepoUrl": "[parameters('repoUrl')]",
-            "branch": "[parameters('branch')]",
-            "repositoryToken": "xxx",
-            "deploymentRollbackEnabled": false,
-            "isGitHubAction": true,
-            "gitHubActionConfiguration": {
-              "generateWorkflowFile": true,
-              "workflowSettings": {
-                "appType": "functionapp",
-                "publishType": "code",
-                "os": "windows",
-                "runtimeStack": "node",
-                "workflowApiVersion": "2020-12-01",
-                "slotName": "production",
-                "variables": {
-                  "runtimeVersion": "18.x"
-                }
-              }
-            }
-          },
-          "dependsOn": [
-            "[resourceId('Microsoft.Web/Sites', variables('functionName'))]"
-          ]
-        }
-      ],
       "tags": {
         "CloudLookup": "[parameters('cloudLookup')]",
         "ResourceLookup": "[parameters('resourceLookup')]",
