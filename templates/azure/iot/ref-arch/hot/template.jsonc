@@ -113,7 +113,9 @@
           },
           "use32BitWorkerProcess": false,
           "ftpsState": "FtpsOnly",
-          "netFrameworkVersion": "v6.0"
+          "netFrameworkVersion": "v6.0",
+          "scmType": "GitHubAction",
+          "managedPipelineMode": "Integrated"
         },
         "clientAffinityEnabled": false,
         "virtualNetworkSubnetId": null,
@@ -129,6 +131,7 @@
           "properties": {
             "RepoUrl": "[parameters('repoUrl')]",
             "branch": "[parameters('branch')]",
+            "repositoryToken": "xxx",
             "deploymentRollbackEnabled": false,
             "isGitHubAction": true,
             "gitHubActionConfiguration": {
