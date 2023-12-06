@@ -93,7 +93,7 @@
             },
             {
               "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-              "value": "concat('InstrumentationKey=', reference(resourceId('Microsoft.Insights/components', variables('insightsName')), '2014-04-01').InstrumentationKey, ';IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/;LiveEndpoint=https://westus2.livediagnostics.monitor.azure.com/')]"
+              "value": "[concat('InstrumentationKey=', reference(resourceId('Microsoft.Insights/components', variables('insightsName')), '2014-04-01').InstrumentationKey, ';IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/;LiveEndpoint=https://westus2.livediagnostics.monitor.azure.com/')]"
             },
             {
               "name": "AzureWebJobsStorage",
@@ -127,7 +127,7 @@
           "name": "web",
           "apiVersion": "2020-12-01",
           "properties": {
-            "RepoUrl": "[parameters('repoUrl')]",
+            "repoUrl": "[parameters('repoUrl')]",
             "branch": "[parameters('branch')]",
             "deploymentRollbackEnabled": false,
             "isGitHubAction": true,
