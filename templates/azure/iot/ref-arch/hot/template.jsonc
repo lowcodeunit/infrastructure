@@ -102,7 +102,7 @@
             },
             {
               "name": "IoTHubEndpoint",
-              "value": "[reference(resourceId('Microsoft.Devices/IoTHubs', variables('iotHubName'))).eventHubEndpoints.events.endpoint]"
+              "value": "[reference(resourceId('Microsoft.Devices/IoTHubs', variables('iotHubName')), providers('Microsoft.Devices', 'IoTHubs').apiVersions[0]).eventHubEndpoints.events.endpoint]"
             },
             {
               "name": "AzureSignalRConnectionString",
