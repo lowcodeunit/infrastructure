@@ -196,7 +196,7 @@
           ]
         }
       },
-      "tags": "[reference(resourceId('Microsoft.Devices/IotHubs', varabiles('iotHubName')),'2018-04-01','Full').tags]",
+      "tags": "[reference(resourceId('Microsoft.Devices/IotHubs', variables('iotHubName')),'2018-04-01','Full').tags]",
       "sku": {
         "name": "[parameters('iotSkuName')]",
         "capacity": "[parameters('iotSkuUnits')]"
