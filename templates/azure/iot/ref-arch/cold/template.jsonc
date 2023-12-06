@@ -23,9 +23,6 @@
     "resourceLookup": {
       "type": "string"
     },
-    "parentResourceLookup": {
-      "type": "string"
-    },
     "shortName": {
       "type": "string"
     }
