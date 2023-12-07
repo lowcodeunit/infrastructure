@@ -164,7 +164,16 @@
                       "endpointNames": ["events"],
                       "isEnabled": true
                     }
-                  ]
+                  ],
+                  "fallbackRoute": {
+                      "name": "$fallback",
+                      "source": "DeviceMessages",
+                      "condition": "true",
+                      "endpointNames": [
+                          "events"
+                      ],
+                      "isEnabled": true
+                  }
                 },
                 "features": "[parameters('features')]",
                 "enableDataResidency": "[parameters('enableDataResidency')]",
