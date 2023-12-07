@@ -118,7 +118,10 @@
             }
           ],
           "cors": {
-            "allowedOrigins": ["https://portal.azure.com"]
+            "allowedOrigins": [
+              "https://portal.azure.com",
+              "http://127.0.0.1:5500"
+            ]
           },
           "use32BitWorkerProcess": false,
           "ftpsState": "FtpsOnly",
