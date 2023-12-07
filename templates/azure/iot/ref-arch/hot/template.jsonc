@@ -121,13 +121,14 @@
             "allowedOrigins": [
               "https://portal.azure.com",
               "http://127.0.0.1:5500"
-            ]
+            ],
+            "supportCredentials": true
           },
           "use32BitWorkerProcess": false,
           "ftpsState": "FtpsOnly",
           "netFrameworkVersion": "v6.0",
           "scmType": "GitHubAction",
-          "managedPipelineMode": "Integrated"
+          "managedPipelineMode": "Integrated",
         },
         "clientAffinityEnabled": false,
         "virtualNetworkSubnetId": null,
