@@ -186,9 +186,9 @@
               "dependsOn": [
                 "[resourceId('Microsoft.Devices/IotHubs', variables('iotHubName'))]"
               ],
-              "name": "[concat(variables('iotHubName'), '/events/cg')]",
+              "name": "[concat(variables('iotHubName'), '/events/dev')]",
               "properties": {
-                "name": "cg"
+                "name": "dev"
               }
             },
             {

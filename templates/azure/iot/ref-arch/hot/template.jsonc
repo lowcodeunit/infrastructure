@@ -164,6 +164,17 @@
       }
     },
     {
+      "type": "Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups",
+      "apiVersion": "2022-04-30-preview",
+      "dependsOn": [
+        "[resourceId('Microsoft.Devices/IotHubs', variables('iotHubName'))]"
+      ],
+      "name": "[concat(variables('iotHubName'), '/events/warm')]",
+      "properties": {
+        "name": "warm"
+      }
+    },
+    {
       "apiVersion": "2021-05-01-preview",
       "name": "[concat(variables('storageAccountName'), '-sa-blob-logs')]",
       "type": "Microsoft.Insights/diagnosticSettings",

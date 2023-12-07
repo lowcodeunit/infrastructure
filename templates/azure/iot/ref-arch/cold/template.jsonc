@@ -161,9 +161,21 @@
       }
     },
     {
+      "type": "Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups",
+      "apiVersion": "2022-04-30-preview",
+      "dependsOn": [
+        "[resourceId('Microsoft.Devices/IotHubs', variables('iotHubName'))]"
+      ],
+      "name": "[concat(variables('iotHubName'), '/events/cold')]",
+      "properties": {
+        "name": "cold"
+      }
+    },
+    {
       "type": "Microsoft.Devices/IotHubs",
       "apiVersion": "2023-06-30-preview",
       "dependsOn": [
+        "[resourceId('Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups', variables('iotHubName'), 'events', 'cold')]",
         "[resourceId('Microsoft.Storage/storageAccounts/blobServices/containers', variables('storageAccountName'), 'default', 'telemetry')]",
         "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('storageAccountName'), 'default')]",
         "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
@@ -184,7 +196,8 @@
                 "authenticationType": "keyBased",
                 "name": "[variables('storageAccountName')]",
                 "subscriptionId": "[subscription().subscriptionId]",
-                "resourceGroup": "[parameters('name')]"
+                "resourceGroup": "[parameters('name')]",
+                "consumerGroup": "cold"
               }
             ]
           },
