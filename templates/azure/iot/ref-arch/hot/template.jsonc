@@ -128,7 +128,7 @@
           "ftpsState": "FtpsOnly",
           "netFrameworkVersion": "v6.0",
           "scmType": "GitHubAction",
-          "managedPipelineMode": "Integrated",
+          "managedPipelineMode": "Integrated"
         },
         "clientAffinityEnabled": false,
         "virtualNetworkSubnetId": null,
