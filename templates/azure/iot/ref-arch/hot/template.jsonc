@@ -168,9 +168,9 @@
       "type": "Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups",
       "apiVersion": "2022-04-30-preview",
       "dependsOn": [],
-      "name": "[concat(variables('iotHubName'), '/events/warm')]",
+      "name": "[concat(variables('iotHubName'), '/events/hot')]",
       "properties": {
-        "name": "warm"
+        "name": "hot"
       }
     },
     {
