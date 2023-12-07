@@ -6,7 +6,7 @@
       "value": "{{CloudLookup}}"
     },
     "d2cPartitions": {
-      "value": 4
+      "value": 32
     },
     "enableDataResidency": {
       "value": false
