@@ -194,8 +194,7 @@
                 "authenticationType": "keyBased",
                 "name": "[variables('storageAccountName')]",
                 "subscriptionId": "[subscription().subscriptionId]",
-                "resourceGroup": "[parameters('name')]",
-                "consumerGroup": "cold"
+                "resourceGroup": "[parameters('name')]"
               }
             ]
           },
