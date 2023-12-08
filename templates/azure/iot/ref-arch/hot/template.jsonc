@@ -97,16 +97,24 @@
               "value": "[concat('InstrumentationKey=', reference(resourceId('Microsoft.Insights/components', variables('insightsName')), '2014-04-01').InstrumentationKey, ';IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/;LiveEndpoint=https://westus2.livediagnostics.monitor.azure.com/')]"
             },
             {
+              "name": "AzureSignalRConnectionString",
+              "value": "[listkeys(resourceId('Microsoft.SignalRService/SignalR', concat(parameters('name'), '-signalr')), '2023-02-01').primaryConnectionString]"
+            },
+            {
               "name": "AzureWebJobsStorage",
               "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
             },
             {
-              "name": "IoTHubEndpoint",
-              "value": "[concat('Endpoint=', reference(resourceId('Microsoft.Devices/IoTHubs', variables('iotHubName')), providers('Microsoft.Devices', 'IoTHubs').apiVersions[0]).eventHubEndpoints.events.endpoint, ';SharedAccessKeyName=iothubowner;SharedAccessKey=', listKeys(resourceId('Microsoft.Devices/IotHubs/Iothubkeys', variables('iotHubName'), 'iothubowner'), '2016-02-03').primaryKey)]"
+              "name": "IoTHubConsumerGroup",
+              "value": "hot"
             },
             {
-              "name": "AzureSignalRConnectionString",
-              "value": "[listkeys(resourceId('Microsoft.SignalRService/SignalR', concat(parameters('name'), '-signalr')), '2023-02-01').primaryConnectionString]"
+              "name": "IoTHubEndpoint",
+              "value": "[concat('Endpoint=', reference(resourceId('Microsoft.Devices/IoTHubs', variables('iotHubName')), providers('Microsoft.Devices', 'IoTHubs').apiVersions[0]).eventHubEndpoints.events.endpoint, ';SharedAccessKeyName=iothubowner;SharedAccessKey=', listKeys(resourceId('Microsoft.Devices/IotHubs/Iothubkeys', variables('iotHubName'), 'iothubowner'), '2016-02-03').primaryKey, ';EntityPath=', substring(variables('iotHubName'), 0, 25))]"
+            },
+            {
+              "name": "IoTHubEventHubName",
+              "value": "[substring(variables('iotHubName'), 0, 25)]"
             },
             {
               "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
