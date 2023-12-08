@@ -32,6 +32,15 @@
   },
   "variables": {
     "iotHubName": "[concat(parameters('name'), '-iot-hub')]",
+    "iotHubTelemetryRoute": [
+      {
+        "name": "[concat(variables('iotHubName'), '-telemetry')]",
+        "source": "DeviceMessages",
+        "condition": "true",
+        "endpointNames": ["[variables('storageAccountName')]"],
+        "isEnabled": true
+      }
+    ],
     "storageAccountName": "[concat(parameters('shortName'), 'datalake') ]"
   },
   "resources": [
@@ -198,15 +207,7 @@
               }
             ]
           },
-          "routes": [
-            {
-              "name": "[concat(variables('iotHubName'), '-telemetry')]",
-              "source": "DeviceMessages",
-              "condition": "true",
-              "endpointNames": ["[variables('storageAccountName')]"],
-              "isEnabled": true
-            }
-          ]
+          "routes": "[concat(reference(resourceId('Microsoft.Devices/IoTHubs', variables('iotHubName')), providers('Microsoft.Devices', 'IoTHubs').apiVersions[0]).routing.routes, variables('iotHubTelemetryRoute'))]"
         }
       },
       "sku": {
