@@ -8,6 +8,12 @@
     "cloudLookup": {
       "type": "string"
     },
+    "iotSkuName": {
+      "type": "string"
+    },
+    "iotSkuUnits": {
+      "type": "string"
+    },
     "location": {
       "type": "string"
     },
@@ -211,6 +217,10 @@
             ]
           }
         }
+      },
+      "sku": {
+        "name": "[parameters('iotSkuName')]",
+        "capacity": "[parameters('iotSkuUnits')]"
       },
       "tags": {
         "CloudLookup": "[parameters('cloudLookup')]",
