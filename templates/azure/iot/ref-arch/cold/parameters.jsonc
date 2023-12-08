@@ -8,12 +8,6 @@
     "cloudLookup": {
       "value": "{{CloudLookup}}"
     },
-    "iotSkuName": {
-      "value": "S1"
-    },
-    "iotSkuUnits": {
-      "value": "1"
-    },
     "location": {
       "value": "{{Location}}"
     },
