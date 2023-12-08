@@ -26,15 +26,6 @@
   },
   "variables": {
     "iotHubName": "[concat(parameters('name'), '-iot-hub')]",
-    "iotHubTelemetryRoute": [
-      {
-        "name": "[concat(variables('iotHubName'), '-telemetry')]",
-        "source": "DeviceMessages",
-        "condition": "true",
-        "endpointNames": ["[variables('storageAccountName')]"],
-        "isEnabled": true
-      }
-    ],
     "storageAccountName": "[concat(parameters('shortName'), 'datalake') ]"
   },
   "resources": [
@@ -173,38 +164,6 @@
       }
     },
     {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2019-10-01",
-      "dependsOn": [],
-      "resourceGroup": "[parameters('name')]",
-      "name": "[concat(variables('iotHubName'), '-passthrough')]",
-      "properties": {
-        "expressionEvaluationOptions": {
-          "scope": "outer"
-        },
-        "mode": "Incremental",
-        "template": {
-          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-          "contentVersion": "1.0.0.0",
-          "resources": [
-            {
-              "type": "Microsoft.Devices/IotHubs",
-              "apiVersion": "2023-06-30-preview",
-              "name": "[variables('iotHubName')]",
-              "location": "[parameters('location')]",
-              "tags": {
-                "CloudLookup": "[parameters('cloudLookup')]",
-                "ResourceLookup": "[parameters('resourceLookup')]"
-              }
-            }
-          ],
-          "outputs": {
-            "iotHubRoutes": "[reference(variables('iotHubName')).routing.routes]"
-          }
-        }
-      }
-    },
-    {
       "type": "Microsoft.Devices/IotHubs",
       "apiVersion": "2023-06-30-preview",
       "dependsOn": [
@@ -233,7 +192,24 @@
               }
             ]
           },
-          "routes": "[concat(reference(concat(variables('iotHubName'), '-passthrough'), '2019-10-01').outputs.iotHubRoutes.value, variables('iotHubTelemetryRoute'))]"
+          "routing": {
+            "routes": [
+              {
+                "name": "[concat(variables('iotHubName'), '-default')]",
+                "source": "DeviceMessages",
+                "condition": "true",
+                "endpointNames": ["events"],
+                "isEnabled": true
+              },
+              {
+                "name": "[concat(variables('iotHubName'), '-telemetry')]",
+                "source": "DeviceMessages",
+                "condition": "true",
+                "endpointNames": ["[variables('storageAccountName')]"],
+                "isEnabled": true
+              }
+            ]
+          }
         }
       },
       "tags": {

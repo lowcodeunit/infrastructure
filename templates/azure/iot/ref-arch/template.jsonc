@@ -163,13 +163,6 @@
                       "condition": "true",
                       "endpointNames": ["events"],
                       "isEnabled": true
-                    },
-                    {
-                      "name": "built-in-endpoint",
-                      "source": "DeviceMessages",
-                      "condition": "true",
-                      "endpointNames": ["events"],
-                      "isEnabled": true
                     }
                   ],
                   "fallbackRoute": {
