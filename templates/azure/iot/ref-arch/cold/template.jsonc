@@ -236,7 +236,7 @@
               }
             ]
           },
-          "routes": "[concat(reference('my-deployment', '2017-05-10').outputs.iotHubRoutes.value, variables('iotHubTelemetryRoute'))]"
+          "routes": "[concat(reference(concat(variables('iotHubName'), '-', parameters('utcNow')), '2019-10-01').outputs.iotHubRoutes.value, variables('iotHubTelemetryRoute'))]"
         }
       },
       "tags": {
