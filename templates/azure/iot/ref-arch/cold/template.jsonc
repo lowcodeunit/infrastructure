@@ -180,7 +180,7 @@
         "[resourceId('Microsoft.Insights/components', variables('insightsName'))]"
       ],
       "resourceGroup": "[parameters('name')]",
-      "name": "[concat(variables('iotHubName'), '-', parameters('utcNow'))]",
+      "name": "[concat(variables('iotHubName'), '-passthrough')]",
       "properties": {
         "expressionEvaluationOptions": {
           "scope": "outer"
@@ -236,7 +236,7 @@
               }
             ]
           },
-          "routes": "[concat(reference(concat(variables('iotHubName'), '-', parameters('utcNow')), '2019-10-01').outputs.iotHubRoutes.value, variables('iotHubTelemetryRoute'))]"
+          "routes": "[concat(reference(concat(variables('iotHubName'), , '-passthrough'), '2019-10-01').outputs.iotHubRoutes.value, variables('iotHubTelemetryRoute'))]"
         }
       },
       "tags": {
