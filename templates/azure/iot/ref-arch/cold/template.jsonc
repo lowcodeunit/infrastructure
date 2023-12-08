@@ -198,23 +198,28 @@
               }
             ]
           },
-          "routing": {
-            "routes": [
-              {
-                "name": "[concat(variables('iotHubName'), '-default')]",
-                "source": "DeviceMessages",
-                "condition": "true",
-                "endpointNames": ["events"],
-                "isEnabled": true
-              },
-              {
-                "name": "[concat(variables('iotHubName'), '-telemetry')]",
-                "source": "DeviceMessages",
-                "condition": "true",
-                "endpointNames": ["[variables('storageAccountName')]"],
-                "isEnabled": true
-              }
-            ]
+          "routes": [
+            {
+              "name": "[concat(variables('iotHubName'), '-default')]",
+              "source": "DeviceMessages",
+              "condition": "true",
+              "endpointNames": ["events"],
+              "isEnabled": true
+            },
+            {
+              "name": "[concat(variables('iotHubName'), '-telemetry')]",
+              "source": "DeviceMessages",
+              "condition": "true",
+              "endpointNames": ["[variables('storageAccountName')]"],
+              "isEnabled": true
+            }
+          ],
+          "fallbackRoute": {
+            "name": "$fallback",
+            "source": "DeviceMessages",
+            "condition": "true",
+            "endpointNames": ["events"],
+            "isEnabled": true
           }
         }
       },
