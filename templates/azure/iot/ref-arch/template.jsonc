@@ -51,6 +51,7 @@
     "insightsName": "[concat(parameters('shortName'), '-insights')]",
     "insightsSmartDetectionName": "[concat(variables('insightsName'), '-smart-detection')]",
     "iotHubName": "[concat(parameters('name'), '-iot-hub')]",
+    "keyVaultName": "[concat(parameters('shortName'), '-key-vault')]",
     "storageAccountName": "[concat(parameters('shortName'), 'default') ]"
   },
   "resources": [
@@ -246,6 +247,30 @@
         "supportsHttpsTrafficOnly": true,
         "minimumTlsVersion": "TLS1_2",
         "defaultToOAuthAuthentication": true
+      },
+      "tags": {
+        "CloudLookup": "[parameters('cloudLookup')]",
+        "ResourceLookup": "[parameters('resourceLookup')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2023-07-01",
+      "name": "[variables('keyVaultName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "sku": {
+          "family": "A",
+          "name": "Standard"
+        },
+        "enabledForDeployment": true,
+        "enabledForDiskEncryption": true,
+        "enabledForTemplateDeployment": true,
+        "enableSoftDelete": true,
+        "softDeleteRetentionInDays": 90,
+        "enableRbacAuthorization": true,
+        "enablePurgeProtection": true,
+        "publicNetworkAccess": "Enabled"
       },
       "tags": {
         "CloudLookup": "[parameters('cloudLookup')]",
