@@ -1,0 +1,34 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "cloudLookup": {
+      "value": "{{CloudLookup}}"
+    },
+    "location": {
+      "value": "{{Location}}"
+    },
+    "name": {
+      "value": "{{Name}}"
+    },
+    "principalId": {
+      "value": "{{PrincipalID}}"
+    },
+    "resourceLookup": {
+      "value": "{{ResourceLookup}}"
+    },
+    "servicePrincipalId": {
+      "value": "{{ServicePrincipalID}}"
+    },
+    "shortName": {
+      "value": "{{ShortName}}"
+    },
+    "sku": {
+      "value": {
+        "capacity": 1,
+        "name": "Dev(No SLA)_Standard_E2a_v4",
+        "tier": "Basic"
+      }
+    }
+  }
+}

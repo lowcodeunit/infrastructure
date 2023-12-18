@@ -1,0 +1,101 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "cloudLookup": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "organizationName": {
+      "type": "string"
+    },
+    "principalId": {
+      "type": "string"
+    },
+    "resourceLookup": {
+      "type": "string"
+    },
+    "shortName": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "analyticsWorkspaceName": "[concat(parameters('shortName'), '-analytics-workspace')]",
+    "apiManageName": "[concat(parameters('shortName'), '-api-management')]",
+    "insightsName": "[concat(parameters('shortName'), '-insights')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ApiManagement/service",
+      "apiVersion": "2022-09-01-preview",
+      "name": "[variables('apiManageName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Developer",
+        "capacity": 1
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "publisherEmail": "[parameters('principalId')]",
+        "publisherName": "[parameters('organizationName')]",
+        "customProperties": {
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls11": true,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls10": true,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls11": true,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls10": true,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Ssl30": true,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Protocols.Server.Http2": true,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TripleDes168": true,
+          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Ssl30": true
+        }
+      },
+      "resources": [
+        {
+          "type": "loggers",
+          "apiVersion": "2019-01-01",
+          "dependsOn": [
+            "[resourceId('Microsoft.ApiManagement/service/', variables('apiManageName'))]"
+          ],
+          "name": "[variables('insightsName')]",
+          "properties": {
+            "loggerType": "applicationInsights",
+            "resourceId": "[resourceId('Microsoft.Insights/components', variables('insightsName'))]",
+            "credentials": {
+              "instrumentationKey": "[reference(resourceId('Microsoft.Insights/components', variables('insightsName')), '2015-05-01').InstrumentationKey]"
+            }
+          }
+        },
+        {
+          "type": "diagnostics",
+          "apiVersion": "2019-01-01",
+          "name": "applicationinsights",
+          "dependsOn": [
+            "[resourceId('Microsoft.ApiManagement/service/', variables('apiManageName'))]",
+            "[resourceId('Microsoft.ApiManagement/service/loggers', variables('apiManageName'), variables('insightsName'))]"
+          ],
+          "properties": {
+            "loggerId": "[resourceId('Microsoft.ApiManagement/service/loggers', variables('apiManageName'), variables('insightsName'))]",
+            "alwaysLog": "allErrors",
+            "sampling": {
+              "percentage": 100,
+              "samplingType": "fixed"
+            },
+            "enabled": true
+          }
+        }
+      ],
+      "tags": {
+        "CloudLookup": "[parameters('cloudLookup')]",
+        "ResourceLookup": "[parameters('resourceLookup')]"
+      }
+    }
+  ],
+  "outputs": {}
+}
