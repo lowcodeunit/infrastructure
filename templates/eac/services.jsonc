@@ -1,0 +1,17 @@
+{
+  "Microsoft.Insights": {
+    "Types": ["actionGroups", "components"]
+  },
+  "Microsoft.OperationalInsights": {
+    "Types": ["workspaces"]
+  },
+  "Microsoft.Resources": {
+    "Types": ["deployments", "resourceGroups"]
+  },
+  "Microsoft.Security": {
+    "Types": ["iotSecuritySolutions"]
+  },
+  "Microsoft.Storage": {
+    "Types": ["storageAccounts"]
+  }
+}
