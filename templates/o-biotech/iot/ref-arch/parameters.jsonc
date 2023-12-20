@@ -38,6 +38,9 @@
     "securityEnabled": {
         "value": false
     },
+    "servicePrincipalId": {
+      "value": "{{ServicePrincipalID}}"
+    },
     "shortName": {
       "value": "{{ShortName}}"
     }

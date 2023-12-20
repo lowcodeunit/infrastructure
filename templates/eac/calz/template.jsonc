@@ -14,6 +14,9 @@
     "resourceLookup": {
       "type": "string"
     },
+    "servicePrincipalId": {
+      "type": "string"
+    },
     "shortName": {
       "type": "string"
     },
@@ -130,13 +133,66 @@
           "name": "standard"
         },
         "tenantId": "[subscription().tenantId]",
-        "accessPolicies": [],
+        "accessPolicies": [
+          {
+            "tenantId": "[subscription().tenantId]",
+            "objectId": "[parameters('servicePrincipalId')]",
+            "permissions": {
+              "certificates": [
+                "get",
+                "list",
+                "update",
+                "create",
+                "import",
+                "delete",
+                "recover",
+                "backup",
+                "restore",
+                "managecontacts",
+                "manageissuers",
+                "getissuers",
+                "listissuers",
+                "setissuers",
+                "deleteissuers"
+              ],
+              "keys": [
+                "get",
+                "list",
+                "update",
+                "create",
+                "import",
+                "delete",
+                "recover",
+                "backup",
+                "restore",
+                "getrotationpolicy",
+                "setrotationpolicy",
+                "rotate",
+                "encrypt",
+                "decrypt",
+                "unwrapkey",
+                "wrapkey",
+                "verify",
+                "sign"
+              ],
+              "secrets": [
+                "get",
+                "list",
+                "set",
+                "delete",
+                "recover",
+                "backup",
+                "restore"
+              ]
+            }
+          }
+        ],
         "enabledForDeployment": true,
         "enabledForDiskEncryption": true,
         "enabledForTemplateDeployment": true,
         "enableSoftDelete": true,
         "softDeleteRetentionInDays": 90,
-        "enableRbacAuthorization": true,
+        "enableRbacAuthorization": false,
         "enablePurgeProtection": true,
         "publicNetworkAccess": "Enabled"
       },
