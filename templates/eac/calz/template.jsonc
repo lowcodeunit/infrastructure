@@ -193,7 +193,7 @@
         "enableSoftDelete": true,
         "softDeleteRetentionInDays": 90,
         "enableRbacAuthorization": false,
-        "enablePurgeProtection": true,
+        "enablePurgeProtection": false,
         "publicNetworkAccess": "Enabled"
       },
       "tags": {
