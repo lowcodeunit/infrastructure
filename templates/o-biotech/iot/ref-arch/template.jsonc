@@ -336,19 +336,6 @@
         "CloudLookup": "[parameters('cloudLookup')]",
         "ResourceLookup": "[parameters('resourceLookup')]"
       }
-    },
-    {
-      "type": "Microsoft.Authorization/roleAssignments",
-      "apiVersion": "2020-04-01-preview",
-      "name": "[concat('key-vault-', variables('keyVaultName'), '-roleAssignment-', parameters('servicePrincipalId'))]",
-      "dependsOn": [
-        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]"
-      ],
-      "properties": {
-        "roleDefinitionId": "[variables('keyVaultRole')]",
-        "principalId": "[parameters('servicePrincipalId')]",
-        "principalType": "ServicePrincipal"
-      }
     }
   ],
   "outputs": {}
