@@ -287,7 +287,7 @@
       "scope": "[format('Microsoft.KeyVault/vaults/{0}', variables('keyVaultName'))]",
       "type": "Microsoft.Authorization/roleAssignments",
       "apiVersion": "2020-04-01-preview",
-      "name": "[guid(resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName')), parameters('servicePrincipalId'), variables('keyVaultRole'))]",
+      "name": "[concat('key-vault-', variables('keyVaultName'), '-roleAssignment-', parameters('servicePrincipalId'))]",
       "dependsOn": [
         "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]"
       ],
@@ -303,7 +303,7 @@
       "name": "[concat(variables('keyVaultName'), '/add')]",
       "dependsOn": [
         "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]",
-        "[resourceId('Microsoft.Authorization/roleAssignments', guid(resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName')), parameters('servicePrincipalId'), variables('keyVaultRole')))]"
+        "[resourceId('Microsoft.Authorization/roleAssignments', concat('key-vault-', variables('keyVaultName'), '-roleAssignment-', parameters('servicePrincipalId')))]"
       ],
       "properties": {
         "accessPolicies": [
