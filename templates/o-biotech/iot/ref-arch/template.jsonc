@@ -300,7 +300,7 @@
     {
       "type": "Microsoft.KeyVault/vaults/accessPolicies",
       "apiVersion": "2019-09-01",
-      "name": "[concat(parameters('keyVaultName'), '/add')]",
+      "name": "[concat(variables('keyVaultName'), '/add')]",
       "dependsOn": [
         "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]",
         "[resourceId('Microsoft.Authorization/roleAssignments', guid(resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName')), parameters('servicePrincipalId'), variables('keyVaultRole')))]"
