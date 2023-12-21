@@ -268,43 +268,7 @@
           "name": "standard"
         },
         "tenantId": "[subscription().tenantId]",
-        "accessPolicies": [],
-        "enabledForDeployment": true,
-        "enabledForDiskEncryption": true,
-        "enabledForTemplateDeployment": true,
-        "enableSoftDelete": true,
-        "softDeleteRetentionInDays": 90,
-        "enableRbacAuthorization": false,
-        "enablePurgeProtection": false,
-        "publicNetworkAccess": "Enabled"
-      },
-      "tags": {
-        "CloudLookup": "[parameters('cloudLookup')]",
-        "ResourceLookup": "[parameters('resourceLookup')]"
-      }
-    },
-    {
-      "type": "Microsoft.Authorization/roleAssignments",
-      "apiVersion": "2020-04-01-preview",
-      "name": "[concat('key-vault-', variables('keyVaultName'), '-roleAssignment-', parameters('servicePrincipalId'))]",
-      "dependsOn": [
-        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]"
-      ],
-      "properties": {
-        "roleDefinitionId": "[variables('keyVaultRole')]",
-        "principalId": "[parameters('servicePrincipalId')]",
-        "principalType": "ServicePrincipal"
-      }
-    },
-    {
-      "type": "Microsoft.KeyVault/vaults/accessPolicies",
-      "apiVersion": "2019-09-01",
-      "name": "[concat(variables('keyVaultName'), '/add')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]",
-        "[concat('key-vault-', variables('keyVaultName'), '-roleAssignment-', parameters('servicePrincipalId'))]"
-      ],
-      "properties": {
+        
         "accessPolicies": [
           {
             "tenantId": "[subscription().tenantId]",
@@ -358,7 +322,32 @@
               ]
             }
           }
-        ]
+        ],
+        "enabledForDeployment": true,
+        "enabledForDiskEncryption": true,
+        "enabledForTemplateDeployment": true,
+        "enableSoftDelete": true,
+        "softDeleteRetentionInDays": 90,
+        "enableRbacAuthorization": false,
+        "enablePurgeProtection": false,
+        "publicNetworkAccess": "Enabled"
+      },
+      "tags": {
+        "CloudLookup": "[parameters('cloudLookup')]",
+        "ResourceLookup": "[parameters('resourceLookup')]"
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2020-04-01-preview",
+      "name": "[concat('key-vault-', variables('keyVaultName'), '-roleAssignment-', parameters('servicePrincipalId'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]"
+      ],
+      "properties": {
+        "roleDefinitionId": "[variables('keyVaultRole')]",
+        "principalId": "[parameters('servicePrincipalId')]",
+        "principalType": "ServicePrincipal"
       }
     }
   ],
