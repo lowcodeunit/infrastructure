@@ -284,7 +284,6 @@
       }
     },
     {
-      "scope": "[format('Microsoft.KeyVault/vaults/{0}', variables('keyVaultName'))]",
       "type": "Microsoft.Authorization/roleAssignments",
       "apiVersion": "2020-04-01-preview",
       "name": "[concat('key-vault-', variables('keyVaultName'), '-roleAssignment-', parameters('servicePrincipalId'))]",
