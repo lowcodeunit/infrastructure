@@ -1,0 +1,16 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: {{Name}} - Build and deploy - Azure Function App - Node.js 
+
+on:
+  push:
+    branches: [{{Branches || 'main'}}]
+  pull_request:
+    branches: [{{Branches || 'main'}}]
+  workflow_dispatch:
+
+env:
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: {{PackagePath || '.'}}
+  AZURE_FUNCTIONAPP_PUBLISH_PROFILE: {{PublishProfile || "${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}"}}
+  NODE_VERSION: {{NodeVersion || '18.x'}}
