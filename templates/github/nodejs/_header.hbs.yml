@@ -12,5 +12,5 @@ on:
 
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: {{PackagePath || '.'}}
-  AZURE_FUNCTIONAPP_PUBLISH_PROFILE: {{PublishProfile || "${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}"}}
+  AZURE_FUNCTIONAPP_NAME: {{FunctionAppName}}
   NODE_VERSION: {{NodeVersion || '18.x'}}
