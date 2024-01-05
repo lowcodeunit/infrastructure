@@ -268,7 +268,7 @@
         "enabledForDeployment": true,
         "enabledForDiskEncryption": true,
         "enabledForTemplateDeployment": true,
-        "enableSoftDelete": true,
+        "enableSoftDelete": false,
         "softDeleteRetentionInDays": 90,
         "enableRbacAuthorization": true,
         "enablePurgeProtection": true,
