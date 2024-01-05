@@ -1,9 +1,0 @@
-{
-  "Microsoft.Kusto": {
-    "Types": [
-      "clusters",
-      "clusters/databases",
-      "clusters/databases/principalassignments"
-    ]
-  }
-}

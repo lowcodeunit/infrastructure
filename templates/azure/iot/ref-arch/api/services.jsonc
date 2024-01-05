@@ -1,9 +1,0 @@
-{
-  "Microsoft.ApiManagement": {
-    "Types": [
-      "diagnostics",
-      "loggers",
-      "service"
-    ]
-  }
-}

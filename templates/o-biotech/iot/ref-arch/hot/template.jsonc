@@ -29,6 +29,7 @@
     "functionName": "[concat(parameters('shortName'), '-iot-devices-flow')]",
     "insightsName": "[concat(parameters('shortName'), '-insights')]",
     "iotHubName": "[concat(parameters('name'), '-iot-hub')]",
+    "iotHubEventHubName": "[take(variables('iotHubName'), 25)]",
     "serverFarmName": "[concat(parameters('shortName'), '-functions-farm')]",
     "storageAccountName": "[concat(parameters('shortName'), 'default') ]"
   },
@@ -110,11 +111,11 @@
             },
             {
               "name": "IoTHubEndpoint",
-              "value": "[concat('Endpoint=', reference(resourceId('Microsoft.Devices/IoTHubs', variables('iotHubName')), providers('Microsoft.Devices', 'IoTHubs').apiVersions[0]).eventHubEndpoints.events.endpoint, ';SharedAccessKeyName=iothubowner;SharedAccessKey=', listKeys(resourceId('Microsoft.Devices/IotHubs/Iothubkeys', variables('iotHubName'), 'iothubowner'), '2016-02-03').primaryKey, ';EntityPath=', substring(variables('iotHubName'), 0, 25))]"
+              "value": "[concat('Endpoint=', reference(resourceId('Microsoft.Devices/IoTHubs', variables('iotHubName')), providers('Microsoft.Devices', 'IoTHubs').apiVersions[0]).eventHubEndpoints.events.endpoint, ';SharedAccessKeyName=iothubowner;SharedAccessKey=', listKeys(resourceId('Microsoft.Devices/IotHubs/Iothubkeys', variables('iotHubName'), 'iothubowner'), '2016-02-03').primaryKey, ';EntityPath=', variables('iotHubEventHubName'))]"
             },
             {
               "name": "IoTHubEventHubName",
-              "value": "[substring(variables('iotHubName'), 0, 25)]"
+              "value": "[variables('iotHubEventHubName')]"
             },
             {
               "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
