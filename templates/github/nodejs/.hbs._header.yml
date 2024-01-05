@@ -5,12 +5,12 @@ name: {{Name}} - Build and deploy - Azure Function App - Node.js
 
 on:
   push:
-    branches: [{{Branches || 'main'}}]
+    branches: [{{if Branches Branches 'main'}}]
   pull_request:
-    branches: [{{Branches || 'main'}}]
+    branches: [{{if Branches Branches 'main'}}]
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: {{PackagePath || '.'}}
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: {{if PackagePath PackagePath '.'}}
   AZURE_FUNCTIONAPP_NAME: {{FunctionAppName}}
-  NODE_VERSION: {{NodeVersion || '18.x'}}
+  NODE_VERSION: {{if NodeVersion NodeVersion '18.x'}}
