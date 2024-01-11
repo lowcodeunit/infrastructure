@@ -61,7 +61,7 @@
         "enableAutoStop": true
       },
       "sku": "[parameters('sku')]",
-      "zones": ["1", "2", "3"],
+      "zones": [],
       "identity": {
         "type": "SystemAssigned"
       },
