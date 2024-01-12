@@ -76,7 +76,7 @@
         "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
       ],
       "name": "[concat(variables('clusterName'), '/Telemetry')]",
-      "location": "West US 2",
+      "location": "[parameters('location')]",
       "kind": "ReadWrite",
       "properties": {
         "softDeletePeriod": "P3650D",
@@ -116,7 +116,7 @@
         "[resourceId('Microsoft.Kusto/Clusters', variables('clusterName'))]"
       ],
       "name": "[concat(variables('clusterName'), '/Telemetry/devices-mapping')]",
-      "location": "West US 2",
+      "location": "[parameters('location')]",
       "kind": "IotHub",
       "properties": {
         "iotHubResourceId": "[resourceId('Microsoft.Devices/IotHubs', variables('iotHubName'))]",
