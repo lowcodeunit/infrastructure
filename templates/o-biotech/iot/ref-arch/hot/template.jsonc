@@ -37,7 +37,7 @@
     {
       "type": "Microsoft.SignalRService/SignalR",
       "apiVersion": "2023-08-01-preview",
-      "name": "[concat(parameters('name'), '-signalr')]",
+      "name": "[concat(parameters('shortName'), '-signalr')]",
       "location": "[parameters('location')]",
       "properties": {
         "features": [
@@ -99,7 +99,7 @@
             },
             {
               "name": "AzureSignalRConnectionString",
-              "value": "[listkeys(resourceId('Microsoft.SignalRService/SignalR', concat(parameters('name'), '-signalr')), '2023-02-01').primaryConnectionString]"
+              "value": "[listkeys(resourceId('Microsoft.SignalRService/SignalR', concat(parameters('shortName'), '-signalr')), '2023-02-01').primaryConnectionString]"
             },
             {
               "name": "AzureWebJobsStorage",
