@@ -28,7 +28,7 @@
     "analyticsWorkspaceName": "[concat(parameters('shortName'), '-analytics-workspace')]",
     "functionName": "[concat(parameters('shortName'), '-iot-devices-flow')]",
     "insightsName": "[concat(parameters('shortName'), '-insights')]",
-    "iotHubName": "[concat(parameters('name'), '-iot-hub')]",
+    "iotHubName": "[concat(parameters('shortName'), '-iot-hub')]",
     "iotHubEventHubName": "[take(variables('iotHubName'), 25)]",
     "serverFarmName": "[concat(parameters('shortName'), '-functions-farm')]",
     "storageAccountName": "[concat(parameters('shortName'), 'default') ]"

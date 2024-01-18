@@ -44,7 +44,7 @@
   },
   "variables": {
     "clusterName": "[concat(parameters('shortName'), '-data-explorer') ]",
-    "iotHubName": "[concat(parameters('name'), '-iot-hub')]"
+    "iotHubName": "[concat(parameters('shortName'), '-iot-hub')]"
   },
   "resources": [
     {

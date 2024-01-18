@@ -31,7 +31,7 @@
     }
   },
   "variables": {
-    "iotHubName": "[concat(parameters('name'), '-iot-hub')]",
+    "iotHubName": "[concat(parameters('shortName'), '-iot-hub')]",
     "storageAccountName": "[concat(parameters('shortName'), 'datalake') ]"
   },
   "resources": [

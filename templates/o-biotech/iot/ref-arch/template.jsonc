@@ -53,7 +53,7 @@
     "analyticsWorkspaceName": "[concat(parameters('shortName'), '-analytics-workspace')]",
     "insightsName": "[concat(parameters('shortName'), '-insights')]",
     "insightsSmartDetectionName": "[concat(variables('insightsName'), '-smart-detection')]",
-    "iotHubName": "[concat(parameters('name'), '-iot-hub')]",
+    "iotHubName": "[concat(parameters('shortName'), '-iot-hub')]",
     "keyVaultName": "[concat(parameters('shortName'), '-key-vault')]",
     "keyVaultRole": "00482a5a-887f-4fb3-b363-3b7fe8e74483",
     "storageAccountName": "[concat(parameters('shortName'), 'default') ]"
