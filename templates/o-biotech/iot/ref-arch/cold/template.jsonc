@@ -56,7 +56,7 @@
         },
         "dnsEndpointType": "Standard",
         "isHnsEnabled": true,
-        "isSftpEnabled": true,
+        "isSftpEnabled": false,
         "encryption": {
           "keySource": "Microsoft.Storage",
           "services": {
