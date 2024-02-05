@@ -92,7 +92,7 @@
       ],
       "name": "[concat(variables('clusterName'), '/Telemetry/Setup')]",
       "properties": {
-        "scriptContent": ".create table Devices (DeviceID: string, CreationTime: datetime, RawData: dynamic)\n\n.create-or-alter table Devices ingestion json mapping 'RawDataMapping' '[{\"column\": \"DeviceID\", \"DataType\": \"string\", \"Properties\": {\"path\": \"$.iothub-connection-device-id\"}}, {\"column\": \"CreationTime\", \"DataType\": \"datetime\", \"Properties\": {\"path\": \"$.iothub-creation-time-utc\"}}, {\"column\": \"RawData\", \"DataType\": \"dynamic\", \"Properties\": {\"path\": \"$\"}}]'",
+        "scriptContent": ".create table Devices (DeviceID: string, EnqueuedTime: datetime, RawData: dynamic)\n\n.create-or-alter table Devices ingestion json mapping 'RawDataMapping' '[{\"column\": \"DeviceID\", \"DataType\": \"string\", \"Properties\": {\"path\": \"$.iothub-connection-device-id\"}}, {\"column\": \"EnqueuedTime\", \"DataType\": \"datetime\", \"Properties\": {\"path\": \"$.iothub-enqueuedtime\"}}, {\"column\": \"RawData\", \"DataType\": \"dynamic\", \"Properties\": {\"path\": \"$\"}}]'",
         "continueOnErrors": false,
         "forceUpdateTag": "[parameters('utcNow')]"
       }
@@ -124,7 +124,7 @@
         "tableName": "Devices",
         "mappingRuleName": "RawDataMapping",
         "dataFormat": "MULTIJSON",
-        "eventSystemProperties": ["iothub-connection-device-id", "iothub-creation-time-utc"],
+        "eventSystemProperties": ["iothub-connection-device-id", "iothub-enqueuedtime"],
         "sharedAccessPolicyName": "iothubowner",
         "databaseRouting": "Multi",
         "retrievalStartDate": "2023-11-12T19:00:00Z"
