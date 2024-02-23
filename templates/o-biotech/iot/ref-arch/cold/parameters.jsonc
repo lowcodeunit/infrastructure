@@ -26,6 +26,9 @@
     "resourceLookup": {
       "value": "{{ResourceLookup}}"
     },
+    "servicePrincipalId": {
+      "value": "{{ServicePrincipalID}}"
+    },
     "shortName": {
       "value": "{{ShortName}}"
     }
