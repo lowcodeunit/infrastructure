@@ -35,6 +35,8 @@
   },
   "variables": {
     "iotHubName": "[concat(parameters('shortName'), '-iot-hub')]",
+    "roleDefinitionId": "b7e6dc6d-f1e8-4753-8033-0f276bb0955b",
+    "roleAssignmentName": "[guid(subscription().id, parameters('servicePrincipalId'), variables('roleDefinitionId'))]",
     "storageAccountName": "[concat(parameters('shortName'), 'datalake') ]"
   },
   "resources": [
@@ -236,17 +238,17 @@
       }
     },
     {
-      "name": "[concat(variables('storageAccountName'), '/Microsoft.Authorization/', parameters('servicePrincipalId'))]",
+      "name": "[variables('roleAssignmentName')]",
       "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
       "apiVersion": "2022-04-01",
       "dependsOn": [
         "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
       ],
       "properties": {
-        "condition": "[not(reference(resourceId('Microsoft.Authorization'), variables('storageAccountName'), parameters('servicePrincipalId')))]",
+        "condition": "[not(reference(resourceId('Microsoft.Storage/storageAccounts/providers/roleAssignments', variables('roleAssignmentName')))]",
         "principalId": "[parameters('servicePrincipalId')]",
         "role": "Storage Blob Data Owner",
-        "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', parameters('name'), '/providers/Microsoft.Authorization/roleDefinitions/b7e6dc6d-f1e8-4753-8033-0f276bb0955b')]",
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '')]",
         "principalType": "ServicePrincipal",
         "tenantId": "[subscription().tenantId]"
       }
