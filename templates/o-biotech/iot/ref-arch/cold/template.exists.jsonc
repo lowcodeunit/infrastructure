@@ -236,21 +236,6 @@
         "CloudLookup": "[parameters('cloudLookup')]",
         "ResourceLookup": "[parameters('parentResourceLookup')]"
       }
-    },
-    {
-      "name": "[variables('roleAssignmentName')]",
-      "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
-      "apiVersion": "2022-04-01",
-      "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
-      ],
-      "properties": {
-        "principalId": "[parameters('servicePrincipalId')]",
-        "role": "Storage Blob Data Owner",
-        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '')]",
-        "principalType": "ServicePrincipal",
-        "tenantId": "[subscription().tenantId]"
-      }
     }
   ],
   "outputs": {}
