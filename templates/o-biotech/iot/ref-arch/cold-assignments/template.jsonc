@@ -30,7 +30,7 @@
       "properties": {
         "principalId": "[parameters('servicePrincipalId')]",
         "role": "Storage Blob Data Owner",
-        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '')]",
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roleDefinitionId'))]",
         "principalType": "ServicePrincipal",
         "tenantId": "[subscription().tenantId]"
       }

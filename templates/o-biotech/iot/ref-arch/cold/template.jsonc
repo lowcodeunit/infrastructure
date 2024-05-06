@@ -238,5 +238,10 @@
       }
     }
   ],
-  "outputs": {}
+  "outputs": {
+    "dataLakeRoleScope": {
+      "type": "string",
+      "value": "[subscriptionResourceId('Microsoft.Storage/storageAccounts/providers/roleAssignments', concat(variables('storageAccountName'), '/Microsoft.Authorization/', variables('roleAssignmentName')))]"
+    }
+  }
 }
