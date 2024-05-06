@@ -36,7 +36,6 @@
   "variables": {
     "iotHubName": "[concat(parameters('shortName'), '-iot-hub')]",
     "roleDefinitionId": "b7e6dc6d-f1e8-4753-8033-0f276bb0955b",
-    "roleAssignmentName": "[guid(subscription().id, parameters('servicePrincipalId'), variables('roleDefinitionId'))]",
     "storageAccountName": "[concat(parameters('shortName'), 'datalake') ]"
   },
   "resources": [
@@ -241,7 +240,7 @@
   "outputs": {
     "dataLakeRoleScope": {
       "type": "string",
-      "value": "[subscriptionResourceId('Microsoft.Storage/storageAccounts/providers/roleAssignments', concat(variables('storageAccountName'), '/Microsoft.Authorization/', variables('roleAssignmentName')))]"
+      "value": "[subscriptionResourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
     }
   }
 }
