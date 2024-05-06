@@ -1,0 +1,10 @@
+{
+  "Microsoft.Devices": {
+    "Types": ["IotHubs"]
+  },
+  "Microsoft.Storage": {
+    "Types": [
+      "storageAccounts/providers/roleAssignments"
+    ]
+  }
+}
