@@ -180,7 +180,6 @@
                 },
                 "features": "[parameters('features')]",
                 "enableDataResidency": "[parameters('enableDataResidency')]",
-                // "minTlsVersion": "1.2",
                 "disableLocalAuth": false
               },
               "sku": {
