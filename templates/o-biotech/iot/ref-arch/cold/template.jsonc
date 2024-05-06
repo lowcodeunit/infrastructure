@@ -236,7 +236,6 @@
       }
     },
     {
-      "condition": "[not(reference(resourceId(concat(variables('storageAccountName'), '/Microsoft.Authorization/'), parameters('servicePrincipalId'))))]",
       "name": "[concat(variables('storageAccountName'), '/Microsoft.Authorization/', parameters('servicePrincipalId'))]",
       "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
       "apiVersion": "2022-04-01",
@@ -244,11 +243,11 @@
         "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
       ],
       "properties": {
-        "principalId": "[parameters('servicePrincipalId')]",
+        "principalId": "[if(reference(resourceId(concat(variables('storageAccountName'), '/Microsoft.Authorization/'), parameters('servicePrincipalId'))), parameters('servicePrincipalId'), null())]",
         "role": "Storage Blob Data Owner",
         "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', parameters('name'), '/providers/Microsoft.Authorization/roleDefinitions/b7e6dc6d-f1e8-4753-8033-0f276bb0955b')]",
         "principalType": "ServicePrincipal",
-        "tenantId": "[subscription().tenantId]"
+        "tenantId": "[if(reference(resourceId(concat(variables('storageAccountName'), '/Microsoft.Authorization/'), parameters('servicePrincipalId'))), subscription().tenantId, null())]"
       }
     }
   ],
