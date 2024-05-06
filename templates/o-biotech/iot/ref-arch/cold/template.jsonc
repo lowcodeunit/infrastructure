@@ -236,6 +236,7 @@
       }
     },
     {
+      "condition": "[not(reference(resourceId(concat(variables('storageAccountName'), '/Microsoft.Authorization/', parameters('servicePrincipalId')))))]",
       "name": "[concat(variables('storageAccountName'), '/Microsoft.Authorization/', parameters('servicePrincipalId'))]",
       "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
       "apiVersion": "2022-04-01",
