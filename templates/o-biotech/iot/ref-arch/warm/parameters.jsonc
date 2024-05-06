@@ -26,7 +26,7 @@
     "sku": {
       "value": {
         "capacity": 1,
-        "name": "Dev(No SLA)_Standard_E2a_v4",
+        "name": "Dev(No SLA)_Standard_D11_v2",
         "tier": "Basic"
       }
     }
