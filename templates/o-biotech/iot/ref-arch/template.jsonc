@@ -180,7 +180,8 @@
                 },
                 "features": "[parameters('features')]",
                 "enableDataResidency": "[parameters('enableDataResidency')]",
-                "disableLocalAuth": false
+                "disableLocalAuth": false,
+                "minTlsVersion": "1.0"
               },
               "sku": {
                 "name": "[parameters('iotSkuName')]",
@@ -267,7 +268,7 @@
           "name": "standard"
         },
         "tenantId": "[subscription().tenantId]",
-        
+
         "accessPolicies": [
           {
             "tenantId": "[subscription().tenantId]",
