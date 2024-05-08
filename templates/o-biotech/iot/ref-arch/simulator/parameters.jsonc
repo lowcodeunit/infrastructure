@@ -5,6 +5,9 @@
     "cloudLookup": {
       "value": "{{CloudLookup}}"
     },
+    "deviceId": {
+      "value": "{{DeviceID}}"
+    },
     "location": {
       "value": "{{Location}}"
     },

@@ -1,4 +1,8 @@
 {
+  "Microsoft.Devices": {
+    "Types": ["IotHubs"]
+  },
+  
   "Microsoft.Kusto": {
     "Types": [
       "clusters",
