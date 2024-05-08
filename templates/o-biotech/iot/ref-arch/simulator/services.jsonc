@@ -3,11 +3,9 @@
     "Types": ["IotHubs"]
   },
   
-  "Microsoft.Kusto": {
+  "Microsoft.ContainerInstance": {
     "Types": [
-      "clusters",
-      "clusters/databases",
-      "clusters/databases/principalassignments"
+      "containerGroups"
     ]
   }
 }

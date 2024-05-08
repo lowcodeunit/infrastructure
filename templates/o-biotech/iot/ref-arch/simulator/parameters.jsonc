@@ -8,21 +8,6 @@
     "deviceId": {
       "value": "{{DeviceID}}"
     },
-    "location": {
-      "value": "{{Location}}"
-    },
-    "name": {
-      "value": "{{Name}}"
-    },
-    "principalId": {
-      "value": "{{PrincipalID}}"
-    },
-    "resourceLookup": {
-      "value": "{{ResourceLookup}}"
-    },
-    "servicePrincipalId": {
-      "value": "{{ServicePrincipalID}}"
-    },
     "shortName": {
       "value": "{{ShortName}}"
     },
