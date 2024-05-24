@@ -1,0 +1,83 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+      "shortName": {
+        "type": "string"
+      },
+      "deviceId": {
+        "type": "string"
+      }
+  },
+  "variables": {
+    "containerName": "[concat(parameters('shortName'), '-simulator-basic')]",
+    "iotHubName": "[concat(parameters('shortName'), '-iot-hub')]",
+    "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.Devices/IotHubs/IotHubKeys', concat(parameters('shortName'), '-iot-hub'), 'iothubowner'),'2020-04-01').primaryKey]"
+  },
+  "resources": [
+      {
+          "type": "Microsoft.ContainerInstance/containerGroups",
+          "apiVersion": "2023-05-01",
+          "name": "[variables('containerName')]",
+          "location": "westus2",
+          "properties": {
+              "sku": "Standard",
+              "containers": [
+                  {
+                      "name": "[variables('containerName')]",
+                      "properties": {
+                          "image": "mcr.microsoft.com/oss/azure-samples/azureiot-telemetrysimulator",
+                          "ports": [
+                              {
+                                  "protocol": "TCP",
+                                  "port": 80
+                              }
+                          ],
+                          "environmentVariables": [
+                              {
+                                  "name": "MessageCount",
+                                  "value": "0"
+                              },
+                              {
+                                  "name": "Interval",
+                                  "value": "10000"
+                              },
+                              {
+                                  "name": "DeviceList",
+                                  "value": "mj-biotech-test-simulator"
+                              },
+                              {
+                                  "name": "IotHubConnectionString",
+                                  "value": "[concat('HostName=', variables('iotHubName'), '-azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=', variables('sharedAccessPolicyKey'))]",
+                                  //"value": "HostName=fmt01-iot-hub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=xxxxxx"
+                              }
+                          ],
+                          "resources": {
+                              "requests": {
+                                  "memoryInGB": 1.5,
+                                  "cpu": 1
+                              }
+                          }
+                      }
+                  }
+              ],
+              "initContainers": [],
+              "restartPolicy": "OnFailure",
+              "ipAddress": {
+                  "ports": [
+                      {
+                          "protocol": "TCP",
+                          "port": 80
+                      }
+                  ],
+                  "type": "Public"
+              },
+              "osType": "Linux"
+          },
+          "tags": {
+            "CloudLookup": "[parameters('cloudLookup')]",
+            "ResourceLookup": "[parameters('resourceLookup')]"
+          }
+      }
+  ]
+}

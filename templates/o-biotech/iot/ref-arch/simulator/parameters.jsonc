@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "cloudLookup": {
+      "value": "{{CloudLookup}}"
+    },
+    "deviceId": {
+      "value": "{{DeviceID}}"
+    },
+    "resourceLookup": {
+      "value": "{{ResourceLookup}}"
+    },
+    "shortName": {
+      "value": "{{ShortName}}"
+    },
+    "sku": {
+      "value": {
+        "capacity": 1,
+        "name": "Dev(No SLA)_Standard_D11_v2",
+        "tier": "Basic"
+      }
+    }
+  }
+}
