@@ -73,6 +73,10 @@
                   "type": "Public"
               },
               "osType": "Linux"
+          },
+          "tags": {
+            "CloudLookup": "[parameters('cloudLookup')]",
+            "ResourceLookup": "[parameters('resourceLookup')]"
           }
       }
   ]

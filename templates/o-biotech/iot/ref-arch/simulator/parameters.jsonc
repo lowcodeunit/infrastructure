@@ -8,6 +8,9 @@
     "deviceId": {
       "value": "{{DeviceID}}"
     },
+    "resourceLookup": {
+      "value": "{{ResourceLookup}}"
+    },
     "shortName": {
       "value": "{{ShortName}}"
     },
