@@ -1,0 +1,5 @@
+{
+  "Microsoft.CognitiveServices": {
+    "Types": ["accounts", "accounts/deployments", "accounts/raiPolicies"]
+  }
+}

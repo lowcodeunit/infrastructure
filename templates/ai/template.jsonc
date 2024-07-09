@@ -1,0 +1,126 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "cloudLookup": {
+      "type": "string"
+    },
+    "resourceLookup": {
+      "type": "string"
+    },
+    "shortName": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "accountName": "[concat(parameters('shortName'), '-', parameters('resourceLookup'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.CognitiveServices/accounts",
+      "apiVersion": "2024-04-01-preview",
+      "name": "[variables('accountName')]",
+      "location": "westus",
+      "sku": {
+        "name": "S0"
+      },
+      "kind": "OpenAI",
+      "properties": {
+        "customSubDomainName": "[variables('accountName')]",
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.CognitiveServices/accounts/deployments",
+      "apiVersion": "2024-04-01-preview",
+      "name": "[concat(variables('accountName'), '/gpt-4o')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.CognitiveServices/accounts', variables('accountName'))]"
+      ],
+      "sku": {
+        "name": "GlobalStandard",
+        "capacity": 10000
+      },
+      "properties": {
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4o",
+          "version": "2024-05-13"
+        },
+        "versionUpgradeOption": "OnceNewDefaultVersionAvailable",
+        "currentCapacity": 10000,
+        "raiPolicyName": "Microsoft.Default"
+      }
+    },
+    {
+      "type": "Microsoft.CognitiveServices/accounts/raiPolicies",
+      "apiVersion": "2024-04-01-preview",
+      "name": "[concat(variables('accountName'), '/Microsoft.Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.CognitiveServices/accounts', variables('accountName'))]"
+      ],
+      "properties": {
+        "mode": "Blocking",
+        "contentFilters": [
+          {
+            "name": "Hate",
+            "allowedContentLevel": "Medium",
+            "blocking": true,
+            "enabled": true,
+            "source": "Prompt"
+          },
+          {
+            "name": "Hate",
+            "allowedContentLevel": "Medium",
+            "blocking": true,
+            "enabled": true,
+            "source": "Completion"
+          },
+          {
+            "name": "Sexual",
+            "allowedContentLevel": "Medium",
+            "blocking": true,
+            "enabled": true,
+            "source": "Prompt"
+          },
+          {
+            "name": "Sexual",
+            "allowedContentLevel": "Medium",
+            "blocking": true,
+            "enabled": true,
+            "source": "Completion"
+          },
+          {
+            "name": "Violence",
+            "allowedContentLevel": "Medium",
+            "blocking": true,
+            "enabled": true,
+            "source": "Prompt"
+          },
+          {
+            "name": "Violence",
+            "allowedContentLevel": "Medium",
+            "blocking": true,
+            "enabled": true,
+            "source": "Completion"
+          },
+          {
+            "name": "Selfharm",
+            "allowedContentLevel": "Medium",
+            "blocking": true,
+            "enabled": true,
+            "source": "Prompt"
+          },
+          {
+            "name": "Selfharm",
+            "allowedContentLevel": "Medium",
+            "blocking": true,
+            "enabled": true,
+            "source": "Completion"
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {}
+}
