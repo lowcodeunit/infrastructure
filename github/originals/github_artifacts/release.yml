@@ -59,7 +59,7 @@ jobs:
 
     # publish github artifacts
     - name: Archive production artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ github.event.repository.name }}
         path: dist/** 
