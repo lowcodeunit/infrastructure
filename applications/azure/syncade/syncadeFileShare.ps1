@@ -100,7 +100,7 @@ try {
     $taskAction = "cmd /c net use Z: \\$storageAccountName.file.core.windows.net\sharedfiles /user:Azure\$storageAccountName $storageKey /persistent:yes"
 
     # Create the task under the logged-in user
-    $taskCreateCmd = "schtasks /create /tn `"$taskName`" /tr `"$taskAction`" /sc onlogon /ru `"$currentUser`" /rl highest /f"
+    $taskCreateCmd = "schtasks /create /tn `"$taskName`" /tr `"$taskAction`" /sc onlogon /ru `"SYSTEM`" /rl highest /f"
 
     Log-Message "Creating task with command: $taskCreateCmd"
 
