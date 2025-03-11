@@ -73,7 +73,7 @@ try {
  
     # Step 8: Create Scheduled Task for Persistence
     Write-Output "Creating scheduled task..." | Out-File -Append -FilePath $logFile
-    schtasks /create /tn "MapZDrive" /tr "cmd /c net use Z: \\$storageAccountName.file.core.windows.net\sharedfiles /user:Azure\$storageAccountName $storageKey /savecred /persistent:yes" /sc onlogon /ru "SYSTEM" /rl highest /f
+    schtasks /create /tn "MapZDrive" /tr "cmd /c net use Z: \\$storageAccountName.file.core.windows.net\sharedfiles /user:Azure\$storageAccountName $storageKey  /persistent:yes" /sc onlogon /ru "SYSTEM" /rl highest /f
  
     Write-Output "Z drive mapping and scheduled task setup complete." | Out-File -Append -FilePath $logFile
     exit 0
