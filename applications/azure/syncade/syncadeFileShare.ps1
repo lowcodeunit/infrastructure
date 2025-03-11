@@ -86,30 +86,7 @@ try {
     Set-ItemProperty -Path "HKCU:\Network\Z" -Name "Persistant" -Value 1 -Type DWord
     Log-Message "Persistent registry-based mapping for Z: created successfully."
 
-    # Step 7: Create a Scheduled Task to Ensure Drive Mapping on Startup
-    Log-Message "Creating scheduled task for persistence..."
-    $taskName = "MapZDrive"
-
-    # Remove existing task if it exists
-    schtasks /delete /tn $taskName /f
-
-    # Define the task action
-    $taskAction = "cmd /c net use Z: \\$storageAccountName.file.core.windows.net\sharedfiles /user:Azure\$storageAccountName $storageKey /persistent:yes"
-
-    # Create the task under SYSTEM
-    $taskCreateCmd = "schtasks /create /tn `"$taskName`" /tr `"$taskAction`" /sc onlogon /ru `"SYSTEM`" /rl highest /f"
-
-    Log-Message "Creating task with command: $taskCreateCmd"
-    Invoke-Expression $taskCreateCmd
-
-    # Verify task creation
-    $taskCheck = schtasks /query /tn $taskName
-    if (-not $taskCheck) {
-        Log-Message "ERROR: Failed to create scheduled task."
-        throw "Failed to create scheduled task."
-    }
-    Log-Message "Scheduled task created successfully."
-
+    
     Log-Message "Script completed successfully."
     exit 0
 
