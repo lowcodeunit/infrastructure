@@ -62,7 +62,7 @@ try {
 
     # Step 4: Store Credentials Globally
     Log-Message "Storing credentials in Windows Credential Manager..."
-    Start-Process -FilePath "cmd.exe" -ArgumentList "/c cmdkey /add:$storageAccountName.file.core.windows.net /user:`"localhost\proconexAdmin`" /pass:$storageKey" -NoNewWindow -Wait
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c cmdkey /add:$storageAccountName.file.core.windows.net /user:localhost\$storageAccountName /pass:$storageKey" -NoNewWindow -Wait
     Start-Sleep -Seconds 2
 
     # Verify credentials were stored
@@ -79,7 +79,7 @@ try {
 
     # Step 6: Create Persistent Registry-Based Drive Mapping
     Log-Message "Creating persistent registry-based drive mapping..."
-    #New-PSDrive -Name Z -PSProvider FileSystem -Root "\\$storageAccountName.file.core.windows.net\sharedfiles" -Persist
+    New-PSDrive -Name Z -PSProvider FileSystem -Root "\\$storageAccountName.file.core.windows.net\sharedfiles" -Persist
     Log-Message "Persistent registry-based mapping for Z: created successfully."
 
     # Step 7: Create a Scheduled Task to Ensure Drive Mapping on Startup
@@ -90,7 +90,7 @@ try {
     schtasks /delete /tn $taskName /f
 
     # Define the task action
-    $taskAction = "cmd /c net use Z: \\$storageAccountName.file.core.windows.net\sharedfiles /user:Azure\$storageAccountName $storageKey /persistent:yes"
+    $taskAction = "cmd /c net use Z: \\$storageAccountName.file.core.windows.net\sharedfiles /user:localhost\$storageAccountName $storageKey /persistent:yes"
 
     # Create the task under SYSTEM
     $taskCreateCmd = "schtasks /create /tn `"$taskName`" /tr `"$taskAction`" /sc onlogon /ru `"SYSTEM`" /rl highest /f"
