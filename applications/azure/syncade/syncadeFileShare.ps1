@@ -79,7 +79,7 @@ try {
 
     # Step 6: Create Persistent Registry-Based Drive Mapping
     Log-Message "Creating persistent registry-based drive mapping..."
-    New-PSDrive -Name Z -PSProvider FileSystem -Root "\\$storageAccountName.file.core.windows.net\sharedfiles" -Persist
+    #New-PSDrive -Name Z -PSProvider FileSystem -Root "\\$storageAccountName.file.core.windows.net\sharedfiles" -Persist
     Log-Message "Persistent registry-based mapping for Z: created successfully."
 
     # Step 7: Create a Scheduled Task to Ensure Drive Mapping on Startup
