@@ -86,6 +86,16 @@ try {
     Log-Message "Creating scheduled task for persistence..."
     $taskName = "MapZDrive"
 
+    Log-Message "Finding the first logged-in user..."
+    $loggedInUser = (Get-WMIObject Win32_ComputerSystem).UserName
+
+    if (-not $loggedInUser) {
+        Log-Message "ERROR: No logged-in user found, defaulting to SYSTEM."
+        throw "No valid logged-in user found."
+    }
+
+    Log-Message "Found logged-in user: $loggedInUser"
+
     # Remove existing task if it exists
     schtasks /delete /tn $taskName /f
 
@@ -93,7 +103,7 @@ try {
     $taskAction = "cmd /c net use Z: \\$storageAccountName.file.core.windows.net\sharedfiles /user:localhost\$storageAccountName $storageKey /persistent:yes"
 
     # Create the task under SYSTEM
-    $taskCreateCmd = "schtasks /create /tn `"$taskName`" /tr `"$taskAction`" /sc onlogon /rl highest /f"
+    $taskCreateCmd = "schtasks /create /tn `"$taskName`" /tr `"$taskAction`" /sc onlogon /ru `"$loggedInUser`" /rl highest /f"
 
     Log-Message "Creating task with command: $taskCreateCmd"
     Invoke-Expression $taskCreateCmd
