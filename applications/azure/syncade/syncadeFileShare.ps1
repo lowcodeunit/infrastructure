@@ -55,17 +55,17 @@ try {
 
     Log-Message "Successfully retrieved storage account key."
 
-    # Step 3: Ensure old mappings are removed
+    # Step 3: Remove Old Drive Mappings
     Log-Message "Removing existing Z: drive mappings..."
     net use Z: /delete /y
     mountvol Z: /D  # Force-remove orphaned mounts
 
-    # Step 4: Store credentials in Windows Credential Manager
+    # Step 4: Store Credentials Globally
     Log-Message "Storing credentials in Windows Credential Manager..."
-    cmdkey /add:$storageAccountName.file.core.windows.net /user:Azure\$storageAccountName /pass:$storageKey
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c cmdkey /add:$storageAccountName.file.core.windows.net /user:Azure\$storageAccountName /pass:$storageKey" -NoNewWindow -Wait
     Start-Sleep -Seconds 2
 
-    # Verify credentials
+    # Verify credentials were stored
     $credentialCheck = cmdkey /list | Select-String "$storageAccountName.file.core.windows.net"
     if (-not $credentialCheck) {
         Log-Message "ERROR: Failed to store credentials properly in Windows Credential Manager."
@@ -73,37 +73,33 @@ try {
     }
     Log-Message "Credentials stored successfully."
 
-    # Step 5: Map the Z drive
-    Log-Message "Mapping the Z drive..."
-    net use Z: \\$storageAccountName.file.core.windows.net\sharedfiles /user:Azure\$storageAccountName $storageKey /persistent:yes
-    Start-Sleep -Seconds 2
+    # Step 5: Enable Linked Connections for SYSTEM and Users
+    Log-Message "Ensuring EnableLinkedConnections is set..."
+    Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLinkedConnections" -Value 1 -Type DWord -Force
 
-    # Verify drive mapping
-    $driveCheck = net use | Select-String "Z:"
-    if (-not $driveCheck) { 
-        Log-Message "ERROR: Failed to map Z drive."
-        throw "Failed to map Z drive."
-    }
-    Log-Message "Z drive mapped successfully."
+    # Step 6: Create Persistent Registry-Based Drive Mapping
+    Log-Message "Creating persistent registry-based drive mapping..."
+    New-Item -Path "HKCU:\Network\Z" -Force
+    Set-ItemProperty -Path "HKCU:\Network\Z" -Name "RemotePath" -Value "\\$storageAccountName.file.core.windows.net\sharedfiles"
+    Set-ItemProperty -Path "HKCU:\Network\Z" -Name "UserName" -Value "Azure\$storageAccountName"
+    Set-ItemProperty -Path "HKCU:\Network\Z" -Name "ProviderName" -Value "Microsoft Windows Network"
+    Set-ItemProperty -Path "HKCU:\Network\Z" -Name "Persistant" -Value 1 -Type DWord
+    Log-Message "Persistent registry-based mapping for Z: created successfully."
 
-    # Step 6: Create Scheduled Task to Remap Z: Drive on Login
+    # Step 7: Create a Scheduled Task to Ensure Drive Mapping on Startup
     Log-Message "Creating scheduled task for persistence..."
     $taskName = "MapZDrive"
 
     # Remove existing task if it exists
     schtasks /delete /tn $taskName /f
 
-    # Get the current logged-in username
-    $currentUser = $env:USERNAME
-
     # Define the task action
     $taskAction = "cmd /c net use Z: \\$storageAccountName.file.core.windows.net\sharedfiles /user:Azure\$storageAccountName $storageKey /persistent:yes"
 
-    # Create the task under the logged-in user
+    # Create the task under SYSTEM
     $taskCreateCmd = "schtasks /create /tn `"$taskName`" /tr `"$taskAction`" /sc onlogon /ru `"SYSTEM`" /rl highest /f"
 
     Log-Message "Creating task with command: $taskCreateCmd"
-
     Invoke-Expression $taskCreateCmd
 
     # Verify task creation
