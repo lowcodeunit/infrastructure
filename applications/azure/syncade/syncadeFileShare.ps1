@@ -75,11 +75,11 @@ try {
 
     # Step 5: Enable Linked Connections for SYSTEM and Users
     Log-Message "Ensuring EnableLinkedConnections is set..."
-    Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLinkedConnections" -Value 1 -Type DWord -Force
+    #Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLinkedConnections" -Value 1 -Type DWord -Force
 
     # Step 6: Create Persistent Registry-Based Drive Mapping
     Log-Message "Creating persistent registry-based drive mapping..."
-    New-PSDrive -Name Z -PSProvider FileSystem -Root "\\$storageAccountName.file.core.windows.net\sharedfiles" -Persist
+    #New-PSDrive -Name Z -PSProvider FileSystem -Root "\\$storageAccountName.file.core.windows.net\sharedfiles" -Persist
     Log-Message "Persistent registry-based mapping for Z: created successfully."
 
     # Step 7: Create a Scheduled Task to Ensure Drive Mapping on Startup
