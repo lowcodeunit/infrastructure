@@ -62,7 +62,7 @@ try {
 
     # Step 4: Store Credentials Globally
     Log-Message "Storing credentials in Windows Credential Manager..."
-    Start-Process -FilePath "cmd.exe" -ArgumentList "/c cmdkey /add:$storageAccountName.file.core.windows.net /user:Azure\$storageAccountName /pass:$storageKey" -NoNewWindow -Wait
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c cmdkey /add:$storageAccountName.file.core.windows.net /user:`"localhost\proconexAdmin`" /pass:$storageKey" -NoNewWindow -Wait
     Start-Sleep -Seconds 2
 
     # Verify credentials were stored
