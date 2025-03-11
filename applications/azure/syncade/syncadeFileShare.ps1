@@ -93,7 +93,7 @@ try {
     $taskAction = "cmd /c net use Z: \\$storageAccountName.file.core.windows.net\sharedfiles /user:localhost\$storageAccountName $storageKey /persistent:yes"
 
     # Create the task under SYSTEM
-    $taskCreateCmd = "schtasks /create /tn `"$taskName`" /tr `"$taskAction`" /sc onlogon /ru `"SYSTEM`" /rl highest /f"
+    $taskCreateCmd = "schtasks /create /tn `"$taskName`" /tr `"$taskAction`" /sc onlogon /rl highest /f"
 
     Log-Message "Creating task with command: $taskCreateCmd"
     Invoke-Expression $taskCreateCmd
