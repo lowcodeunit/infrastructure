@@ -1,0 +1,253 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "location": {
+        "type": "string",
+        "defaultValue": "westus2"
+      },
+      "storageAccountName": {
+        "type": "string",
+        "defaultValue": "[concat('stor', uniqueString(resourceGroup().id))]"
+      },
+      "fileShareName": {
+        "type": "string",
+        "defaultValue": "sharedfiles"
+      },
+      "storageResourceGroup": {
+        "defaultValue": "[resourceGroup().name]",
+        "type": "string"
+      },
+      "subscriptionId": {
+        "type": "string",
+        "defaultValue": "[subscription().subscriptionId]"
+      },
+      "vmConfigs": {
+        "type": "array",
+        "defaultValue": [
+          {
+            "name": "app-server",
+            "size": "Standard_B4ms",
+            "imageId": "/subscriptions/996fa699-ebeb-440c-ac1e-b5bdc02672eb/resourceGroups/image-gallery/providers/Microsoft.Compute/galleries/vmgallery/images/app-server"
+          },
+          {
+            "name": "database-server",
+            "size": "Standard_D8s_v3",
+            "imageId": "/subscriptions/996fa699-ebeb-440c-ac1e-b5bdc02672eb/resourceGroups/image-gallery/providers/Microsoft.Compute/galleries/vmgallery/images/db-server"
+          },
+          {
+            "name": "ra-client",
+            "size": "Standard_D2as_v4",
+            "imageId": "/subscriptions/996fa699-ebeb-440c-ac1e-b5bdc02672eb/resourceGroups/image-gallery/providers/Microsoft.Compute/galleries/vmgallery/images/ra-client"
+          },
+          {
+            "name": "ra-server",
+            "size": "Standard_B4ms",
+            "imageId": "/subscriptions/996fa699-ebeb-440c-ac1e-b5bdc02672eb/resourceGroups/image-gallery/providers/Microsoft.Compute/galleries/vmgallery/images/ra-server"
+          }
+        ]
+      }
+    },  
+    "resources": [
+     {
+        "type": "Microsoft.Storage/storageAccounts",
+        "apiVersion": "2021-09-01",
+        "name": "[parameters('storageAccountName')]",
+        "location": "[parameters('location')]",
+        "sku": {
+          "name": "Standard_LRS"
+        },
+        "kind": "StorageV2",
+        "properties": {}
+      },
+      {
+    "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+    "apiVersion": "2021-09-01",
+    "name": "[concat(parameters('storageAccountName'), '/default/', parameters('fileShareName'))]",
+    "dependsOn": [
+      "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+    ],
+    "properties": {
+      "accessTier": "TransactionOptimized"
+    }
+  },
+      {
+        "type": "Microsoft.Network/networkSecurityGroups",
+        "apiVersion": "2021-02-01",
+        "name": "allowRDP-NSG",
+        "location": "[parameters('location')]",
+        "properties": {
+          "securityRules": [
+            {
+              "name": "Allow-RDP",
+              "properties": {
+                "priority": 1000,
+                "direction": "Inbound",
+                "access": "Allow",
+                "protocol": "Tcp",
+                "sourcePortRange": "*",
+                "destinationPortRange": "3389",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Microsoft.Network/publicIPAddresses",
+        "apiVersion": "2021-02-01",
+        "copy": {
+          "name": "publicIPLoop",
+          "count": "[length(parameters('vmConfigs'))]"
+        },
+        "name": "[concat(parameters('vmConfigs')[copyIndex()].name, '-publicIP')]",
+        "location": "[parameters('location')]",
+        "properties": {
+          "publicIPAllocationMethod": "Static"
+        }
+      },
+  {
+    "type": "Microsoft.Network/virtualNetworks",
+    "apiVersion": "2021-02-01",
+    "name": "myVNet",
+    "location": "[parameters('location')]",
+    "properties": {
+      "addressSpace": {
+        "addressPrefixes": ["10.0.0.0/16"]
+      },
+      "subnets": [
+        {
+          "name": "default",
+          "properties": {
+            "addressPrefix": "10.0.1.0/24"
+          }
+        }
+      ]
+    }
+  },
+      {
+    "type": "Microsoft.Network/networkInterfaces",
+    "apiVersion": "2021-02-01",
+    "copy": {
+      "name": "nicLoop",
+      "count": "[length(parameters('vmConfigs'))]"
+    },
+    "name": "[concat(parameters('vmConfigs')[copyIndex()].name, '-nic')]",
+    "location": "[parameters('location')]",
+    "dependsOn": [
+      "[resourceId('Microsoft.Network/virtualNetworks', 'myVNet')]",
+      "[resourceId('Microsoft.Network/networkSecurityGroups', 'allowRDP-NSG')]"
+    ],
+    "properties": {
+      "ipConfigurations": [
+        {
+          "name": "ipconfig1",
+          "properties": {
+            "privateIPAllocationMethod": "Static",
+            "privateIPAddress": "[concat('10.0.1.', string(add(copyIndex(), 10)))]",
+            "publicIPAddress": {
+              "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('vmConfigs')[copyIndex()].name, '-publicIP'))]"
+            },
+            "subnet": {
+              "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', 'myVNet', 'default')]"
+            }
+          }
+        }
+      ],
+      "networkSecurityGroup": {
+        "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'allowRDP-NSG')]"
+      }
+    }
+  },
+      {
+    "type": "Microsoft.Compute/virtualMachines",
+    "apiVersion": "2021-11-01",
+    "copy": {
+      "name": "vmLoop",
+      "count": "[length(parameters('vmConfigs'))]"
+    },
+    "name": "[parameters('vmConfigs')[copyIndex()].name]",
+    "location": "[parameters('location')]",
+    "identity": {
+      "type": "SystemAssigned"
+    },
+    "properties": {
+      "securityProfile": {
+        "securityType": "TrustedLaunch",
+        "uefiSettings": {
+          "secureBootEnabled": true,
+          "vTpmEnabled": true
+        }
+      },
+      "hardwareProfile": {
+        "vmSize": "[parameters('vmConfigs')[copyIndex()].size]"
+      },
+      "storageProfile": {
+        "imageReference": {
+          "id": "[parameters('vmConfigs')[copyIndex()].imageId]"
+        },
+        "osDisk": {
+          "createOption": "FromImage",
+          "managedDisk": {
+            "storageAccountType": "Premium_LRS"
+          }
+        }
+      },
+      "networkProfile": {
+        "networkInterfaces": [
+          {
+            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('vmConfigs')[copyIndex()].name, '-nic'))]"
+          }
+        ]
+      }
+    },
+    "dependsOn": [
+      "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('vmConfigs')[copyIndex()].name, '-nic'))]"
+    ]
+  },
+{
+  "type": "Microsoft.Authorization/roleAssignments",
+  "apiVersion": "2022-04-01",
+  "copy": {
+    "name": "roleAssignmentLoop",
+    "count": "[length(parameters('vmConfigs'))]"
+  },
+  "name": "[guid(concat(parameters('vmConfigs')[copyIndex()].name, parameters('storageAccountName'), resourceGroup().id))]",
+  "dependsOn": [
+    "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmConfigs')[copyIndex()].name)]"
+  ],
+  "properties": {
+    "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '81a9662b-bebf-436f-a333-f67b29880f12')]",
+    "principalId": "[reference(resourceId('Microsoft.Compute/virtualMachines', parameters('vmConfigs')[copyIndex()].name), '2021-11-01', 'Full').identity.principalId]",
+    "scope": "[resourceGroup().id]"
+  }
+},
+      {
+    "type": "Microsoft.Compute/virtualMachines/extensions",
+    "apiVersion": "2021-03-01",
+    "copy": {
+      "name": "vmExtensionLoop",
+      "count": "[length(parameters('vmConfigs'))]"
+    },
+    "name": "[concat(parameters('vmConfigs')[copyIndex()].name, '/CustomScriptExtension')]",
+    "location": "[parameters('location')]",
+    "dependsOn": [
+      "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmConfigs')[copyIndex()].name)]",
+      "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+      "[resourceId('Microsoft.Storage/storageAccounts/fileServices/shares', parameters('storageAccountName'), 'default', parameters('fileShareName'))]"
+    ],
+    "properties": {
+      "publisher": "Microsoft.Compute",
+      "type": "CustomScriptExtension",
+      "typeHandlerVersion": "1.10",
+      "autoUpgradeMinorVersion": true,
+      "settings": {
+        "fileUris": ["https://raw.githubusercontent.com/lowcodeunit/infrastructure/refs/heads/integration/applications/azure/syncade/syncadeFileShare.ps1"],    
+        "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File syncadeFileShare.ps1', ' -subscriptionId ' , parameters('subscriptionId'), ' -storageResourceGroup ', parameters('storageResourceGroup'),' -storageAccountName ', parameters('storageAccountName'))]"
+      }
+    }
+  }
+  
+    ]
+  }
